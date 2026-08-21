@@ -47,7 +47,7 @@ Required artifacts are `graph.json`, `diagnostics.json`, and a human-readable re
 To scan and open the dependency view locally:
 
 ```text
-python3 tools/sdlc_graph_scan.py --view
+python3 .claude/skills/sdlc-graph/tools/sdlc_graph_scan.py --view
 ```
 
 Use `--no-open` in headless environments. The command writes `graph/sdlc-graph.html` and prints its absolute path.

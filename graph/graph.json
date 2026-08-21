@@ -3,8 +3,8 @@
   "scan": {
     "scanId": "scan-f609ac1d91ffdcc1",
     "toolVersion": "sdlc-graph-local/1.1.0",
-    "startedAt": "2026-08-21T04:48:10Z",
-    "completedAt": "2026-08-21T04:48:10Z",
+    "startedAt": "2026-08-21T04:52:00Z",
+    "completedAt": "2026-08-21T04:52:00Z",
     "scope": "repos/* local Git repositories",
     "repositories": [
       {

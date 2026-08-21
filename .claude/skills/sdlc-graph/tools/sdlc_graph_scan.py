@@ -14,7 +14,7 @@ from pathlib import Path
 from xml.etree import ElementTree
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[4]
 REPOS_ROOT = ROOT / "repos"
 OUT = ROOT / "graph"
 EXTRACTOR_VERSION = "sdlc-graph-local/1.1.0"
@@ -499,7 +499,7 @@ def main() -> int:
                "- Dynamic topic names, unresolved Feign registry names, and unsupported syntax are retained as diagnostics.", ""]
     (OUT / "scan-report.md").write_text("\n".join(report), encoding="utf-8")
     if args.view:
-        view_cmd = [sys.executable, str(ROOT / "tools" / "sdlc_graph_view.py"), "--graph", str(OUT / "graph.json"),
+        view_cmd = [sys.executable, str(Path(__file__).resolve().parent / "sdlc_graph_view.py"), "--graph", str(OUT / "graph.json"),
                     "--out", str(OUT / "sdlc-graph.html")]
         if args.no_open:
             view_cmd.append("--no-open")
