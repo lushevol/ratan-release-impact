@@ -1,0 +1,6 @@
+language: en
+model: openai/deepseek-v4-flash
+pageindex_threshold: 20
+litellm:
+  timeout: 180
+  num_retries: 1

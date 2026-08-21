@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+repo_root="$(cd -- "$script_dir/.." && pwd)"
+kb_dir="$repo_root/knowledge-base"
+
+require_deepseek_env() {
+  local missing=0
+  for name in DEEPSEEK_OPENAI_BASE_URL DEEPSEEK_API_KEY DEEPSEEK_LLM_MODEL; do
+    if [[ -z "${!name:-}" ]]; then
+      printf 'Missing required system variable: %s\n' "$name" >&2
+      missing=1
+    fi
+  done
+  if (( missing )); then
+    exit 2
+  fi
+  export LLM_API_KEY="$DEEPSEEK_API_KEY"
+  export OPENAI_API_BASE="$DEEPSEEK_OPENAI_BASE_URL"
+}
+
+usage() {
+  cat <<'EOF'
+Usage: scripts/openkb <command> [arguments]
+
+Commands:
+  status                       Show KB health and document counts
+  list                         List documents, concepts, and entities
+  add [path]                   Ingest a file or directory (defaults to mock-data)
+  query "question"            Ask a grounded question over the wiki
+  lint                         Run structural and semantic wiki lint
+  web                          Start the local Workbench on port 7566
+EOF
+}
+
+command="${1:-status}"
+shift || true
+
+case "$command" in
+  -h|--help|help)
+    usage
+    ;;
+  status|list)
+    cd -- "$kb_dir"
+    exec openkb "$command" "$@"
+    ;;
+  add)
+    require_deepseek_env
+    if (( $# == 0 )); then
+      set -- mock-data
+    elif [[ "$1" != /* && "$1" != -* ]]; then
+      set -- "$repo_root/$1" "${@:2}"
+    fi
+    cd -- "$kb_dir"
+    exec openkb add "$@"
+    ;;
+  query|lint)
+    require_deepseek_env
+    cd -- "$kb_dir"
+    exec openkb "$command" "$@"
+    ;;
+  web)
+    require_deepseek_env
+    cd -- "$kb_dir"
+    exec openkb-web "$@"
+    ;;
+  *)
+    printf 'Unknown OpenKB command: %s\n\n' "$command" >&2
+    usage >&2
+    exit 2
+    ;;
+esac
