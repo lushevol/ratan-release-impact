@@ -6,7 +6,7 @@
 
 Build an advisory **Behavior-Centric SDLC Impact Assistant** for release managers.
 
-The assistant will take a manually supplied requirement derived from an Azure DevOps work item and produce an evidence-backed candidate impact report covering:
+The assistant will take a small manual trigger derived from an Azure DevOps work item, retrieve the corresponding requirements and design evidence from the existing local LLM Wiki MCP, and produce an evidence-backed candidate impact report covering:
 
 - affected UI applications and backend services;
 - provided or consumed endpoints;
@@ -20,10 +20,11 @@ The result is decision support, not an authoritative change list and not an auto
 
 The POC will introduce no new code-analysis products. It will use only:
 
+- the existing local `llm-wiki` MCP as the primary POC interface for requirements, acceptance criteria, business rules, and design evidence;
 - the existing SDLC scanner and graph artifacts;
 - the existing GitNexus index for targeted code context;
 - repository source, manifests, tests, configuration, and migrations;
-- the local Wiki/knowledge base when relevant;
+- the checked-in `knowledge-base/wiki` only as an explicit fallback when the live Wiki is unavailable;
 - the AI skill as an orchestrator and reasoner.
 
 SCIP, Joern, a new graph database, live Azure DevOps integration, and runtime telemetry are explicitly excluded from the POC.
@@ -35,7 +36,10 @@ SCIP, Joern, a new graph database, live Azure DevOps integration, and runtime te
 | Primary user | Release manager |
 | Product authority | Advisory candidate scope |
 | Required granularity | UI/backend applications, endpoints, events, tables, configuration/rules, and tests |
-| Requirement source | Manually supplied PO requirement derived from an ADO work item |
+| Business source | PO-authored requirement, initially identified by an ADO work-item reference |
+| POC retrieval source | Local `llm-wiki` MCP project `Ratan-Settlement` (`9e1984bc-764f-4abd-b898-84ea9d8e95b9`) |
+| Analysis trigger | Manual work-item reference, title, search terms, and optional pasted requirement text; no ADO API |
+| Wiki fallback | Checked-in `knowledge-base/wiki`, visibly classified as `wiki-local-fallback` |
 | Business confirmation | Placeholder confirmation state until PO/BA participation is available |
 | Insufficient evidence | Return `INDETERMINATE` with focused questions |
 | Runtime telemetry | Future enhancement, not a POC dependency |
@@ -78,11 +82,13 @@ The system must not answer only with code proximity. It must connect a requireme
 The target reasoning chain is:
 
 ```text
-Requirement snapshot
+Manual analysis trigger
+    -> LLM Wiki requirement/design evidence bundle
+    -> immutable requirement snapshot
     -> proposed behavior delta
     -> affected scenario
     -> realizing UI/backend applications
-    -> endpoints/events/tables/configuration/rules
+    -> routes/endpoints/GraphQL/events/schemas/data/configuration/rules
     -> regression tests
     -> evidence and uncertainty
 ```
@@ -95,6 +101,7 @@ The POC will not:
 - claim method-level business correctness;
 - prove that an unobserved dependency does not exist;
 - query Azure DevOps directly;
+- treat an LLM Wiki answer without source references as confirmed evidence;
 - ingest production OpenTelemetry data;
 - act as an automated release gate;
 - install or introduce another static-analysis or code-property-graph tool;
@@ -105,7 +112,20 @@ The POC will not:
 ## 6. Corrected architecture
 
 ```text
-Manually supplied requirement
+Manual ADO-derived analysis trigger
+        |
+        v
+LLM Wiki MCP evidence retrieval
+  - health and project selection
+  - requirement and acceptance criteria
+  - related design and business rules
+  - source document/section references
+        |
+        v
+Frozen Wiki evidence bundle
+  - retrieval timestamp and project ID
+  - item IDs, titles, paths, headings
+  - live or explicit local-fallback status
         |
         v
 Requirement normalizer
@@ -121,13 +141,12 @@ Behavior-delta proposal
         +-----------------------------+
         |                             |
         v                             v
-Local behavior catalog          Local evidence sources
+Local behavior catalog          Technical evidence sources
   - stable behavior IDs           - SDLC graph
   - scenarios and aliases         - GitNexus targeted context
   - current/expected states       - source and manifests
   - confirmation status           - tests and migrations
                                   - config/flags/rules
-                                  - local Wiki
         |                             |
         +---------------+-------------+
                         v
@@ -146,6 +165,34 @@ Local behavior catalog          Local evidence sources
 ```
 
 ### Component responsibilities
+
+#### Existing LLM Wiki MCP
+
+The local `llm-wiki` MCP is the primary POC retrieval interface for business meaning. The PO remains the business authority; the Wiki supplies the accessible requirement and design record.
+
+The configured server is:
+
+```json
+{
+  "command": "node",
+  "args": [
+    "/Applications/LLM Wiki.app/Contents/Resources/mcp-server/dist/src/index.js"
+  ]
+}
+```
+
+The validated project is `Ratan-Settlement`, project ID `9e1984bc-764f-4abd-b898-84ea9d8e95b9`. The logical operations are:
+
+- health/status and project discovery;
+- `search` for requirements, concepts, features, rules, and processes;
+- `get`/`context` for the authoritative matched content;
+- `related` for linked requirements, designs, systems, and business concepts;
+- `source` for the exact document section used as evidence;
+- graph queries where the server exposes a useful relationship graph.
+
+The current adapter already calls `llm_wiki_search`. The POC should extend the workflow contract to retain item IDs, project ID, title, source path, heading/section, retrieval time, server confidence when present, and whether the evidence came from the live MCP or local fallback.
+
+The desktop LLM Wiki application must be running for live retrieval. If it is unavailable, the assistant may use `knowledge-base/wiki` only when the fallback contains enough cited content. Otherwise the business mapping becomes `unknown` and the result is `INDETERMINATE`. The fallback must never be presented as live Wiki evidence.
 
 #### Existing SDLC scanner
 
@@ -177,14 +224,21 @@ The POC should keep the graph smaller than the original target-state ontology. O
 
 | Layer | Node | Purpose |
 |---|---|---|
-| Business | `RequirementSnapshot` | Immutable manual input and revision |
+| Business | `RequirementSnapshot` | Immutable normalized requirement revision backed by Wiki evidence |
+| Business | `AcceptanceCriterion` | Individually traceable expected outcome or constraint |
+| Business | `DesignArtifact` | Wiki-hosted design page, section, decision, or process description |
 | Business | `Behavior` | Stable business capability identity |
 | Business | `Scenario` | Specific behavior path or condition set |
 | Architecture | `UIApplication` | React/microfrontend boundary |
 | Architecture | `Service` | Backend deployable/service boundary |
-| Contract | `Endpoint` | Provided or consumed REST/GraphQL operation |
+| Architecture | `ExternalDependency` | Out-of-scope system or unresolved service target |
+| Contract | `UIRoute` | User-visible route or microfrontend activation contract |
+| Contract | `Endpoint` | Provided or consumed REST operation |
+| Contract | `GraphQLOperation` | Query, mutation, or subscription contract |
 | Contract | `Event` | Published or consumed message/event |
-| Data | `Table` | Persisted table or view where resolvable |
+| Contract | `PayloadSchema` | OpenAPI, GraphQL, JSON, Avro, or other payload shape/version |
+| Data | `Table` | Persisted table; retained for compatibility with the existing graph |
+| Data | `DataObject` | View, procedure, trigger, or other explicit database contract |
 | Control | `Configuration` | Behavior-affecting configuration key |
 | Control | `FeatureFlag` | Explicit feature switch |
 | Control | `BusinessRule` | Configured or coded rule/policy |
@@ -197,25 +251,56 @@ Classes and methods remain GitNexus/source evidence rather than first-class SDLC
 ### Canonical relationships
 
 ```text
-RequirementSnapshot --PROPOSES_DELTA--> Scenario
-Scenario            --SCENARIO_OF-----> Behavior
-Behavior            --REALIZED_BY-----> UIApplication | Service
-UIApplication       --PROVIDES--------> Endpoint
-Service             --PROVIDES--------> Endpoint
-UIApplication       --CALLS-----------> Endpoint
-Service             --CALLS-----------> Endpoint
-UIApplication       --PUBLISHES-------> Event
-Service             --PUBLISHES-------> Event
-UIApplication       --SUBSCRIBES_TO---> Event
-Service             --SUBSCRIBES_TO---> Event
-Service             --READS_FROM------> Table
-Service             --WRITES_TO-------> Table
-Behavior            --CONTROLLED_BY---> Configuration | FeatureFlag | BusinessRule
-Test                --VERIFIES--------> Behavior | Scenario
-Test                --EXERCISES-------> Endpoint | Event
+RequirementSnapshot --SUPPORTED_BY-----> DesignArtifact
+RequirementSnapshot --HAS_CRITERION-----> AcceptanceCriterion
+RequirementSnapshot --PROPOSES_DELTA----> Scenario
+AcceptanceCriterion --CONSTRAINS--------> Scenario | Behavior
+DesignArtifact      --DESCRIBES---------> Behavior | Scenario
+DesignArtifact      --SPECIFIES---------> UIRoute | Endpoint | GraphQLOperation | Event | PayloadSchema | Table | DataObject | Configuration | FeatureFlag | BusinessRule
+Scenario            --SCENARIO_OF-------> Behavior
+Behavior            --REALIZED_BY-------> UIApplication | Service
+UIApplication       --EXPOSES_ROUTE-----> UIRoute
+UIRoute             --INVOKES-----------> Endpoint | GraphQLOperation
+UIApplication       --PROVIDES----------> Endpoint | GraphQLOperation
+Service             --PROVIDES----------> Endpoint | GraphQLOperation
+UIApplication       --CALLS-------------> Endpoint | GraphQLOperation | ExternalDependency
+Service             --CALLS-------------> Endpoint | GraphQLOperation | ExternalDependency
+UIApplication       --PUBLISHES---------> Event
+Service             --PUBLISHES---------> Event
+UIApplication       --SUBSCRIBES_TO-----> Event
+Service             --SUBSCRIBES_TO-----> Event
+Endpoint            --USES_SCHEMA-------> PayloadSchema
+GraphQLOperation    --USES_SCHEMA-------> PayloadSchema
+Event               --USES_SCHEMA-------> PayloadSchema
+Service             --READS_FROM--------> Table | DataObject
+Service             --WRITES_TO---------> Table | DataObject
+Service             --EXECUTES----------> DataObject
+Behavior            --CONTROLLED_BY-----> Configuration | FeatureFlag | BusinessRule
+Test                --VERIFIES----------> AcceptanceCriterion | Behavior | Scenario
+Test                --EXERCISES---------> UIRoute | Endpoint | GraphQLOperation | Event | PayloadSchema | Table | DataObject
 ```
 
 Stored edge direction must be canonical. The reasoner may display inverse labels, but it must not turn every edge into an unrestricted bidirectional traversal.
+
+### Technical contract identity
+
+Each contract type needs a deterministic identity and compatibility attributes:
+
+| Contract | Minimum identity | Compatibility evidence |
+|---|---|---|
+| `UIRoute` | owning UI application + normalized route pattern | route params, guards, feature flag, lazy-loaded module |
+| REST `Endpoint` | provider + HTTP method + normalized path | operation ID, request/response schema, status codes, version |
+| `GraphQLOperation` | provider/client + operation type + operation name | selected fields, variables, schema/version reference |
+| `Event` | broker/system + topic/destination + event type | key, headers, payload schema/version, producer/consumer |
+| `PayloadSchema` | schema kind + canonical name + version/hash | required/optional fields and compatibility mode when known |
+| `Table` | database/schema/table | read/write mode, columns where explicit, migration version |
+| `DataObject` | database/schema/object type/name | arguments, returned shape, trigger source/target where explicit |
+| `Configuration` | application + normalized key | default presence, source, environment override status; value redacted |
+| `FeatureFlag` | owner/application + flag key | default state and target behavior when known; value redacted |
+| `BusinessRule` | domain + stable rule ID/name | inputs, outcome, version/effective state where available |
+| `Test` | repository + framework + test file + stable test name | test type, exercised contracts, confirmation status |
+
+Dynamic or unresolved contract identities must remain diagnostic records; they must not be merged merely because display names are similar.
 
 ## 8. Behavior identity and versioning
 
@@ -318,7 +403,8 @@ Without adding a new code-analysis tool, add bounded, format-aware detectors for
 - single-spa registration and microfrontend loading;
 - RTK Query endpoint definitions;
 - generated OpenAPI client operations;
-- GraphQL operation documents and generated clients;
+- OpenAPI request/response schema references and operation IDs;
+- GraphQL operation documents, selected fields, variables, and generated clients;
 - literal `fetch`/Axios request paths where present;
 - WebSocket/STOMP destinations where statically resolvable;
 - environment-variable references with values redacted;
@@ -333,6 +419,8 @@ Retain and improve existing extraction for:
 - Spring REST endpoints;
 - Feign/client calls;
 - Kafka producers and consumers;
+- request/response DTO or explicit schema references;
+- event type, header, key, and payload-schema references where static;
 - SQL migrations;
 - datasource connectivity;
 - Maven dependencies.
@@ -371,31 +459,41 @@ Detect keys and identifiers, not secret values. Configuration and rule evidence 
 
 ## 11. Requirement input contract
 
-The POC accepts a local YAML or JSON file. No ADO API is needed.
+The POC accepts a small local YAML or JSON analysis request. No ADO API is needed. The request identifies the PO requirement and tells the assistant what to retrieve from the LLM Wiki. Pasted requirement text is an optional hint or override that must remain visibly distinct from Wiki evidence.
 
 ```yaml
-id: ADO-POC-001
-revision: 1
+analysisRequestId: impact-ADO-POC-001-r1
+workItemRef: ADO-POC-001
 title: Example requirement
-source: manual-ado-derived
-actor: operations-user
-requirement: >-
-  Requirement text supplied by the PO.
-acceptanceCriteria:
-  - Criterion one
-currentBehavior:
-  - What happens today, if known
-expectedBehavior:
-  - What should happen after the change
-constraints:
-  - Product, region, status, timing, permission, or other conditions
-invariants:
-  - Existing outcomes that must remain unchanged
-businessCriticality: unknown
+wiki:
+  server: llm-wiki
+  projectId: 9e1984bc-764f-4abd-b898-84ea9d8e95b9
+  projectName: Ratan-Settlement
+  requirementRef: optional-wiki-item-id-or-path
+  searchTerms:
+    - exact domain noun
+    - meaningful action phrase
+manualHints:
+  requirementText: optional PO-supplied text
+  currentBehavior: []
+  expectedBehavior: []
+  constraints: []
+  invariants: []
+requestedMode: prediction
 confirmationStatus: placeholder-unconfirmed
 ```
 
-If current behavior, expected behavior, or material constraints are absent and the omission changes the impact boundary, the analysis must return `INDETERMINATE` with questions.
+The assistant converts the analysis request and retrieved Wiki evidence into an immutable normalized `RequirementSnapshot`. That snapshot must retain:
+
+- analysis request ID and work-item reference;
+- Wiki server/project ID;
+- exact retrieved Wiki item IDs, paths, headings, and retrieval time;
+- live/fallback status;
+- normalized requirement, acceptance criteria, current behavior, expected behavior, constraints, and invariants;
+- every manual hint and whether it agrees or conflicts with Wiki content;
+- placeholder confirmation status.
+
+If current behavior, expected behavior, or material constraints remain absent after Wiki retrieval and the omission changes the impact boundary, the analysis must return `INDETERMINATE` with questions.
 
 ## 12. Safe impact reasoning
 
@@ -403,11 +501,12 @@ If current behavior, expected behavior, or material constraints are absent and t
 
 Map the requirement to candidate behaviors using this priority:
 
-1. Exact behavior/scenario ID supplied in the requirement.
-2. Confirmed aliases in the behavior catalog.
-3. Exact business entities and actions from the local Wiki/catalog.
-4. Supported endpoint, event, rule, or configuration identifiers.
-5. Explicitly labeled AI inference.
+1. Exact Wiki requirement, behavior, scenario, rule, process, or design IDs and cited source sections.
+2. Exact behavior/scenario ID supplied in the analysis request or retrieved design.
+3. Confirmed aliases in the behavior catalog.
+4. Exact business entities and actions from cited Wiki evidence.
+5. Supported route, endpoint, GraphQL operation, event, schema, data object, rule, or configuration identifiers.
+6. Explicitly labeled AI inference.
 
 The existing “at least two overlapping words” algorithm may remain only as a low-priority suggestion generator. It must not establish a match or risk level by itself.
 
@@ -416,6 +515,8 @@ The existing “at least two overlapping words” algorithm may remain only as a
 Return `INDETERMINATE` when any of these hold:
 
 - no behavior or technical contract can be matched with supported evidence;
+- the configured Wiki project cannot be resolved and the explicit fallback is insufficient;
+- Wiki results lack source paths/sections needed for business claims;
 - multiple plausible behaviors produce materially different scope;
 - the graph baseline is stale relative to a scoped repository;
 - a required repository failed scanning;
@@ -431,18 +532,23 @@ Replace generic bidirectional breadth-first search with allow-listed path templa
 Examples:
 
 ```text
+Requirement -> DesignArtifact -> DESCRIBES/SPECIFIES -> Behavior/Contract
+Requirement -> AcceptanceCriterion -> CONSTRAINS -> Scenario/Behavior
 Scenario -> Behavior -> REALIZED_BY -> UI/Service
-UI/Service -> PROVIDES/CALLS -> Endpoint
+UI -> UIRoute -> Endpoint/GraphQLOperation
+UI/Service -> PROVIDES/CALLS -> Endpoint/GraphQLOperation/ExternalDependency
+Endpoint/GraphQLOperation/Event -> USES_SCHEMA -> PayloadSchema
 UI/Service -> PUBLISHES/SUBSCRIBES_TO -> Event
-Service -> READS_FROM/WRITES_TO -> Table
+Service -> READS_FROM/WRITES_TO/EXECUTES -> Table/DataObject
 Behavior -> CONTROLLED_BY -> Config/Flag/Rule
-Test -> VERIFIES -> Behavior/Scenario
-Test -> EXERCISES -> Endpoint/Event
+Test -> VERIFIES -> AcceptanceCriterion/Behavior/Scenario
+Test -> EXERCISES -> Route/Endpoint/GraphQLOperation/Event/Schema/DataObject
 ```
 
 Traversal controls:
 
 - preserve edge direction;
+- permit an inverse lookup only when an allow-listed path explicitly starts from a matched contract, rule, flag, configuration, or test; inverse lookup is not generic bidirectional traversal;
 - retain every edge and its evidence in the result path;
 - stop at generic libraries by default;
 - do not expand from an owning service to every endpoint automatically;
@@ -530,6 +636,7 @@ Status: ACTIONABLE | INDETERMINATE
 Impact severity: LOW | MEDIUM | HIGH | CRITICAL | UNKNOWN
 Uncertainty: LOW | MEDIUM | HIGH
 Baseline: scan ID and eight repository commits
+Wiki evidence: project ID, evidence-bundle ID, retrieval time, LIVE | LOCAL_FALLBACK | UNAVAILABLE
 Behavior confirmation: placeholder-unconfirmed
 ```
 
@@ -543,6 +650,8 @@ Behavior confirmation: placeholder-unconfirmed
 ### 15.3 Auditable impact paths
 
 Show complete relationship paths with evidence, not just node names.
+
+Business conclusions must cite the LLM Wiki item ID/path and section. Technical conclusions must cite graph/source evidence. A path that joins business and technical evidence must expose the mapping assertion and its classification rather than hiding the join inside model prose.
 
 ### 15.4 Regression tests
 
@@ -568,7 +677,7 @@ Only list behaviors expected not to change when the requirement supplies an inva
 
 ### 15.7 Unknowns and questions
 
-List missing evidence, stale scans, dynamic values, ambiguous behavior mappings, and clarification questions.
+List missing Wiki evidence, fallback use, stale scans, dynamic values, ambiguous behavior mappings, unresolved technical contracts, and clarification questions.
 
 ### 15.8 Machine-readable output
 
@@ -582,24 +691,518 @@ Generate matching JSON for later comparison with implementation diffs.
 3. Manually refresh GitNexus.
 4. Run the enhanced SDLC scanner.
 5. Reject the baseline if required repositories failed or diagnostics are fatal.
-6. Add a manual requirement snapshot.
-7. Extract a placeholder-unconfirmed behavior delta.
-8. Match the behavior and technical seeds.
-9. Traverse allow-listed evidence paths.
-10. Enrich only high-value targets with GitNexus/source context.
-11. Recommend and classify regression tests.
-12. Produce Markdown and JSON reports.
-13. Release manager reviews the evidence and unknowns.
+6. Add a manual analysis request containing the ADO reference and Wiki lookup hints.
+7. Check LLM Wiki health and resolve the configured project.
+8. Search/retrieve the requirement, acceptance criteria, related designs, rules, and exact source sections.
+9. Freeze the retrieved content as a provenance-only Wiki evidence bundle; mark live or local fallback.
+10. Normalize an immutable requirement snapshot and identify conflicts with manual hints.
+11. Extract a placeholder-unconfirmed behavior delta.
+12. Match the behavior and technical contract seeds.
+13. Traverse allow-listed evidence paths.
+14. Enrich only high-value targets with GitNexus/source context.
+15. Recommend and classify regression tests.
+16. Produce Markdown and JSON reports.
+17. Release manager reviews the evidence and unknowns.
 ```
 
-Every report must embed the scan ID, graph version, requirement revision, and the commit of each repository.
+Every report must embed the scan ID, graph version, requirement revision, Wiki project/evidence-bundle identity, retrieval mode/time, and the commit of each repository.
 
-## 17. POC delivery phases
+## 17. End-to-end flow contracts
+
+In this section, a flow contract is the versioned input/output agreement between POC components. It is distinct from the product contracts discovered in the software, such as endpoints and events.
+
+All machine-readable contracts require:
+
+- `schemaVersion`;
+- a stable record ID;
+- `createdAt` in UTC;
+- producer name/version;
+- source baseline or retrieval identity;
+- deterministic ordering where arrays are emitted;
+- explicit status and diagnostics;
+- no secret values.
+
+### Contract C01: `BaselineManifest`
+
+**Producer:** baseline preparation step
+
+**Consumer:** SDLC scanner, GitNexus enrichment, impact reasoner, report generator
+
+Required fields:
+
+```yaml
+schemaVersion: "1.0"
+baselineId: baseline-<hash>
+createdAt: <UTC timestamp>
+repositories:
+  - name: mfe-cashflow-blotter
+    path: repos/mfe-cashflow-blotter
+    ref: main
+    commit: <full commit>
+gitnexus:
+  repository: ratan-release-impact
+  indexedCommit: <commit-or-index-identity>
+  status: fresh
+sdlcGraph:
+  expectedScannerVersion: <version>
+```
+
+Validation and failure:
+
+- all eight scoped repositories must appear exactly once;
+- missing/unknown commits or stale GitNexus status make the baseline invalid;
+- nested repository commits are authoritative, not only the parent repository commit;
+- baseline failure stops technical impact analysis.
+
+### Contract C02: `AnalysisRequest`
+
+**Producer:** release manager/PO-facing manual entry
+
+**Consumer:** Wiki retrieval orchestrator
+
+Required fields:
+
+- `analysisRequestId`;
+- `workItemRef`;
+- title or exact search terms;
+- Wiki project ID;
+- requested mode (`prediction` for the POC);
+- optional manual hints with their source explicitly marked.
+
+Validation and failure:
+
+- reject an empty request with neither reference, title, nor search terms;
+- do not treat manual hints as Wiki-confirmed facts;
+- the request ID and effective content must be immutable for a run.
+
+### Contract C03: `WikiAvailability`
+
+**Producer:** LLM Wiki adapter
+
+**Consumer:** Wiki retrieval orchestrator and report diagnostics
+
+Required fields:
+
+```json
+{
+  "schemaVersion": "1.0",
+  "server": "llm-wiki",
+  "status": "LIVE | LOCAL_FALLBACK | UNAVAILABLE",
+  "projectId": "9e1984bc-764f-4abd-b898-84ea9d8e95b9",
+  "projectName": "Ratan-Settlement",
+  "checkedAt": "...",
+  "availableOperations": [],
+  "diagnostics": []
+}
+```
+
+Validation and failure:
+
+- resolve the requested project before search;
+- if live retrieval fails, record the error class without exposing sensitive response content;
+- local fallback is a separate status, not a successful live result;
+- `UNAVAILABLE` plus insufficient manual/fallback content forces `INDETERMINATE`.
+
+### Contract C04: `WikiQuery`
+
+**Producer:** requirement normalizer/retrieval orchestrator
+
+**Consumer:** LLM Wiki adapter
+
+Logical operations:
+
+```text
+status/projects -> verify server and project
+search          -> discover candidate requirements/designs/rules/processes
+get/context     -> retrieve authoritative matched content
+related         -> retrieve linked business/design artifacts
+source          -> retrieve exact evidence section
+graph           -> optional related-item discovery when supported
+```
+
+Minimum search request:
+
+```json
+{
+  "project_id": "...",
+  "query": "exact domain nouns and meaningful action phrase",
+  "top_k": 8,
+  "include_content": true
+}
+```
+
+Rules:
+
+- use concise domain nouns and actions rather than repeatedly sending the full requirement;
+- preserve request ID, operation, normalized query, project ID, and retrieval time;
+- responses without a source item/path/section may guide further retrieval but cannot confirm a business assertion.
+
+### Contract C05: `WikiEvidenceBundle`
+
+**Producer:** LLM Wiki retrieval orchestrator
+
+**Consumer:** requirement normalizer, behavior mapper, impact report
+
+Required fields:
+
+```yaml
+schemaVersion: "1.0"
+bundleId: wiki-evidence-<hash>
+analysisRequestId: impact-...
+projectId: 9e1984bc-764f-4abd-b898-84ea9d8e95b9
+retrievalMode: live-mcp | wiki-local-fallback
+retrievedAt: <UTC timestamp>
+queries: []
+items:
+  - itemId: <server-id-if-present>
+    title: <title>
+    kind: requirement | acceptance-criteria | design | rule | process | concept | unknown
+    sourcePath: <path-or-source-id>
+    section: <heading-or-anchor>
+    revision: <if-present>
+    serverConfidence: <if-present>
+    contentDigest: <hash>
+    excerpt: <bounded evidence text>
+diagnostics: []
+```
+
+Rules:
+
+- retain bounded excerpts and references, not unrestricted Wiki dumps;
+- deduplicate by stable item/source identity and content digest;
+- never invent an item ID, path, heading, revision, or citation;
+- preserve conflicting sources as separate items;
+- do not commit sensitive Wiki content unless authorized; the bundle may contain references and hashes with report-safe excerpts.
+
+### Contract C06: `RequirementSnapshot`
+
+**Producer:** requirement normalizer
+
+**Consumer:** behavior-delta extractor and report generator
+
+Required fields:
+
+- stable snapshot ID and work-item reference;
+- Wiki evidence-bundle ID;
+- normalized requirement statement;
+- acceptance criteria as individually identified entries;
+- actor, entities, actions, conditions, current behavior, expected behavior, constraints, and invariants;
+- conflicts between manual hints and Wiki evidence;
+- completeness status;
+- `placeholder-unconfirmed` business confirmation.
+
+Rules:
+
+- every normalized statement cites one or more Wiki evidence items or is marked `manual`/`inferred`;
+- current and expected behavior must not be merged into one text block;
+- material contradictions or missing boundary conditions force clarification or `INDETERMINATE`.
+
+### Contract C07: `BehaviorDeltaProposal`
+
+**Producer:** behavior-delta extractor
+
+**Consumer:** behavior mapper, reasoner, report generator
+
+Required fields:
+
+```yaml
+deltaId: behavior-delta-<hash>
+requirementSnapshotId: requirement-...
+candidateBehaviorIds: []
+candidateScenarioIds: []
+current:
+  outcomes: []
+  sideEffects: []
+expected:
+  outcomes: []
+  sideEffects: []
+invariants: []
+conditions: []
+evidenceRefs: []
+classification: supported | inferred | unknown
+confirmationStatus: placeholder-unconfirmed
+questions: []
+```
+
+Rules:
+
+- a new behavior may be proposed without being promoted to the confirmed catalog;
+- multiple materially different mappings remain separate candidates;
+- an empty or ambiguous delta cannot seed a low-risk result.
+
+### Contract C08: `BehaviorCatalogMapping`
+
+**Producer:** local catalog plus placeholder mapper
+
+**Consumer:** typed impact reasoner
+
+Required fields:
+
+- stable behavior/scenario ID;
+- aliases and Wiki source references;
+- technical seed IDs;
+- mapping classification and review status;
+- effective/superseded version metadata;
+- evidence references.
+
+Rules:
+
+- exact IDs precede aliases; aliases precede inference;
+- fuzzy text overlap is suggestion-only;
+- an AI proposal cannot set `confirmed` review status;
+- stale or missing target IDs are diagnostics.
+
+### Contract C09: `SdlcScanResult`
+
+**Producer:** enhanced existing SDLC scanner
+
+**Consumer:** impact reasoner, GitNexus enrichment selector, report generator
+
+Required fields:
+
+- graph schema and scan ID;
+- scanner/extractor versions;
+- baseline repository/commit manifest;
+- deterministically ordered nodes, relationships, and evidence assertions;
+- coverage summary by repository and contract type;
+- diagnostics with severity and affected scope;
+- scan completion status.
+
+Rules:
+
+- the scan manifest must match `BaselineManifest` exactly;
+- partial repository failure must not be reported as a complete graph;
+- unsupported syntax yields diagnostics, never guessed relationships;
+- fatal diagnostics block actionable analysis; non-fatal diagnostics raise uncertainty.
+
+### Contract C10: `GitNexusEnrichment`
+
+**Producer:** existing GitNexus query/context/impact operations
+
+**Consumer:** impact reasoner and evidence reporter
+
+Required fields:
+
+- operation (`query`, `context`, or later `impact`);
+- repository/index identity and freshness;
+- exact requested concept or symbol UID;
+- matched symbols/processes with file paths and lines;
+- epistemic status such as exact, ambiguous, or not found;
+- diagnostics.
+
+Rules:
+
+- enrichment starts only after a Wiki/catalog/technical seed exists;
+- ambiguous symbols must be disambiguated by UID or file path;
+- generic semantic-query results do not establish business mappings;
+- absence of a GitNexus process does not prove absence of an execution path;
+- do not persist the entire GitNexus graph into the SDLC graph.
+
+### Contract C11: `EvidenceAssertion`
+
+**Producer:** Wiki mapper, SDLC scanner, local catalog, GitNexus/source confirmer
+
+**Consumer:** impact reasoner and report renderer
+
+Required fields:
+
+- assertion ID;
+- subject, relationship, and object IDs;
+- canonical direction;
+- classification (`confirmed`, `supported`, `inferred`, `unknown`, or `stale`);
+- review status;
+- valid baseline/retrieval identity;
+- one or more typed evidence references;
+- producer/extractor version.
+
+Rules:
+
+- business evidence and technical evidence remain distinguishable;
+- a business-to-technical join is its own reviewable assertion;
+- no unsupported numeric probability is required;
+- contradictory assertions remain visible and raise uncertainty.
+
+### Contract C12: `ImpactPath`
+
+**Producer:** typed impact reasoner
+
+**Consumer:** candidate-impact classifier and report renderer
+
+Required fields:
+
+```json
+{
+  "pathId": "...",
+  "seedId": "...",
+  "nodes": [],
+  "assertionIds": [],
+  "pathTemplate": "behavior-to-contract",
+  "classification": "direct-consideration | regression-verification | possible-context | unknown",
+  "uncertainties": []
+}
+```
+
+Rules:
+
+- node order and assertion direction must be preserved;
+- every hop must be allow-listed and evidence-bearing;
+- no generic bidirectional BFS;
+- truncated fan-out must be reported, not silently discarded.
+
+### Contract C13: `CandidateImpactSet`
+
+**Producer:** candidate-impact classifier
+
+**Consumer:** test recommender and report generator
+
+Required fields:
+
+- requirement snapshot and behavior-delta IDs;
+- baseline and Wiki evidence-bundle IDs;
+- grouped UI applications, services, routes, endpoints, GraphQL operations, events, schemas, data objects, external dependencies, configurations, flags, and rules;
+- impact category and supporting path IDs for every item;
+- separated impact severity and uncertainty;
+- unknowns and questions.
+
+Rules:
+
+- use `candidateImpact`, not `predictedChanges`;
+- deduplicate by canonical technical-contract identity;
+- items without a supported path belong in `possible-context` or `unknown`;
+- no-match or material ambiguity yields `INDETERMINATE`.
+
+### Contract C14: `TestRecommendationSet`
+
+**Producer:** test recommender
+
+**Consumer:** report generator and release manager
+
+Required fields:
+
+- recommendation ID;
+- test identity, repository, file, and stable test name;
+- action (`execute`, `update`, or `create`);
+- test type;
+- affected behavior/criterion/technical-contract IDs;
+- rationale;
+- evidence classification and path IDs;
+- missing-coverage warnings.
+
+Rules:
+
+- `EXERCISES` and `VERIFIES` remain distinct;
+- inferred verification is never presented as confirmed business coverage;
+- no tests found is an explicit result, not an empty success.
+
+### Contract C15: `DiagnosticSet`
+
+**Producer:** every workflow component
+
+**Consumer:** orchestrator, uncertainty calculator, report generator
+
+Required fields:
+
+- diagnostic ID and component;
+- severity (`info`, `warning`, `error`, or `fatal`);
+- code;
+- affected project/repository/item/path;
+- redacted detail;
+- whether analysis can continue;
+- suggested resolution when known.
+
+Rules:
+
+- diagnostics are accumulated across Wiki, scanning, GitNexus, mapping, traversal, and test recommendation;
+- fatal diagnostics stop actionable reporting;
+- warning/error counts alone do not determine business impact severity.
+
+### Contract C16: `ImpactReport`
+
+**Producer:** report generator
+
+**Consumer:** release manager and future comparison workflow
+
+Required outputs:
+
+- `impact.md` for humans;
+- `impact.json` with the same conclusions;
+- status, severity, uncertainty, baselines, and evidence mode;
+- behavior delta and confirmation status;
+- auditable business-to-technical paths;
+- candidate impacts;
+- test recommendations;
+- explicit non-impact invariants only where supported;
+- diagnostics, unknowns, and questions.
+
+Rules:
+
+- Markdown and JSON must not contradict each other;
+- every conclusion links to an evidence assertion/path;
+- fallback Wiki evidence is visibly marked;
+- an `INDETERMINATE` report may contain partial evidence but no reassuring low-risk conclusion.
+
+### Contract C17: `ReleaseReviewDecision`
+
+**Producer:** release manager
+
+**Consumer:** local report archive and future evaluation dataset
+
+Required fields:
+
+- analysis/report ID;
+- decision (`accepted-for-consideration`, `needs-clarification`, `rejected-evidence`, or `deferred`);
+- reviewed impact items/test recommendations;
+- comments and corrections;
+- reviewer identity placeholder for the POC;
+- review timestamp;
+- PO/BA confirmation status.
+
+Rules:
+
+- review does not promote business mappings to PO/BA-confirmed status in the POC;
+- corrections should become new versioned catalog assertions, not edits to historical reports.
+
+### Contract C18: `ChangeComparison` (future)
+
+**Producer:** post-change comparison workflow
+
+**Consumer:** release review and historical evaluation
+
+Required fields:
+
+- before and after baseline manifests;
+- predicted candidate-impact set ID;
+- actual changed graph/contracts/symbol evidence;
+- predicted-and-changed, predicted-but-unchanged, changed-but-unpredicted, and unresolved classifications;
+- test execution or runtime evidence when behavior-change claims are made;
+- reviewer disposition.
+
+Rules:
+
+- code differences alone prove technical change, not business regression;
+- implementation alternatives and incidental refactoring require human disposition;
+- comparison is outside the initial POC until suitable before/after cases exist.
+
+### Cross-contract invariants
+
+- IDs must remain stable within a version and never be derived from display text alone when a canonical ID exists.
+- Every artifact must identify the Wiki evidence bundle and repository baseline that produced it.
+- Business claims require Wiki/manual business evidence; technical claims require graph/source evidence.
+- A join between business and technical evidence is an explicit assertion with its own classification.
+- Live Wiki, local fallback, manual hint, deterministic extraction, GitNexus evidence, and AI inference must remain distinguishable.
+- No component may silently downgrade an upstream error or ambiguity.
+- Secrets, full connection strings, credentials, and unrestricted Wiki content must not enter committed artifacts.
+- Contract schema changes require a schema-version change and backward-compatibility or migration decision.
+
+## 18. POC delivery phases
 
 ### Phase 0: Contracts and fixtures
 
 Deliver:
 
+- LLM Wiki availability/query/evidence-bundle contracts;
+- configured Wiki project identity and explicit fallback policy;
+- analysis-request schema;
 - requirement input schema;
 - behavior/scenario catalog schema;
 - assertion/evidence schema;
@@ -607,7 +1210,7 @@ Deliver:
 - five to ten manually authored POC requirements grounded in existing repository capabilities;
 - placeholder confirmation policy.
 
-Exit criterion: the same requirement and baseline produce deterministic inputs and report structure.
+Exit criterion: the same analysis request, Wiki evidence bundle, and repository baseline produce deterministic inputs and report structure; Wiki outage/fallback behavior is testable.
 
 ### Phase 1: Eight-repository evidence baseline
 
@@ -629,6 +1232,7 @@ Exit criterion: all eight repositories appear in the scan manifest, and each req
 Deliver:
 
 - local behavior/scenario catalog;
+- Wiki concept/requirement/design-to-behavior mappings with cited source sections;
 - exact aliases and technical seed mappings;
 - placeholder-unconfirmed behavior extraction;
 - `INDETERMINATE` state;
@@ -671,7 +1275,7 @@ Once real before/after examples become available:
 - distinguish implementation choices, refactoring, and possible scope creep;
 - never claim an actual behavior regression without test or runtime evidence.
 
-## 18. POC evaluation without historical production data
+## 19. POC evaluation without historical production data
 
 Because real historical requirements, linked diffs, and PO/BA labels are unavailable, the POC must evaluate capability and evidence quality—not predictive accuracy.
 
@@ -680,6 +1284,7 @@ Because real historical requirements, linked diffs, and PO/BA labels are unavail
 - 100% of conclusions have evidence or an explicit inference/unknown label;
 - zero no-match cases are reported as low risk;
 - all eight repository commits are recorded in every baseline;
+- every run records the Wiki project, evidence-bundle identity, retrieval time, and live/fallback status;
 - deterministic reruns produce equivalent graph/report results;
 - scanner coverage is reported for endpoints, events, tables, tests, configuration, flags, and rules;
 - evidence paths preserve edge type, direction, source path, and line range;
@@ -700,11 +1305,13 @@ Do not claim:
 
 Those require real PO/BA-confirmed behaviors and historical before/after ground truth.
 
-## 19. POC success gates
+## 20. POC success gates
 
 | Gate | Pass condition |
 |---|---|
 | Baseline integrity | All eight repositories and commits recorded; no fatal scan failure |
+| Business evidence integrity | Wiki project and evidence bundle recorded; every normalized business claim is cited or explicitly manual/inferred |
+| Wiki failure safety | Live outage is visible; fallback is explicit; insufficient fallback returns `INDETERMINATE` |
 | Evidence integrity | Every assertion contains provenance and classification |
 | Safe failure | Missing/ambiguous mappings return `INDETERMINATE` |
 | Bounded scope | No unrestricted bidirectional traversal or service-to-everything expansion |
@@ -715,16 +1322,25 @@ Those require real PO/BA-confirmed behaviors and historical before/after ground 
 
 Failure of a gate does not invalidate the graph; it limits which claims the assistant may make.
 
-## 20. Suggested repository-local artifacts
+## 21. Suggested repository-local artifacts
 
 ```text
 config/
   sdlc-graph.yaml
   repository-aliases.yaml
+  llm-wiki.yaml
+
+analysis-requests/
+  poc/
+    impact-ADO-POC-001-r1.yaml
 
 requirements/
   poc/
-    ADO-POC-001.yaml
+    ADO-POC-001-r1.snapshot.yaml
+
+wiki-evidence/
+  <bundle-id>.manifest.json
+  # bounded excerpts only when authorized
 
 behavior-catalog/
   behaviors.yaml
@@ -746,19 +1362,19 @@ reports/
     review.yaml
 ```
 
-Raw requirements, secret configuration values, and production data must not be committed without explicit authorization. Store redacted identifiers and evidence paths only.
+Raw requirements, unrestricted Wiki content, secret configuration values, and production data must not be committed without explicit authorization. Prefer Wiki item references, sections, content digests, and bounded report-safe excerpts.
 
-## 21. Future architecture
+## 22. Future architecture
 
-### 21.1 PO/BA confirmation
+### 22.1 PO/BA confirmation
 
 Replace `placeholder-unconfirmed` mappings with an approval workflow that records reviewer, decision, rationale, and effective version.
 
-### 21.2 Azure DevOps integration
+### 22.2 Azure DevOps integration
 
 Fetch immutable work-item revisions, acceptance criteria, links, and associated PR/commit metadata. Preserve source ACLs and do not assume the latest work-item text represents the historical requirement.
 
-### 21.3 Runtime telemetry
+### 22.3 Runtime telemetry
 
 Runtime evidence is valuable but must remain optional. Add it only when services expose usable telemetry with:
 
@@ -771,19 +1387,22 @@ Runtime evidence is valuable but must remain optional. Add it only when services
 
 Store aggregate observations or trace references in the SDLC graph, not every raw span. An observed path proves occurrence for that version and window; absence of a trace never proves non-use.
 
-### 21.4 Historical evaluation
+### 22.4 Historical evaluation
 
 Build a time-split, leakage-free dataset containing requirement revisions, exact multi-repository baselines, actual implementation changes, tests, and human labels. Only then measure service recall, false positives, test recommendation recall, calibration, unexpected-change usefulness, and analysis-time reduction.
 
-### 21.5 Release integration
+### 22.5 Release integration
 
 After evidence quality and historical evaluation are credible, add post-change comparison to release review. Automated gating should remain a separate later decision.
 
-## 22. Principal risks and mitigations
+## 23. Principal risks and mitigations
 
 | Risk | Mitigation |
 |---|---|
 | Behavior mapping appears authoritative without PO/BA | Placeholder status, visible uncertainty, no automatic promotion |
+| Wiki MCP or desktop application is unavailable | Health contract, explicit local fallback, visible retrieval mode, `INDETERMINATE` when insufficient |
+| Wiki search result lacks authoritative context | Follow with context/source retrieval; uncited results remain discovery hints |
+| Wiki and manual hints disagree | Preserve both sources, report the conflict, request clarification |
 | No match incorrectly looks safe | Mandatory `INDETERMINATE` state |
 | Graph expansion lists everything | Directional path templates, fan-out caps, evidence categories |
 | UI repositories are omitted | npm identity and React evidence support in existing scanner |
@@ -794,16 +1413,17 @@ After evidence quality and historical evaluation are credible, add post-change c
 | Local Git contains sensitive values | Redaction, path-only evidence, repository review |
 | POC overstates accuracy | Capability metrics only until historical labels exist |
 
-## 23. Final recommendation
+## 24. Final recommendation
 
 Proceed with the POC as an **evidence-backed release impact assistant**, not as an impact prediction engine.
 
 The most valuable first milestone is not a larger graph. It is a trustworthy, bounded report that:
 
 1. expresses the proposed behavior delta;
-2. explains each impacted UI/service/contract/data item with evidence;
-3. recommends regression tests with honest evidence classifications;
-4. distinguishes impact severity from uncertainty;
-5. abstains when the graph or business understanding is insufficient.
+2. cites the exact LLM Wiki requirement/design evidence used to understand that delta;
+3. explains each impacted UI/service/contract/data item with technical evidence and an explicit business-to-technical mapping assertion;
+4. recommends regression tests with honest evidence classifications;
+5. distinguishes impact severity from uncertainty;
+6. abstains when the Wiki, graph, or business understanding is insufficient.
 
 This design preserves the original behavior-centric vision while removing the highest-risk assumptions: no new analysis stack, no runtime dependency for the POC, no unrestricted reachability, no false precision, no unsafe low-risk result from missing evidence, and no accuracy claims without real business validation.
