@@ -1,0 +1,4 @@
+interface:
+  display_name: "Requirement Impact"
+  short_description: "Predict code and architecture impact from business requirements"
+  default_prompt: "Analyze this requirement against the Wiki MCP and SDLC Graph, then produce an evidence-backed impact report."
