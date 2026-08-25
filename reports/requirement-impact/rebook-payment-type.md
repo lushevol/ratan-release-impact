@@ -170,6 +170,32 @@ The requirement owner has resolved the material decisions for this analysis:
 
 The resulting contract is clear enough for impact analysis. It remains intentionally **not an implementation authorization**.
 
+### Re-evaluation after workflow changes
+
+The clarified requirement was replayed through the configurable SDLC Graph policy in
+`sdlc-graph-config.json`. It produced four exact lifecycle-service seeds:
+
+- `cashflowduplicatecheck` capability;
+- the duplicate-check entrypoint component;
+- two lifecycle Java components associated with the duplicate-check flow.
+
+The graph expansion returned 182 business candidates and 172 runtime candidates across
+the lifecycle, orchestration, and SSI-stamping repositories, plus one unresolved external
+frontier. Those expansion counts are discovery candidates, not proof of ownership; the
+four seeds are the bounded starting set.
+
+The repo-scoped GitNexus index was then queried directly for
+`ratan-cashflow-lifecycle-service`. The exact current target
+`getCashflowIdsUnderSameOriginalTradeIdAndSameCurrency` has **HIGH** risk with 6 impacted
+symbols, 2 direct callers, 4 affected processes, and 4 affected modules. The direct
+callers include both the service and processor Rebook paths, confirming that a one-route
+change could leave behavior divergent.
+
+GitNexus also finds `settlementType`/Payment Type model fields and duplicate-check
+processes, but symbol presence is not proof that Payment Type currently participates in
+the decision. The requirement therefore remains **NO-GO / NOT PROVEN** until the evidence
+listed below is obtained. No production code was changed.
+
 ### SDLC Graph position
 
 SDLC Graph was used as a bounded architecture cross-check. Its requirement search produced many lexical false positives and unresolved external frontiers, so its broad candidate count is not evidence that all returned repositories are impacted. Its service picture and dependency queries did provide useful corroboration for the lifecycle service, the two runtime tables, Kafka surroundings, and resolved calls to orchestration/netting/stamping services.
