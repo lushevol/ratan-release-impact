@@ -10,19 +10,20 @@ from collections import defaultdict, deque
 from pathlib import Path
 from typing import Any
 
-from graph_query import compact_node, search_graph, seed_changes, seed_requirement, traverse
+from graph_query import compact_node, load_seed_config, search_graph, seed_changes, seed_requirement, traverse
 
 
 SERVER = {"name": "sdlc-graph", "version": "1.0.0"}
 
 
 class GraphStore:
-    def __init__(self, data_dir: Path):
+    def __init__(self, data_dir: Path, config_path: Path | None = None):
         self.data_dir = data_dir.resolve()
         self.graph = self._load("graph.json")
         self.services = self._load("services.json")
         self.dependencies = self._load("dependencies.json")
         self.manifest = self._load("manifest.json")
+        self.seed_config = load_seed_config(str(config_path)) if config_path and config_path.is_file() else load_seed_config()
         self.nodes = {node["id"]: node for node in self.graph["nodes"]}
 
     def overview(self) -> dict[str, Any]:
@@ -210,7 +211,7 @@ def call_tool(store: GraphStore, name: str, arguments: dict[str, Any]) -> Any:
             arguments.get("node_types"), arguments.get("limit", 25),
         )
     if name == "analyze_requirement_impact":
-        seeds = seed_requirement(store.graph["nodes"], arguments["requirement"])
+        seeds = seed_requirement(store.graph["nodes"], arguments["requirement"], config=store.seed_config)
         return {"mode": "REQUIREMENT", "input": arguments["requirement"], **store.impact(
             seeds, arguments.get("depth", 4), arguments.get("limit", 60),
         )}
@@ -326,8 +327,9 @@ def read_message() -> dict[str, Any] | None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-dir", type=Path, default=Path("sdlc-graph-output"))
+    parser.add_argument("--config", type=Path, default=Path("sdlc-graph-config.json"), help="Requirement seeding policy JSON")
     args = parser.parse_args()
-    store = GraphStore(args.data_dir)
+    store = GraphStore(args.data_dir, args.config)
     while True:
         request: dict[str, Any] | None = None
         try:

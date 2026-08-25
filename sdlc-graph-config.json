@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "requirement_seeding": {
+    "generic_tokens": [
+      "business", "behavior", "cashflow", "change", "current", "exception", "future",
+      "impact", "logic", "match", "matching", "requirement", "runtime", "same",
+      "service", "services", "source", "status", "system", "within"
+    ],
+    "distinctive_tokens": [
+      "amendment", "cashflowduplicatecheck", "duplicate", "lineage", "rebook", "settlement", "stella"
+    ],
+    "synonyms": {
+      "rebook": ["duplicate"],
+      "duplicate": ["rebook"]
+    },
+    "minimum_overlap": 2,
+    "component_minimum_name_overlap": 2,
+    "name_weight": 1.0,
+    "description_weight": 0.25,
+    "exact_name_bonus": 0.5,
+    "confirmed_bonus": 0.1,
+    "max_seeds": 12,
+    "allow_weak_component_seeds": false
+  }
+}

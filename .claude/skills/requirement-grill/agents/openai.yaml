@@ -1,0 +1,17 @@
+interface:
+  display_name: "Requirement Grill"
+  short_description: "Clarify ambiguous requirements before coding"
+  default_prompt: "Use $requirement-grill to resolve requirement ambiguity with LLM Wiki evidence and targeted owner questions."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "llm-wiki"
+      description: "Background business requirements, terminology, and decisions"
+    - type: "mcp"
+      value: "sdlcGraph"
+      description: "Current architecture and runtime evidence requests"
+    - type: "mcp"
+      value: "gitnexus"
+      description: "Current code behavior and duplicate decision paths"
+policy:
+  allow_implicit_invocation: true

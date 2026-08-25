@@ -8,7 +8,7 @@ import json
 import subprocess
 from pathlib import Path
 
-from graph_query import seed_changes, seed_requirement, traverse
+from graph_query import load_seed_config, seed_changes, seed_requirement, traverse
 
 
 def changed_from_git(workspace: Path, base_ref: str) -> list[str]:
@@ -19,6 +19,7 @@ def changed_from_git(workspace: Path, base_ref: str) -> list[str]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--graph", type=Path, default=Path("sdlc-graph-output/graph.json"))
+    parser.add_argument("--config", type=Path, default=Path("sdlc-graph-config.json"), help="Requirement seeding policy JSON")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--requirement")
     group.add_argument("--changed-file", action="append", dest="changed_files")
@@ -29,7 +30,8 @@ def main() -> int:
     graph = json.loads(args.graph.read_text(encoding="utf-8"))
     if args.requirement:
         mode, input_value = "REQUIREMENT", args.requirement
-        seeds = seed_requirement(graph["nodes"], args.requirement)
+        config = load_seed_config(str(args.config)) if args.config.is_file() else load_seed_config()
+        seeds = seed_requirement(graph["nodes"], args.requirement, config=config)
     else:
         changed = args.changed_files or changed_from_git(args.graph.resolve().parents[1], args.base_ref)
         mode, input_value = "CODE_CHANGE", changed

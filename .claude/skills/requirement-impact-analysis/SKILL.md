@@ -19,6 +19,8 @@ Read [evidence and reporting](references/evidence-and-reporting.md) before issui
 
 Separate current behavior, desired behavior, invariants, removals, additions, boundary conditions, and undefined terms. Convert each rule into an independently testable predicate. Do not silently choose a meaning for an overloaded field such as payment type, settlement type, direction, or trade event.
 
+If any material predicate remains ambiguous, invoke `$requirement-grill` before continuing. It must search LLM Wiki for authoritative background first, then ask the user or named business owner only for rules that Wiki cannot establish. Do not proceed to an implementation recommendation while the grill verdict is `BLOCKED ON REQUIREMENT DECISION`.
+
 ### 2. Establish business evidence
 
 Search LLM Wiki for the exact control, business terms, prior decisions, and linked source pages. Prefer direct requirement/design pages over generated concept summaries. Record document title/path and which assertion it supports. If no authoritative source defines a requested term or behavior, mark it `UNRESOLVED` and state what owner or document is needed.
@@ -31,13 +33,13 @@ List affected APIs, database tables, Kafka topics, external services, pages, and
 
 ### 4. Confirm code and blast radius
 
-Check GitNexus index freshness. Query the concept, inspect exact symbol context, and run upstream impact for every symbol proposed for modification. Disambiguate duplicate symbol names by file. Report HIGH or CRITICAL risk before recommending implementation.
+Check GitNexus index freshness for the actual business repository under `repos/`. Do not use an index of the analysis harness itself as business-code evidence. Query the concept, inspect exact symbol context, and run upstream impact for every symbol proposed for modification. Disambiguate duplicate symbol names by file. Report HIGH or CRITICAL risk before recommending implementation.
 
 Corroborate graph results against exact source paths and runtime configuration. If GitNexus is stale, incomplete, or fails to index, do not substitute a guessed score: state the limitation and report only directly observed callers.
 
 ### 5. Assess proof
 
-Static code and graph evidence can confirm that an implementation path exists; it cannot prove runtime behavior. A `PROVEN` verdict requires executable evidence for the requested behavior, including positive, negative, equality/inequality, null/missing-field, date-boundary/time-zone, status, source-system, and end-to-end persistence/transport cases as applicable.
+This workflow verifies the quality of the requirement-impact analysis; it does not implement the requested business change. Static code and graph evidence can confirm that an implementation path exists; it cannot prove runtime behavior. A `PROVEN` verdict in this workflow means the analysis produced an evidence-backed, unambiguous impact contract, not that production behavior was changed or deployed. Separate runtime claims still require executable evidence for the requested behavior, including positive, negative, equality/inequality, null/missing-field, date-boundary/time-zone, status, source-system, and end-to-end persistence/transport cases as applicable.
 
 Run the narrowest relevant existing tests and record the exact command and outcome. If tests cannot run, the proposed rule is absent, fixtures only mock the predicate, or production telemetry cannot distinguish false positives from false negatives, return `NOT PROVEN` even when confidence in the source reading is high.
 

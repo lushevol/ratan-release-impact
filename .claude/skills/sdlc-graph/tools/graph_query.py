@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import fnmatch
+import json
 import re
 from collections import Counter, defaultdict, deque
 from typing import Any, Iterable
@@ -14,6 +15,77 @@ STOP_WORDS = {
     "in", "is", "of", "on", "operator", "operators", "or", "support", "the",
     "to", "with",
 }
+
+# Requirement prose contains routing words that are useful for a human but too
+# broad to identify an architecture node. Keep them out of seed selection;
+# they remain searchable through search_graph().
+DEFAULT_REQUIREMENT_GENERIC_TOKENS = {
+    "business", "behavior", "cashflow", "change", "current", "exception", "future", "impact", "logic",
+    "match", "matching", "requirement", "runtime", "same", "service", "services",
+    "source", "status", "system", "within",
+}
+
+DEFAULT_DISTINCTIVE_SEED_TOKENS = {
+    "amendment", "cashflowduplicatecheck", "duplicate", "lineage", "rebook",
+    "settlement", "stella",
+}
+
+DEFAULT_REQUIREMENT_SYNONYMS = {
+    # The graph models the owning capability as Duplicate Check while the
+    # business requirement commonly calls the outcome a Rebook exception.
+    "rebook": {"duplicate"},
+    "duplicate": {"rebook"},
+}
+
+DEFAULT_SEED_CONFIG = {
+    "generic_tokens": DEFAULT_REQUIREMENT_GENERIC_TOKENS,
+    "distinctive_tokens": DEFAULT_DISTINCTIVE_SEED_TOKENS,
+    "synonyms": DEFAULT_REQUIREMENT_SYNONYMS,
+    "minimum_overlap": 2,
+    "component_minimum_name_overlap": 2,
+    "name_weight": 1.0,
+    "description_weight": 0.25,
+    "exact_name_bonus": 0.5,
+    "confirmed_bonus": 0.1,
+    "max_seeds": 12,
+    "allow_weak_component_seeds": False,
+}
+
+
+def load_seed_config(path: str | None = None) -> dict[str, Any]:
+    """Load requirement-seeding policy; absent config uses stable defaults."""
+    config = dict(DEFAULT_SEED_CONFIG)
+    if not path:
+        return config
+    with open(path, encoding="utf-8") as handle:
+        payload = json.load(handle)
+    section = payload.get("requirement_seeding", payload)
+    if not isinstance(section, dict):
+        raise ValueError("requirement_seeding config must be an object")
+    for key, default in DEFAULT_SEED_CONFIG.items():
+        if key in section:
+            value = section[key]
+            if isinstance(default, set):
+                if not isinstance(value, list) or not all(isinstance(item, str) for item in value):
+                    raise ValueError(f"{key} must be an array of strings")
+                config[key] = set(value)
+            elif key == "synonyms":
+                if not isinstance(value, dict) or not all(isinstance(k, str) and isinstance(v, list) and all(isinstance(item, str) for item in v) for k, v in value.items()):
+                    raise ValueError("synonyms must map strings to arrays of strings")
+                config[key] = {k: set(v) for k, v in value.items()}
+            else:
+                config[key] = value
+    for key in ("minimum_overlap", "component_minimum_name_overlap", "max_seeds"):
+        if not isinstance(config[key], int) or isinstance(config[key], bool):
+            raise ValueError(f"{key} must be an integer")
+    for key in ("name_weight", "description_weight", "exact_name_bonus", "confirmed_bonus"):
+        if not isinstance(config[key], (int, float)) or isinstance(config[key], bool):
+            raise ValueError(f"{key} must be numeric")
+    if not isinstance(config["allow_weak_component_seeds"], bool):
+        raise ValueError("allow_weak_component_seeds must be boolean")
+    if config["minimum_overlap"] < 1 or config["component_minimum_name_overlap"] < 1 or config["max_seeds"] < 1:
+        raise ValueError("minimum_overlap, component_minimum_name_overlap, and max_seeds must be positive")
+    return config
 
 
 def tokens(value: str) -> set[str]:
@@ -39,19 +111,51 @@ def compact_node(node: dict[str, Any]) -> dict[str, Any]:
     return {field: node[field] for field in fields if field in node}
 
 
-def seed_requirement(nodes: list[dict[str, Any]], requirement: str, limit: int = 12) -> list[tuple[str, float, str]]:
-    requested = tokens(requirement)
+def seed_requirement(nodes: list[dict[str, Any]], requirement: str, limit: int | None = None, config: dict[str, Any] | None = None) -> list[tuple[str, float, str]]:
+    policy = config or DEFAULT_SEED_CONFIG
+    requested = tokens(requirement) - policy["generic_tokens"]
+    expanded_requested = set(requested)
+    for term, aliases in policy["synonyms"].items():
+        if term in requested:
+            expanded_requested.update(aliases)
     ranked = []
     for node in nodes:
         if node["type"] not in {"BUSINESS_CAPABILITY", "PAGE", "COMPONENT", "SERVICE", "APPLICATION"}:
             continue
         searchable = " ".join((node["name"], node.get("functional_role", ""), node.get("business_meaning", "")))
-        overlap = requested & tokens(searchable)
-        if overlap:
-            score = len(overlap) / max(len(requested), 1)
-            ranked.append((node["id"], score, f"matched terms: {', '.join(sorted(overlap))}"))
+        node_tokens = tokens(searchable)
+        overlap = expanded_requested & node_tokens
+        if not overlap:
+            continue
+
+        name_tokens = tokens(node["name"])
+        name_overlap = overlap & name_tokens
+        name_match = len(name_tokens) >= 2 and name_tokens <= expanded_requested
+        distinctive = overlap & policy["distinctive_tokens"]
+        if node["type"] in {"COMPONENT", "PAGE"} and len(name_overlap) < policy["component_minimum_name_overlap"] and not name_match and not distinctive and not policy["allow_weak_component_seeds"]:
+            continue
+        # A single generic match is not evidence of requirement ownership.
+        # Preserve one-token seeds only for distinctive domain terms or an
+        # exact named capability/component match.
+        if len(overlap) < policy["minimum_overlap"] and not distinctive and not name_match:
+            continue
+
+        # Weight evidence in the node name much more than incidental prose
+        # overlap. This prevents a long requirement from diluting the owning
+        # capability below unrelated one-token matches.
+        score = (policy["name_weight"] * len(name_overlap) / max(len(name_tokens), 1)) + (
+            policy["description_weight"] * len(overlap) / max(len(expanded_requested), 1)
+        )
+        if name_match:
+            score += policy["exact_name_bonus"]
+        if node.get("assertion_status") == "CONFIRMED":
+            score += policy["confirmed_bonus"]
+        reason = f"matched terms: {', '.join(sorted(overlap))}"
+        if name_match:
+            reason += "; exact node-name coverage"
+        ranked.append((node["id"], score, reason))
     ranked.sort(key=lambda item: (-item[1], item[0]))
-    return ranked[:limit]
+    return ranked[:limit or policy["max_seeds"]]
 
 
 def seed_changes(nodes: list[dict[str, Any]], changed: list[str]) -> list[tuple[str, float, str]]:

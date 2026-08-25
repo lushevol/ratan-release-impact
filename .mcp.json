@@ -14,14 +14,17 @@
       "args": [
         ".claude/skills/sdlc-graph/tools/sdlc_graph_mcp.py",
         "--data-dir",
-        "sdlc-graph-output"
+        "sdlc-graph-output",
+        "--config",
+        "sdlc-graph-config.json"
       ]
     },
-    "gitnexus": {
-      "command": "node",
+    "gitnexusRepos": {
+      "command": "python3",
       "args": [
-        ".gitnexus/run.cjs",
-        "mcp"
+        ".claude/tools/gitnexus-repos-mcp.py",
+        "--root",
+        "."
       ]
     }
   }

@@ -25,6 +25,11 @@ The dependency-free stdio server exposes the generated bundle to AI clients:
 python3 .claude/skills/sdlc-graph/tools/sdlc_graph_mcp.py --data-dir sdlc-graph-output
 ```
 
+Requirement seed matching is configurable in workspace-root `sdlc-graph-config.json`.
+The same file is used by the CLI and MCP server; pass `--config` to select another
+policy. Keep generic terms, distinctive terms, synonyms, thresholds, and scoring
+weights explicit so an impact report can record which policy produced its seeds.
+
 Start with `get_system_overview` or the `sdlc-graph://overview` resource. For a requirement, call `analyze_requirement_impact`, inspect each affected repository with `get_service_picture`, and use `get_node_neighborhood` for evidence paths and relationships. Treat returned impact as candidates: report business and runtime dimensions separately, retain unresolved external frontiers, and distinguish inferred descriptions from confirmed facts.
 
 ## Repository dimensions
@@ -45,7 +50,7 @@ Use the detailed [React](references/architecture/react-extraction.md), [Spring](
 Run exactly one input mode:
 
 ```text
-python3 .claude/skills/sdlc-graph/tools/analyze_impact.py --requirement "Allow operators to refresh SSI"
+python3 .claude/skills/sdlc-graph/tools/analyze_impact.py --requirement "Allow operators to refresh SSI" --config sdlc-graph-config.json
 python3 .claude/skills/sdlc-graph/tools/analyze_impact.py --changed-file repos/example/src/main/java/example/File.java
 python3 .claude/skills/sdlc-graph/tools/analyze_impact.py --base-ref main
 ```

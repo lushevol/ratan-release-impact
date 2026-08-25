@@ -11,8 +11,11 @@ LLM_WIKI_API_TOKEN = "dummy"
 
 [mcp_servers.sdlcGraph]
 command = "python3"
-args = [".claude/skills/sdlc-graph/tools/sdlc_graph_mcp.py", "--data-dir", "sdlc-graph-output"]
+args = [".claude/skills/sdlc-graph/tools/sdlc_graph_mcp.py", "--data-dir", "sdlc-graph-output", "--config", "sdlc-graph-config.json"]
 
-[mcp_servers.gitnexus]
-command = "node"
-args = [".gitnexus/run.cjs", "mcp"]
+[mcp_servers.gitnexusRepos]
+command = "python3"
+args = [".claude/tools/gitnexus-repos-mcp.py", "--root", "."]
+
+# GitNexus is indexed and queried from the actual repository under repos/.
+# This analysis harness deliberately does not start a root-repository server.

@@ -6,6 +6,8 @@ Generated: 2026-08-25
 
 **NO-GO for implementation or release; desired behavior is NOT PROVEN.**
 
+**Analysis scope:** this repository is an impact-analysis harness. This exercise verifies whether the requirement-analysis workflow produces a correct, evidence-backed contract. It is not authorization to implement the Rebook change, and no production behavior is being changed.
+
 The current repository contains two active Rebook decision paths that select candidate cashflows by original/trade ID and settlement currency, then tag the incoming `New` cashflow as `Rebook` when any selected history is within `incoming value date - 5 days` and belongs to the application's broader post-release status set. This reading is **CONFIRMED** by exact source and GitNexus call-graph evidence.
 
 The proposed “limit to Payment Type” behavior is not present. The Wiki material inspected does not define Payment Type as the approved replacement predicate, its allowed values, null policy, or whether currency and the five-day window remain. Existing code parses SCBML `paymentType` into a field named `settlementType`, which raises a naming/contract risk. The relevant tests could not execute because the private parent POM `com.scb.ratan:ratanone-dependencies:8.0.2` is unavailable from the configured Maven repository.
@@ -144,3 +146,32 @@ Result: **not executed**. Maven could not resolve private parent POM `com.scb.ra
 4. Corporate Maven repository access and a green execution of the matrix above at unit, database-integration, and API/transport layers.
 5. A fresh GitNexus index and `detect_changes` result for the implementation commit.
 6. Shadow-run precision/recall against labeled outcomes, with rollback thresholds and monitoring ownership.
+
+## Requirement-grill restart (2026-08-25)
+
+LLM Wiki was queried first using the supplied requirement. The authoritative background pages are `wiki/concepts/rebook-exception.md` and `wiki/concepts/payment-date-proximity-matching.md`, sourced from the Settlement Day 2 functional requirement. They establish that the deployed control is a heuristic for a possible amendment rebook, not proof of original-to-replacement lineage.
+
+The Wiki baseline is more precise than the supplied wording:
+
+- candidate identity is the applicable Trade ID, with Murex using Original Trade ID;
+- candidate currency must match;
+- the prior cashflow is documented as **released or settled**, not strictly `RELEASED`;
+- the deployed window is five **business-calendar days**, after a prior 15-day window;
+- endpoint inclusivity is not documented;
+- no authoritative Payment Type taxonomy or currency-to-Payment-Type migration rule was found.
+
+The requirement owner has resolved the material decisions for this analysis:
+
+- comparator status: `RELEASED` or `SETTLED`;
+- window: five business days, inclusive at both endpoints;
+- future discriminator: Payment Type replaces same-currency matching;
+- source of truth: SCBML Payment Type;
+- missing, blank, or unknown Payment Type: throw an exception.
+
+The resulting contract is clear enough for impact analysis. It remains intentionally **not an implementation authorization**.
+
+### SDLC Graph position
+
+SDLC Graph was used as a bounded architecture cross-check. Its requirement search produced many lexical false positives and unresolved external frontiers, so its broad candidate count is not evidence that all returned repositories are impacted. Its service picture and dependency queries did provide useful corroboration for the lifecycle service, the two runtime tables, Kafka surroundings, and resolved calls to orchestration/netting/stamping services.
+
+For this requirement, SDLC Graph is **secondary but useful**: retain it for cross-repository boundary discovery and dependency corroboration; do not use its semantic candidate list as the exact impact result. GitNexus must target the actual repository under `repos/`; the root harness index is not business-code evidence. In this run, the live GitNexus MCP did not have `ratan-cashflow-lifecycle-service` indexed, so no root-level blast-radius score is treated as authoritative.

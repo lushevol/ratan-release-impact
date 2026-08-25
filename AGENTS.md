@@ -1,9 +1,11 @@
 <!-- gitnexus:start -->
 # GitNexus — Code Intelligence
 
-This project is indexed by GitNexus as **ratan-release-impact** (34190 symbols, 78234 relationships, 300 execution flows). Use the GitNexus MCP tools to understand code, assess impact, and navigate safely.
+This repository is an analysis harness. The business repositories under `repos/` are indexed individually by GitNexus; the harness root is intentionally not indexed. Use GitNexus against the actual repository that owns the code under analysis.
 
-> Index stale? Run `node .gitnexus/run.cjs analyze` from the project root — it auto-selects an available runner. No `.gitnexus/run.cjs` yet? `npx gitnexus analyze` (npm 11 crash → `npm i -g gitnexus`; #1939).
+The project-scoped `gitnexusRepos` MCP launcher filters GitNexus's global registry to direct children of `repos/` for each session. Use its `repo` argument explicitly.
+
+> Index stale? Change into the target repository under `repos/` and run `gitnexus analyze` (or `node .gitnexus/run.cjs analyze` when that repository has a local runner). No target index means no GitNexus blast-radius score should be invented.
 
 ## Always Do
 
@@ -25,10 +27,10 @@ This project is indexed by GitNexus as **ratan-release-impact** (34190 symbols, 
 
 | Resource | Use for |
 |----------|---------|
-| `gitnexus://repo/ratan-release-impact/context` | Codebase overview, check index freshness |
-| `gitnexus://repo/ratan-release-impact/clusters` | All functional areas |
-| `gitnexus://repo/ratan-release-impact/processes` | All execution flows |
-| `gitnexus://repo/ratan-release-impact/process/{name}` | Step-by-step execution trace |
+| `gitnexus://repo/{business-repo}/context` | Codebase overview, check index freshness |
+| `gitnexus://repo/{business-repo}/clusters` | All functional areas |
+| `gitnexus://repo/{business-repo}/processes` | All execution flows |
+| `gitnexus://repo/{business-repo}/process/{name}` | Step-by-step execution trace |
 
 ## CLI
 
