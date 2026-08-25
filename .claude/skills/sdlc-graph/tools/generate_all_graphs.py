@@ -44,13 +44,17 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repos", type=Path, default=WORKSPACE / "repos")
     parser.add_argument("--out", type=Path, default=WORKSPACE / "system-graph")
+    parser.add_argument("--descriptions", type=Path, default=WORKSPACE / "architecture-descriptions.json",
+                        help="Optional AI/curated business-description overrides")
     parser.add_argument("--open", action="store_true", help="Open the published viewer in the default browser")
     args = parser.parse_args()
     output = args.out.resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".sdlc-graph-", dir=output.parent) as temporary:
         candidate = Path(temporary) / "system-graph"
-        run(sys.executable, TOOLS / "build_graph.py", "--workspace", WORKSPACE, "--repos", args.repos, "--out", candidate)
+        run(sys.executable, TOOLS / "build_graph.py", "--workspace", WORKSPACE, "--repos", args.repos, "--out", candidate,
+            "--descriptions", args.descriptions)
+        run(sys.executable, TOOLS / "prepare_ai_context.py", candidate / "graph.json", "--output", candidate / "business-description-context.json")
         run(sys.executable, TOOLS / "render_graph.py", candidate / "graph.json", "--output", candidate / "relationship-viewer.html")
         run(sys.executable, TOOLS / "validate_graph.py", candidate / "graph.json", "--workspace", WORKSPACE,
             "--dependencies", candidate / "dependencies.json")

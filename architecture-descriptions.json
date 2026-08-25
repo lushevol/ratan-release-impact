@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "descriptions": [
+    {
+      "node_id": "component:mfe-ratan-container:web-detail:ratancomponents-quicksearchcomponents",
+      "functional_role": "Provides reusable, configuration-driven quick-search controls including text, date-range, select, autocomplete, dynamic-select, and compound-field inputs.",
+      "business_meaning": "Standardizes how operational users enter common search criteria across cashflow and trade workflows while allowing each consuming page to define its own fields and permitted values.",
+      "confidence": "HIGH",
+      "rationale": "The exported controls select rendering and validation behavior from QuickSearchItemConfig and are consumed by multiple micro-frontend workflows.",
+      "evidence_paths": [
+        "repos/mfe-ratan-container/src/ratancomponents/QuickSearchComponents/**/*",
+        "repos/mfe-ratan-container/src/ratantypings/index.d.ts"
+      ],
+      "source": "AI_INFERRED"
+    },
+    {
+      "node_id": "component:mfe-cashflow-blotter:web-detail:cashflow-cn-components-quicksearch",
+      "functional_role": "Builds guarded cashflow search filters from configured fields, validates amount and value-date constraints, dispatches the cashflow query, and records search telemetry.",
+      "business_meaning": "Lets cash-settlement operators rapidly locate operational cashflows while enforcing safe query limits and preserving visibility into search performance and commonly used criteria.",
+      "confidence": "HIGH",
+      "rationale": "The component transforms filter values, applies query guards and date-range rules, invokes queryCashflowList, and records RTT and field-usage telemetry.",
+      "evidence_paths": [
+        "repos/mfe-cashflow-blotter/src/Cashflow_CN/components/QuickSearch/**/*",
+        "repos/mfe-cashflow-blotter/src/Cashflow_CN/Main/utils/filterGuard.ts",
+        "repos/mfe-cashflow-blotter/src/Cashflow_CN/Main/utils/query-checker.ts"
+      ],
+      "source": "AI_INFERRED"
+    },
+    {
+      "node_id": "component:mfe-cashflow-blotter:web-detail:cashflow-group-management-components-quicksearch",
+      "functional_role": "Captures group-management search criteria and converts configured field values into the filter state used to query settlement groups.",
+      "business_meaning": "Helps operators find and monitor relevant cashflow groups by business identifiers, status, dates, and other configured grouping criteria.",
+      "confidence": "MEDIUM",
+      "rationale": "The component is connected to the group-management state slice and GraphQL query flow, but authoritative definitions for each group criterion were not available.",
+      "evidence_paths": [
+        "repos/mfe-cashflow-blotter/src/Cashflow_Group_Management/components/QuickSearch/**/*",
+        "repos/mfe-cashflow-blotter/src/Cashflow_Group_Management/Main/store/**/*"
+      ],
+      "source": "AI_INFERRED"
+    },
+    {
+      "node_id": "component:mfe-cashflow-blotter:web-detail:cashflow-splitting-static-components-quicksearch",
+      "functional_role": "Collects configured criteria and publishes them to the splitting-rule search state used by the static splitting table.",
+      "business_meaning": "Lets operations users quickly locate cashflow-splitting rules or configurations that determine how settlement amounts are divided.",
+      "confidence": "MEDIUM",
+      "rationale": "The component dispatches setSearchQuery for the splitting view; the exact governance meaning of each rule field needs product documentation.",
+      "evidence_paths": [
+        "repos/mfe-cashflow-blotter/src/Cashflow_Splitting_Static/components/QuickSearch/**/*",
+        "repos/mfe-cashflow-blotter/src/Cashflow_Splitting_Static/store/**/*"
+      ],
+      "source": "AI_INFERRED"
+    },
+    {
+      "node_id": "component:mfe-cashflow-blotter:web-detail:cashflow-bic-netting-static-table-components-quicksearch",
+      "functional_role": "Captures search criteria for the BIC-netting static-data table and drives filtering of configured BIC netting entries.",
+      "business_meaning": "Helps users locate the BIC-level reference configuration that controls or supports cashflow netting behavior.",
+      "confidence": "MEDIUM",
+      "rationale": "The directory and owning page identify a BIC-netting lookup, but the authoritative policy applied to each field is not present in the UI source.",
+      "evidence_paths": ["repos/mfe-cashflow-blotter/src/Cashflow_BIC_Netting_Static_Table/components/QuickSearch/**/*"],
+      "source": "AI_INFERRED"
+    },
+    {
+      "node_id": "component:mfe-cashflow-blotter:web-detail:cashflow-utilization-static-table-components-quicksearch",
+      "functional_role": "Captures criteria used to filter the utilization static-data table.",
+      "business_meaning": "Helps users locate utilization-related reference rules or configurations used by settlement processing.",
+      "confidence": "LOW",
+      "rationale": "The UI clearly implements filtering, but the business definition of utilization and its downstream decision points require domain documentation.",
+      "evidence_paths": ["repos/mfe-cashflow-blotter/src/Cashflow_Utilization_Static_Table/components/QuickSearch/**/*"],
+      "source": "AI_INFERRED"
+    },
+    {
+      "node_id": "component:mfe-cashflow-blotter:web-detail:cashflow-dashboard-components-quicksearch",
+      "functional_role": "Captures dashboard search criteria and updates the filter state used to retrieve or aggregate cashflow dashboard results.",
+      "business_meaning": "Lets operations users focus dashboard monitoring on the cashflows, statuses, dates, or organizational slices relevant to their current investigation.",
+      "confidence": "MEDIUM",
+      "rationale": "The component belongs to the cashflow dashboard and provides quick filtering; exact KPI and aggregation semantics need dashboard requirements.",
+      "evidence_paths": ["repos/mfe-cashflow-blotter/src/Cashflow_Dashboard/components/QuickSearch/**/*"],
+      "source": "AI_INFERRED"
+    }
+  ]
+}

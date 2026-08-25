@@ -24,6 +24,8 @@ For every visible repository produce two projections over the same canonical fac
 - `RUNTIME`: routes and remote imports for web repositories; REST, GraphQL, WebSocket, Feign, PostgreSQL tables, Elasticsearch/OpenSearch, Kafka, service calls, and external data platforms for applicable repositories.
 - `BUSINESS`: pages or service capabilities mapped to domain components, UI, hooks, state, clients, utilities, controllers, application/domain services, and infrastructure. Every component explains its functional role and business meaning and links to a file or narrow wildcard path.
 
+Detailed extraction retains meaningful frontend modules beneath `components`, `hooks`, `workflow`, `services`, `store`, and similar ownership directories. It retains concrete Spring controllers, services, repositories, clients, listeners, processors, handlers, commands, tasks, and mappers beneath their domain/layer groups. Do not collapse a named workflow such as Quick Search into a generic UI bucket.
+
 Treat `mfe-root-config` as scan-only MFE foundation metadata. Never expose it as a selectable application graph. DQSL is an external data lake that lets consumers fetch data from selected upstream sources; model it as `DATA_PLATFORM` with `platform_kind=EXTERNAL_DATA_LAKE`, never infer Elasticsearch from DQSL naming.
 
 Use the detailed [React](references/architecture/react-extraction.md), [Spring](references/architecture/spring-extraction.md), and [external boundary](references/architecture/external-boundaries.md) rules when modifying extractors.
@@ -40,6 +42,12 @@ python3 .claude/skills/sdlc-graph/tools/analyze_impact.py --base-ref main
 
 Requirement mode starts from matching business capabilities, pages, and components and expands into runtime dependencies. Code-change mode starts from exact/wildcard source-path ownership and expands toward affected workflows and consumers. Report the two result sets separately and preserve unresolved external frontiers. Read [impact analysis](references/architecture/impact-analysis.md) for interpretation rules.
 
+## AI business-description enrichment
+
+Generation writes `system-graph/business-description-context.json`, a compact evidence packet for detailed components whose descriptions remain source-inferred. Use it to propose overrides in workspace-root `architecture-descriptions.json`; generation applies that file automatically. Keep `source=AI_INFERRED` unless an authoritative product/Wiki source confirms the meaning, include rationale and source paths, and never let a description override create or alter runtime relationships.
+
+For higher accuracy, request the business glossary/capability map, user personas, workflow descriptions, requirements and acceptance criteria, meanings of domain fields/statuses/events, operational runbooks, and an SME/owner for ambiguous terminology. Source code can establish functional behavior; those business sources establish why the behavior exists.
+
 ## Evidence rules
 
 - Keep all paths workspace-relative and clickable. Use the narrowest honest wildcard for multi-file components.
@@ -55,6 +63,7 @@ Requirement mode starts from matching business capabilities, pages, and componen
 system-graph/
 ├── graph.json
 ├── dependencies.json
+├── business-description-context.json
 ├── summary.json
 ├── relationship-viewer.html
 └── repositories/<repository>/view.json

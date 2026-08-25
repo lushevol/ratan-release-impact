@@ -26,6 +26,8 @@ Edges contain `source`, `target`, `relationship`, one `dimension`, evidence, and
 
 Runtime relationships include `ROUTES_TO`, `USES_COMPONENT`, `LOADS_REMOTE`, `CALLS_REST`, `CALLS_GRAPHQL`, `SUBSCRIBES_WS`, `EXPOSES`, `INVOKES`, `CALLS_SERVICE`, `CONNECTS_TO`, `READS`, `WRITES`, `CONTAINS`, `PUBLISHES`, `CONSUMES`, `CALLS_DATA_PLATFORM`, and `QUERIES_DATA_PLATFORM`.
 
+`CONTAINS_COMPONENT` links a semantic domain/layer group to a detailed module or class without duplicating its responsibility. Description enrichment may replace `functional_role` and `business_meaning` and attach provenance properties, but it cannot add runtime facts.
+
 Business relationships include `DELIVERS`, `IMPLEMENTS`, and `REALIZED_BY`.
 
 ## Evidence and dependency claims

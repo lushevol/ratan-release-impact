@@ -31,6 +31,9 @@ WEB_GROUPS = {
     "schema": ("SCHEMA", "defines data contracts used by"),
     "schemas": ("SCHEMA", "defines data contracts used by"),
 }
+WEB_DETAIL_PARENTS = {"components", "hooks", "services", "service", "utils", "workflow", "store", "state", "adapters"}
+GENERIC_WEB_DIRS = {"common", "components", "hooks", "services", "service", "utils", "workflow", "store", "state", "config", "local", "production", "main", "root"}
+JAVA_DETAIL_SUFFIXES = ("Controller", "Service", "Repository", "Client", "Listener", "Processor", "Handler", "Command", "Task", "Mapper", "Publisher")
 
 
 def stable_id(prefix: str, *parts: object) -> str:
@@ -188,6 +191,64 @@ def web_owner_for(path: Path, page_roots: dict[Path, str], app_id: str) -> str:
     return max(matches, key=lambda item: len(item[0].parts))[1] if matches else app_id
 
 
+def web_detail_kind(path: Path) -> tuple[str, str, str]:
+    lower_parts = {part.lower() for part in path.parts}
+    name = words(path.name)
+    if "quick search" in name.lower() or "quicksearch" in path.as_posix().lower():
+        return "QUICK_SEARCH", f"Captures, validates, and transforms rapid search criteria for {name}", f"Lets users narrow operational data quickly without constructing an advanced query"
+    if "components" in lower_parts:
+        return "UI_COMPONENT", f"Renders the {name} user interface and interaction states", f"Presents the {name} portion of its owning workflow"
+    if "hooks" in lower_parts:
+        return "HOOK", f"Coordinates reusable React behavior for {name}", f"Keeps {name} workflow behavior consistent across screens"
+    if "workflow" in lower_parts:
+        return "WORKFLOW_COMPONENT", f"Coordinates the frontend steps for {name}", f"Implements the user journey for {name}"
+    if lower_parts & {"services", "service", "adapters"}:
+        return "CLIENT", f"Integrates data and actions required by {name}", f"Connects the {name} workflow to runtime capabilities"
+    if lower_parts & {"store", "state"}:
+        return "STATE", f"Owns client-side state and actions for {name}", f"Preserves the working state of the {name} workflow"
+    return "UTILITY", f"Provides supporting frontend behavior for {name}", f"Supports the {name} portion of its owning business capability"
+
+
+def extract_web_details(graph: Graph, repo: Path, repository: str, domain_roots: dict[str, Path],
+                        page_roots: dict[Path, str]) -> None:
+    src = repo / "src"
+    for directory in sorted(path for path in src.rglob("*") if path.is_dir()):
+        relative = directory.relative_to(src)
+        if any(part in IGNORED_PARTS for part in relative.parts) or len(relative.parts) > 7:
+            continue
+        name_lower = directory.name.lower()
+        parent_lower = directory.parent.name.lower()
+        is_quick_search = "quicksearch" in directory.as_posix().lower() or "quick-search" in directory.as_posix().lower()
+        if is_quick_search and any("quicksearch" in parent.name.lower() or "quick-search" in parent.name.lower() for parent in directory.parents if parent != src):
+            continue
+        if not is_quick_search and (parent_lower not in WEB_DETAIL_PARENTS or name_lower in GENERIC_WEB_DIRS):
+            continue
+        direct_files = sorted(path for path in directory.iterdir() if path.is_file() and path.suffix in {".ts", ".tsx", ".js", ".jsx", ".json"}
+                              and not path.name.endswith((".test.ts", ".test.tsx", ".spec.ts", ".spec.tsx")))
+        if not direct_files:
+            continue
+        domain_name, domain_root = next(((name, root) for name, root in domain_roots.items() if root == directory or root in directory.parents), (relative.parts[0], src / relative.parts[0]))
+        capability_id = f"capability:{repo.name}:{slug(domain_name)}"
+        if capability_id not in graph.nodes:
+            continue
+        kind, role, meaning = web_detail_kind(directory)
+        path_value = source_path(graph.workspace, directory) + "/**/*"
+        ev = graph.add_evidence(repository, source_path(graph.workspace, direct_files[0]), 1,
+                                f"Detailed frontend component {directory.name}", "web-component-detail", directness="SEMANTIC")
+        component_id = f"component:{repo.name}:web-detail:{slug(relative.as_posix())}"
+        graph.add_node(component_id, "COMPONENT", f"{words(domain_name)} / {words(directory.name)}", repository,
+                       dimensions=("RUNTIME", "BUSINESS"), component_kind=kind, functional_role=role,
+                       business_meaning=meaning, source_paths=(path_value,), evidence=(ev,), assertion_status="INFERRED",
+                       properties={"description_source": "SOURCE_INFERRED", "detail_level": "MODULE"})
+        graph.add_edge(capability_id, component_id, "REALIZED_BY", "BUSINESS", (ev,), assertion_status="INFERRED")
+        domain_component = f"component:{repo.name}:{slug(domain_name)}:domain"
+        if domain_component in graph.nodes:
+            graph.add_edge(domain_component, component_id, "CONTAINS_COMPONENT", "RUNTIME", (ev,), assertion_status="INFERRED")
+        for page_root, page_id in page_roots.items():
+            if domain_root == page_root or domain_root in page_root.parents or page_root in domain_root.parents:
+                graph.add_edge(page_id, component_id, "USES_COMPONENT", "RUNTIME", (ev,), assertion_status="INFERRED")
+
+
 def extract_web(graph: Graph, repo: Path, repository: str, visible: bool) -> None:
     app_id = f"application:{repo.name}"
     manifest = repo / "package.json"
@@ -271,6 +332,8 @@ def extract_web(graph: Graph, repo: Path, repository: str, visible: bool) -> Non
             graph.add_edge(capability_id, component_id, "REALIZED_BY", "BUSINESS", (capability_ev,), assertion_status="INFERRED")
             for page_id in related_pages:
                 graph.add_edge(page_id, component_id, "USES_COMPONENT", "RUNTIME", (capability_ev,), assertion_status="INFERRED")
+
+    extract_web_details(graph, repo, repository, domain_roots, page_roots)
 
     endpoint_nodes: dict[tuple[str, str], str] = {}
     for path in files:
@@ -400,6 +463,55 @@ def ensure_java_component(graph: Graph, repo: Path, repository: str, service_id:
     return component_id
 
 
+def java_detail_description(path: Path, kind: str, area: str) -> tuple[str, str]:
+    name = words(path.stem)
+    roles = {
+        "CONTROLLER": f"Exposes inbound operations that invoke {name} behavior",
+        "FEIGN_CLIENT": f"Calls a remote service required by {name}",
+        "KAFKA_CONSUMER": f"Consumes Kafka messages and starts {name} processing",
+        "KAFKA_PRODUCER": f"Publishes Kafka messages produced by {name}",
+        "DATA_PLATFORM_CLIENT": f"Fetches selected upstream data through DQSL for {name}",
+        "REPOSITORY": f"Reads and writes persistent data required by {name}",
+        "DOMAIN_COMPONENT": f"Applies domain rules implemented by {name}",
+        "APPLICATION_SERVICE": f"Coordinates the application use cases implemented by {name}",
+        "COMPONENT": f"Provides supporting service behavior implemented by {name}",
+    }
+    meanings = {
+        "CONTROLLER": f"Makes the {words(area)} capability available to callers",
+        "FEIGN_CLIENT": f"Obtains external capabilities needed by {words(area)}",
+        "KAFKA_CONSUMER": f"Responds asynchronously to events affecting {words(area)}",
+        "KAFKA_PRODUCER": f"Notifies downstream consumers about {words(area)} outcomes",
+        "DATA_PLATFORM_CLIENT": f"Supplies governed upstream data used by {words(area)} decisions",
+        "REPOSITORY": f"Preserves the operational state of {words(area)}",
+        "DOMAIN_COMPONENT": f"Enforces business behavior for {words(area)}",
+        "APPLICATION_SERVICE": f"Carries out the {name} business operation within {words(area)}",
+        "COMPONENT": f"Supports the {words(area)} business capability",
+    }
+    return roles[kind], meanings[kind]
+
+
+def ensure_java_detail_component(graph: Graph, repo: Path, repository: str, path: Path, text: str,
+                                 group_component: str, capabilities: dict[str, str]) -> str:
+    relative = path.relative_to(repo)
+    kind, layer = java_kind(relative, text)
+    significant = kind in {"CONTROLLER", "FEIGN_CLIENT", "KAFKA_CONSUMER", "KAFKA_PRODUCER", "DATA_PLATFORM_CLIENT", "REPOSITORY"} or path.stem.endswith(JAVA_DETAIL_SUFFIXES)
+    if not significant:
+        return group_component
+    area = java_area(relative)
+    path_value = source_path(graph.workspace, path)
+    ev = graph.add_evidence(repository, path_value, 1, f"Detailed Spring component {path.stem}", "spring-component-detail", directness="SEMANTIC")
+    component_id = f"component:{repo.name}:java-detail:{stable_id('path', relative.as_posix()).split(':')[1]}"
+    role, meaning = java_detail_description(path, kind, area)
+    graph.add_node(component_id, "COMPONENT", path.stem, repository, dimensions=("RUNTIME", "BUSINESS"),
+                   component_kind=kind, functional_role=role, business_meaning=meaning,
+                   source_paths=(path_value,), evidence=(ev,), assertion_status="INFERRED",
+                   properties={"description_source": "SOURCE_INFERRED", "detail_level": "CLASS", "layer": layer})
+    graph.add_edge(group_component, component_id, "CONTAINS_COMPONENT", "RUNTIME", (ev,), assertion_status="INFERRED")
+    capability_id = capabilities[area]
+    graph.add_edge(capability_id, component_id, "REALIZED_BY", "BUSINESS", (ev,), assertion_status="INFERRED")
+    return component_id
+
+
 def extract_spring(graph: Graph, repo: Path, repository: str) -> None:
     service_id = f"service:{repo.name}"
     pom = repo / "pom.xml"
@@ -414,7 +526,8 @@ def extract_spring(graph: Graph, repo: Path, repository: str) -> None:
     for path in files:
         text = read(path)
         path_value = source_path(graph.workspace, path)
-        component = ensure_java_component(graph, repo, repository, service_id, path, text, capabilities)
+        group_component = ensure_java_component(graph, repo, repository, service_id, path, text, capabilities)
+        component = ensure_java_detail_component(graph, repo, repository, path, text, group_component, capabilities)
         component_by_path[path.relative_to(repo).as_posix()] = component
         for annotation in re.finditer(r'@(Get|Post|Put|Delete|Patch|Request)Mapping\s*\(([^)]*)\)', text, re.S):
             method = "ANY" if annotation.group(1) == "Request" else annotation.group(1).upper()
@@ -556,6 +669,37 @@ def resolve_cross_repository(graph: Graph) -> None:
         graph.add_edge(source, target, relationship, dimension, evidence, resolution_status="RESOLVED", properties=properties)
 
 
+def apply_description_overrides(graph: Graph, path: Path) -> None:
+    if not path.exists():
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    for description in data.get("descriptions", []):
+        node_id = description.get("node_id")
+        node = graph.nodes.get(node_id)
+        if not node:
+            graph.diagnostic("UNKNOWN_DESCRIPTION_NODE", f"Description override references unknown node {node_id}", path=source_path(graph.workspace, path))
+            continue
+        evidence_ids = []
+        for evidence_path in description.get("evidence_paths", []):
+            candidate = graph.workspace / evidence_path.split("*", 1)[0].rstrip("/")
+            if not candidate.exists():
+                graph.diagnostic("INVALID_DESCRIPTION_EVIDENCE", f"Description evidence path does not exist: {evidence_path}", node.get("repository"), evidence_path)
+                continue
+            evidence_ids.append(graph.add_evidence(node.get("repository"), evidence_path, 1,
+                                                   description.get("rationale", "AI-assisted business description"),
+                                                   "business-description-override", directness="SEMANTIC"))
+        for field in ("functional_role", "business_meaning"):
+            value = description.get(field)
+            if isinstance(value, str) and value.strip():
+                node[field] = value.strip()
+        node["evidence"] = sorted(set(node["evidence"]) | set(evidence_ids))
+        node.setdefault("properties", {}).update({
+            "description_source": description.get("source", "AI_INFERRED"),
+            "description_confidence": description.get("confidence", "LOW"),
+            "description_rationale": description.get("rationale", "AI inference from source context"),
+        })
+
+
 def dependencies(graph: Graph) -> dict[str, Any]:
     keys = ("tables", "kafka_topics", "remote_applications", "data_platforms", "service_calls")
     buckets: dict[str, dict[str, dict[str, dict[str, Any]]]] = {
@@ -621,6 +765,7 @@ def main() -> int:
     parser.add_argument("--workspace", type=Path, default=Path(__file__).resolve().parents[4])
     parser.add_argument("--repos", type=Path)
     parser.add_argument("--out", type=Path)
+    parser.add_argument("--descriptions", type=Path)
     args = parser.parse_args()
     workspace = args.workspace.resolve()
     repos_root = (args.repos or workspace / "repos").resolve()
@@ -638,6 +783,7 @@ def main() -> int:
         else:
             graph.diagnostic("UNSUPPORTED_REPOSITORY", "No supported package.json or pom.xml", path=source_path(workspace, repo))
     resolve_cross_repository(graph)
+    apply_description_overrides(graph, (args.descriptions or workspace / "architecture-descriptions.json").resolve())
     write_outputs(graph, out)
     print(json.dumps({"output": str(out), "repositories": len(graph.repositories), "visible_repositories": sum(bool(r["visible"]) for r in graph.repositories),
                       "nodes": len(graph.nodes), "edges": len(graph.edges), "evidence": len(graph.evidence), "diagnostics": len(graph.diagnostics)}, sort_keys=True))
