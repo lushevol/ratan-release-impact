@@ -15,7 +15,17 @@ From the workspace root run:
 python3 .claude/skills/sdlc-graph/tools/generate_all_graphs.py
 ```
 
-Add `--open` to open `system-graph/relationship-viewer.html`. This one command scans every supported repository, resolves cross-repository dependencies, renders both dimensions, validates source links and semantics, and atomically publishes the result. It does not create SQLite; JSON is the authoritative and default query surface.
+Add `--open` to open `sdlc-graph-output/relationship-viewer.html`. This one command scans every supported repository, resolves cross-repository dependencies, renders both dimensions, validates source links and semantics, and atomically publishes the complete bundle to `sdlc-graph-output/`. It does not create SQLite; JSON is the authoritative query surface.
+
+## Use through MCP
+
+The dependency-free stdio server exposes the generated bundle to AI clients:
+
+```text
+python3 .claude/skills/sdlc-graph/tools/sdlc_graph_mcp.py --data-dir sdlc-graph-output
+```
+
+Start with `get_system_overview` or the `sdlc-graph://overview` resource. For a requirement, call `analyze_requirement_impact`, inspect each affected repository with `get_service_picture`, and use `get_node_neighborhood` for evidence paths and relationships. Treat returned impact as candidates: report business and runtime dimensions separately, retain unresolved external frontiers, and distinguish inferred descriptions from confirmed facts.
 
 ## Repository dimensions
 
@@ -44,7 +54,7 @@ Requirement mode starts from matching business capabilities, pages, and componen
 
 ## AI business-description enrichment
 
-Generation writes `system-graph/business-description-context.json`, a compact evidence packet for detailed components whose descriptions remain source-inferred. Use it to propose overrides in workspace-root `architecture-descriptions.json`; generation applies that file automatically. Keep `source=AI_INFERRED` unless an authoritative product/Wiki source confirms the meaning, include rationale and source paths, and never let a description override create or alter runtime relationships.
+Generation writes `sdlc-graph-output/business-description-context.json`, a compact evidence packet for detailed components whose descriptions remain source-inferred. Use it to propose overrides in workspace-root `architecture-descriptions.json`; generation applies that file automatically and publishes the applied snapshot as `business-description-overrides.json`. Keep `source=AI_INFERRED` unless an authoritative product/Wiki source confirms the meaning, include rationale and source paths, and never let a description override create or alter runtime relationships.
 
 For higher accuracy, request the business glossary/capability map, user personas, workflow descriptions, requirements and acceptance criteria, meanings of domain fields/statuses/events, operational runbooks, and an SME/owner for ambiguous terminology. Source code can establish functional behavior; those business sources establish why the behavior exists.
 
@@ -60,13 +70,17 @@ For higher accuracy, request the business glossary/capability map, user personas
 ## Canonical outputs
 
 ```text
-system-graph/
+sdlc-graph-output/
+├── manifest.json
 ├── graph.json
+├── services.json
 ├── dependencies.json
 ├── business-description-context.json
+├── business-description-overrides.json
 ├── summary.json
+├── mcp-server.json
 ├── relationship-viewer.html
 └── repositories/<repository>/view.json
 ```
 
-`graph.json` is the sole canonical graph. The other files are reproducible projections or indexes and must not duplicate alternative graph contracts. Validate before publishing with `tools/validate_graph.py`; generation already performs this check.
+`graph.json` is the sole canonical graph. `services.json` is the compact AI entry point; `manifest.json` identifies and hashes every artifact. The other files are reproducible projections or indexes and must not duplicate alternative graph contracts. Validate before publishing with `tools/validate_graph.py`; generation already performs this check.

@@ -769,7 +769,7 @@ def main() -> int:
     args = parser.parse_args()
     workspace = args.workspace.resolve()
     repos_root = (args.repos or workspace / "repos").resolve()
-    out = (args.out or workspace / "system-graph").resolve()
+    out = (args.out or workspace / "sdlc-graph-output").resolve()
     graph = Graph(workspace)
     for repo in sorted(path for path in repos_root.iterdir() if path.is_dir() and (path / ".git").is_dir()):
         if (repo / "package.json").exists():

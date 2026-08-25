@@ -1,0 +1,10 @@
+{
+  "name": "sdlc-graph",
+  "transport": "stdio",
+  "command": "python3",
+  "args": [
+    ".claude/skills/sdlc-graph/tools/sdlc_graph_mcp.py",
+    "--data-dir",
+    "sdlc-graph-output"
+  ]
+}

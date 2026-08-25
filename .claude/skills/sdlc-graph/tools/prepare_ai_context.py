@@ -53,7 +53,7 @@ def main() -> int:
             "business owners or SME confirmations for ambiguous names",
         ],
         "output_contract": {
-            "file": "architecture-descriptions.json",
+            "file": "architecture-descriptions.json (published snapshot: sdlc-graph-output/business-description-overrides.json)",
             "fields": ["node_id", "functional_role", "business_meaning", "confidence", "rationale", "evidence_paths", "source"],
             "rules": ["Do not alter runtime relationships", "Use AI_INFERRED unless an authoritative business source confirms the description", "Keep uncertainty explicit"],
         },

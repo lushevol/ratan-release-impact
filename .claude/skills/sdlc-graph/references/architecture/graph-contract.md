@@ -1,6 +1,6 @@
 # SDLC Graph Contract v2
 
-`system-graph/graph.json` is the canonical architecture and impact graph. Every viewer and repository view is a filter over it.
+`sdlc-graph-output/graph.json` is the canonical architecture and impact graph. Every viewer, repository view, catalog, and MCP response is derived from it.
 
 ## Envelope
 

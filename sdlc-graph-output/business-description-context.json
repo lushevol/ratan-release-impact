@@ -9,7 +9,7 @@
     "business owners or SME confirmations for ambiguous names"
   ],
   "output_contract": {
-    "file": "architecture-descriptions.json",
+    "file": "architecture-descriptions.json (published snapshot: sdlc-graph-output/business-description-overrides.json)",
     "fields": [
       "node_id",
       "functional_role",
