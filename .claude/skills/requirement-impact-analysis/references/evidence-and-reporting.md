@@ -26,6 +26,7 @@ Confidence in reading the current code is separate from proof that a desired beh
 7. Required code/data/config changes, clearly labeled as proposed.
 8. Verification matrix and observed test results.
 9. Evidence ledger: assertion, grade, evidence path/source, and limitation.
-10. Go/no-go recommendation and evidence required to proceed.
+10. Analysis decision log and tool trace. Record the reproducible rationale, ordered MCP/tool calls, inputs, material outputs, transport used, and limitations. Do not expose private chain-of-thought, credentials, tokens, or unredacted private document content. Distinguish direct MCP calls from CLI calls to the same backend and state when the raw response envelope was not retained.
+11. Go/no-go recommendation and evidence required to proceed.
 
 For every path, use a specific file when one file owns the fact and a narrow wildcard when several files implement the component. For every dependency, include direction and the source that establishes it.

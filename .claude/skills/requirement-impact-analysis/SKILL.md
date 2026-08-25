@@ -45,7 +45,7 @@ Run the narrowest relevant existing tests and record the exact command and outco
 
 ### 6. Write the report
 
-Use the contract in the reference. Link each component to its file or narrow wildcard path. Separate confirmed facts, inferences, contradictions, and open questions. Finish with a go/no-go verdict and the minimum evidence needed to raise confidence.
+Use the contract in the reference. Link each component to its file or narrow wildcard path. Separate confirmed facts, inferences, contradictions, and open questions. Include an auditable decision log and ordered MCP/tool trace with inputs and material outputs; summarize reproducible rationale instead of private chain-of-thought. Finish with a go/no-go verdict and the minimum evidence needed to raise confidence.
 
 ## Failure policy
 

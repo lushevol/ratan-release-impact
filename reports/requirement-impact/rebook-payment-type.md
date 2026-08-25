@@ -200,4 +200,46 @@ listed below is obtained. No production code was changed.
 
 SDLC Graph was used as a bounded architecture cross-check. Its requirement search produced many lexical false positives and unresolved external frontiers, so its broad candidate count is not evidence that all returned repositories are impacted. Its service picture and dependency queries did provide useful corroboration for the lifecycle service, the two runtime tables, Kafka surroundings, and resolved calls to orchestration/netting/stamping services.
 
-For this requirement, SDLC Graph is **secondary but useful**: retain it for cross-repository boundary discovery and dependency corroboration; do not use its semantic candidate list as the exact impact result. GitNexus must target the actual repository under `repos/`; the root harness index is not business-code evidence. In this run, the live GitNexus MCP did not have `ratan-cashflow-lifecycle-service` indexed, so no root-level blast-radius score is treated as authoritative.
+For this requirement, SDLC Graph is **secondary but useful**: retain it for cross-repository boundary discovery and dependency corroboration; do not use its semantic candidate list as the exact impact result. GitNexus must target the actual repository under `repos/`; the root harness index is not business-code evidence. The filtered root MCP now exposes `ratan-cashflow-lifecycle-service`, and the repo-scoped re-evaluation below replaces the historical root-index figures.
+
+## Analysis decision log and tool trace
+
+This section records reproducible decision rationale, not private chain-of-thought. Outputs
+are reduced to the facts used in the report; credentials and private document bodies are
+not reproduced.
+
+### Decision rationale
+
+1. Business documentation was treated as authority for the deployed intent and terminology,
+   but not for rules it did not define. The owner answers therefore resolve status, business-day
+   boundaries, field source, replacement semantics, and exception behavior.
+2. SDLC Graph was used to locate candidate repositories and runtime boundaries. Only its four
+   focused lifecycle seeds were treated as strong routing evidence; its hundreds of expanded
+   nodes remain candidates because graph traversal is intentionally broad.
+3. GitNexus and exact source were used for symbol ownership and callers. The lifecycle repository
+   result supersedes the obsolete root-harness blast-radius figures elsewhere in the historical
+   record.
+4. Presence of SCBML Payment Type in `settlementType` proves data availability only. No observed
+   call or predicate connects it to the Rebook decision, so desired behavior remains `NOT PROVEN`.
+5. No business implementation or deployment was authorized or performed. Runtime proof is
+   impossible without an implementation and executable acceptance evidence.
+
+### Ordered tool calls
+
+| Step | Server/interface | Input | Material output used | Limitation |
+|---|---|---|---|---|
+| 1 | LLM Wiki MCP, requirement-grill search | Requirement concepts: `Rebook`, duplicate-payment control, `VD-5`, released/settled, currency, Payment Type | Returned `wiki/concepts/rebook-exception.md` and `wiki/concepts/payment-date-proximity-matching.md`. They establish applicable Trade ID, Murex Original Trade ID, same currency, released or settled, and five business-calendar days. No Payment Type taxonomy or migration rule was found. | The original raw MCP response envelope was not retained; only document paths and supported assertions were recorded. Absence from search is not proof that no other document exists. |
+| 2 | Requirement grill, user answers | `status=RELEASED or SETTLED`; `window=5 business days, endpoints inclusive`; `replace=same currency`; `source=SCBML`; `invalid Payment Type=throw exception` | All material future-rule predicates became explicit enough for impact analysis. | These answers are requirement-owner input, not runtime evidence or independent business approval. |
+| 3 | SDLC Graph MCP-equivalent CLI using the same `graph_query.py` backend | `analyze_requirement_impact({"requirement":"When a new SCBML cashflow arrives, tag it Rebook if a cashflow with the same applicable Trade ID and Murex Original Trade ID is RELEASED or SETTLED within five business days inclusive of both endpoints. Future behavior replaces same-currency matching with Payment Type matching. Missing, blank, or unknown Payment Type must throw an exception."})`, policy `sdlc-graph-config.json` | Four seeds, all in `ratan-cashflow-lifecycle-service`: the duplicate-check capability, its entrypoint, and two Java detail components. Expansion: 182 business nodes, 172 runtime nodes, 3 repositories, 1 unresolved frontier. | Re-evaluation used the CLI entrypoint rather than a live MCP transport; both load the same graph and seed policy. Expansion counts are discovery candidates, not exact code impact. |
+| 4 | GitNexus MCP `query` via repo-scoped server/backend | `query({"search_query":"cashflow duplicate check rebook payment type","repo":"ratan-cashflow-lifecycle-service"})` | Located `CashflowDuplicateCheckService`, both Rebook paths, duplicate-check entrypoints/tests, and the SCBML-backed `settlementType` model surface. | Semantic search mixes relevant and incidental matches. Symbol presence does not prove data flow into the decision. |
+| 5 | GitNexus MCP-equivalent CLI using the same local backend | `impact({"target":"getCashflowIdsUnderSameOriginalTradeIdAndSameCurrency","direction":"upstream","repo":"ratan-cashflow-lifecycle-service"})` | Exact target; `HIGH` risk; 6 impacted symbols; 2 direct callers; 4 affected processes; 4 affected modules. Direct callers are the service and processor `reversalOrRebook` paths. | Re-evaluation used the CLI entrypoint rather than MCP transport. Static call-graph impact does not prove runtime behavior. |
+| 6 | Exact source inspection | Repository query builders, Rebook methods, SCBML XPath DTO/entity mapping, MyBatis mappings, status enum/configuration | Confirmed current identity + currency candidate selection, lower five-calendar-day query boundary, broader post-release set, and `paymentType` mapped into `settlementType` but unused in Rebook selection. | Static source cannot establish production data quality, holiday calendar behavior, or actual event outcomes. |
+| 7 | Maven test command | `mvn -Dtest=RatanHistoryRepositoryTest,RatanCashflowDetailsRepositoryTest,CashflowNewAndWithdrawalActionStatusMoveProcessorTest,CashflowNewAndWithdrawalActionInitProcessorTest test` | Tests did not execute because parent POM `com.scb.ratan:ratanone-dependencies:8.0.2` was unavailable. | No executable behavioral evidence was produced. |
+
+### Trace conclusion
+
+The evidence chain is internally consistent: Wiki establishes the deployed heuristic, the
+owner supplies missing future predicates, SDLC Graph routes the requirement to the lifecycle
+area, and GitNexus/source identify the exact duplicated decision paths. The chain proves the
+impact-analysis workflow can locate and bound the change. It does **not** prove the proposed
+Payment Type behavior works, because that predicate is absent and no executable evidence exists.
