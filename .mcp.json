@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "llm-wiki": {
+      "command": "node",
+      "args": [
+        "/Applications/LLM Wiki.app/Contents/Resources/mcp-server/dist/src/index.js"
+      ],
+      "env": {
+        "LLM_WIKI_API_TOKEN": "dummy"
+      }
+    },
+    "sdlcGraph": {
+      "command": "python3",
+      "args": [
+        ".claude/skills/sdlc-graph/tools/sdlc_graph_mcp.py",
+        "--data-dir",
+        "sdlc-graph-output"
+      ]
+    },
+    "gitnexus": {
+      "command": "node",
+      "args": [
+        ".gitnexus/run.cjs",
+        "mcp"
+      ]
+    }
+  }
+}

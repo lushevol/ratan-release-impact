@@ -1,0 +1,18 @@
+# Codex reads project-scoped MCP servers from .codex/config.toml after the
+# project is trusted. Keep .mcp.json in parallel for clients that use that
+# convention.
+
+[mcp_servers.llm-wiki]
+command = "node"
+args = ["/Applications/LLM Wiki.app/Contents/Resources/mcp-server/dist/src/index.js"]
+
+[mcp_servers.llm-wiki.env]
+LLM_WIKI_API_TOKEN = "dummy"
+
+[mcp_servers.sdlcGraph]
+command = "python3"
+args = [".claude/skills/sdlc-graph/tools/sdlc_graph_mcp.py", "--data-dir", "sdlc-graph-output"]
+
+[mcp_servers.gitnexus]
+command = "node"
+args = [".gitnexus/run.cjs", "mcp"]

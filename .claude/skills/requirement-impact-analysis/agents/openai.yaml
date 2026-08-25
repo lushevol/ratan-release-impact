@@ -1,0 +1,17 @@
+interface:
+  display_name: "Requirement Impact Analysis"
+  short_description: "Trace requirements to code with proof gates"
+  default_prompt: "Use $requirement-impact-analysis to produce a cautious, evidence-backed impact report and state whether the requested behavior is proven."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "llm-wiki"
+      description: "Authoritative business requirements and design evidence"
+    - type: "mcp"
+      value: "sdlcGraph"
+      description: "Cross-repository business and runtime dependency graph"
+    - type: "mcp"
+      value: "gitnexus"
+      description: "Exact code context, processes, and blast-radius analysis"
+policy:
+  allow_implicit_invocation: true
