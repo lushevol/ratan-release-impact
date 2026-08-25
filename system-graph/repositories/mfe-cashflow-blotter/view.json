@@ -1,0 +1,15 @@
+{
+  "schema_version": "2.0.0",
+  "graph": "../../graph.json",
+  "repository": "repo:mfe-cashflow-blotter",
+  "dimensions": {
+    "runtime": {
+      "repository": "repo:mfe-cashflow-blotter",
+      "dimension": "RUNTIME"
+    },
+    "business": {
+      "repository": "repo:mfe-cashflow-blotter",
+      "dimension": "BUSINESS"
+    }
+  }
+}

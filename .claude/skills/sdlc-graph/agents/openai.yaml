@@ -1,4 +1,6 @@
 interface:
-  display_name: "Sdlc Graph"
-  short_description: "Generate evidence-backed SDLC dependency graphs"
-  default_prompt: "Scan the requested repositories and generate a deterministic, evidence-backed SDLC graph with diagnostics and impact analysis."
+  display_name: "SDLC Graph"
+  short_description: "Build, trace, and visualize cross-repo graphs"
+  default_prompt: "Use $sdlc-graph to generate and visualize the complete evidence-backed architecture graph for these repositories."
+policy:
+  allow_implicit_invocation: true

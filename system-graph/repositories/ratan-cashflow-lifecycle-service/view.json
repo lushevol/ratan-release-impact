@@ -1,0 +1,15 @@
+{
+  "schema_version": "2.0.0",
+  "graph": "../../graph.json",
+  "repository": "repo:ratan-cashflow-lifecycle-service",
+  "dimensions": {
+    "runtime": {
+      "repository": "repo:ratan-cashflow-lifecycle-service",
+      "dimension": "RUNTIME"
+    },
+    "business": {
+      "repository": "repo:ratan-cashflow-lifecycle-service",
+      "dimension": "BUSINESS"
+    }
+  }
+}

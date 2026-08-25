@@ -1,0 +1,15 @@
+{
+  "schema_version": "2.0.0",
+  "graph": "../../graph.json",
+  "repository": "repo:mfe-base",
+  "dimensions": {
+    "runtime": {
+      "repository": "repo:mfe-base",
+      "dimension": "RUNTIME"
+    },
+    "business": {
+      "repository": "repo:mfe-base",
+      "dimension": "BUSINESS"
+    }
+  }
+}

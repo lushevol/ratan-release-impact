@@ -1,0 +1,1593 @@
+{
+  "schema_version": "2.0.0",
+  "repositories": {
+    "repo:mfe-base": {
+      "tables": [],
+      "kafka_topics": [],
+      "remote_applications": [],
+      "data_platforms": [],
+      "service_calls": []
+    },
+    "repo:mfe-cashflow-blotter": {
+      "tables": [],
+      "kafka_topics": [],
+      "remote_applications": [
+        {
+          "name": "@fm/ratan_cashflow",
+          "source_paths": [
+            "repos/mfe-cashflow-blotter/src/**/*"
+          ],
+          "relationships": [
+            "LOADS_REMOTE"
+          ],
+          "module": "@fm/ratan_cashflow",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "@fm/ratan_trades",
+          "source_paths": [
+            "repos/mfe-cashflow-blotter/src/**/*"
+          ],
+          "relationships": [
+            "LOADS_REMOTE"
+          ],
+          "module": "@fm/ratan_trades",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        }
+      ],
+      "data_platforms": [],
+      "service_calls": []
+    },
+    "repo:mfe-ratan-container": {
+      "tables": [],
+      "kafka_topics": [],
+      "remote_applications": [
+        {
+          "name": "@fm/ratan_authorization_limits",
+          "source_paths": [
+            "repos/mfe-ratan-container/src/Root/import/AuthorizationLimits.tsx"
+          ],
+          "relationships": [
+            "LOADS_REMOTE"
+          ],
+          "module": "@fm/ratan_authorization_limits",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "@fm/ratan_cashflow",
+          "source_paths": [
+            "repos/mfe-ratan-container/src/Root/import/CashFlow.tsx"
+          ],
+          "relationships": [
+            "LOADS_REMOTE"
+          ],
+          "module": "@fm/ratan_cashflow",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "@fm/ratan_cashflow_blotter",
+          "source_paths": [
+            "repos/mfe-ratan-container/src/Root/import/CashFlowCN.tsx"
+          ],
+          "relationships": [
+            "LOADS_REMOTE"
+          ],
+          "module": "@fm/ratan_cashflow_blotter",
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        },
+        {
+          "name": "@fm/ratan_exception",
+          "source_paths": [
+            "repos/mfe-ratan-container/src/Root/import/Exception.tsx"
+          ],
+          "relationships": [
+            "LOADS_REMOTE"
+          ],
+          "module": "@fm/ratan_exception",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "@fm/ratan_nostro_static",
+          "source_paths": [
+            "repos/mfe-ratan-container/src/Root/import/NostroStatic.tsx"
+          ],
+          "relationships": [
+            "LOADS_REMOTE"
+          ],
+          "module": "@fm/ratan_nostro_static",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "@fm/ratan_rules",
+          "source_paths": [
+            "repos/mfe-ratan-container/src/Root/import/Rule.tsx"
+          ],
+          "relationships": [
+            "LOADS_REMOTE"
+          ],
+          "module": "@fm/ratan_rules",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "@fm/ratan_trades",
+          "source_paths": [
+            "repos/mfe-ratan-container/src/**/*",
+            "repos/mfe-ratan-container/src/Root/import/TradeBlotter.tsx"
+          ],
+          "relationships": [
+            "LOADS_REMOTE"
+          ],
+          "module": "@fm/ratan_trades",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        }
+      ],
+      "data_platforms": [],
+      "service_calls": []
+    },
+    "repo:ratan-cash-settlement-netting-service": {
+      "tables": [
+        {
+          "name": "ratan_auto_netting_cashflow",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/repo/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "SPRING_DATA"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "ratan_auto_netting_cashflow_history",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/repo/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "SPRING_DATA"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "ratan_auto_netting_type_config",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/repo/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "SPRING_DATA"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "splitting_cashflow",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/repo/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "SPRING_DATA"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "t_cashflow",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/repo/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "SPRING_DATA"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "t_request",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/repo/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "SPRING_DATA"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        }
+      ],
+      "kafka_topics": [
+        {
+          "name": "Rule_Engine_Action_Event",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Rule_Engine_Action_Event"
+        },
+        {
+          "name": "autonetting_cashflow_refresh_event",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "autonetting_cashflow_refresh_event"
+        },
+        {
+          "name": "cash_settlement_cashflow_domain_events",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "cash_settlement_cashflow_domain_events"
+        }
+      ],
+      "remote_applications": [],
+      "data_platforms": [],
+      "service_calls": [
+        {
+          "name": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        },
+        {
+          "name": "RATAN-EXCEPTION-PLATFORM",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "RATAN-EXCEPTION-PLATFORM",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATAN-MXG-CASHFLOW-ADAPTOR",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "RATAN-MXG-CASHFLOW-ADAPTOR",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATAN-RULE-SERVICE",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "ratan-rule-service",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATANONE-DATA-AMBASSADOR",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "ratanone-data-ambassador",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATANONE-RULE-SERVICE",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "RATANONE-RULE-SERVICE",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATANONE-STATIC-DATA-SERVICE",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "ratanone-static-data-service",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATANONE-SWIFT-SERVICE",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "RATANONE-SWIFT-SERVICE",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "ratan-cash-settlement-ssi-stamping-service",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "ratan-cash-settlement-ssi-stamping-service",
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        },
+        {
+          "name": "ratan-cashflow-lifecycle-service",
+          "source_paths": [
+            "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        }
+      ]
+    },
+    "repo:ratan-cash-settlement-orchestration": {
+      "tables": [
+        {
+          "name": "auto_dvp_msg",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/cashflow/repository/**/*.java",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/repository/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "SPRING_DATA"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "ratan_cashflow_multiple_exception",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/cashflow/repository/**/*.java",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/repository/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "SPRING_DATA"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "ratan_cashflow_user_task",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/cashflow/repository/**/*.java",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/repository/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "NATIVE_QUERY"
+          ],
+          "access": [
+            "READ"
+          ]
+        },
+        {
+          "name": "ratan_cashflow_workflow_exception_summary",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/cashflow/repository/**/*.java",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/repository/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "SPRING_DATA"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        }
+      ],
+      "kafka_topics": [
+        {
+          "name": "Cash_Settlement_Multiple_Exception_Replay",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_Multiple_Exception_Replay"
+        },
+        {
+          "name": "Cash_Settlement_Orchestration_Approval_Check",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_Orchestration_Approval_Check"
+        },
+        {
+          "name": "Cash_Settlement_Orchestration_Auto_Netting_Check",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_Orchestration_Auto_Netting_Check"
+        },
+        {
+          "name": "Cash_Settlement_Orchestration_Hold_Check",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_Orchestration_Hold_Check"
+        },
+        {
+          "name": "Cash_Settlement_Orchestration_Inbound",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_Orchestration_Inbound"
+        },
+        {
+          "name": "Cash_Settlement_Orchestration_Post_Holding_Check",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_Orchestration_Post_Holding_Check"
+        },
+        {
+          "name": "Cash_Settlement_Orchestration_Process_In",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/**/*",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/**/*.java",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/cashflow/constant/**/*.java",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/constant/**/*.java",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/dto/**/*.java",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/dto/request/**/*.java",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/dto/response/**/*.java",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/exception/**/*.java",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/processor/**/*.java",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/router/**/*.java",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/service/**/*.java",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/task/**/*.java",
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/utils/**/*.java"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_Orchestration_Process_In"
+        },
+        {
+          "name": "Cash_Settlement_Orchestration_Process_Out",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/**/*"
+          ],
+          "relationships": [
+            "PUBLISHES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_Orchestration_Process_Out"
+        },
+        {
+          "name": "Cash_Settlement_Orchestration_Ssi_Replay",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_Orchestration_Ssi_Replay"
+        },
+        {
+          "name": "Cash_Settlement_Ssi_Notify_Orchestration_In",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_Ssi_Notify_Orchestration_In"
+        },
+        {
+          "name": "Cash_Settlement_User_Task_Orchestration_In",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_User_Task_Orchestration_In"
+        },
+        {
+          "name": "Common_Event_Record_In",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Common_Event_Record_In"
+        },
+        {
+          "name": "Common_Exception_Record_In",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Common_Exception_Record_In"
+        }
+      ],
+      "remote_applications": [],
+      "data_platforms": [],
+      "service_calls": [
+        {
+          "name": "AUTHENTICATION",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "AUTHENTICATION",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        },
+        {
+          "name": "RATAN-EXCEPTION-PLATFORM",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "RATAN-EXCEPTION-PLATFORM",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATAN-RULE-SERVICE",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "ratan-rule-service",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATANONE-STATIC-DATA-SERVICE",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "ratanone-static-data-service",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "commonServiceCaller",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "commonServiceCaller",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "ratan-cash-settlement-ssi-stamping-service",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "ratan-cash-settlement-ssi-stamping-service",
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        },
+        {
+          "name": "ratan-cashflow-lifecycle-service",
+          "source_paths": [
+            "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        }
+      ]
+    },
+    "repo:ratan-cash-settlement-ssi-stamping-service": {
+      "tables": [
+        {
+          "name": "cashflow_stamping",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/domain/cashflow/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "SPRING_DATA"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "cashflow_stamping_legacy_exception",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/application/adaptor/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "SPRING_DATA"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "cashflow_status_snapshot",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/application/adaptor/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "SPRING_DATA"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "maker_checker_request",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/domain/makerchecker/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "SPRING_DATA"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "raw_message",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/domain/rawmessage/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "SPRING_DATA"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "trade_stamping_message",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/application/trade/**/*.java",
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/domain/trade/trademessage/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "SPRING_DATA"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        }
+      ],
+      "kafka_topics": [
+        {
+          "name": "Common_Exception_Publish_Out",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/entrypoint/message/**/*.java"
+          ],
+          "relationships": [
+            "PUBLISHES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Common_Exception_Publish_Out"
+        },
+        {
+          "name": "Common_Exception_Record_In",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/application/exceptionhandling/**/*.java"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Common_Exception_Record_In"
+        },
+        {
+          "name": "REP_EXCEPTION_RECORD_IN",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/application/exceptionhandling/**/*.java"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "REP_EXCEPTION_RECORD_IN"
+        },
+        {
+          "name": "Settlement_Nostro_Notification_Event_In",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Settlement_Nostro_Notification_Event_In"
+        },
+        {
+          "name": "Settlement_Orchestration_Nstp_Replay_cn",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/**/*"
+          ],
+          "relationships": [
+            "CONFIGURES_TOPIC"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Settlement_Orchestration_Nstp_Replay_cn"
+        },
+        {
+          "name": "Settlement_Ssi_Notification_Event_In",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Settlement_Ssi_Notification_Event_In"
+        },
+        {
+          "name": "Settlement_Ssi_Notification_Event_In_RT_Decom",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Settlement_Ssi_Notification_Event_In_RT_Decom"
+        },
+        {
+          "name": "Settlement_Stamping_Internal_Ssi_Event_In_cn",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Settlement_Stamping_Internal_Ssi_Event_In_cn"
+        },
+        {
+          "name": "cash_settlement_cashflow_domain_events_cn",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/**/*"
+          ],
+          "relationships": [
+            "CONFIGURES_TOPIC"
+          ],
+          "protocol": "KAFKA",
+          "topic": "cash_settlement_cashflow_domain_events_cn"
+        }
+      ],
+      "remote_applications": [],
+      "data_platforms": [
+        {
+          "name": "DQSL",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/application/configuration/**/*.java",
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/application/exceptionhandling/**/*.java",
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/application/trade/**/*.java",
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/application/vostro/**/*.java",
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/application/vostro/ssi/**/*.java",
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/domain/trade/trademessage/**/*.java",
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/domain/vostro/**/*.java",
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/domain/vostro/trade/**/*.java",
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/entrypoint/message/**/*.java",
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/infra/dqsl/**/*.java",
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/infra/service/**/*.java",
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/shared/error/**/*.java",
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/shared/utils/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_DATA_PLATFORM"
+          ],
+          "platform_kind": "EXTERNAL_DATA_LAKE",
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        }
+      ],
+      "service_calls": [
+        {
+          "name": "RATAN-CASH-SETTLEMENT-QUERY-SERVICE",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "RATAN-CASH-SETTLEMENT-QUERY-SERVICE",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        },
+        {
+          "name": "RATAN-EXCEPTION-PLATFORM",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/infra/exception/sender/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "RATAN-EXCEPTION-PLATFORM",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATAN-RULE-SERVICE",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "ratan-rule-service",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATANONE-CASHFLOW-SERVICE",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "RATANONE-CASHFLOW-SERVICE",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATANONE-DATA-AMBASSADOR",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "ratanone-data-ambassador",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATANONE-STATIC-DATA-SERVICE",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "ratanone-static-data-service",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "ratan-cashflow-lifecycle-service",
+          "source_paths": [
+            "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/infra/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        }
+      ]
+    },
+    "repo:ratan-cashflow-lifecycle-service": {
+      "tables": [
+        {
+          "name": "ratan_cashflow_affirmation_status",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/**/*"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "MYBATIS_MAPPER"
+          ],
+          "access": [
+            "WRITE"
+          ]
+        },
+        {
+          "name": "ratan_cashflow_cutoff_info",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/**/*",
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/mapper/mybatisplus/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "MYBATIS_MAPPER"
+          ],
+          "access": [
+            "READ"
+          ]
+        },
+        {
+          "name": "ratan_cashflow_holding_message",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/mapper/mybatisplus/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "MYBATIS_PLUS_CONVENTION"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "ratan_cashflow_rounding_config",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/mapper/mybatisplus/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "MYBATIS_PLUS_CONVENTION"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "ratan_cashflow_scbml_history",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/**/*",
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/mapper/mybatisplus/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "MYBATIS_MAPPER"
+          ],
+          "access": [
+            "READ"
+          ]
+        },
+        {
+          "name": "ratan_cashflow_scbml_message",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/**/*",
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/lifecycle/infra/mybatis/mapper/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "MYBATIS_MAPPER"
+          ],
+          "access": [
+            "READ"
+          ]
+        },
+        {
+          "name": "ratan_cashflow_scheduler_job_record",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/mapper/mybatisplus/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "MYBATIS_PLUS_CONVENTION"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "ratan_cashflow_withdrawal_event_history",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/**/*"
+          ],
+          "relationships": [
+            "READS"
+          ],
+          "clients": [
+            "MYBATIS_MAPPER"
+          ],
+          "access": [
+            "READ"
+          ]
+        },
+        {
+          "name": "ratan_minor_version_history",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/**/*"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "MYBATIS_MAPPER"
+          ],
+          "access": [
+            "READ"
+          ]
+        },
+        {
+          "name": "ratan_razor_status",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/**/*"
+          ],
+          "relationships": [
+            "READS"
+          ],
+          "clients": [
+            "MYBATIS_MAPPER"
+          ],
+          "access": [
+            "READ"
+          ]
+        },
+        {
+          "name": "ratan_stella_message_event_source",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/**/*"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "MYBATIS_MAPPER"
+          ],
+          "access": [
+            "READ"
+          ]
+        },
+        {
+          "name": "razor_acknack_event_source",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/mapper/mybatisplus/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "MYBATIS_PLUS_CONVENTION"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        },
+        {
+          "name": "razor_cashflow_status_event_source",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/mapper/mybatisplus/**/*.java"
+          ],
+          "relationships": [
+            "READS",
+            "WRITES"
+          ],
+          "clients": [
+            "MYBATIS_PLUS_CONVENTION"
+          ],
+          "access": [
+            "READ_WRITE"
+          ]
+        }
+      ],
+      "kafka_topics": [
+        {
+          "name": "Cash_Settlement_Cashflow_Status_In",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/config/**/*.java"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_Cashflow_Status_In"
+        },
+        {
+          "name": "Cash_Settlement_OLA_Breaking_Exception_Record_In",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/config/**/*.java"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_OLA_Breaking_Exception_Record_In"
+        },
+        {
+          "name": "Cash_Settlement_Orchestration_Post_Holding_Check",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/**/*"
+          ],
+          "relationships": [
+            "CONFIGURES_TOPIC"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_Orchestration_Post_Holding_Check"
+        },
+        {
+          "name": "Cash_Settlement_Orchestration_Process_In",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/**/*",
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/lifecycle/domain/event/**/*.java",
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/lifecycle/domain/event/handler/**/*.java",
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/lifecycle/domain/event/payload/**/*.java",
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/lifecycle/domain/event/payload/info/**/*.java"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_Orchestration_Process_In"
+        },
+        {
+          "name": "Cash_Settlement_Orchestration_Process_Out",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/**/*"
+          ],
+          "relationships": [
+            "PUBLISHES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_Orchestration_Process_Out"
+        },
+        {
+          "name": "Cash_Settlement_Receiver_Ack_Nack_In",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/config/**/*.java"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Cash_Settlement_Receiver_Ack_Nack_In"
+        },
+        {
+          "name": "Common_Event_Record_In",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "Common_Event_Record_In"
+        },
+        {
+          "name": "REP_EXCEPTION_RECORD_IN",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/**/*"
+          ],
+          "relationships": [
+            "CONSUMES"
+          ],
+          "protocol": "KAFKA",
+          "topic": "REP_EXCEPTION_RECORD_IN"
+        },
+        {
+          "name": "cash_settlement_cashflow_domain_events",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/**/*"
+          ],
+          "relationships": [
+            "CONFIGURES_TOPIC"
+          ],
+          "protocol": "KAFKA",
+          "topic": "cash_settlement_cashflow_domain_events"
+        }
+      ],
+      "remote_applications": [],
+      "data_platforms": [
+        {
+          "name": "DQSL",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/config/**/*.java",
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/lifecycle/application/**/*.java",
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/lifecycle/application/impl/**/*.java",
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/lifecycle/domain/exceptions/**/*.java",
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/lifecycle/domain/repository/**/*.java",
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/lifecycle/infra/dqsl/**/*.java",
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/service/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_DATA_PLATFORM"
+          ],
+          "platform_kind": "EXTERNAL_DATA_LAKE",
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        }
+      ],
+      "service_calls": [
+        {
+          "name": "RATAN-CASH-SETTLEMENT-GROUP-MANAGEMENT-SERVICE",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "RATAN-CASH-SETTLEMENT-GROUP-MANAGEMENT-SERVICE",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATAN-CASH-SETTLEMENT-NETTING-SERVICE",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "RATAN-CASH-SETTLEMENT-NETTING-SERVICE",
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        },
+        {
+          "name": "RATAN-CASH-SETTLEMENT-ORCHESTRATION",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "RATAN-CASH-SETTLEMENT-ORCHESTRATION",
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        },
+        {
+          "name": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        },
+        {
+          "name": "RATAN-RULE-SERVICE",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "ratan-rule-service",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATANONE-DATA-AMBASSADOR",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "ratanone-data-ambassador",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "RATANONE-STATIC-DATA-SERVICE",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "ratanone-static-data-service",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "message-event",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "message-event",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "ratan-cash-settlement-batch-service",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "ratan-cash-settlement-batch-service",
+          "resolution_statuses": [
+            "UNRESOLVED"
+          ]
+        },
+        {
+          "name": "ratan-cash-settlement-netting-service",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        },
+        {
+          "name": "ratan-cash-settlement-orchestration",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        },
+        {
+          "name": "ratan-cash-settlement-ssi-stamping-service",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "service_alias": "ratan-cash-settlement-ssi-stamping-service",
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        },
+        {
+          "name": "ratan-cashflow-lifecycle-service",
+          "source_paths": [
+            "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/**/*.java"
+          ],
+          "relationships": [
+            "CALLS_SERVICE"
+          ],
+          "resolution_statuses": [
+            "RESOLVED"
+          ]
+        }
+      ]
+    }
+  }
+}

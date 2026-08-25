@@ -1,0 +1,15 @@
+{
+  "schema_version": "2.0.0",
+  "graph": "../../graph.json",
+  "repository": "repo:mfe-ratan-container",
+  "dimensions": {
+    "runtime": {
+      "repository": "repo:mfe-ratan-container",
+      "dimension": "RUNTIME"
+    },
+    "business": {
+      "repository": "repo:mfe-ratan-container",
+      "dimension": "BUSINESS"
+    }
+  }
+}
