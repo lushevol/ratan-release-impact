@@ -1,10 +1,10 @@
 {
   "schema_version": "2.0.0",
   "counts": {
-    "repositories": 8,
-    "nodes": 1348,
-    "edges": 2282,
-    "evidence": 2323,
+    "repositories": 13,
+    "nodes": 2038,
+    "edges": 3490,
+    "evidence": 3770,
     "diagnostics": 0
   }
 }

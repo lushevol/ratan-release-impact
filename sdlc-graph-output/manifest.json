@@ -8,8 +8,8 @@
     {
       "path": "business-description-context.json",
       "role": "ai_enrichment_context",
-      "bytes": 874973,
-      "sha256": "e092cedb23c506701eb3a3b7e28cc8170cccaf903778cd351d60a5b2ba3b60c1"
+      "bytes": 1355329,
+      "sha256": "0a820fed7ff14418ea9e2b03d5f561ab8b9cbb5f76c242b8ae7a8dc6a729c9cc"
     },
     {
       "path": "business-description-overrides.json",
@@ -20,14 +20,14 @@
     {
       "path": "dependencies.json",
       "role": "runtime_dependency_catalog",
-      "bytes": 56178,
-      "sha256": "7e75ed55ab2d042156e7a2800866181e3268fdd5a9c927948e49e6c89dff69e8"
+      "bytes": 113115,
+      "sha256": "f8298f249e32fbc4b22ce63a106b99afeccd1c18c3b9de46d7ee00a5dc2948b7"
     },
     {
       "path": "graph.json",
       "role": "canonical_graph",
-      "bytes": 3158165,
-      "sha256": "0afa58a17b14c15e24be9838338a70289cde6f85637b58a82ddbbe95dc9f0af3"
+      "bytes": 4954854,
+      "sha256": "f4851956162355ddbef462293b5ed3895b78e357b0bcfb1966bc90865a55abd1"
     },
     {
       "path": "mcp-server.json",
@@ -38,8 +38,8 @@
     {
       "path": "relationship-viewer.html",
       "role": "interactive_visualization",
-      "bytes": 2558493,
-      "sha256": "d89be29cc57345be15f8e388c78391d714e81d7c99c1a1877d08a51a59c47579"
+      "bytes": 4017561,
+      "sha256": "c0a8955cf0bfe7e90d1fb266478cf6cd9a951ee99220adfc01fa2e1044148417"
     },
     {
       "path": "repositories/mfe-base/view.json",
@@ -60,6 +60,24 @@
       "sha256": "dfbdc504a8aa3305984d5559a91889f1174a138621a179bca1b75579a18befba"
     },
     {
+      "path": "repositories/ratan-cash-settlement-accounting-service/view.json",
+      "role": "repository_projection",
+      "bytes": 396,
+      "sha256": "3881479ba6ed7ac715494bfeedb80016219fe65817e13a96aa401f002ad9ca86"
+    },
+    {
+      "path": "repositories/ratan-cash-settlement-batch-service/view.json",
+      "role": "repository_projection",
+      "bytes": 381,
+      "sha256": "fdf443e6221c34f652562ad749104aff793a692678ff1aa5204c8cd4af46183f"
+    },
+    {
+      "path": "repositories/ratan-cash-settlement-group-management-service/view.json",
+      "role": "repository_projection",
+      "bytes": 414,
+      "sha256": "8ce551d2d77d84bd3f44712fcbe03ba0bbf182af37c2eb9e4c14d15902dce5c5"
+    },
+    {
       "path": "repositories/ratan-cash-settlement-netting-service/view.json",
       "role": "repository_projection",
       "bytes": 387,
@@ -70,6 +88,12 @@
       "role": "repository_projection",
       "bytes": 381,
       "sha256": "45e89e4e32d0e3ae0860abf7059ca7770de04bcdaf0342d72fad667e394b8122"
+    },
+    {
+      "path": "repositories/ratan-cash-settlement-query-service/view.json",
+      "role": "repository_projection",
+      "bytes": 381,
+      "sha256": "b6b9eab6a7cea66b9492bcb09cedf7e1087b2e5c7a8b9807f367984af4218bdc"
     },
     {
       "path": "repositories/ratan-cash-settlement-ssi-stamping-service/view.json",
@@ -84,16 +108,22 @@
       "sha256": "bd631d1ae9f4085834baf8ae482ce80106209fddaf8a0f5232976c531ef50038"
     },
     {
+      "path": "repositories/ratan-mxg-cashflow-adaptor/view.json",
+      "role": "repository_projection",
+      "bytes": 354,
+      "sha256": "d8590e577e40ea14860e635f20f3fb32694d1e62a1a5a06c7f1cc069bc61da31"
+    },
+    {
       "path": "services.json",
       "role": "ai_service_catalog",
-      "bytes": 318245,
-      "sha256": "272aa7ea3da1a98d06bfb1d47a5c9b92443b569bef140d3265d7319000c89e43"
+      "bytes": 495418,
+      "sha256": "1460367393b1a08159628dad27b350e108aac92887f06aefa05f48ae8778a9db"
     },
     {
       "path": "summary.json",
       "role": "generation_summary",
-      "bytes": 155,
-      "sha256": "435714afd52f3672661aa15e2947c33a6525b5aa04de3794671c165ef3171953"
+      "bytes": 156,
+      "sha256": "157ea7479fe7aecd0d0de76ca54db763aa28bfafa1e26bb2399f863c9323ecd3"
     }
   ]
 }

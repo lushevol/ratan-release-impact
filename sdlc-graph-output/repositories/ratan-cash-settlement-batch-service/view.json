@@ -1,0 +1,15 @@
+{
+  "schema_version": "2.0.0",
+  "graph": "../../graph.json",
+  "repository": "repo:ratan-cash-settlement-batch-service",
+  "dimensions": {
+    "runtime": {
+      "repository": "repo:ratan-cash-settlement-batch-service",
+      "dimension": "RUNTIME"
+    },
+    "business": {
+      "repository": "repo:ratan-cash-settlement-batch-service",
+      "dimension": "BUSINESS"
+    }
+  }
+}

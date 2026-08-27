@@ -1,0 +1,15 @@
+{
+  "schema_version": "2.0.0",
+  "graph": "../../graph.json",
+  "repository": "repo:ratan-mxg-cashflow-adaptor",
+  "dimensions": {
+    "runtime": {
+      "repository": "repo:ratan-mxg-cashflow-adaptor",
+      "dimension": "RUNTIME"
+    },
+    "business": {
+      "repository": "repo:ratan-mxg-cashflow-adaptor",
+      "dimension": "BUSINESS"
+    }
+  }
+}

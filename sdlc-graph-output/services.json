@@ -2,10 +2,10 @@
   "schema_version": "2.0.0",
   "purpose": "AI-ready service picture and entry point for requirement and code impact analysis",
   "counts": {
-    "services": 4,
+    "services": 9,
     "web_applications": 3,
-    "nodes": 1348,
-    "edges": 2282
+    "nodes": 2038,
+    "edges": 3490
   },
   "services": [
     {
@@ -2587,6 +2587,2674 @@
       }
     },
     {
+      "id": "repo:ratan-cash-settlement-accounting-service",
+      "name": "ratan-cash-settlement-accounting-service",
+      "kind": "SPRING",
+      "path": "repos/ratan-cash-settlement-accounting-service",
+      "root": {
+        "id": "service:ratan-cash-settlement-accounting-service",
+        "type": "SERVICE",
+        "name": "ratan-cash-settlement-accounting-service",
+        "repository": "repo:ratan-cash-settlement-accounting-service",
+        "dimensions": [
+          "BUSINESS",
+          "RUNTIME"
+        ],
+        "functional_role": "Runs a Spring service and its runtime adapters",
+        "business_meaning": "Delivers the ratan cash settlement accounting service business service",
+        "source_paths": [
+          "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+        ],
+        "assertion_status": "CONFIRMED",
+        "component_kind": "SPRING_SERVICE"
+      },
+      "business": {
+        "capabilities": [
+          {
+            "id": "capability:ratan-cash-settlement-accounting-service:aspire",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "aspire",
+            "repository": "repo:ratan-cash-settlement-accounting-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for aspire",
+            "business_meaning": "Represents the aspire business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/domain/aspire/dto/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-accounting-service:common",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "common",
+            "repository": "repo:ratan-cash-settlement-accounting-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for common",
+            "business_meaning": "Represents the common business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/domain/common/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-accounting-service:config",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "config",
+            "repository": "repo:ratan-cash-settlement-accounting-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for config",
+            "business_meaning": "Represents the config business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/application/config/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-accounting-service:db",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "db",
+            "repository": "repo:ratan-cash-settlement-accounting-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for db",
+            "business_meaning": "Represents the db business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/infra/db/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-accounting-service:ebbs",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "ebbs",
+            "repository": "repo:ratan-cash-settlement-accounting-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for ebbs",
+            "business_meaning": "Represents the ebbs business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/domain/ebbs/dto/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-accounting-service:feign",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "feign",
+            "repository": "repo:ratan-cash-settlement-accounting-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for feign",
+            "business_meaning": "Represents the feign business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/infra/feign/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-accounting-service:fileit",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "fileit",
+            "repository": "repo:ratan-cash-settlement-accounting-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for fileit",
+            "business_meaning": "Represents the fileit business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/domain/fileit/dto/request/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-accounting-service:listener",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "listener",
+            "repository": "repo:ratan-cash-settlement-accounting-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for listener",
+            "business_meaning": "Represents the listener business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/entrypoint/listener/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-accounting-service:oltp",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "oltp",
+            "repository": "repo:ratan-cash-settlement-accounting-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for oltp",
+            "business_meaning": "Represents the oltp business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/domain/oltp/dto/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-accounting-service:service-core",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "service core",
+            "repository": "repo:ratan-cash-settlement-accounting-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for service core",
+            "business_meaning": "Represents the service core business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-accounting-service:utils",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "utils",
+            "repository": "repo:ratan-cash-settlement-accounting-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for utils",
+            "business_meaning": "Represents the utils business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/application/utils/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-accounting-service:web",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "web",
+            "repository": "repo:ratan-cash-settlement-accounting-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for web",
+            "business_meaning": "Represents the web business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/entrypoint/web/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          }
+        ],
+        "pages": [],
+        "component_count": 69,
+        "component_kinds": {
+          "APPLICATION_SERVICE": 2,
+          "COMPONENT": 6,
+          "CONTROLLER": 3,
+          "DATA_PLATFORM_CLIENT": 2,
+          "DOMAIN_COMPONENT": 32,
+          "FEIGN_CLIENT": 8,
+          "KAFKA_CONSUMER": 7,
+          "KAFKA_PRODUCER": 1,
+          "REPOSITORY": 8
+        }
+      },
+      "runtime": {
+        "api_operations": [
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:any:v1-accounting",
+            "name": "ANY /v1/accounting",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/accounting",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:any:v1-accounting-job",
+            "name": "ANY /v1/accounting/job",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/accounting/job",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:get:fetch-cashflowid",
+            "name": "GET /fetch/{cashflowId}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/fetch/{cashflowId}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:get:queryreconrecords",
+            "name": "GET /queryReconRecords",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/queryReconRecords",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:get:v1-branchcode-branchcode",
+            "name": "GET /v1/branchCode/{branchCode}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/branchCode/{branchCode}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:get:v1-cashflows-nettingid-nettingid",
+            "name": "GET /v1/cashflows/nettingId/{nettingId}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/cashflows/nettingId/{nettingId}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:get:v1-ebbs-account-fmid",
+            "name": "GET /v1/ebbs/account/{fmId}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/ebbs/account/{fmId}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:get:v1-ebbs-txn-fmid",
+            "name": "GET /v1/ebbs/txn/{fmId}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/ebbs/txn/{fmId}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:get:v1-iso-currency-currency",
+            "name": "GET /v1/iso/currency/{currency}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/iso/currency/{currency}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:get:v1-ratan-cashflow-parent-splittingid",
+            "name": "GET /v1/ratan/cashflow/parent/{splittingId}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/ratan/cashflow/parent/{splittingId}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:accounting",
+            "name": "POST /accounting",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/accounting",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:accountingbyfmid",
+            "name": "POST /accountingByFmid",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/accountingByFmid",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:generateemptyfile",
+            "name": "POST /generateEmptyFile",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/generateEmptyFile",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:generatespecificfile",
+            "name": "POST /generateSpecificFile",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/generateSpecificFile",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:graphql",
+            "name": "POST /graphql",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/graphql",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:refreshrequestinfo",
+            "name": "POST /refreshRequestInfo",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/refreshRequestInfo",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:republish",
+            "name": "POST /republish",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/republish",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:v1-accounting-job-accounting",
+            "name": "POST /v1/accounting/job/accounting",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/accounting/job/accounting",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:v1-accounting-job-accountingbyfmid",
+            "name": "POST /v1/accounting/job/accountingByFmid",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/accounting/job/accountingByFmid",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:v1-counterparty",
+            "name": "POST /v1/counterparty",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/counterparty",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:v1-ratan-cashflow-query",
+            "name": "POST /v1/ratan/cashflow/query",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/ratan/cashflow/query",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:v1-ratan-cashflow-resultant",
+            "name": "POST /v1/ratan/cashflow/resultant",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/ratan/cashflow/resultant",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:v1-ratan-lifecycle-update-status",
+            "name": "POST /v1/ratan/lifecycle/update/status",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/ratan/lifecycle/update/status",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:v1-stamping-cashflow-accounting-enrich",
+            "name": "POST /v1/stamping/cashflow/accounting/enrich",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/stamping/cashflow/accounting/enrich",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:v2-ratan-cashflow-move-status",
+            "name": "POST /v2/ratan/cashflow/move/status",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v2/ratan/cashflow/move/status",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-accounting-service:post:v2-stamping-cashflow-enrich",
+            "name": "POST /v2/stamping/cashflow/enrich",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v2/stamping/cashflow/enrich",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ]
+          }
+        ],
+        "databases": [
+          {
+            "id": "database:ratan-cash-settlement-accounting-service:postgresql",
+            "type": "DATABASE",
+            "name": "PostgreSQL",
+            "repository": "repo:ratan-cash-settlement-accounting-service",
+            "dimensions": [
+              "RUNTIME"
+            ],
+            "functional_role": "Hosts relational data accessed by the running service",
+            "business_meaning": "Durable service-owned operational data store",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/pom.xml"
+            ],
+            "assertion_status": "CONFIRMED",
+            "properties": {
+              "engine": "POSTGRESQL"
+            }
+          }
+        ],
+        "tables": [
+          {
+            "name": "ratan_accounting_message",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/infra/db/RatanAccountingMessageRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          }
+        ],
+        "kafka_topics": [
+          {
+            "name": "Cash_Settlement_Aspire_FileIT_Ack",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_Aspire_FileIT_Ack"
+          },
+          {
+            "name": "Cash_Settlement_Aspire_FileIT_Process_Out",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ],
+            "relationships": [
+              "PUBLISHES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_Aspire_FileIT_Process_Out"
+          },
+          {
+            "name": "Cash_Settlement_EBBS_Ack_Nack",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_EBBS_Ack_Nack"
+          },
+          {
+            "name": "Cash_Settlement_EBBS_Process_Out",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ],
+            "relationships": [
+              "PUBLISHES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_EBBS_Process_Out"
+          },
+          {
+            "name": "Cash_Settlement_OLTP_Accounting_KR",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ],
+            "relationships": [
+              "PUBLISHES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_OLTP_Accounting_KR"
+          },
+          {
+            "name": "Cash_Settlement_OLTP_Response",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_OLTP_Response"
+          },
+          {
+            "name": "Cash_Settlement_Sync_Status",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_Sync_Status"
+          }
+        ],
+        "remote_applications": [],
+        "data_platforms": [
+          {
+            "name": "DQSL",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/domain/ebbs/enums/DAResponseMappingEnum.java"
+            ],
+            "relationships": [
+              "CALLS_DATA_PLATFORM"
+            ],
+            "platform_kind": "EXTERNAL_DATA_LAKE",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          }
+        ],
+        "service_calls": [
+          {
+            "name": "RATAN-CASH-SETTLEMENT-ACCOUNTING-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/infra/feign/AccountingServiceClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATAN-CASH-SETTLEMENT-ACCOUNTING-SERVICE",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-CASH-SETTLEMENT-NETTING-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/infra/feign/NettingServiceClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATAN-CASH-SETTLEMENT-NETTING-SERVICE",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-CASH-SETTLEMENT-QUERY-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/infra/feign/CashflowGraphQLClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATAN-CASH-SETTLEMENT-QUERY-SERVICE",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-CASH-SETTLEMENT-SSI-STAMPING-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/infra/feign/SsiClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratan-cash-settlement-ssi-stamping-service",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/infra/feign/RatanLifecycleClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "RATANONE-STATIC-DATA-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/infra/feign/RatanoneStaticClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratanone-static-data-service",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          },
+          {
+            "name": "ratan-cash-settlement-accounting-service",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/infra/feign/AccountingServiceClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratan-cash-settlement-netting-service",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/infra/feign/NettingServiceClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratan-cash-settlement-query-service",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/infra/feign/CashflowGraphQLClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratan-cash-settlement-ssi-stamping-service",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/infra/feign/SsiClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratan-cashflow-lifecycle-service",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/infra/feign/RatanLifecycleClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratanone-data-ambassador",
+            "source_paths": [
+              "repos/ratan-cash-settlement-accounting-service/src/main/java/com/scb/ratan/accounting/infra/feign/DataAmbassadorClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratanone-data-ambassador",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "repo:ratan-cash-settlement-batch-service",
+      "name": "ratan-cash-settlement-batch-service",
+      "kind": "SPRING",
+      "path": "repos/ratan-cash-settlement-batch-service",
+      "root": {
+        "id": "service:ratan-cash-settlement-batch-service",
+        "type": "SERVICE",
+        "name": "ratan-cash-settlement-batch-service",
+        "repository": "repo:ratan-cash-settlement-batch-service",
+        "dimensions": [
+          "BUSINESS",
+          "RUNTIME"
+        ],
+        "functional_role": "Runs a Spring service and its runtime adapters",
+        "business_meaning": "Delivers the ratan cash settlement batch service business service",
+        "source_paths": [
+          "repos/ratan-cash-settlement-batch-service/src/main/**/*"
+        ],
+        "assertion_status": "CONFIRMED",
+        "component_kind": "SPRING_SERVICE"
+      },
+      "business": {
+        "capabilities": [
+          {
+            "id": "capability:ratan-cash-settlement-batch-service:aspect",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "aspect",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for aspect",
+            "business_meaning": "Represents the aspect business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/domain/aspect/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-batch-service:common",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "common",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for common",
+            "business_meaning": "Represents the common business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/domain/common/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-batch-service:config",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "config",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for config",
+            "business_meaning": "Represents the config business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/domain/config/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-batch-service:constant",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "constant",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for constant",
+            "business_meaning": "Represents the constant business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/domain/constant/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-batch-service:entity",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "entity",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for entity",
+            "business_meaning": "Represents the entity business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/domain/entity/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-batch-service:exception",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "exception",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for exception",
+            "business_meaning": "Represents the exception business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/domain/exception/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-batch-service:feign",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "feign",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for feign",
+            "business_meaning": "Represents the feign business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/infra/feign/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-batch-service:handler",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "handler",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for handler",
+            "business_meaning": "Represents the handler business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/infra/handler/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-batch-service:job",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "job",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for job",
+            "business_meaning": "Represents the job business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/domain/job/listener/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-batch-service:listener",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "listener",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for listener",
+            "business_meaning": "Represents the listener business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/entrypoint/listener/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-batch-service:mapper",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "mapper",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for mapper",
+            "business_meaning": "Represents the mapper business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/domain/mapper/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-batch-service:service",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "service",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for service",
+            "business_meaning": "Represents the service business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/application/service/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-batch-service:service-core",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "service core",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for service core",
+            "business_meaning": "Represents the service core business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-batch-service:vo",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "vo",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for vo",
+            "business_meaning": "Represents the vo business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/domain/vo/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-batch-service:web",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "web",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for web",
+            "business_meaning": "Represents the web business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/entrypoint/web/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          }
+        ],
+        "pages": [],
+        "component_count": 50,
+        "component_kinds": {
+          "APPLICATION_SERVICE": 13,
+          "COMPONENT": 1,
+          "CONTROLLER": 4,
+          "DOMAIN_COMPONENT": 17,
+          "FEIGN_CLIENT": 3,
+          "KAFKA_CONSUMER": 5,
+          "KAFKA_PRODUCER": 2,
+          "REPOSITORY": 5
+        }
+      },
+      "runtime": {
+        "api_operations": [
+          {
+            "id": "operation:ratan-cash-settlement-batch-service:any:v1-cash-batch",
+            "name": "ANY /v1/cash/batch",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/cash/batch",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-batch-service:get:query-cashflowid",
+            "name": "GET /query/{cashflowId}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/query/{cashflowId}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-batch-service:post:execute",
+            "name": "POST /execute",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/execute",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-batch-service:post:executefix",
+            "name": "POST /executeFix",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/executeFix",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-batch-service:post:replay-batchid",
+            "name": "POST /replay/{batchId}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/replay/{batchId}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-batch-service:post:v1-ratan-cashflow-query",
+            "name": "POST /v1/ratan/cashflow/query",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/ratan/cashflow/query",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-batch-service:post:v1-rep-exceptions-byentity",
+            "name": "POST /v1/rep/exceptions/byEntity",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/rep/exceptions/byEntity",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-batch-service:post:v1-rep-exceptions-save",
+            "name": "POST /v1/rep/exceptions/save",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/rep/exceptions/save",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-batch-service:post:v2-ratan-camunda-lifecycle-status-move",
+            "name": "POST /v2/ratan/camunda/lifecycle/status/move",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v2/ratan/camunda/lifecycle/status/move",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/**/*"
+            ]
+          }
+        ],
+        "databases": [
+          {
+            "id": "database:ratan-cash-settlement-batch-service:postgresql",
+            "type": "DATABASE",
+            "name": "PostgreSQL",
+            "repository": "repo:ratan-cash-settlement-batch-service",
+            "dimensions": [
+              "RUNTIME"
+            ],
+            "functional_role": "Hosts relational data accessed by the running service",
+            "business_meaning": "Durable service-owned operational data store",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/pom.xml"
+            ],
+            "assertion_status": "CONFIRMED",
+            "properties": {
+              "engine": "POSTGRESQL"
+            }
+          }
+        ],
+        "tables": [
+          {
+            "name": "cash_mxg_batch_fix_notify",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/domain/entity/repository/FixingEntityRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "cash_mxg_batch_payment",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/domain/entity/repository/PaymentEntityRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "cash_mxg_batch_payment_snapshot",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/domain/entity/repository/PaymentSnapshotEntityRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "cash_mxg_batch_task",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/domain/entity/repository/MxgBatchTaskRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          }
+        ],
+        "kafka_topics": [
+          {
+            "name": "Cash_Murex_Settlement_Batch_FIXING_Task",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Murex_Settlement_Batch_FIXING_Task"
+          },
+          {
+            "name": "Cash_Murex_Settlement_Batch_Task",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Murex_Settlement_Batch_Task"
+          },
+          {
+            "name": "Cash_Murex_Settlement_Batch_Task_Next",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Murex_Settlement_Batch_Task_Next"
+          }
+        ],
+        "remote_applications": [],
+        "data_platforms": [],
+        "service_calls": [
+          {
+            "name": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/infra/feign/CashflowLifecycleClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-EXCEPTION-PLATFORM",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/infra/feign/ExceptionPlatformClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATAN-EXCEPTION-PLATFORM",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          },
+          {
+            "name": "ratan-cashflow-lifecycle-service",
+            "source_paths": [
+              "repos/ratan-cash-settlement-batch-service/src/main/java/com/scb/ratan/batch/infra/feign/CashflowLifecycleClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "repo:ratan-cash-settlement-group-management-service",
+      "name": "ratan-cash-settlement-group-management-service",
+      "kind": "SPRING",
+      "path": "repos/ratan-cash-settlement-group-management-service",
+      "root": {
+        "id": "service:ratan-cash-settlement-group-management-service",
+        "type": "SERVICE",
+        "name": "ratan-cash-settlement-group-management-service",
+        "repository": "repo:ratan-cash-settlement-group-management-service",
+        "dimensions": [
+          "BUSINESS",
+          "RUNTIME"
+        ],
+        "functional_role": "Runs a Spring service and its runtime adapters",
+        "business_meaning": "Delivers the ratan cash settlement group management service business service",
+        "source_paths": [
+          "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+        ],
+        "assertion_status": "CONFIRMED",
+        "component_kind": "SPRING_SERVICE"
+      },
+      "business": {
+        "capabilities": [
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:cashflow",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "cashflow",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for cashflow",
+            "business_meaning": "Represents the cashflow business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/domain/cashflow/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:config",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "config",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for config",
+            "business_meaning": "Represents the config business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/domain/config/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:consts",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "consts",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for consts",
+            "business_meaning": "Represents the consts business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/application/consts/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:db",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "db",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for db",
+            "business_meaning": "Represents the db business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/db/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:entity",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "entity",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for entity",
+            "business_meaning": "Represents the entity business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/domain/entity/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:exception",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "exception",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for exception",
+            "business_meaning": "Represents the exception business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/domain/exception/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:feign",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "feign",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for feign",
+            "business_meaning": "Represents the feign business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/feign/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:group",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "group",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for group",
+            "business_meaning": "Represents the group business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/domain/group/event/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:message",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "message",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for message",
+            "business_meaning": "Represents the message business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/entrypoint/message/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:murex",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "murex",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for murex",
+            "business_meaning": "Represents the murex business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/domain/murex/event/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:repository",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "repository",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for repository",
+            "business_meaning": "Represents the repository business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/repository/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:scbml",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "scbml",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for scbml",
+            "business_meaning": "Represents the scbml business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/application/scbml/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:scheduler",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "scheduler",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for scheduler",
+            "business_meaning": "Represents the scheduler business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/entrypoint/scheduler/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:service",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "service",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for service",
+            "business_meaning": "Represents the service business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/domain/service/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:service-core",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "service core",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for service core",
+            "business_meaning": "Represents the service core business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:standardize",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "standardize",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for standardize",
+            "business_meaning": "Represents the standardize business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/domain/standardize/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:stella",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "stella",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for stella",
+            "business_meaning": "Represents the stella business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/domain/stella/event/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:trade",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "trade",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for trade",
+            "business_meaning": "Represents the trade business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/domain/trade/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:uber",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "uber",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for uber",
+            "business_meaning": "Represents the uber business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/domain/uber/entity/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:utils",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "utils",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for utils",
+            "business_meaning": "Represents the utils business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/application/utils/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:vo",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "vo",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for vo",
+            "business_meaning": "Represents the vo business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/application/vo/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-group-management-service:web",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "web",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for web",
+            "business_meaning": "Represents the web business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/entrypoint/web/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          }
+        ],
+        "pages": [],
+        "component_count": 131,
+        "component_kinds": {
+          "APPLICATION_SERVICE": 11,
+          "COMPONENT": 12,
+          "CONTROLLER": 5,
+          "DOMAIN_COMPONENT": 54,
+          "FEIGN_CLIENT": 10,
+          "KAFKA_CONSUMER": 8,
+          "KAFKA_PRODUCER": 9,
+          "REPOSITORY": 22
+        }
+      },
+      "runtime": {
+        "api_operations": [
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:any:v1",
+            "name": "ANY /v1",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:get:v1-cash-batch-query-cashflowid",
+            "name": "GET /v1/cash/batch/query/{cashflowId}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/cash/batch/query/{cashflowId}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:get:v1-cashflows-nettingid-nettingid",
+            "name": "GET /v1/cashflows/nettingId/{nettingId}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/cashflows/nettingId/{nettingId}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:get:v1-fxu-config",
+            "name": "GET /v1/fxu/config",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/fxu/config",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:get:v1-staticdata-spotrate-currency",
+            "name": "GET /v1/staticData/spotRate/{currency}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/staticData/spotRate/{currency}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:get:v2-roundingconfig-currency",
+            "name": "GET /v2/roundingConfig/{currency}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v2/roundingConfig/{currency}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:autoclose-cashflowid-exceptioncode",
+            "name": "POST /autoClose/{cashflowId}/{exceptionCode}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/autoClose/{cashflowId}/{exceptionCode}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:cashflow-status-sync",
+            "name": "POST /cashflow/status/sync",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/cashflow/status/sync",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:graphql",
+            "name": "POST /graphql",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/graphql",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:group-query",
+            "name": "POST /group/query",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/group/query",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:groupmessages",
+            "name": "POST /groupMessages",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/groupMessages",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:message-deliver",
+            "name": "POST /message/deliver",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/message/deliver",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:message-resend",
+            "name": "POST /message/resend",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/message/resend",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v1-cashflows-unnet",
+            "name": "POST /v1/cashflows/unnet",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/cashflows/unnet",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v1-counterparty",
+            "name": "POST /v1/counterparty",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/counterparty",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v1-currency-rounding",
+            "name": "POST /v1/currency/rounding",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/currency/rounding",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v1-exception-close",
+            "name": "POST /v1/exception/close",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/exception/close",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v1-exception-replay",
+            "name": "POST /v1/exception/replay",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/exception/replay",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v1-nstpexception-closeaffirm-cashflowid-businessversion",
+            "name": "POST /v1/nstpException/closeAffirm/{cashflowId}/{businessVersion}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/nstpException/closeAffirm/{cashflowId}/{businessVersion}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v1-ratan-cashflow-query",
+            "name": "POST /v1/ratan/cashflow/query",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/ratan/cashflow/query",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v1-ratan-lifecycle-update-status",
+            "name": "POST /v1/ratan/lifecycle/update/status",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/ratan/lifecycle/update/status",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v1-rep-exceptions-byentity",
+            "name": "POST /v1/rep/exceptions/byEntity",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/rep/exceptions/byEntity",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v1-static-bicnettingeligiblerule-count",
+            "name": "POST /v1/static/bicNettingEligibleRule/count",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/static/bicNettingEligibleRule/count",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v1-static-nostros-finddedicateds",
+            "name": "POST /v1/static/nostros/findDedicateds",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/static/nostros/findDedicateds",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v1-staticdata-cashflow-cutoffs",
+            "name": "POST /v1/staticData/cashflow/cutoffs",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/staticData/cashflow/cutoffs",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v1-staticdata-cashflow-cutoffs-batch",
+            "name": "POST /v1/staticData/cashflow/cutoffs/batch",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/staticData/cashflow/cutoffs/batch",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v1-staticdata-cashflow-shifterdate",
+            "name": "POST /v1/staticData/cashflow/shifterDate",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/staticData/cashflow/shifterDate",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v1-staticdata-cashflow-shifterdate-batch",
+            "name": "POST /v1/staticData/cashflow/shifterDate/batch",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/staticData/cashflow/shifterDate/batch",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v2-cashflow-stamp",
+            "name": "POST /v2/cashflow/stamp",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v2/cashflow/stamp",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v2-ratan-cashflow-move-status",
+            "name": "POST /v2/ratan/cashflow/move/status",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v2/ratan/cashflow/move/status",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v2-ratan-cashflow-query",
+            "name": "POST /v2/ratan/cashflow/query",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v2/ratan/cashflow/query",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v2-rules-validate",
+            "name": "POST /v2/rules/validate",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v2/rules/validate",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v2-rules-validate-adaptor-type",
+            "name": "POST /v2/rules/validate/adaptor/{type}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v2/rules/validate/adaptor/{type}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v2-trades-batchquery",
+            "name": "POST /v2/trades/batchQuery",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v2/trades/batchQuery",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-group-management-service:post:v2-trades-query",
+            "name": "POST /v2/trades/query",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v2/trades/query",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ]
+          }
+        ],
+        "databases": [
+          {
+            "id": "database:ratan-cash-settlement-group-management-service:postgresql",
+            "type": "DATABASE",
+            "name": "PostgreSQL",
+            "repository": "repo:ratan-cash-settlement-group-management-service",
+            "dimensions": [
+              "RUNTIME"
+            ],
+            "functional_role": "Hosts relational data accessed by the running service",
+            "business_meaning": "Durable service-owned operational data store",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/pom.xml"
+            ],
+            "assertion_status": "CONFIRMED",
+            "properties": {
+              "engine": "POSTGRESQL"
+            }
+          }
+        ],
+        "tables": [
+          {
+            "name": "ratan_cashflow_group",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/db/CashflowGroupRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "ratan_cashflow_group_history",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/db/CashflowGroupHistoryRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "ratan_cashflow_group_message",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/db/CashflowGroupMessageRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "ratan_cashflow_group_message_exception",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/db/CashflowGroupMessageExceptionRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "ratan_cashflow_group_message_history",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/db/CashflowGroupMessageHistoryRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "ratan_cashflow_mapping",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/db/CashflowMappingRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "ratan_cashflow_mapping_history",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/db/CashflowMappingHistoryRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "ratan_cashflow_message_io",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/db/CashflowRawMessageRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "ratan_cashflow_rounding_config",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/db/CashflowRoundingConfigRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "ratan_cashflow_status_sync_up_blocking_queue",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/db/CashflowStatusToStellaBlockingQueueRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "ratan_inbound_message",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/db/UberMessageRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "ratan_trade",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/db/TradeRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "ratan_trade_history",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/db/TradeHistoryRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          }
+        ],
+        "kafka_topics": [
+          {
+            "name": "12",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "12"
+          },
+          {
+            "name": "3",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "3"
+          },
+          {
+            "name": "5",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "5"
+          },
+          {
+            "name": "6",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "6"
+          },
+          {
+            "name": "Cash_Settlement_Cashflow_FX_Status_In",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_Cashflow_FX_Status_In"
+          },
+          {
+            "name": "Cash_Settlement_Cashflow_Status_Response_In",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_Cashflow_Status_Response_In"
+          },
+          {
+            "name": "Cash_Settlement_Group_Message_Inbound",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_Group_Message_Inbound"
+          },
+          {
+            "name": "Cash_Settlement_Mxg_Group_Complete_Event",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_Mxg_Group_Complete_Event"
+          },
+          {
+            "name": "Cash_Settlement_Orchestration_Inbound",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_Orchestration_Inbound"
+          },
+          {
+            "name": "Cashflow_Status_Command_In",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cashflow_Status_Command_In"
+          },
+          {
+            "name": "REP_EXCEPTION_RECORD_IN",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "REP_EXCEPTION_RECORD_IN"
+          },
+          {
+            "name": "Ratan-Mxg-Cashflow-Ratan-Adaptor-Business-Ack",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "PUBLISHES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Ratan-Mxg-Cashflow-Ratan-Adaptor-Business-Ack"
+          },
+          {
+            "name": "TDS3_Trade_Message_Process_In",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "TDS3_Trade_Message_Process_In"
+          },
+          {
+            "name": "TDS3_Trade_Murex_Message_Process_In",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "TDS3_Trade_Murex_Message_Process_In"
+          },
+          {
+            "name": "cash_settlement_cashflow_domain_events",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "cash_settlement_cashflow_domain_events"
+          },
+          {
+            "name": "tdsx_uber_message_json_inbound_cash",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "tdsx_uber_message_json_inbound_cash"
+          },
+          {
+            "name": "tdsx_uber_message_json_inbound_commodity",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "tdsx_uber_message_json_inbound_commodity"
+          },
+          {
+            "name": "tdsx_uber_message_json_inbound_credit",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "tdsx_uber_message_json_inbound_credit"
+          },
+          {
+            "name": "tdsx_uber_message_json_inbound_equity",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "tdsx_uber_message_json_inbound_equity"
+          },
+          {
+            "name": "tdsx_uber_message_json_inbound_fx_other",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "tdsx_uber_message_json_inbound_fx_other"
+          },
+          {
+            "name": "tdsx_uber_message_json_inbound_fx_spot",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "tdsx_uber_message_json_inbound_fx_spot"
+          },
+          {
+            "name": "tdsx_uber_message_json_inbound_interestrate",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "tdsx_uber_message_json_inbound_interestrate"
+          },
+          {
+            "name": "tdsx_uber_message_json_inbound_loan",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "tdsx_uber_message_json_inbound_loan"
+          }
+        ],
+        "remote_applications": [],
+        "data_platforms": [],
+        "service_calls": [
+          {
+            "name": "RATAN-CASH-SETTLEMENT-BATCH-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/feign/BatchServiceClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratan-cash-settlement-batch-service",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-CASH-SETTLEMENT-NETTING-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/feign/NettingClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATAN-CASH-SETTLEMENT-NETTING-SERVICE",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-CASH-SETTLEMENT-QUERY-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/feign/CashflowGraphQLClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATAN-CASH-SETTLEMENT-QUERY-SERVICE",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/feign/CashflowLifecycleFeignClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-EXCEPTION-PLATFORM",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/feign/RepExceptionClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATAN-EXCEPTION-PLATFORM",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-RULE-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/feign/NstpRuleExceptionFeignClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratan-rule-service",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          },
+          {
+            "name": "RATANONE-RULE-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/feign/RatanoneRuleClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATANONE-RULE-SERVICE",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          },
+          {
+            "name": "RATANONE-STATIC-DATA-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/feign/StaticDataServiceClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratanone-static-data-service",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          },
+          {
+            "name": "ratan-cash-settlement-batch-service",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/feign/BatchServiceClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratan-cash-settlement-netting-service",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/feign/NettingClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratan-cash-settlement-query-service",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/feign/CashflowGraphQLClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratan-cashflow-lifecycle-service",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/feign/CashflowLifecycleFeignClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratanone-data-ambassador",
+            "source_paths": [
+              "repos/ratan-cash-settlement-group-management-service/src/main/java/com/scb/ratan/cashflow/infra/feign/DataAmbassadorClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratanone-data-ambassador",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          }
+        ]
+      }
+    },
+    {
       "id": "repo:ratan-cash-settlement-netting-service",
       "name": "ratan-cash-settlement-netting-service",
       "kind": "SPRING",
@@ -3494,6 +6162,19 @@
         "data_platforms": [],
         "service_calls": [
           {
+            "name": "RATAN-CASH-SETTLEMENT-SSI-STAMPING-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/feign/SsiStampingServiceApiClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratan-cash-settlement-ssi-stamping-service",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
             "name": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
             "source_paths": [
               "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/feign/CashFlowApiClient.java"
@@ -3529,7 +6210,7 @@
             ],
             "service_alias": "RATAN-MXG-CASHFLOW-ADAPTOR",
             "resolution_statuses": [
-              "UNRESOLVED"
+              "RESOLVED"
             ]
           },
           {
@@ -3541,19 +6222,6 @@
               "CALLS_SERVICE"
             ],
             "service_alias": "ratan-rule-service",
-            "resolution_statuses": [
-              "UNRESOLVED"
-            ]
-          },
-          {
-            "name": "RATANONE-DATA-AMBASSADOR",
-            "source_paths": [
-              "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/feign/DataAmbassadorClient.java"
-            ],
-            "relationships": [
-              "CALLS_SERVICE"
-            ],
-            "service_alias": "ratanone-data-ambassador",
             "resolution_statuses": [
               "UNRESOLVED"
             ]
@@ -3605,7 +6273,6 @@
             "relationships": [
               "CALLS_SERVICE"
             ],
-            "service_alias": "ratan-cash-settlement-ssi-stamping-service",
             "resolution_statuses": [
               "RESOLVED"
             ]
@@ -3620,6 +6287,31 @@
             ],
             "resolution_statuses": [
               "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratan-mxg-cashflow-adaptor",
+            "source_paths": [
+              "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/feign/AdaptorServiceClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratanone-data-ambassador",
+            "source_paths": [
+              "repos/ratan-cash-settlement-netting-service/src/main/java/com/cn/ratan/netting/infra/feign/DataAmbassadorClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratanone-data-ambassador",
+            "resolution_statuses": [
+              "UNRESOLVED"
             ]
           }
         ]
@@ -4304,6 +6996,19 @@
             ]
           },
           {
+            "name": "RATAN-CASH-SETTLEMENT-SSI-STAMPING-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/feign/SsiStampingServiceClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratan-cash-settlement-ssi-stamping-service",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
             "name": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
             "source_paths": [
               "repos/ratan-cash-settlement-orchestration/src/main/java/com/scb/ratan/orchestration/feign/CashflowServiceClient.java"
@@ -4376,7 +7081,6 @@
             "relationships": [
               "CALLS_SERVICE"
             ],
-            "service_alias": "ratan-cash-settlement-ssi-stamping-service",
             "resolution_statuses": [
               "RESOLVED"
             ]
@@ -4391,6 +7095,1066 @@
             ],
             "resolution_statuses": [
               "RESOLVED"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "repo:ratan-cash-settlement-query-service",
+      "name": "ratan-cash-settlement-query-service",
+      "kind": "SPRING",
+      "path": "repos/ratan-cash-settlement-query-service",
+      "root": {
+        "id": "service:ratan-cash-settlement-query-service",
+        "type": "SERVICE",
+        "name": "ratan-cash-settlement-query-service",
+        "repository": "repo:ratan-cash-settlement-query-service",
+        "dimensions": [
+          "BUSINESS",
+          "RUNTIME"
+        ],
+        "functional_role": "Runs a Spring service and its runtime adapters",
+        "business_meaning": "Delivers the ratan cash settlement query service business service",
+        "source_paths": [
+          "repos/ratan-cash-settlement-query-service/src/main/**/*"
+        ],
+        "assertion_status": "CONFIRMED",
+        "component_kind": "SPRING_SERVICE"
+      },
+      "business": {
+        "capabilities": [
+          {
+            "id": "capability:ratan-cash-settlement-query-service:cashflowaudit",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "Cashflow Audit",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for Cashflow Audit",
+            "business_meaning": "Represents the Cashflow Audit business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/request/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:cashflowexceptionresult",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "Cashflow Exception Result",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for Cashflow Exception Result",
+            "business_meaning": "Represents the Cashflow Exception Result business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/request/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:cashflowquery",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "Cashflow Query",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for Cashflow Query",
+            "business_meaning": "Represents the Cashflow Query business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:configuration",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "configuration",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for configuration",
+            "business_meaning": "Represents the configuration business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/config/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:dqsl",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "dqsl",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for dqsl",
+            "business_meaning": "Represents the dqsl business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/infra/dqsl/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:external-services",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "external services",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for external services",
+            "business_meaning": "Represents the external services business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/data/entitlement/feign/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:headerinfo",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "Header Info",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for Header Info",
+            "business_meaning": "Represents the Header Info business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/request/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:impl",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "impl",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for impl",
+            "business_meaning": "Represents the impl business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/service/impl/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:loopquery",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "Loop Query",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for Loop Query",
+            "business_meaning": "Represents the Loop Query business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/report/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:messaging",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "messaging",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for messaging",
+            "business_meaning": "Represents the messaging business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/event/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:nstpexceptioncode",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "Nstp Exception Code",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for Nstp Exception Code",
+            "business_meaning": "Represents the Nstp Exception Code business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/response/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:persistence",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "persistence",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for persistence",
+            "business_meaning": "Represents the persistence business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/repository/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:query",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "Query",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for Query",
+            "business_meaning": "Represents the Query business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/report/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:querycondition",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "Query Condition",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for Query Condition",
+            "business_meaning": "Represents the Query Condition business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/request/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:queryservicewebbroker",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "Query Service Web Broker",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for Query Service Web Broker",
+            "business_meaning": "Represents the Query Service Web Broker business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/notify/websocket/controller/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:reportconstants",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "Report Constants",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for Report Constants",
+            "business_meaning": "Represents the Report Constants business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/request/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:reportrequestsql",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "Report Request SQL",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for Report Request SQL",
+            "business_meaning": "Represents the Report Request SQL business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/request/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:requestofquerycashflows",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "Request Of Query Cashflows",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for Request Of Query Cashflows",
+            "business_meaning": "Represents the Request Of Query Cashflows business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/request/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:responsepageinfo",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "Response Page Info",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for Response Page Info",
+            "business_meaning": "Represents the Response Page Info business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/response/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:service-core",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "service core",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for service core",
+            "business_meaning": "Represents the service core business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:tis",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "TIS",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for TIS",
+            "business_meaning": "Represents the TIS business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/report/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:tispayqueryresponse",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "TISPay Query Response",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for TISPay Query Response",
+            "business_meaning": "Represents the TISPay Query Response business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/response/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:tispayqueryresult",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "TISPay Query Result",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for TISPay Query Result",
+            "business_meaning": "Represents the TISPay Query Result business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/response/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:tisquerypayload",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "TISQuery Payload",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for TISQuery Payload",
+            "business_meaning": "Represents the TISQuery Payload business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/response/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:tisqueryrequest",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "TISQuery Request",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for TISQuery Request",
+            "business_meaning": "Represents the TISQuery Request business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/request/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:tisreceivequeryresponse",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "TISReceive Query Response",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for TISReceive Query Response",
+            "business_meaning": "Represents the TISReceive Query Response business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/response/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:tisreceivequeryresult",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "TISReceive Query Result",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for TISReceive Query Result",
+            "business_meaning": "Represents the TISReceive Query Result business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/response/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:tisuuidqueryresponse",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "TISUUIDQuery Response",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for TISUUIDQuery Response",
+            "business_meaning": "Represents the TISUUIDQuery Response business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/response/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-cash-settlement-query-service:touchpointhistoryresult",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "Touch Point History Result",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for Touch Point History Result",
+            "business_meaning": "Represents the Touch Point History Result business capability",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/controller/request/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          }
+        ],
+        "pages": [],
+        "component_count": 112,
+        "component_kinds": {
+          "APPLICATION_SERVICE": 10,
+          "COMPONENT": 39,
+          "CONTROLLER": 8,
+          "DATA_PLATFORM_CLIENT": 15,
+          "FEIGN_CLIENT": 13,
+          "KAFKA_CONSUMER": 2,
+          "KAFKA_PRODUCER": 3,
+          "REPOSITORY": 22
+        }
+      },
+      "runtime": {
+        "api_operations": [
+          {
+            "id": "operation:ratan-cash-settlement-query-service:any:payment-paymentdate",
+            "name": "ANY /payment/{paymentDate}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/payment/{paymentDate}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:any:query-cashflows",
+            "name": "ANY /query/cashflows",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/query/cashflows",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:any:query-cashflows-history",
+            "name": "ANY /query/cashflows/history",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/query/cashflows/history",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:any:query-jsonb-cashflows",
+            "name": "ANY /query/jsonb/cashflows",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/query/jsonb/cashflows",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:any:receipt-paymentdate",
+            "name": "ANY /receipt/{paymentDate}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/receipt/{paymentDate}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:any:v1-query",
+            "name": "ANY /v1/query",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/query",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:any:v1-user",
+            "name": "ANY /v1/user",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/user",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:get:v1-data-entitlement",
+            "name": "GET /v1/data-entitlement",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/data-entitlement",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:get:v1-staticdata-spotrate-currency",
+            "name": "GET /v1/staticData/spotRate/{currency}",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/staticData/spotRate/{currency}",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:get:v2-nstpexception-actiondata",
+            "name": "GET /v2/nstpException/actionData",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v2/nstpException/actionData",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:get:v2-rule-entitlement",
+            "name": "GET /v2/rule/entitlement",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v2/rule/entitlement",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:cashflowaudit",
+            "name": "POST /cashflowAudit",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/cashflowAudit",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:cashflows",
+            "name": "POST /cashflows",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/cashflows",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:graphql",
+            "name": "POST /graphql",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/graphql",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:v1-groupmessages",
+            "name": "POST /v1/groupMessages",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/groupMessages",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:v1-ratan-cashflow-query",
+            "name": "POST /v1/ratan/cashflow/query",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/ratan/cashflow/query",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:v1-rep-exceptions-bycashflowids",
+            "name": "POST /v1/rep/exceptions/byCashflowIds",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/rep/exceptions/byCashflowIds",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:v1-rep-exceptions-byentities",
+            "name": "POST /v1/rep/exceptions/byEntities",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/rep/exceptions/byEntities",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:v1-utilization-cashflow-remainingamount",
+            "name": "POST /v1/utilization/cashflow/remainingAmount",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/utilization/cashflow/remainingAmount",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:v2-trades-batchquery",
+            "name": "POST /v2/trades/batchQuery",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v2/trades/batchQuery",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:v3-nstpexception-actiondata",
+            "name": "POST /v3/nstpException/actionData",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v3/nstpException/actionData",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:v3-stamping-query-nostro",
+            "name": "POST /v3/stamping/query/nostro",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v3/stamping/query/nostro",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:v3-stamping-query-stashing",
+            "name": "POST /v3/stamping/query/stashing",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v3/stamping/query/stashing",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:v3-stamping-query-vostro",
+            "name": "POST /v3/stamping/query/vostro",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v3/stamping/query/vostro",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:v4-stamping-query-nostro",
+            "name": "POST /v4/stamping/query/nostro",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v4/stamping/query/nostro",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:v4-stamping-query-stashing",
+            "name": "POST /v4/stamping/query/stashing",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v4/stamping/query/stashing",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          },
+          {
+            "id": "operation:ratan-cash-settlement-query-service:post:v4-stamping-query-vostro",
+            "name": "POST /v4/stamping/query/vostro",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v4/stamping/query/vostro",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ]
+          }
+        ],
+        "databases": [
+          {
+            "id": "database:ratan-cash-settlement-query-service:postgresql",
+            "type": "DATABASE",
+            "name": "PostgreSQL",
+            "repository": "repo:ratan-cash-settlement-query-service",
+            "dimensions": [
+              "RUNTIME"
+            ],
+            "functional_role": "Hosts relational data accessed by the running service",
+            "business_meaning": "Durable service-owned operational data store",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/pom.xml"
+            ],
+            "assertion_status": "CONFIRMED",
+            "properties": {
+              "engine": "POSTGRESQL"
+            }
+          }
+        ],
+        "tables": [
+          {
+            "name": "cashflow_data",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/repository/CashflowDataRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "cashflow_data_history",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/repository/CashflowDataHistoryRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          }
+        ],
+        "kafka_topics": [
+          {
+            "name": "cash_settlement_cashflow_domain_events",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "cash_settlement_cashflow_domain_events"
+          }
+        ],
+        "remote_applications": [],
+        "data_platforms": [
+          {
+            "name": "DQSL",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/feign/dto/SearchDqslRestRequest.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/graph/fetcher/CashFlowDetailsByOpenSearchFetcher.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/graph/fetcher/CashFlowDetailsFetcher.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/infra/dqsl/BlockingDqslClientFactory.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/infra/dqsl/CustomizedQueryStringBuilder.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/infra/dqsl/DqslClientConfiguration.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/infra/dqsl/DqslClientHttpRequestInterceptor.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/infra/dqsl/DqslConfigurationProperties.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/infra/dqsl/DqslRestTemplateCustomizer.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/infra/dqsl/GraphqlConfiguration.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/infra/dqsl/GraphqlExpressionDialect.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/infra/dqsl/GraphqlQueryStringBuilder.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/infra/dqsl/ThymeleafQueryStringBuilder.java"
+            ],
+            "relationships": [
+              "CALLS_DATA_PLATFORM"
+            ],
+            "platform_kind": "EXTERNAL_DATA_LAKE",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "Search engine",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/data/entitlement/dto/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/data/entitlement/filter/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/data/entitlement/service/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/graph/dataloader/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/graph/fetcher/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/graph/fetcher/CashFlowDetailsByOpenSearchFetcher.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/handler/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/handler/exception/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/handler/facade/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/handler/payload/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/notify/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/notify/websocket/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/notify/websocket/channel/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/notify/websocket/dto/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/scbml/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/scbml/cashflow/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/scbml/strategy/pay/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/scbml/strategy/receive/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/service/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/service/OpenSearchQueryService.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/service/impl/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/utils/**/*.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/validator/**/*.java"
+            ],
+            "relationships": [
+              "QUERIES_DATA_PLATFORM"
+            ],
+            "platform_kind": "SEARCH_ENGINE",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          }
+        ],
+        "service_calls": [
+          {
+            "name": "AUTHENTICATION",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/data/entitlement/feign/AuthServerFeignClient.java",
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/feign/AuthServiceClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "AUTHENTICATION",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-CASH-SETTLEMENT-FX-UTILIZATION-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/feign/UtilizationServiceClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATAN-CASH-SETTLEMENT-FX-UTILIZATION-SERVICE",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-CASH-SETTLEMENT-GROUP-MANAGEMENT-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/feign/GroupManagementClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATAN-CASH-SETTLEMENT-GROUP-MANAGEMENT-SERVICE",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-CASH-SETTLEMENT-SSI-STAMPING-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/feign/SSIStampingClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratan-cash-settlement-ssi-stamping-service",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/feign/LifeCycleClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-EXCEPTION-PLATFORM",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/feign/RepExceptionClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATAN-EXCEPTION-PLATFORM",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          },
+          {
+            "name": "RATAN-RULE-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/feign/RuleServiceClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratan-rule-service",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          },
+          {
+            "name": "RATANONE-RULE-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/feign/RatanoneRuleClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATANONE-RULE-SERVICE",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          },
+          {
+            "name": "RATANONE-STATIC-DATA-SERVICE",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/feign/StaticDataServiceClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratanone-static-data-service",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          },
+          {
+            "name": "dataEntitlementClient",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/data/entitlement/feign/DataEntitlementClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "dataEntitlementClient",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          },
+          {
+            "name": "ratan-cash-settlement-group-management-service",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/feign/GroupManagementClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratan-cash-settlement-ssi-stamping-service",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/feign/SSIStampingClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratan-cashflow-lifecycle-service",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/feign/LifeCycleClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratanone-data-ambassador",
+            "source_paths": [
+              "repos/ratan-cash-settlement-query-service/src/main/java/com/scb/ratan/ratanone/query/feign/DataAmbassadorClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratanone-data-ambassador",
+            "resolution_statuses": [
+              "UNRESOLVED"
             ]
           }
         ]
@@ -5928,7 +9692,7 @@
             ],
             "service_alias": "RATAN-CASH-SETTLEMENT-QUERY-SERVICE",
             "resolution_statuses": [
-              "UNRESOLVED"
+              "RESOLVED"
             ]
           },
           {
@@ -5984,19 +9748,6 @@
             ]
           },
           {
-            "name": "RATANONE-DATA-AMBASSADOR",
-            "source_paths": [
-              "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/infra/feign/DataAmbassdorClient.java"
-            ],
-            "relationships": [
-              "CALLS_SERVICE"
-            ],
-            "service_alias": "ratanone-data-ambassador",
-            "resolution_statuses": [
-              "UNRESOLVED"
-            ]
-          },
-          {
             "name": "RATANONE-STATIC-DATA-SERVICE",
             "source_paths": [
               "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/infra/feign/StaticDataServiceClient.java"
@@ -6010,6 +9761,18 @@
             ]
           },
           {
+            "name": "ratan-cash-settlement-query-service",
+            "source_paths": [
+              "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/infra/feign/CashflowGraphQLClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
             "name": "ratan-cashflow-lifecycle-service",
             "source_paths": [
               "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/infra/feign/CashFlowApiClient.java"
@@ -6019,6 +9782,19 @@
             ],
             "resolution_statuses": [
               "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratanone-data-ambassador",
+            "source_paths": [
+              "repos/ratan-cash-settlement-ssi-stamping-service/src/main/java/com/scb/ratan/stamping/infra/feign/DataAmbassdorClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratanone-data-ambassador",
+            "resolution_statuses": [
+              "UNRESOLVED"
             ]
           }
         ]
@@ -7656,6 +11432,19 @@
         ],
         "service_calls": [
           {
+            "name": "RATAN-CASH-SETTLEMENT-BATCH-SERVICE",
+            "source_paths": [
+              "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/BatchServiceClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratan-cash-settlement-batch-service",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
             "name": "RATAN-CASH-SETTLEMENT-GROUP-MANAGEMENT-SERVICE",
             "source_paths": [
               "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/GroupManagementClient.java"
@@ -7665,7 +11454,7 @@
             ],
             "service_alias": "RATAN-CASH-SETTLEMENT-GROUP-MANAGEMENT-SERVICE",
             "resolution_statuses": [
-              "UNRESOLVED"
+              "RESOLVED"
             ]
           },
           {
@@ -7695,6 +11484,19 @@
             ]
           },
           {
+            "name": "RATAN-CASH-SETTLEMENT-SSI-STAMPING-SERVICE",
+            "source_paths": [
+              "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/SsiStampingServiceClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratan-cash-settlement-ssi-stamping-service",
+            "resolution_statuses": [
+              "RESOLVED"
+            ]
+          },
+          {
             "name": "RATAN-CASHFLOW-LIFECYCLE-SERVICE",
             "source_paths": [
               "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/LifecycleJobClient.java"
@@ -7716,19 +11518,6 @@
               "CALLS_SERVICE"
             ],
             "service_alias": "ratan-rule-service",
-            "resolution_statuses": [
-              "UNRESOLVED"
-            ]
-          },
-          {
-            "name": "RATANONE-DATA-AMBASSADOR",
-            "source_paths": [
-              "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/DataAmbassadorClient.java"
-            ],
-            "relationships": [
-              "CALLS_SERVICE"
-            ],
-            "service_alias": "ratanone-data-ambassador",
             "resolution_statuses": [
               "UNRESOLVED"
             ]
@@ -7767,9 +11556,20 @@
             "relationships": [
               "CALLS_SERVICE"
             ],
-            "service_alias": "ratan-cash-settlement-batch-service",
             "resolution_statuses": [
-              "UNRESOLVED"
+              "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratan-cash-settlement-group-management-service",
+            "source_paths": [
+              "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/GroupManagementClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "resolution_statuses": [
+              "RESOLVED"
             ]
           },
           {
@@ -7804,7 +11604,6 @@
             "relationships": [
               "CALLS_SERVICE"
             ],
-            "service_alias": "ratan-cash-settlement-ssi-stamping-service",
             "resolution_statuses": [
               "RESOLVED"
             ]
@@ -7819,6 +11618,642 @@
             ],
             "resolution_statuses": [
               "RESOLVED"
+            ]
+          },
+          {
+            "name": "ratanone-data-ambassador",
+            "source_paths": [
+              "repos/ratan-cashflow-lifecycle-service/src/main/java/com/scb/ratan/cashflow/lifecycle/feign/DataAmbassadorClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "ratanone-data-ambassador",
+            "resolution_statuses": [
+              "UNRESOLVED"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "repo:ratan-mxg-cashflow-adaptor",
+      "name": "ratan-mxg-cashflow-adaptor",
+      "kind": "SPRING",
+      "path": "repos/ratan-mxg-cashflow-adaptor",
+      "root": {
+        "id": "service:ratan-mxg-cashflow-adaptor",
+        "type": "SERVICE",
+        "name": "ratan-mxg-cashflow-adaptor",
+        "repository": "repo:ratan-mxg-cashflow-adaptor",
+        "dimensions": [
+          "BUSINESS",
+          "RUNTIME"
+        ],
+        "functional_role": "Runs a Spring service and its runtime adapters",
+        "business_meaning": "Delivers the ratan mxg cashflow adaptor business service",
+        "source_paths": [
+          "repos/ratan-mxg-cashflow-adaptor/src/main/**/*"
+        ],
+        "assertion_status": "CONFIRMED",
+        "component_kind": "SPRING_SERVICE"
+      },
+      "business": {
+        "capabilities": [
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:aspect",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "aspect",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for aspect",
+            "business_meaning": "Represents the aspect business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/aspect/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:common",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "common",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for common",
+            "business_meaning": "Represents the common business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/common/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:config",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "config",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for config",
+            "business_meaning": "Represents the config business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/config/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:constant",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "constant",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for constant",
+            "business_meaning": "Represents the constant business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/constant/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:db",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "db",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for db",
+            "business_meaning": "Represents the db business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/infra/db/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:domain-core",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "domain core",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for domain core",
+            "business_meaning": "Represents the domain core business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:entity",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "entity",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for entity",
+            "business_meaning": "Represents the entity business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/entity/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:exceptionplatform",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "exceptionplatform",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for exceptionplatform",
+            "business_meaning": "Represents the exceptionplatform business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/infra/exceptionplatform/dto/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:feign",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "feign",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for feign",
+            "business_meaning": "Represents the feign business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/infra/feign/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:filled",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "filled",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for filled",
+            "business_meaning": "Represents the filled business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/infra/filled/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:handler",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "handler",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for handler",
+            "business_meaning": "Represents the handler business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/handler/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:job",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "job",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for job",
+            "business_meaning": "Represents the job business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/job/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:listener",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "listener",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for listener",
+            "business_meaning": "Represents the listener business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/entrypoint/listener/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:pocessor",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "pocessor",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for pocessor",
+            "business_meaning": "Represents the pocessor business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/pocessor/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:service",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "service",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for service",
+            "business_meaning": "Represents the service business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/application/service/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:service-core",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "service core",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for service core",
+            "business_meaning": "Represents the service core business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:vo",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "vo",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for vo",
+            "business_meaning": "Represents the vo business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/vo/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          },
+          {
+            "id": "capability:ratan-mxg-cashflow-adaptor:web",
+            "type": "BUSINESS_CAPABILITY",
+            "name": "web",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "BUSINESS"
+            ],
+            "functional_role": "Groups service behavior for web",
+            "business_meaning": "Represents the web business capability",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/entrypoint/web/**/*.java"
+            ],
+            "assertion_status": "INFERRED"
+          }
+        ],
+        "pages": [],
+        "component_count": 55,
+        "component_kinds": {
+          "APPLICATION_SERVICE": 8,
+          "COMPONENT": 6,
+          "CONTROLLER": 3,
+          "DOMAIN_COMPONENT": 12,
+          "FEIGN_CLIENT": 2,
+          "KAFKA_CONSUMER": 4,
+          "KAFKA_PRODUCER": 6,
+          "REPOSITORY": 14
+        }
+      },
+      "runtime": {
+        "api_operations": [
+          {
+            "id": "operation:ratan-mxg-cashflow-adaptor:post:v1-rep-exceptions-save",
+            "name": "POST /v1/rep/exceptions/save",
+            "relationship": "EXPOSES",
+            "protocol": "REST",
+            "path": "/v1/rep/exceptions/save",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/**/*"
+            ]
+          }
+        ],
+        "databases": [
+          {
+            "id": "database:ratan-mxg-cashflow-adaptor:postgresql",
+            "type": "DATABASE",
+            "name": "PostgreSQL",
+            "repository": "repo:ratan-mxg-cashflow-adaptor",
+            "dimensions": [
+              "RUNTIME"
+            ],
+            "functional_role": "Hosts relational data accessed by the running service",
+            "business_meaning": "Durable service-owned operational data store",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/pom.xml"
+            ],
+            "assertion_status": "CONFIRMED",
+            "properties": {
+              "engine": "POSTGRESQL"
+            }
+          }
+        ],
+        "tables": [
+          {
+            "name": "mxg_cashflow_cancel_record",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/entity/MxgCashflowCancelRecordRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "mxg_cashflow_exception",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/MxgCashflowExceptionRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "mxg_cashflow_group",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/infra/db/CashflowGroupRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "mxg_cashflow_group_message",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/infra/db/CashflowGroupMessageRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "mxg_cashflow_history",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/MxgCashflowHistoryRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "mxg_cashflow_inbound",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/MxgCashflowInboundRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "mxg_cashflow_message",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/MxgCashflowMessageRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "mxg_cashflow_nack",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/MxgCashflowNackRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "static_data_ccil_client",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/infra/db/StaticDataCcilRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          },
+          {
+            "name": "static_data_cfi_code",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/domain/StaticDataCfiCodeRepository.java"
+            ],
+            "relationships": [
+              "READS",
+              "WRITES"
+            ],
+            "clients": [
+              "SPRING_DATA"
+            ],
+            "access": [
+              "READ_WRITE"
+            ]
+          }
+        ],
+        "kafka_topics": [
+          {
+            "name": "Cash_Settlement_Group_Message_Inbound",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_Group_Message_Inbound"
+          },
+          {
+            "name": "Cash_Settlement_Mxg_Batch_Inbound",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_Mxg_Batch_Inbound"
+          },
+          {
+            "name": "Cash_Settlement_Mxg_Group_Complete_Event",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_Mxg_Group_Complete_Event"
+          },
+          {
+            "name": "Cash_Settlement_Mxg_Inbound",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_Mxg_Inbound"
+          },
+          {
+            "name": "Cash_Settlement_Mxg_Korea_Inbound",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Cash_Settlement_Mxg_Korea_Inbound"
+          },
+          {
+            "name": "REP_EXCEPTION_RECORD_IN",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/**/*"
+            ],
+            "relationships": [
+              "CONSUMES"
+            ],
+            "protocol": "KAFKA",
+            "topic": "REP_EXCEPTION_RECORD_IN"
+          },
+          {
+            "name": "Ratan-Mxg-Cashflow-Adaptor-Korea-Murex-Ack",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Ratan-Mxg-Cashflow-Adaptor-Korea-Murex-Ack"
+          },
+          {
+            "name": "Ratan-Mxg-Cashflow-Adaptor-Murex-Ack",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Ratan-Mxg-Cashflow-Adaptor-Murex-Ack"
+          },
+          {
+            "name": "Ratan-Mxg-Cashflow-Ratan-Adaptor-Business-Ack",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/**/*"
+            ],
+            "relationships": [
+              "CONFIGURES_TOPIC"
+            ],
+            "protocol": "KAFKA",
+            "topic": "Ratan-Mxg-Cashflow-Ratan-Adaptor-Business-Ack"
+          }
+        ],
+        "remote_applications": [],
+        "data_platforms": [],
+        "service_calls": [
+          {
+            "name": "RATAN-EXCEPTION-PLATFORM",
+            "source_paths": [
+              "repos/ratan-mxg-cashflow-adaptor/src/main/java/com/scb/ratan/cashflowadaptor/infra/feign/ExceptionPlatformClient.java"
+            ],
+            "relationships": [
+              "CALLS_SERVICE"
+            ],
+            "service_alias": "RATAN-EXCEPTION-PLATFORM",
+            "resolution_statuses": [
+              "UNRESOLVED"
             ]
           }
         ]
