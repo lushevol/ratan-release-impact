@@ -3,7 +3,7 @@ Library    Collections
 Library    DateTime
 Library    OperatingSystem
 Library    String
-Library    ${CURDIR}/../libraries/ccil_backend.py
+Library    ${CURDIR}/../../libraries/ccil_backend.py
 Variables  ${CURDIR}/variables.py
 Resource   keywords/ccil_checks.resource
 

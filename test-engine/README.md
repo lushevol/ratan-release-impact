@@ -1,33 +1,43 @@
-# Standalone CCIL Netting
+# Standalone Ratan Subsets
 
-This project extracts the CCIL-focused Robot suites from the main Ratan repository into a self-contained local simulation.
+This project merges the verified standalone CCIL Netting and ReBook extracts into one self-contained local simulation.
+
+Included domains:
+- `ccil`: CCIL Netting and Uber CCIL cases
+- `rebook`: ReBook, Stella amendment ReBook, and UBER ReBook cases
 
 What is preserved:
-- Original CCIL case names and overall case flow.
+- Original extracted suite bodies with only import-path rebasing.
+- The domain-specific backend logic already verified in the separate standalone projects.
 - Local keyword names and signatures where practical.
-- CCIL grouping, resultant creation, novation, suppression, and over-netting rejection behavior.
 
 What is mocked:
 - Auth and session setup.
-- Remote lifecycle and netting APIs.
+- Remote lifecycle, trade-confirmation, and netting APIs.
 - DB polling.
 - Kafka assertions.
 
+Layout:
+- `suites/ccil`: CCIL suites
+- `suites/rebook`: ReBook suites
+- `resources/ccil`: CCIL import hub, variables, and checks
+- `resources/rebook`: ReBook import hub, variables, and checks
+- `libraries`: domain backends
+
 Helper scripts:
-- `scripts/run_ccil.sh`: run both extracted CCIL suites.
-- `scripts/open_results.sh`: open `report.html` and `log.html`.
-- `USER_MANUAL.md`: operator-facing usage guide.
+- `scripts/run_ccil.sh`: run only the CCIL suites
+- `scripts/run_rebook.sh`: run only the ReBook suites
+- `scripts/run_all.sh`: run both domains in one execution
+- `scripts/open_results.sh`: open `report.html` and `log.html`
+- `USER_MANUAL.md`: operator guide
 
-The runner prefers an existing Robot executable before falling back to `uv`.
+The runners prefer `ROBOT_BIN`, then `robot` on `PATH`, then `uv run --no-project`.
+If `ROBOT_BIN` is set, it must point to an executable Robot binary or the script exits with an error.
 
-Run:
-
-```bash
-standalone-ccil-netting/scripts/run_ccil.sh
-```
-
-Verified fallback in this workspace:
+Use:
 
 ```bash
-/Users/1639796/Library/Python/3.9/bin/robot -d standalone-ccil-netting/results standalone-ccil-netting/suites/CN-API-CCILNetting_script.robot standalone-ccil-netting/suites/CN-API-Uber-CCILNetting_script.robot
+standalone-ratan-subsets/scripts/run_ccil.sh
+standalone-ratan-subsets/scripts/run_rebook.sh
+standalone-ratan-subsets/scripts/run_all.sh
 ```

@@ -1,5 +1,5 @@
 *** Settings ***
-Resource          ../resources/__import__.resource
+Resource          ../../resources/ccil/__import__.resource
 Test Setup        Reset Backend State
 Metadata          Author  Elena Wang
 

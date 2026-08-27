@@ -1,105 +1,68 @@
-# Standalone CCIL Netting User Manual
+# User Manual
 
 ## Purpose
 
-This standalone project runs the extracted CCIL test cases locally without connecting to Ratan services, DBs, Kafka, or portal APIs.
+`standalone-ratan-subsets` is a single local harness for the extracted CCIL Netting and ReBook Robot suites.
 
-The project keeps the original suite logic for:
-- CCIL guaranteed and non-guaranteed flows
-- CCIL novation and regrouping flows
-- CCIL over-netting rejection checks
-- Uber CCIL non-guaranteed flow
+## Included Coverage
 
-## Project Layout
-
-- `suites/`: extracted Robot suites
-- `resources/`: local import hub, variables, and helper resources
-- `libraries/`: in-memory backend that simulates the lifecycle and netting engine
-- `results/`: generated execution output
-- `scripts/`: helper commands for running and viewing results
+- CCIL:
+  - `CN-API-CCILNetting_script.robot`
+  - `CN-API-Uber-CCILNetting_script.robot`
+- ReBook:
+  - `CN-API-ReBook.robot`
+  - `CN-API-StellaAmendment-Rebook.robot`
+  - `STML-API-UBER-Rebook.robot`
 
 ## Prerequisites
 
-Preferred:
+- A runnable Robot Framework binary available through one of:
+  - `ROBOT_BIN=/path/to/robot`
+  - `robot` on `PATH`
+  - `uv` on `PATH`
+
+If `ROBOT_BIN` is set, it must point to an executable Robot binary.
+
+## Run Commands
+
+Run CCIL only:
 
 ```bash
-uv
+standalone-ratan-subsets/scripts/run_ccil.sh
 ```
 
-Fallback:
+Run ReBook only:
 
 ```bash
-robot
+standalone-ratan-subsets/scripts/run_rebook.sh
 ```
 
-If Robot is not on `PATH`, you can point the runner at it:
+Run both domains:
 
 ```bash
-export ROBOT_BIN=/absolute/path/to/robot
+standalone-ratan-subsets/scripts/run_all.sh
 ```
 
-## Run The Extracted CCIL Suites
-
-From the repository root:
+Pass extra Robot arguments after the script name. Example:
 
 ```bash
-standalone-ccil-netting/scripts/run_ccil.sh
+standalone-ratan-subsets/scripts/run_rebook.sh --test CN-API-Rebook-001-001
 ```
 
-This script:
-- prefers `$ROBOT_BIN` when provided
-- then uses `robot` on `PATH`
-- then uses the verified workspace Robot binary when present
-- only falls back to `uv run --no-project --with robotframework robot`
-- writes output into `standalone-ccil-netting/results/`
+## Results
 
-## Open The HTML Results
-
-From the repository root:
+- Output directory: `standalone-ratan-subsets/results/`
+- Open HTML results:
+- Open HTML results:
 
 ```bash
-standalone-ccil-netting/scripts/open_results.sh
+standalone-ratan-subsets/scripts/open_results.sh
 ```
 
-On macOS this opens both:
-- `results/report.html`
-- `results/log.html`
+The helper uses `open` on macOS and `xdg-open` on Linux.
 
-## Output Files
+## Fidelity Boundary
 
-After a successful run, review:
-- `results/output.xml`
-- `results/report.html`
-- `results/log.html`
-
-## What Is Real vs Mocked
-
-Preserved from local project logic:
-- CCIL suite bodies
-- keyword names and keyword call structure
-- local result validation flow
-
-Mocked locally:
-- token acquisition
-- remote lifecycle and netting APIs
-- DB status polling
-- Kafka assertions
-
-## Troubleshooting
-
-If `run_ccil.sh` says no runnable Robot command was found:
-- install `uv`, or
-- install Robot Framework on `PATH`, or
-- set `ROBOT_BIN` to a valid Robot executable
-
-If results are missing:
-- run `scripts/run_ccil.sh` first
-- then run `scripts/open_results.sh`
-
-## Verified Command In This Workspace
-
-This project was verified with:
-
-```bash
-/Users/1639796/Library/Python/3.9/bin/robot -d standalone-ccil-netting/results standalone-ccil-netting/suites/CN-API-CCILNetting_script.robot standalone-ccil-netting/suites/CN-API-Uber-CCILNetting_script.robot
-```
+- CCIL grouping, resultant creation, novation, suppression, and over-netting rejection remain modeled by the verified CCIL backend.
+- ReBook window and exception behavior remain modeled by the verified ReBook backend.
+- External integrations such as DB, Kafka, and remote service calls remain mocked locally.
