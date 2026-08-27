@@ -40,7 +40,8 @@ recorded as SHA-256 digests rather than raw text. Successful analysis responses
 include `trace_id`, which can be used to link a report to its Langfuse trace.
 
 ```text
-pip install langfuse
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
 export LANGFUSE_PUBLIC_KEY=...
 export LANGFUSE_SECRET_KEY=...
 export LANGFUSE_HOST=https://cloud.langfuse.com

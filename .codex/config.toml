@@ -3,19 +3,19 @@
 # convention.
 
 [mcp_servers.llm-wiki]
-command = "node"
-args = ["/Applications/LLM Wiki.app/Contents/Resources/mcp-server/dist/src/index.js"]
+command = ".venv/bin/python"
+args = [".claude/tools/mcp_trace_proxy.py", "--server", "llm-wiki", "--", "node", "/Applications/LLM Wiki.app/Contents/Resources/mcp-server/dist/src/index.js"]
 
 [mcp_servers.llm-wiki.env]
 LLM_WIKI_API_TOKEN = "dummy"
 
 [mcp_servers.sdlcGraph]
-command = "python3"
-args = [".claude/skills/sdlc-graph/tools/sdlc_graph_mcp.py", "--data-dir", "sdlc-graph-output", "--config", "sdlc-graph-config.json"]
+command = ".venv/bin/python"
+args = [".claude/tools/mcp_trace_proxy.py", "--server", "sdlcGraph", "--", ".venv/bin/python", ".claude/skills/sdlc-graph/tools/sdlc_graph_mcp.py", "--data-dir", "sdlc-graph-output", "--config", "sdlc-graph-config.json"]
 
 [mcp_servers.gitnexusRepos]
-command = "python3"
-args = [".claude/tools/gitnexus-repos-mcp.py", "--root", "."]
+command = ".venv/bin/python"
+args = [".claude/tools/mcp_trace_proxy.py", "--server", "gitnexusRepos", "--", ".venv/bin/python", ".claude/tools/gitnexus-repos-mcp.py", "--root", "."]
 
 # GitNexus is indexed and queried from the actual repository under repos/.
 # This analysis harness deliberately does not start a root-repository server.
