@@ -39,6 +39,15 @@ def operation(request: dict) -> tuple[str, str]:
     return method, str(tool or method).replace("/", "-")
 
 
+def write_frame(stream: BinaryIO, frame: bytes) -> None:
+    stream.write(frame)
+    stream.flush()
+
+
+def is_notification(request: dict) -> bool:
+    return "id" not in request
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--server", required=True)
@@ -55,6 +64,9 @@ def main() -> int:
                 request_frame, request = read_frame(sys.stdin.buffer)
             except EOFError:
                 break
+            if is_notification(request):
+                write_frame(child.stdin, request_frame)
+                continue
             method, operation_name = operation(request)
             metadata = {
                 "mcp_server": args.server,
@@ -62,11 +74,9 @@ def main() -> int:
                 "observation_type": "tool" if method == "tools/call" else "span",
             }
             with impact_trace(f"mcp.{args.server}.{operation_name}", request.get("params", {}), metadata) as trace:
-                child.stdin.write(request_frame)
-                child.stdin.flush()
+                write_frame(child.stdin, request_frame)
                 response_frame, response = read_frame(child.stdout)
-                sys.stdout.buffer.write(response_frame)
-                sys.stdout.buffer.flush()
+                write_frame(sys.stdout.buffer, response_frame)
                 trace.update(
                     {"response": "error" if "error" in response else "ok", "request_id": request.get("id")},
                     output={"jsonrpc": response.get("jsonrpc"), "error": response.get("error", {}).get("code") if isinstance(response.get("error"), dict) else None},

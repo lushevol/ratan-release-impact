@@ -8,6 +8,7 @@ sent to the tracing backend by default.
 
 from __future__ import annotations
 
+import atexit
 import hashlib
 import importlib
 import os
@@ -37,6 +38,9 @@ _load_dotenv()
 if os.getenv("LANGFUSE_BASE_URL") and not os.getenv("LANGFUSE_HOST"):
     os.environ["LANGFUSE_HOST"] = os.environ["LANGFUSE_BASE_URL"]
 
+_client: Any = None
+_flush_registered = False
+
 
 def _enabled() -> bool:
     return bool(os.getenv("LANGFUSE_PUBLIC_KEY")) and bool(os.getenv("LANGFUSE_SECRET_KEY"))
@@ -46,25 +50,47 @@ def _digest(value: Any) -> str:
     return hashlib.sha256(repr(value).encode("utf-8")).hexdigest()
 
 
+def _flush_client() -> None:
+    if _client is None:
+        return
+    try:
+        _client.flush()
+    except Exception:
+        pass
+
+
+def _get_client(module: Any) -> Any:
+    global _client, _flush_registered
+    if _client is None:
+        _client = getattr(module, "get_client", lambda: module.Langfuse())()
+    if not _flush_registered:
+        atexit.register(_flush_client)
+        _flush_registered = True
+    return _client
+
+
 class Trace:
     """Small adapter supporting current and legacy Langfuse Python clients."""
 
     def __init__(self, name: str, metadata: dict[str, Any]):
         self.trace_id: str | None = None
         self._client: Any = None
+        self._observation_context: Any = None
         self._observation: Any = None
         self._started = time.time()
         if not _enabled():
             return
         try:
             module = importlib.import_module("langfuse")
-            self._client = getattr(module, "get_client", lambda: module.Langfuse())()
+            self._client = _get_client(module)
             if hasattr(self._client, "start_as_current_observation"):
-                self._observation = self._client.start_as_current_observation(
-                    as_type=metadata.pop("observation_type", "span"), name=name,
-                    input={"input_sha256": metadata.get("input_sha256")}, metadata=metadata,
+                observation_metadata = dict(metadata)
+                self._observation_context = self._client.start_as_current_observation(
+                    as_type=observation_metadata.pop("observation_type", "span"), name=name,
+                    input={"input_sha256": observation_metadata.get("input_sha256")},
+                    metadata=observation_metadata,
                 )
-                self._observation.__enter__()
+                self._observation = self._observation_context.__enter__()
                 self.trace_id = (
                     self._client.get_current_trace_id()
                     if hasattr(self._client, "get_current_trace_id")
@@ -92,14 +118,9 @@ class Trace:
             pass
 
     def close(self) -> None:
-        if self._observation is not None:
+        if self._observation_context is not None:
             try:
-                self._observation.__exit__(None, None, None)
-            except Exception:
-                pass
-        if self._client is not None:
-            try:
-                self._client.flush()
+                self._observation_context.__exit__(None, None, None)
             except Exception:
                 pass
 
