@@ -9,6 +9,7 @@ import subprocess
 from pathlib import Path
 
 from graph_query import load_seed_config, seed_changes, seed_requirement, traverse
+from langfuse_trace import impact_trace
 
 
 def changed_from_git(workspace: Path, base_ref: str) -> list[str]:
@@ -30,14 +31,22 @@ def main() -> int:
     graph = json.loads(args.graph.read_text(encoding="utf-8"))
     if args.requirement:
         mode, input_value = "REQUIREMENT", args.requirement
-        config = load_seed_config(str(args.config)) if args.config.is_file() else load_seed_config()
-        seeds = seed_requirement(graph["nodes"], args.requirement, config=config)
     else:
-        changed = args.changed_files or changed_from_git(args.graph.resolve().parents[1], args.base_ref)
-        mode, input_value = "CODE_CHANGE", changed
-        seeds = seed_changes(graph["nodes"], changed)
-    result = {"schema_version": graph["schema_version"], "mode": mode, "input": input_value,
-              **traverse(graph, seeds, args.depth)}
+        input_value = args.changed_files or changed_from_git(args.graph.resolve().parents[1], args.base_ref)
+        mode = "CODE_CHANGE"
+    with impact_trace("sdlc-impact-analysis", input_value, {"mode": mode, "depth": args.depth}) as trace:
+        if mode == "REQUIREMENT":
+            config = load_seed_config(str(args.config)) if args.config.is_file() else load_seed_config()
+            seeds = seed_requirement(graph["nodes"], args.requirement, config=config)
+        else:
+            seeds = seed_changes(graph["nodes"], input_value)
+        result = {"schema_version": graph["schema_version"], "mode": mode, "input": input_value,
+                  **traverse(graph, seeds, args.depth)}
+        if trace.trace_id:
+            result["trace_id"] = trace.trace_id
+        trace.update({"seed_count": len(seeds), "business_impact_count": len(result["business_impact"]),
+                      "runtime_impact_count": len(result["runtime_impact"]), "affected_repository_count": len(result["affected_repositories"])},
+                     output={"mode": mode, "seed_count": len(seeds), "affected_repositories": result["affected_repositories"]})
     payload = json.dumps(result, indent=2, ensure_ascii=False) + "\n"
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)

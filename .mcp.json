@@ -1,8 +1,13 @@
 {
   "mcpServers": {
     "llm-wiki": {
-      "command": "node",
+      "command": ".venv/bin/python",
       "args": [
+        ".claude/tools/mcp_trace_proxy.py",
+        "--server",
+        "llm-wiki",
+        "--",
+        "node",
         "/Applications/LLM Wiki.app/Contents/Resources/mcp-server/dist/src/index.js"
       ],
       "env": {
@@ -10,8 +15,13 @@
       }
     },
     "sdlcGraph": {
-      "command": "python3",
+      "command": ".venv/bin/python",
       "args": [
+        ".claude/tools/mcp_trace_proxy.py",
+        "--server",
+        "sdlcGraph",
+        "--",
+        ".venv/bin/python",
         ".claude/skills/sdlc-graph/tools/sdlc_graph_mcp.py",
         "--data-dir",
         "sdlc-graph-output",
@@ -20,8 +30,13 @@
       ]
     },
     "gitnexusRepos": {
-      "command": "python3",
+      "command": ".venv/bin/python",
       "args": [
+        ".claude/tools/mcp_trace_proxy.py",
+        "--server",
+        "gitnexusRepos",
+        "--",
+        ".venv/bin/python",
         ".claude/tools/gitnexus-repos-mcp.py",
         "--root",
         "."

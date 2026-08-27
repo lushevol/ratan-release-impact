@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from graph_query import compact_node, load_seed_config, search_graph, seed_changes, seed_requirement, traverse
+from langfuse_trace import impact_trace
 
 
 SERVER = {"name": "sdlc-graph", "version": "1.0.0"}
@@ -271,7 +272,15 @@ def handle(store: GraphStore, request: dict[str, Any]) -> dict[str, Any] | None:
         result = {"tools": TOOLS}
     elif method == "tools/call":
         try:
-            result = result_text(call_tool(store, params.get("name", ""), params.get("arguments", {})))
+            tool_name = params.get("name", "")
+            arguments = params.get("arguments", {})
+            with impact_trace(f"sdlc-mcp.{tool_name}", arguments, {"tool": tool_name, "observation_type": "tool"}) as trace:
+                value = call_tool(store, tool_name, arguments)
+                if trace.trace_id and isinstance(value, dict):
+                    value = {**value, "trace_id": trace.trace_id}
+                trace.update({"result_type": type(value).__name__, "result_keys": sorted(value) if isinstance(value, dict) else []},
+                             output={"result_type": type(value).__name__, "result_keys": sorted(value) if isinstance(value, dict) else []})
+                result = result_text(value)
         except (KeyError, TypeError, ValueError) as error:
             result = {"content": [{"type": "text", "text": str(error)}], "isError": True}
     elif method == "resources/list":

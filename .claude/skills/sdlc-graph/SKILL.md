@@ -30,6 +30,22 @@ The same file is used by the CLI and MCP server; pass `--config` to select anoth
 policy. Keep generic terms, distinctive terms, synonyms, thresholds, and scoring
 weights explicit so an impact report can record which policy produced its seeds.
 
+### Optional Langfuse traceability
+
+The CLI and MCP tool calls emit Langfuse traces when `LANGFUSE_PUBLIC_KEY` and
+`LANGFUSE_SECRET_KEY` are set and the optional `langfuse` Python package is
+installed. Set `LANGFUSE_HOST` for a self-hosted endpoint (the SDK default is
+used otherwise). Tracing is fail-open, and requirement/code-change inputs are
+recorded as SHA-256 digests rather than raw text. Successful analysis responses
+include `trace_id`, which can be used to link a report to its Langfuse trace.
+
+```text
+pip install langfuse
+export LANGFUSE_PUBLIC_KEY=...
+export LANGFUSE_SECRET_KEY=...
+export LANGFUSE_HOST=https://cloud.langfuse.com
+```
+
 Start with `get_system_overview` or the `sdlc-graph://overview` resource. For a requirement, call `analyze_requirement_impact`, inspect each affected repository with `get_service_picture`, and use `get_node_neighborhood` for evidence paths and relationships. Treat returned impact as candidates: report business and runtime dimensions separately, retain unresolved external frontiers, and distinguish inferred descriptions from confirmed facts.
 
 ## Repository dimensions
