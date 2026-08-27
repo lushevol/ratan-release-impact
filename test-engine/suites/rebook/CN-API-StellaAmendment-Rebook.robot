@@ -1,12 +1,13 @@
 *** Settings ***
 Resource          ../../resources/rebook/__import__.resource
 Test Setup        Reset Backend State
+Test Tags         behavior:rebook:eligibility
 Metadata          Author  Elena Wang
 
 *** Test Cases ***
 CN-API-StellaEcoAmd-UserActionAndPostRls-001-001
     [Documentation]  ReBook-related Stella eco amendment flow with reversal and rebook exceptions.
-    [Tags]  SFMRPRegression    SFMRPStellaTradVald    SFMRPTradVald    SFMRPMOValidationRemodel
+    [Tags]  SFMRPRegression    SFMRPStellaTradVald    SFMRPTradVald    SFMRPMOValidationRemodel    scenario:rebook:stella:eco-amendment
     ${currentDate}    Offset Time    offset_time=0/0/0    output_format=%Y-%m-%d
     ${tradeId}    ${newBookCf1}    ${newBookCf2}    NewBooking    ${currentDate}    ${currentDate}    ${True}    BOOKED
     TDS3_Trade_Confirmation    tradeId=${tradeId}    majorVersion=${newBookingMV}    tradeWorkflowStatus=TOBESENT
@@ -21,7 +22,7 @@ CN-API-StellaEcoAmd-UserActionAndPostRls-001-001
 
 CN-API-StellaNonEcoAmd-UserActionAndPostRls-001-005
     [Documentation]  ReBook-related Stella non-eco amendment flow with reversal and rebook exceptions.
-    [Tags]  SFMRPRegression    SFMRPStellaTradVald    SFMRPTradVald    SFMRPMOValidationRemodel
+    [Tags]  SFMRPRegression    SFMRPStellaTradVald    SFMRPTradVald    SFMRPMOValidationRemodel    scenario:rebook:stella:non-eco-amendment
     ${currentDate}    Offset Time    offset_time=0/0/0    output_format=%Y-%m-%d
     ${tradeId}    ${newBookCf1}    ${newBookCf2}    NewBooking    ${currentDate}    ${currentDate}    ${True}    BOOKED
     TDS3_Trade_Confirmation    tradeId=${tradeId}    majorVersion=${newBookingMV}    tradeWorkflowStatus=TOBESENT

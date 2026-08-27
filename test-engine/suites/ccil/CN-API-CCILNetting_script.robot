@@ -1,6 +1,7 @@
 *** Settings ***
 Resource          ../../resources/ccil/__import__.resource
 Test Setup        Reset Backend State
+Test Tags         behavior:ccil:netting
 Metadata          Author  Elena Wang
 
 *** Variables ***
@@ -17,7 +18,7 @@ CN-API-CCILNetting-Guaranteed-001
 	[Documentation]  Guaranteed cashflow: Pending auto Netting + user do net + user do swift suppress to resultant cashflow
 	...              Murex & Murex ->Source Value sent to LMS is "FMRPMUREX"
 	...              REQ: 2295160, 5483114
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:guaranteed-net-and-suppress
 	${oriTradeId}    Generate Random String    length=8    chars=[NUMBERS]
 	Log To Console    \n***********oriTradeId: ${oriTradeId}
     ${mxgCurrentDate}    OffsetTimeJumpWeekend  offset_time=0/0/0    output_format=%Y%m%d    currency=${validCcy}
@@ -63,7 +64,7 @@ CN-API-CCILNetting-NonGuaranteed-002
 	[Documentation]  NonGuaranteed cashflow: Pending auto Netting + user do net + user do swift suppress to resultant cashflow 
 	...    + Novation to Guaranteed counterparty
 	...              REQ: 2295160
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:non-guaranteed-net-suppress-novate
 	${oriTradeId}    Generate Random String    length=8    chars=[NUMBERS]
 	Log To Console    \n***********oriTradeId: ${oriTradeId}
     ${mxgCurrentDate}    OffsetTimeJumpWeekend  offset_time=0/0/0    output_format=%Y%m%d    currency=${validCcy}
@@ -120,7 +121,7 @@ CN-API-CCILNetting-Novation-003
     [Documentation]  NonGuaranteed cashflow Pending auto Netting + Novation(to Guaranteed counterparty) 
 	...    -> NonGuaranteed cashflow cancelled + new cashflow: pending auto netting
 	...              REQ: 2295160
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:non-guaranteed-novation
 	${oriTradeId}    Generate Random String    length=8    chars=[NUMBERS]
 	Log To Console    \n***********oriTradeId: ${oriTradeId}
     ${mxgCurrentDate}    OffsetTimeJumpWeekend  offset_time=0/0/0    output_format=%Y%m%d    currency=${validCcy}
@@ -264,7 +265,7 @@ CN-API-CCILNetting-Novation-003
 CN-API-CCILNetting-notAbleNetNonGAndGCf-006
 	[Documentation]  Could not net NonGuaranteed and Guaranted cashflow
 	...              REQ: 2295160
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:reject-mixed-guarantee-netting
 	comment  ******************** build guaranteed cashflows
 	${guaranteedCf1}  GenCashFlowCN  template=new  upstream=murex  isCredit=N
 	...    transactionFamily=${validFamily}  transactionGroup=${validGroup}    currency=${validCcy}
@@ -295,7 +296,7 @@ CN-API-CCILNetting-notAbleNetNonGAndGCf-006
 CN-API-CCILNetting-InvalidProduct-007
 	[Documentation]  valid booking enity: 4 + valid counterparty + INO + ! IRD/IRS -> not pending netting
 	...              REQ: 2295160
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:reject-invalid-product
 	comment  ******************** build guaranteed cashflows with invalid murex group
 	${guaranteedCf1}  GenCashFlowCN  template=new  upstream=murex  isCredit=N
 	...    transactionFamily=${validFamily}  transactionGroup=CS    currency=${validCcy}
@@ -312,7 +313,7 @@ CN-API-CCILNetting-InvalidProduct-007
 CN-API-CCILNetting-invalidCcy-008
 	[Documentation]  valid booking enity: 4 + valid counterparty + ! INO +  IRD/IRS -> not pending netting
 	...              REQ: 2295160
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:reject-invalid-currency
 	comment  ******************** build guaranteed cashflows with invalid ccy
 	${guaranteedCf1}  GenCashFlowCN  template=new  upstream=murex  isCredit=N
 	...    transactionFamily=${validFamily}  transactionGroup=${validGroup}    currency=USD
@@ -329,7 +330,7 @@ CN-API-CCILNetting-invalidCcy-008
 CN-API-CCILNetting-invalidCounterparty-009
     [Documentation]  valid booking enity: 4 + ! valid counterparty + INO +  IRD/IRS -> not pending netting
 	...              REQ: 2295160
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:reject-invalid-counterparty
 	comment  ******************** build cashflow with invalid counterparty
 	${guaranteedCf1}  GenCashFlowCN  template=new  upstream=murex  isCredit=N
 	...    transactionFamily=${validFamily}  transactionGroup=${validGroup}    currency=${validCcy}
@@ -341,7 +342,7 @@ CN-API-CCILNetting-invalidCounterparty-009
 CN-API-CCILNetting-invalidBookingEntity-010
 	[Documentation]  valid booking ! enity: 4 + valid counterparty + INO +  IRD/IRS -> not pending netting
 	...              REQ: 2295160
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:reject-invalid-booking-entity
 	comment  ******************** build guaranteed cashflows with invalid booking entity
 	${guaranteedCf1}  GenCashFlowCN  template=new  upstream=murex  isCredit=N
 	...    transactionFamily=${validFamily}  transactionGroup=${validGroup}    currency=${validCcy}
@@ -358,7 +359,7 @@ CN-API-CCILNetting-invalidBookingEntity-010
 CN-API-CCILNetting-SettleAsGross-011
 	[Documentation]  Can do settle as gross for both NonGuaranteed and Guaranted cashflow
 	...              REQ: 4954820, 2295160
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    SettleAsGross
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    SettleAsGross    scenario:ccil:settle-as-gross
 	comment  ******************** build guaranteed cashflows
 	${guaranteedCf1}  GenCashFlowCN  template=new  upstream=murex  isCredit=N
 	...    transactionFamily=${validFamily}  transactionGroup=${validGroup}    currency=${validCcy}
@@ -388,7 +389,7 @@ CN-API-CCILNetting-SettleAsGross-011
 CN-API-CCILNetting-notAbleToNetDiffValueDate-012
 	[Documentation]  Different value date could not be netted
 	...              REQ: 2295160
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:reject-different-value-date
 	${current_date}    Get Current Date    result_format=%Y%m%d
 	${after_current_date}    Add Time To Date    ${current_date}    1days    result_format=%Y%m%d
 	
@@ -438,7 +439,7 @@ CN-API-CCILNetting-notAbleToNetDiffValueDate-012
 CN-API-CCILNetting-GuaranteedIntoDiffGroup-013
 	[Documentation]  net CCIL Guaranteed cashflow and !CCIL cashflow(diff part is that ccy: INY), resultant cashflow will divide into 2 group
 	...              REQ: 2295160
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:split-guaranteed-by-eligibility
 	${cfList}    Create List
 	comment  ******************** build 2 guaranteed cashflows with INO
 	FOR    ${counter}    IN RANGE    2
@@ -470,7 +471,7 @@ CN-API-CCILNetting-GuaranteedIntoDiffGroup-013
 CN-API-CCILNetting-NonGuaranteedIntoDiffGroup-014
 	[Documentation]  resultant cashflow from non Guaranteed cashflows can be divided into different group based on value date
 	...              REQ: 2295160
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:split-non-guaranteed-by-value-date
 	
 	${oriTradeId}    Generate Random String    length=8    chars=[NUMBERS]
 	Log To Console    \n***********oriTradeId: ${oriTradeId}
@@ -505,7 +506,7 @@ CN-API-CCILNetting-NonGuaranteedIntoDiffGroup-014
 CN-API-CCILNetting-NonGuaranteedIntoDiffGroup-015	
 	[Documentation]  will pending auto netting if counterparty fmid=400022418
 	...              REQ: 5257573
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:new-eligible-counterparty
 	# comment    ===generate stellaTradeId====
     ${cashflowId1}  GenCashFlowCN  template=new  upstream=murex  isCredit=N
 	...    counterpartyFMID=400022418  entityFMID=4    transactionFamily=${validFamily}  transactionGroup=${validGroup}    currency=${validCcy}
@@ -516,7 +517,7 @@ CN-API-ResultantCFInhance-CCIL-016
 	[Documentation]  the " Family,Group,Type,Typology,Strategy,Trade_Id,Taxonomy,Financial_Instrument_Code" value of component cf are the same, 
 	...    then the value of resultant cashflow will inherit from component cashflow
 	...              REQ: 5809387
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly  SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly  SFMRPCCILNetting    scenario:ccil:resultant-inherits-common-fields
 	Comment  ************************* Genereate 3 cashflows with same " Family,Group,Type,Typology,Strategy,Trade_Id,Taxonomy,Financial_Instrument_Code"
 	${valuedate}  OffsetTimeJumpWeekend  offset_time=0/0/2  output_format=%Y%m%d
 	${oriTradeId}    Generate Random String    length=8    chars=[NUMBERS]
@@ -557,7 +558,7 @@ CN-API-ResultantCFInhance-CCIL-017
 	[Documentation]  the " Family,Group,Type,Typology,Strategy,Trade_Id,Taxonomy,Financial_Instrument_Code" value of component cf are not same, 
 	...    then " Family,Group,Type,Typology,Strategy,Trade_Id,Taxonomy" value of resultant cashflow will empty, "Financial_Instrument_Code"will copy from 1st cf
 	...              REQ: 5809387
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly  SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly  SFMRPCCILNetting    scenario:ccil:resultant-clears-different-fields
 	Comment  ************************* Genereate serveral cashflows with different " Family,Group,Type,Typology,Strategy,Trade_Id,Taxonomy,Financial_Instrument_Code"
 	${valuedate}  OffsetTimeJumpWeekend  offset_time=0/0/2  output_format=%Y%m%d
 	${oriTradeId1}    Generate Random String    length=8    chars=[NUMBERS]
@@ -607,7 +608,7 @@ CN-API-ResultantCFInhance-CCIL-017
 CN-API-CCILNetting-NonGuaranteed-018
 	[Documentation]  Adding New CCIL NON Guarantee Client - Bandhan Bank
 	...              REQ: 5855842
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:bandhan-bank-non-guaranteed
 	${oriTradeId}    Generate Random String    length=8    chars=[NUMBERS]
 	Log To Console    \n***********oriTradeId: ${oriTradeId}
     ${mxgCurrentDate}    OffsetTimeJumpWeekend  offset_time=0/0/0    output_format=%Y%m%d    currency=${validCcy}
@@ -643,7 +644,7 @@ CN-API-CCILNetting-NotAbleDoNetOverNet-019
 	...    Build Guaranteed Cashflow C3 
 	...    N1 & C3 not able to do Bilateral Netting
 	...              REQ: 6473084,2295160
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:no-net-resultant-and-gross
 	${oriTradeId}    Generate Random String    length=8    chars=[NUMBERS]
 	Log To Console    \n***********oriTradeId: ${oriTradeId}
     ${mxgCurrentDate}    OffsetTimeJumpWeekend  offset_time=0/0/0    output_format=%Y%m%d    currency=${validCcy}
@@ -685,7 +686,7 @@ CN-API-CCILNetting-NotAbleDoNetOverNet-020
 	...    Non-Guaranteed CCIL Cashflows(C3, C4) do CCIL netting to N2
 	...    N1 & N2 not able to do Bilateral Netting
 	...              REQ: 6473084,2295160
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:no-net-two-resultants
 	${oriTradeId}    Generate Random String    length=8    chars=[NUMBERS]
 	Log To Console    \n***********oriTradeId: ${oriTradeId}
     ${mxgCurrentDate}    OffsetTimeJumpWeekend  offset_time=0/0/0    output_format=%Y%m%d    currency=${validCcy}
@@ -742,7 +743,7 @@ CN-API-CCILNetting-NotAbleDoNetOverNet-021
 	...    Non-Guaranteed CCIL Cashflows(C2, C3) do CCIL netting to N1
 	...    C1 & N1 not able to do Bilateral Netting
 	...              REQ: 6473084,2295160
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    scenario:ccil:no-net-gross-and-resultant
 	${oriTradeId}    Generate Random String    length=8    chars=[NUMBERS]
 	Log To Console    \n***********oriTradeId: ${oriTradeId}
     ${mxgCurrentDate}    OffsetTimeJumpWeekend  offset_time=0/0/0    output_format=%Y%m%d    currency=${validCcy}
@@ -780,4 +781,3 @@ CN-API-CCILNetting-NotAbleDoNetOverNet-021
 	comment  ******************** Check N1 & N2 not able to do Bilateral Netting
     ${response}    ${netOverNetCf}    DoNet    cashflowId1=${nonGuaranteedCf1}    cashflowId2=${gResultantCashflow}    expectedStatus=530
 	CheckNetOverNet530    ${response}
-

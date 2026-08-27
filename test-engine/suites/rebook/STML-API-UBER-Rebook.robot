@@ -1,11 +1,12 @@
 *** Settings ***
 Resource          ../../resources/rebook/__import__.resource
 Test Setup        Reset Backend State
+Test Tags         behavior:rebook:eligibility
 Metadata          Author  Elena Wang
 
 *** Test Cases ***
 CN-API-Rebook-001-008
-    [Tags]    smoke    regression
+    [Tags]    smoke    regression    scenario:rebook:uber:001-008
     [Documentation]  Rebook tag window move from 15 to 5 days.
     ...    =5 days
     GROUP    New Booking: T1_M1 C1 & C1 post-released status
@@ -38,7 +39,7 @@ CN-API-Rebook-001-008
     END
 
 CN-API-Rebook-001-009
-    [Tags]    smoke    regression
+    [Tags]    smoke    regression    scenario:rebook:uber:001-009
     [Documentation]  Rebook tag window move from 15 to 5 days.
     ...    >6 days
     GROUP    New Booking: T1_M1 C1 & C1 post-released status

@@ -5,6 +5,7 @@ set -euo pipefail
 ROOT_DIR="${0:A:h:h}"
 RESULTS_DIR="${ROOT_DIR}/results"
 DOMAIN="${1:-all}"
+LOCAL_ROBOT="${ROOT_DIR}/.venv/bin/robot"
 
 mkdir -p "${RESULTS_DIR}"
 
@@ -36,13 +37,9 @@ if [[ -n "${ROBOT_BIN:-}" ]]; then
   exit 1
 fi
 
-if command -v robot >/dev/null 2>&1; then
-  exec robot -d "${RESULTS_DIR}" "$@" "${TARGET[@]}"
+if [[ -x "${LOCAL_ROBOT}" ]]; then
+  exec "${LOCAL_ROBOT}" -d "${RESULTS_DIR}" "$@" "${TARGET[@]}"
 fi
 
-if command -v uv >/dev/null 2>&1; then
-  exec uv run --no-project --with robotframework robot -d "${RESULTS_DIR}" "$@" "${TARGET[@]}"
-fi
-
-echo "No runnable Robot Framework command found. Install uv or set ROBOT_BIN to a Robot executable." >&2
+echo "Test engine is not set up. Run ${ROOT_DIR}/scripts/setup.sh or set ROBOT_BIN." >&2
 exit 1

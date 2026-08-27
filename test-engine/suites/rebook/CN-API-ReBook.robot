@@ -1,6 +1,7 @@
 *** Settings ***
 Resource          ../../resources/rebook/__import__.resource
 Test Setup        Reset Backend State
+Test Tags         behavior:rebook:eligibility
 Metadata          Author  Kyle Liu
 
 *** Variables ***
@@ -13,7 +14,7 @@ CN-API-Rebook-001-001
 	...    =5 days
 	...    resultant cf post-released
 	...    REQ: 5497264
-	[Tags]  SFMRPRegression    SFMRPMurexTradVald    SFMRPTradVald  SFMRPMurexRebook
+	[Tags]  SFMRPRegression    SFMRPMurexTradVald    SFMRPTradVald  SFMRPMurexRebook    scenario:rebook:cn-api:001-001
 	${oriTradeId}    Generate Random String    length=8    chars=[NUMBERS]
 	${oriTradeId1}    Generate Random String    length=8    chars=[NUMBERS]
 	Log To Console    \n***********oriTradeId: ${oriTradeId}, ${oriTradeId1}
@@ -71,7 +72,7 @@ CN-API-Rebook-001-002
 	...    > 5 days (5 days)
 	...    = 5 days
 	...              REQ: 5497264
-	[Tags]  SFMRPRegression    SFMRPMurexTradVald    SFMRPTradVald  SFMRPMurexRebook
+	[Tags]  SFMRPRegression    SFMRPMurexTradVald    SFMRPTradVald  SFMRPMurexRebook    scenario:rebook:cn-api:001-002
 	${oriTradeId}    Generate Random String    length=8    chars=[NUMBERS]
 	Log To Console    \n***********oriTradeId: ${oriTradeId}
 	${currency}    Set Variable    CNO
@@ -120,7 +121,7 @@ CN-API-Rebook-001-003
 	...    > 5 days (5 days)
 	...    = 5 days(with different Currency)
 	...              REQ: 5497264
-	[Tags]  SFMRPRegression    SFMRPMurexTradVald    SFMRPTradVald  SFMRPMurexRebook
+	[Tags]  SFMRPRegression    SFMRPMurexTradVald    SFMRPTradVald  SFMRPMurexRebook    scenario:rebook:cn-api:001-003
 	${oriTradeId}    Generate Random String    length=8    chars=[NUMBERS]
 	Log To Console    \n***********oriTradeId: ${oriTradeId}
 	${currency}    Set Variable    CNO
@@ -166,7 +167,7 @@ CN-API-Rebook-001-003
 	...    ${QUERY_RESULT}.ratanException[?(@.Exception_Code\=\="Rebook")].Status=null
 
 CN-API-Rebook-001-004
-    [Tags]    smoke    regression
+    [Tags]    smoke    regression    scenario:rebook:cn-api:001-004
     [Documentation]  Rebook tag window move from 15 to 5 days. 
 	...    > 5 days (5 days)
 	...    = 5 days(with different TradeId)
@@ -220,7 +221,7 @@ CN-API-Rebook-001-004
 CN-API-Rebook-001-005
     [Documentation]  Rebook tag window move from 15 to 5 days. 
 	...    =5 days
-    [Tags]  SFMRPRegression    SFMRPMurexTradVald    SFMRPTradVald  SFMRPStellaRebook
+    [Tags]  SFMRPRegression    SFMRPMurexTradVald    SFMRPTradVald  SFMRPStellaRebook    scenario:rebook:cn-api:001-005
     GROUP  Generate cashflow for Rebook 
         ${tradeId}    Generate Random String    length=8    chars=[NUMBERS]
         ${valuedata}  Offset Time  0/0/0  output_format=%Y-%m-%d
@@ -247,7 +248,7 @@ CN-API-Rebook-001-005
 CN-API-Rebook-001-006
     [Documentation]  Rebook tag window move from 15 to 5 days. 
 	...    > 5 days (6 days)
-    [Tags]  SFMRPRegression    SFMRPMurexTradVald    SFMRPTradVald  SFMRPStellaRebook
+    [Tags]  SFMRPRegression    SFMRPMurexTradVald    SFMRPTradVald  SFMRPStellaRebook    scenario:rebook:cn-api:001-006
     GROUP  Generate cashflow for Rebook 
         ${tradeId}    Generate Random String    length=8    chars=[NUMBERS]
         ${valuedata}  Offset Time  0/0/0  output_format=%Y-%m-%d
@@ -276,7 +277,7 @@ CN-API-Rebook-001-007
     [Documentation]  Rebook tag window move from 15 to 5 days. 
 	...    > 5 days (6 days)
     ...    with different currency
-    [Tags]  SFMRPRegression    SFMRPMurexTradVald    SFMRPTradVald  SFMRPStellaRebook
+    [Tags]  SFMRPRegression    SFMRPMurexTradVald    SFMRPTradVald  SFMRPStellaRebook    scenario:rebook:cn-api:001-007
     GROUP  Generate cashflow for Rebook 
         ${tradeId}    Generate Random String    length=8    chars=[NUMBERS]
         ${valuedata}  Offset Time  0/0/0  output_format=%Y-%m-%d
@@ -302,7 +303,7 @@ CN-API-Rebook-001-007
     END
 
 CN-API-Rebook-001-008
-    [Tags]    smoke    regression
+    [Tags]    smoke    regression    scenario:rebook:cn-api:001-008
     [Documentation]  Rebook tag window move from 15 to 5 days. 
 	...    =5 days
     GROUP    New Booking: T1_M1 C1 & C1 post-released status
@@ -340,7 +341,7 @@ CN-API-Rebook-001-008
 	END
 
 CN-API-Rebook-001-009
-    [Tags]    smoke    regression
+    [Tags]    smoke    regression    scenario:rebook:cn-api:001-009
     [Documentation]  Rebook tag window move from 15 to 5 days. 
 	...    >6 days
     GROUP    New Booking: T1_M1 C1 & C1 post-released status
@@ -380,7 +381,7 @@ CN-API-Rebook-001-009
 	END
 
 CN-API-Rebook-001-010
-    [Tags]    smoke    regression
+    [Tags]    smoke    regression    scenario:rebook:cn-api:001-010
     [Documentation]  Rebook tag window move from 15 to 5 days. 
 	...    =5 days
 	...    with different currency

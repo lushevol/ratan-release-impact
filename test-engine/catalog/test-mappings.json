@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "scope": ["ccil", "rebook"],
+  "mapping_owner": {
+    "poc_role": "project-owner",
+    "target_role": "QA"
+  },
+  "defaults": {
+    "relationship": "EXERCISES",
+    "assertion_status": "supported",
+    "verification_approval": "pending",
+    "evidence_mode": "observed_in_test_engine_simulation",
+    "mocked_boundaries": ["authentication", "remote-apis", "database-polling", "kafka"]
+  },
+  "mappings": [
+    {"test_id": "test:ccil:guaranteed-001", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-Guaranteed-001", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:guaranteed-net-and-suppress"},
+    {"test_id": "test:ccil:non-guaranteed-002", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-NonGuaranteed-002", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:non-guaranteed-net-suppress-novate"},
+    {"test_id": "test:ccil:novation-003", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-Novation-003", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:non-guaranteed-novation"},
+    {"test_id": "test:ccil:mixed-guarantee-006", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-notAbleNetNonGAndGCf-006", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:reject-mixed-guarantee-netting"},
+    {"test_id": "test:ccil:invalid-product-007", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-InvalidProduct-007", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:reject-invalid-product"},
+    {"test_id": "test:ccil:invalid-currency-008", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-invalidCcy-008", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:reject-invalid-currency"},
+    {"test_id": "test:ccil:invalid-counterparty-009", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-invalidCounterparty-009", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:reject-invalid-counterparty"},
+    {"test_id": "test:ccil:invalid-booking-entity-010", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-invalidBookingEntity-010", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:reject-invalid-booking-entity"},
+    {"test_id": "test:ccil:settle-as-gross-011", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-SettleAsGross-011", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:settle-as-gross"},
+    {"test_id": "test:ccil:different-value-date-012", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-notAbleToNetDiffValueDate-012", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:reject-different-value-date"},
+    {"test_id": "test:ccil:guaranteed-different-group-013", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-GuaranteedIntoDiffGroup-013", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:split-guaranteed-by-eligibility"},
+    {"test_id": "test:ccil:non-guaranteed-different-group-014", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-NonGuaranteedIntoDiffGroup-014", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:split-non-guaranteed-by-value-date"},
+    {"test_id": "test:ccil:new-eligible-counterparty-015", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-NonGuaranteedIntoDiffGroup-015", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:new-eligible-counterparty"},
+    {"test_id": "test:ccil:resultant-inheritance-016", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-ResultantCFInhance-CCIL-016", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:resultant-inherits-common-fields"},
+    {"test_id": "test:ccil:resultant-difference-017", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-ResultantCFInhance-CCIL-017", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:resultant-clears-different-fields"},
+    {"test_id": "test:ccil:bandhan-bank-018", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-NonGuaranteed-018", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:bandhan-bank-non-guaranteed"},
+    {"test_id": "test:ccil:no-net-over-net-019", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-NotAbleDoNetOverNet-019", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:no-net-resultant-and-gross"},
+    {"test_id": "test:ccil:no-net-over-net-020", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-NotAbleDoNetOverNet-020", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:no-net-two-resultants"},
+    {"test_id": "test:ccil:no-net-over-net-021", "source": "suites/ccil/CN-API-CCILNetting_script.robot", "test_name": "CN-API-CCILNetting-NotAbleDoNetOverNet-021", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:no-net-gross-and-resultant"},
+    {"test_id": "test:ccil:uber-non-guaranteed-002", "source": "suites/ccil/CN-API-Uber-CCILNetting_script.robot", "test_name": "CN-API-Uber-CCILNetting-NonGuaranteed-002", "behavior_id": "behavior:ccil:netting", "scenario_id": "scenario:ccil:uber-non-guaranteed-novation"},
+    {"test_id": "test:rebook:cn-api:001-001", "source": "suites/rebook/CN-API-ReBook.robot", "test_name": "CN-API-Rebook-001-001", "behavior_id": "behavior:rebook:eligibility", "scenario_id": "scenario:rebook:cn-api:001-001"},
+    {"test_id": "test:rebook:cn-api:001-002", "source": "suites/rebook/CN-API-ReBook.robot", "test_name": "CN-API-Rebook-001-002", "behavior_id": "behavior:rebook:eligibility", "scenario_id": "scenario:rebook:cn-api:001-002"},
+    {"test_id": "test:rebook:cn-api:001-003", "source": "suites/rebook/CN-API-ReBook.robot", "test_name": "CN-API-Rebook-001-003", "behavior_id": "behavior:rebook:eligibility", "scenario_id": "scenario:rebook:cn-api:001-003"},
+    {"test_id": "test:rebook:cn-api:001-004", "source": "suites/rebook/CN-API-ReBook.robot", "test_name": "CN-API-Rebook-001-004", "behavior_id": "behavior:rebook:eligibility", "scenario_id": "scenario:rebook:cn-api:001-004"},
+    {"test_id": "test:rebook:cn-api:001-005", "source": "suites/rebook/CN-API-ReBook.robot", "test_name": "CN-API-Rebook-001-005", "behavior_id": "behavior:rebook:eligibility", "scenario_id": "scenario:rebook:cn-api:001-005"},
+    {"test_id": "test:rebook:cn-api:001-006", "source": "suites/rebook/CN-API-ReBook.robot", "test_name": "CN-API-Rebook-001-006", "behavior_id": "behavior:rebook:eligibility", "scenario_id": "scenario:rebook:cn-api:001-006"},
+    {"test_id": "test:rebook:cn-api:001-007", "source": "suites/rebook/CN-API-ReBook.robot", "test_name": "CN-API-Rebook-001-007", "behavior_id": "behavior:rebook:eligibility", "scenario_id": "scenario:rebook:cn-api:001-007"},
+    {"test_id": "test:rebook:cn-api:001-008", "source": "suites/rebook/CN-API-ReBook.robot", "test_name": "CN-API-Rebook-001-008", "behavior_id": "behavior:rebook:eligibility", "scenario_id": "scenario:rebook:cn-api:001-008"},
+    {"test_id": "test:rebook:cn-api:001-009", "source": "suites/rebook/CN-API-ReBook.robot", "test_name": "CN-API-Rebook-001-009", "behavior_id": "behavior:rebook:eligibility", "scenario_id": "scenario:rebook:cn-api:001-009"},
+    {"test_id": "test:rebook:cn-api:001-010", "source": "suites/rebook/CN-API-ReBook.robot", "test_name": "CN-API-Rebook-001-010", "behavior_id": "behavior:rebook:eligibility", "scenario_id": "scenario:rebook:cn-api:001-010"},
+    {"test_id": "test:rebook:stella:eco-amendment", "source": "suites/rebook/CN-API-StellaAmendment-Rebook.robot", "test_name": "CN-API-StellaEcoAmd-UserActionAndPostRls-001-001", "behavior_id": "behavior:rebook:eligibility", "scenario_id": "scenario:rebook:stella:eco-amendment"},
+    {"test_id": "test:rebook:stella:non-eco-amendment", "source": "suites/rebook/CN-API-StellaAmendment-Rebook.robot", "test_name": "CN-API-StellaNonEcoAmd-UserActionAndPostRls-001-005", "behavior_id": "behavior:rebook:eligibility", "scenario_id": "scenario:rebook:stella:non-eco-amendment"},
+    {"test_id": "test:rebook:uber:001-008", "source": "suites/rebook/STML-API-UBER-Rebook.robot", "test_name": "CN-API-Rebook-001-008", "behavior_id": "behavior:rebook:eligibility", "scenario_id": "scenario:rebook:uber:001-008"},
+    {"test_id": "test:rebook:uber:001-009", "source": "suites/rebook/STML-API-UBER-Rebook.robot", "test_name": "CN-API-Rebook-001-009", "behavior_id": "behavior:rebook:eligibility", "scenario_id": "scenario:rebook:uber:001-009"}
+  ]
+}

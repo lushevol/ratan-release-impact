@@ -1,6 +1,7 @@
 *** Settings ***
 Resource          ../../resources/ccil/__import__.resource
 Test Setup        Reset Backend State
+Test Tags         behavior:ccil:netting
 Metadata          Author  Elena Wang
 
 *** Variables ***
@@ -18,7 +19,7 @@ CN-API-Uber-CCILNetting-NonGuaranteed-002
     [Documentation]  NonGuaranteed cashflow: Pending auto Netting + user do net + user do swift suppress to resultant cashflow 
 	...    + Novation to Guaranteed counterparty
 	...              REQ: 2295160,11842002
-	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    robot:automation    uberPhase2    REQ:11842002
+	[Tags]  SFMRPRegression    SFMRPNetting    SFMRPNettingOnly    SFMRPCCILNetting    robot:automation    uberPhase2    REQ:11842002    scenario:ccil:uber-non-guaranteed-novation
 	
 	GROUP    build nonGuaranteed cashflows
 		&{returnDic}    UberCfGenerator    template=${StellaUber_InterestRate_CrossCurrency_FixedFloat_FloatLeg}
@@ -132,4 +133,3 @@ CN-API-Uber-CCILNetting-NonGuaranteed-002
 	GROUP    Check Guaranteed cashflow: Pending Netting
 	    CheckSettMethodAndSubStateTypeOfCf    ${SubStatType_PendingAutoNetting}    ${SettlementMthod_CCIL}    @{amdmCashflowList}
     END
-

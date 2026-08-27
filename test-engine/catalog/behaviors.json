@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "behaviors": [
+    {
+      "id": "behavior:ccil:netting",
+      "name": "CCIL cashflow netting",
+      "domain": "ccil",
+      "description": "Eligibility, grouping, resultant creation, suppression, novation, and rejection behavior for CCIL cashflows.",
+      "evidence_mode": "observed_in_test_engine_simulation"
+    },
+    {
+      "id": "behavior:rebook:eligibility",
+      "name": "Cashflow ReBook eligibility",
+      "domain": "rebook",
+      "description": "Date-window, identity, currency, amendment, reversal, and exception behavior for ReBook decisions.",
+      "evidence_mode": "observed_in_test_engine_simulation"
+    }
+  ]
+}

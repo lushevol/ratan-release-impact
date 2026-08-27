@@ -1,8 +1,11 @@
 [project]
-name = "standalone-ratan-subsets"
+name = "ratan-test-engine"
 version = "0.1.0"
-description = "Self-contained CCIL and ReBook Robot Framework extracts"
+description = "Local CCIL and ReBook behavior simulation for the SDLC POC"
 requires-python = ">=3.9"
 dependencies = [
-    "robotframework>=7.2.2",
+    "robotframework==7.4.2",
 ]
+
+[tool.uv]
+package = false
