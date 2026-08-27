@@ -14,13 +14,15 @@ import sys
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
-from typing import BinaryIO, Iterable
+from typing import Any, BinaryIO, Iterable
+from urllib.parse import unquote, urlparse
 
 
 TOKEN_RE = re.compile(r"[A-Za-z0-9]+")
 WIKILINK_RE = re.compile(r"\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|([^\]]+))?\]\]")
 ANSI_RE = re.compile(r"\x1b\[[0-9;]*m")
 MAX_CONTENT_CHARS = 20_000
+QMD_DEFAULT_TIMEOUT_SECONDS = 30
 
 
 def tokens(value: str) -> list[str]:
@@ -69,6 +71,26 @@ def _snippet(text: str, terms: list[str], phrase: str, width: int = 700) -> str:
     return excerpt
 
 
+def _clean_snippet(value: str) -> str:
+    value = WIKILINK_RE.sub(lambda match: match.group(2) or match.group(1), value)
+    return re.sub(r"\s+", " ", value).strip()
+
+
+def _numeric_score(value: object) -> float:
+    try:
+        return round(float(value), 6)
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def _qmd_timeout_seconds() -> int:
+    value = os.environ.get("QMD_TIMEOUT_SECONDS", str(QMD_DEFAULT_TIMEOUT_SECONDS))
+    try:
+        return max(1, min(int(value), 600))
+    except ValueError:
+        return QMD_DEFAULT_TIMEOUT_SECONDS
+
+
 @dataclass(frozen=True)
 class WikiPage:
     path: str
@@ -79,6 +101,188 @@ class WikiPage:
     title_counts: Counter[str]
     path_counts: Counter[str]
     links: tuple[str, ...]
+
+
+class QmdSearchError(RuntimeError):
+    """Raised when QMD is installed but cannot answer a query."""
+
+
+class QmdBackend:
+    """Run QMD's structured hybrid query against this knowledge base."""
+
+    def __init__(self, kb_dir: Path, wiki_dir: Path):
+        self.kb_dir = kb_dir
+        self.wiki_dir = wiki_dir
+
+    @property
+    def executable(self) -> str | None:
+        configured = os.environ.get("QMD_BIN", "").strip()
+        return configured or shutil.which("qmd")
+
+    @property
+    def available(self) -> bool:
+        return self.executable is not None
+
+    @property
+    def configured(self) -> bool:
+        return (self.kb_dir / ".qmd" / "index.yml").is_file() or (
+            self.kb_dir / ".qmd" / "index.yaml"
+        ).is_file()
+
+    @property
+    def database(self) -> Path:
+        return self.kb_dir / ".qmd" / "index.sqlite"
+
+    @property
+    def ready(self) -> bool:
+        # An explicit executable is an opt-in for callers that manage the QMD
+        # index outside this checkout (for example, a shared CI cache).
+        if os.environ.get("QMD_BIN", "").strip():
+            return self.available
+        return self.available and self.configured and self.database.is_file()
+
+    @property
+    def collection(self) -> str:
+        return os.environ.get("QMD_COLLECTION", "ratan-wiki").strip() or "ratan-wiki"
+
+    def search(
+        self,
+        query: str,
+        top_k: int,
+        include_content: bool,
+        pages: dict[str, WikiPage],
+        mode: str = "hybrid",
+    ) -> dict:
+        if not query.strip():
+            raise ValueError("query must contain at least one letter or number")
+        if mode not in {"lex", "hybrid"}:
+            raise ValueError("qmd mode must be one of: lex, hybrid")
+        executable = self.executable
+        if not executable:
+            raise QmdSearchError(
+                "QMD executable not found; install @tobilu/qmd or set QMD_BIN"
+            )
+
+        timeout = _qmd_timeout_seconds()
+        command = [
+            executable,
+            "query" if mode == "hybrid" else "search",
+            "--json",
+            "-n",
+            str(top_k),
+            "--full-path",
+            "-c",
+            self.collection,
+            query,
+        ]
+        try:
+            completed = subprocess.run(
+                command,
+                cwd=self.kb_dir,
+                env=os.environ.copy(),
+                text=True,
+                capture_output=True,
+                timeout=timeout,
+                check=False,
+            )
+        except (OSError, subprocess.TimeoutExpired) as error:
+            if isinstance(error, subprocess.TimeoutExpired):
+                detail = f"timed out after {timeout} seconds"
+            else:
+                detail = str(error)
+            raise QmdSearchError(f"QMD query {detail}") from error
+        if completed.returncode:
+            detail = ANSI_RE.sub("", completed.stderr or completed.stdout).strip()
+            raise QmdSearchError(f"QMD query failed ({completed.returncode}): {detail}")
+        try:
+            payload = json.loads(completed.stdout)
+        except (json.JSONDecodeError, TypeError) as error:
+            raise QmdSearchError("QMD query returned invalid JSON") from error
+
+        rows = (
+            payload
+            if isinstance(payload, list)
+            else payload.get("results")
+            if isinstance(payload, dict)
+            else None
+        )
+        if not isinstance(rows, list):
+            raise QmdSearchError("QMD query JSON must be an array of results")
+
+        results = []
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            page = self._page_for_result(row, pages)
+            if page is None:
+                continue
+            snippet = str(row.get("snippet") or "").strip()
+            if not snippet:
+                snippet = _snippet(page.text, tokens(query), " ".join(query.lower().split()))
+            item: dict[str, Any] = {
+                "path": page.path,
+                "title": str(row.get("title") or page.title),
+                "type": page.page_type,
+                "score": _numeric_score(row.get("score")),
+                "snippet": _clean_snippet(snippet),
+            }
+            if row.get("line") is not None:
+                try:
+                    item["line"] = int(row["line"])
+                except (TypeError, ValueError):
+                    pass
+            if row.get("context"):
+                item["context"] = str(row["context"])
+            if row.get("docid"):
+                item["docid"] = str(row["docid"])
+            if include_content:
+                item["content"] = page.text[:MAX_CONTENT_CHARS]
+                item["content_truncated"] = len(page.text) > MAX_CONTENT_CHARS
+            results.append(item)
+        return {
+            "query": query,
+            "result_count": len(results),
+            "results": results,
+            "backend": "qmd",
+            "qmd_mode": mode,
+        }
+
+    def _page_for_result(
+        self, row: dict[str, Any], pages: dict[str, WikiPage]
+    ) -> WikiPage | None:
+        raw_file = row.get("file") or row.get("filepath") or row.get("path") or row.get("uri")
+        if not isinstance(raw_file, str) or not raw_file.strip():
+            return None
+        value = unquote(raw_file.strip())
+        parsed = urlparse(value)
+        if parsed.scheme == "qmd":
+            value = parsed.path.lstrip("/")
+        elif parsed.scheme:
+            return None
+        value = value.removeprefix("./")
+
+        candidates: list[str] = []
+        path = Path(value)
+        if path.is_absolute():
+            try:
+                relative = path.resolve().relative_to(self.wiki_dir)
+            except ValueError:
+                return None
+            candidates.append(f"wiki/{relative.as_posix()}")
+        else:
+            normalized = value.removeprefix("wiki/")
+            candidates.extend(
+                [
+                    f"wiki/{normalized}",
+                    f"wiki/{normalized.removeprefix('ratan-wiki/')}",
+                ]
+            )
+
+        for candidate in candidates:
+            page = pages.get(candidate.lower())
+            if page is not None:
+                return page
+        return None
 
 
 class WikiIndex:
@@ -92,6 +296,7 @@ class WikiIndex:
         self._by_path: dict[str, WikiPage] = {}
         self._incoming: dict[str, tuple[str, ...]] = {}
         self._outgoing: dict[str, tuple[str, ...]] = {}
+        self.qmd = QmdBackend(self.kb_dir, self.wiki_dir)
 
     def _markdown_files(self) -> list[Path]:
         return sorted(self.wiki_dir.rglob("*.md"))
@@ -175,10 +380,39 @@ class WikiIndex:
             "wiki_pages": len(self._pages),
             "raw_documents": raw_files,
             "config": str(self.kb_dir / ".openkb" / "config.yaml"),
+            "search_backend": "qmd" if self.qmd.ready else "local",
+            "qmd": {
+                "available": self.qmd.available,
+                "configured": self.qmd.configured,
+                "ready": self.qmd.ready,
+                "collection": self.qmd.collection,
+                "executable": self.qmd.executable,
+                "database": str(self.qmd.database),
+                "config": str(self.kb_dir / ".qmd" / "index.yml"),
+            },
         }
 
-    def search(self, query: str, top_k: int = 8, include_content: bool = False) -> dict:
+    def search(
+        self,
+        query: str,
+        top_k: int = 8,
+        include_content: bool = False,
+        backend: str = "auto",
+        qmd_mode: str = "hybrid",
+    ) -> dict:
         self.refresh()
+        if backend not in {"auto", "local", "qmd"}:
+            raise ValueError("backend must be one of: auto, local, qmd")
+        if backend == "qmd" or (backend == "auto" and self.qmd.ready):
+            try:
+                return self.qmd.search(query, top_k, include_content, self._by_path, mode=qmd_mode)
+            except QmdSearchError:
+                if backend == "qmd":
+                    raise
+
+        return self._local_search(query, top_k, include_content)
+
+    def _local_search(self, query: str, top_k: int, include_content: bool) -> dict:
         query_terms = list(dict.fromkeys(tokens(query)))
         if not query_terms:
             raise ValueError("query must contain at least one letter or number")
@@ -226,7 +460,7 @@ class WikiIndex:
                 item["content"] = page.text[:MAX_CONTENT_CHARS]
                 item["content_truncated"] = len(page.text) > MAX_CONTENT_CHARS
             results.append(item)
-        return {"query": query, "result_count": len(results), "results": results}
+        return {"query": query, "result_count": len(results), "results": results, "backend": "local"}
 
     def read(self, requested_path: str) -> dict:
         candidate = requested_path.strip().removeprefix("openkb://")
@@ -282,13 +516,32 @@ TOOLS = [
     },
     {
         "name": "openkb_search",
-        "description": "Search the compiled OpenKB wiki locally and return ranked, path-cited excerpts. This works without an LLM credential.",
+        "description": (
+            "Search the compiled OpenKB wiki with QMD's hybrid retrieval when "
+            "available, returning ranked, path-cited excerpts. Falls back to "
+            "local keyword retrieval when QMD is unavailable."
+        ),
         "inputSchema": {
             "type": "object",
             "properties": {
                 "query": {"type": "string", "description": "Terms or phrase to search for."},
                 "top_k": {"type": "integer", "minimum": 1, "maximum": 50, "default": 8},
                 "include_content": {"type": "boolean", "default": False},
+                "backend": {
+                    "type": "string",
+                    "enum": ["auto", "qmd", "local"],
+                    "default": "auto",
+                    "description": (
+                        "Retrieval backend. auto prefers QMD and falls back to "
+                        "local; qmd fails if QMD is unavailable."
+                    ),
+                },
+                "qmd_mode": {
+                    "type": "string",
+                    "enum": ["hybrid", "lex"],
+                    "default": "hybrid",
+                    "description": "QMD mode when backend is auto or qmd: hybrid uses expansion/reranking; lex uses fast BM25 retrieval.",
+                },
             },
             "required": ["query"],
             "additionalProperties": False,
@@ -301,6 +554,32 @@ TOOLS = [
             "type": "object",
             "properties": {"path": {"type": "string", "description": "A wiki-relative path such as wiki/concepts/rebook-exception.md."}},
             "required": ["path"],
+            "additionalProperties": False,
+        },
+    },
+    {
+        "name": "openkb_qmd_query",
+        "description": (
+            "Query the project-local QMD hybrid index directly and return ranked, "
+            "path-cited wiki excerpts. Requires QMD and a built .qmd/index.sqlite."
+        ),
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "Natural-language question or search phrase.",
+                },
+                "top_k": {"type": "integer", "minimum": 1, "maximum": 50, "default": 8},
+                "include_content": {"type": "boolean", "default": False},
+                "mode": {
+                    "type": "string",
+                    "enum": ["lex", "hybrid"],
+                    "default": "lex",
+                    "description": "QMD retrieval mode. lex is fast and does not load local models; hybrid adds query expansion and reranking.",
+                },
+            },
+            "required": ["query"],
             "additionalProperties": False,
         },
     },
@@ -333,18 +612,35 @@ TOOLS = [
 
 
 class OpenKbMcpServer:
-    def __init__(self, kb_dir: Path):
+    def __init__(self, kb_dir: Path, search_backend: str = "auto"):
+        if search_backend not in {"auto", "local", "qmd"}:
+            raise ValueError("search_backend must be one of: auto, local, qmd")
         self.index = WikiIndex(kb_dir)
+        self.search_backend = search_backend
 
     def call_tool(self, name: str, arguments: dict) -> dict:
         if name == "openkb_status":
             payload = self.index.status()
         elif name == "openkb_search":
             top_k = max(1, min(int(arguments.get("top_k", 8)), 50))
+            backend = str(arguments.get("backend", self.search_backend))
+            qmd_mode = str(arguments.get("qmd_mode", "hybrid"))
             payload = self.index.search(
                 str(arguments.get("query", "")),
                 top_k=top_k,
                 include_content=bool(arguments.get("include_content", False)),
+                backend=backend,
+                qmd_mode=qmd_mode,
+            )
+        elif name == "openkb_qmd_query":
+            top_k = max(1, min(int(arguments.get("top_k", 8)), 50))
+            qmd_mode = str(arguments.get("mode", "lex"))
+            payload = self.index.search(
+                str(arguments.get("query", "")),
+                top_k=top_k,
+                include_content=bool(arguments.get("include_content", False)),
+                backend="qmd",
+                qmd_mode=qmd_mode,
             )
         elif name == "openkb_read":
             payload = self.index.read(str(arguments.get("path", "")))
@@ -396,8 +692,8 @@ class OpenKbMcpServer:
                 result = {
                     "protocolVersion": requested,
                     "capabilities": {"tools": {"listChanged": False}, "resources": {"listChanged": False}},
-                    "serverInfo": {"name": "ratan-openkb", "version": "1.0.0"},
-                    "instructions": "Search OpenKB first, then read exact cited pages before treating business rules as evidence.",
+                    "serverInfo": {"name": "ratan-openkb", "version": "1.1.0"},
+                    "instructions": "Use openkb_search for retrieval; it prefers the project-local QMD hybrid index when available and falls back to local keyword search. Then read exact cited pages before treating business rules as evidence.",
                 }
             elif method == "ping":
                 result = {}
@@ -460,8 +756,14 @@ def main() -> int:
     project_root = Path(__file__).resolve().parents[2]
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--kb-dir", type=Path, default=project_root / "knowledge-base")
+    parser.add_argument(
+        "--search-backend",
+        choices=("auto", "qmd", "local"),
+        default=os.environ.get("OPENKB_SEARCH_BACKEND", "auto"),
+        help="Retrieval backend for openkb_search (default: auto; prefers QMD when available)",
+    )
     args = parser.parse_args()
-    server = OpenKbMcpServer(args.kb_dir)
+    server = OpenKbMcpServer(args.kb_dir, search_backend=args.search_backend)
     while True:
         try:
             request, framed = read_message(sys.stdin.buffer)

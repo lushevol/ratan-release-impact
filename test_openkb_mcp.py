@@ -2,10 +2,14 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
+import shlex
+import stat
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 
@@ -68,6 +72,92 @@ class OpenKbMcpTest(unittest.TestCase):
         )
         self.assertEqual(rebook["outgoing"], ["wiki/entities/ratan.md"])
 
+    def test_qmd_backend_maps_json_results_to_citable_wiki_pages(self):
+        qmd = self.kb_dir / "qmd"
+        payload = json.dumps(
+            [
+                {
+                    "file": "qmd://ratan-wiki/concepts/rebook-exception.md",
+                    "docid": "abc123",
+                    "score": 0.91,
+                    "line": 4,
+                    "title": "QMD title",
+                    "snippet": "A [[concepts/rebook-exception]] hit",
+                }
+            ]
+        )
+        qmd.write_text(
+            "#!/bin/sh\n"
+            f"printf '%s' {shlex.quote(payload)}\n",
+            encoding="utf-8",
+        )
+        qmd.chmod(qmd.stat().st_mode | stat.S_IXUSR)
+
+        with patch.dict(os.environ, {"QMD_BIN": str(qmd)}, clear=False):
+            result = self.index.search("rebook", backend="qmd", include_content=True)
+
+        self.assertEqual(result["backend"], "qmd")
+        self.assertEqual(result["results"][0]["path"], "wiki/concepts/rebook-exception.md")
+        self.assertEqual(result["results"][0]["docid"], "abc123")
+        self.assertEqual(result["results"][0]["line"], 4)
+        self.assertEqual(result["results"][0]["snippet"], "A concepts/rebook-exception hit")
+        self.assertIn("payment-date proximity", result["results"][0]["content"])
+
+    def test_auto_backend_falls_back_when_qmd_query_fails(self):
+        qmd = self.kb_dir / "qmd"
+        qmd.write_text("#!/bin/sh\nexit 1\n", encoding="utf-8")
+        qmd.chmod(qmd.stat().st_mode | stat.S_IXUSR)
+
+        with patch.dict(os.environ, {"QMD_BIN": str(qmd)}, clear=False):
+            result = self.index.search("rebook", backend="auto")
+
+        self.assertEqual(result["backend"], "local")
+        self.assertEqual(result["results"][0]["path"], "wiki/concepts/rebook-exception.md")
+
+    def test_auto_backend_prefers_qmd_when_project_index_is_ready(self):
+        qmd_dir = self.kb_dir / ".qmd"
+        qmd_dir.mkdir()
+        (qmd_dir / "index.yml").write_text("collections: {}\n", encoding="utf-8")
+        (qmd_dir / "index.sqlite").write_bytes(b"sqlite")
+        qmd = self.kb_dir / "qmd"
+        payload = json.dumps(
+            [
+                {
+                    "file": "qmd://ratan-wiki/concepts/rebook-exception.md",
+                    "score": 0.82,
+                    "title": "QMD result",
+                    "snippet": "QMD matched this page",
+                }
+            ]
+        )
+        qmd.write_text(
+            "#!/bin/sh\n"
+            f"printf '%s' {shlex.quote(payload)}\n",
+            encoding="utf-8",
+        )
+        qmd.chmod(qmd.stat().st_mode | stat.S_IXUSR)
+
+        with patch.dict(os.environ, {"QMD_BIN": str(qmd)}, clear=False):
+            result = self.index.search("rebook", backend="auto")
+
+        self.assertEqual(result["backend"], "qmd")
+        self.assertEqual(result["results"][0]["title"], "QMD result")
+
+    def test_qmd_backend_rejects_results_outside_wiki(self):
+        qmd = self.kb_dir / "qmd"
+        payload = json.dumps([{"file": "/tmp/outside.md", "score": 1}])
+        qmd.write_text(
+            "#!/bin/sh\n"
+            f"printf '%s' {shlex.quote(payload)}\n",
+            encoding="utf-8",
+        )
+        qmd.chmod(qmd.stat().st_mode | stat.S_IXUSR)
+
+        with patch.dict(os.environ, {"QMD_BIN": str(qmd)}, clear=False):
+            result = self.index.search("rebook", backend="qmd")
+
+        self.assertEqual(result["result_count"], 0)
+
     def test_stdio_protocol_lists_and_calls_tools(self):
         process = subprocess.Popen(
             [sys.executable, str(SERVER_PATH), "--kb-dir", str(self.kb_dir)],
@@ -83,6 +173,7 @@ class OpenKbMcpTest(unittest.TestCase):
             listed = json.loads(process.stdout.readline())
             names = {tool["name"] for tool in listed["result"]["tools"]}
             self.assertIn("openkb_search", names)
+            self.assertIn("openkb_qmd_query", names)
 
             process.stdin.write(
                 json.dumps(

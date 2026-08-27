@@ -1,12 +1,12 @@
 interface:
   display_name: "Requirement Grill"
   short_description: "Clarify ambiguous requirements before coding"
-  default_prompt: "Use $requirement-grill to resolve requirement ambiguity with LLM Wiki evidence and targeted owner questions."
+  default_prompt: "Use $requirement-grill to resolve requirement ambiguity with OpenKB evidence and explain the reason and precise source for every owner question."
 dependencies:
   tools:
     - type: "mcp"
-      value: "llm-wiki"
-      description: "Background business requirements, terminology, and decisions"
+      value: "openkb"
+      description: "Portable business requirements, designs, terminology, and decisions"
     - type: "mcp"
       value: "sdlcGraph"
       description: "Current architecture and runtime evidence requests"

@@ -1,7 +1,11 @@
 <!-- gitnexus:start -->
 # GitNexus — Code Intelligence
 
-This project is indexed by GitNexus as **ratan-release-impact** (34278 symbols, 78300 relationships, 300 execution flows). Use the GitNexus MCP tools to understand code, assess impact, and navigate safely.
+This repository is an analysis harness. The business repositories under
+`repos/` are indexed individually by GitNexus; the harness root is deliberately
+not indexed. Use the project-scoped `gitnexusRepos` MCP with an explicit
+`repo` argument when querying business code. Read `SETUP_FOR_AI.md` before
+working from a fresh checkout.
 
 > Index stale? Run `node .gitnexus/run.cjs analyze` from the project root — it auto-selects an available runner. No `.gitnexus/run.cjs` yet? `npx gitnexus analyze` (npm 11 crash → `npm i -g gitnexus`; #1939).
 

@@ -3,6 +3,7 @@ import os
 import select
 import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -88,6 +89,30 @@ class LangfuseTraceTest(unittest.TestCase):
         self.assertTrue(client.context.closed)
         self.assertEqual(client.observation.updates[0]["metadata"]["response"], "ok")
         self.assertEqual(client.observation.updates[0]["output"]["jsonrpc"], "2.0")
+
+
+class DotenvLoadingTest(unittest.TestCase):
+    def test_local_dotenv_precedes_default_and_process_environment_wins(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            Path(directory, ".env.local").write_text(
+                "LANGFUSE_PUBLIC_KEY=local-public\n",
+                encoding="utf-8",
+            )
+            Path(directory, ".env").write_text(
+                "LANGFUSE_PUBLIC_KEY=default-public\n"
+                "LANGFUSE_SECRET_KEY=default-secret\n"
+                "LANGFUSE_BASE_URL=http://default.example\n",
+                encoding="utf-8",
+            )
+            with (
+                mock.patch.dict(os.environ, {"LANGFUSE_BASE_URL": "http://process.example"}, clear=True),
+                mock.patch.object(langfuse_trace.os, "getcwd", return_value=directory),
+            ):
+                langfuse_trace._load_dotenv()
+
+                self.assertEqual(os.environ["LANGFUSE_PUBLIC_KEY"], "local-public")
+                self.assertEqual(os.environ["LANGFUSE_SECRET_KEY"], "default-secret")
+                self.assertEqual(os.environ["LANGFUSE_BASE_URL"], "http://process.example")
 
 
 class McpTraceProxyTest(unittest.TestCase):

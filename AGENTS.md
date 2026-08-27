@@ -51,8 +51,11 @@ The portable Ratan Settlement knowledge base lives under `knowledge-base/`.
 The project-scoped `openkb` MCP server replaces the LLM Wiki desktop
 dependency.
 
-- Search with `openkb_search`, then read exact cited pages with `openkb_read`
-  before treating a business rule as evidence.
+- Search with `openkb_search` (QMD hybrid retrieval is preferred when available),
+  then read exact cited pages with `openkb_read` before treating a business rule
+  as evidence.
+- Use `openkb_qmd_query` when a query must run through the project-local QMD
+  index without falling back to local keyword retrieval.
 - Use `openkb_graph` to inspect page relationships and `openkb_query` only when
   model-backed synthesis is needed.
 - Prefer direct requirement, design, policy, and decision pages over generated

@@ -18,20 +18,21 @@ from typing import Any, Iterator
 
 
 def _load_dotenv() -> None:
-    """Load simple KEY=VALUE entries without overriding the process environment."""
-    path = os.path.join(os.getcwd(), ".env")
-    try:
-        with open(path, encoding="utf-8") as handle:
-            for line in handle:
-                line = line.strip()
-                if not line or line.startswith("#") or "=" not in line:
-                    continue
-                key, value = line.split("=", 1)
-                key, value = key.strip(), value.strip().strip("\"'")
-                if key and key not in os.environ:
-                    os.environ[key] = value
-    except OSError:
-        pass
+    """Load local and default dotenv files without overriding process values."""
+    for filename in (".env.local", ".env"):
+        path = os.path.join(os.getcwd(), filename)
+        try:
+            with open(path, encoding="utf-8") as handle:
+                for line in handle:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    key, value = line.split("=", 1)
+                    key, value = key.strip(), value.strip().strip("\"'")
+                    if key and key not in os.environ:
+                        os.environ[key] = value
+        except OSError:
+            pass
 
 
 _load_dotenv()
