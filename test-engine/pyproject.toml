@@ -1,0 +1,8 @@
+[project]
+name = "standalone-ccil-netting"
+version = "0.1.0"
+description = "Self-contained CCIL netting Robot Framework extract"
+requires-python = ">=3.13"
+dependencies = [
+    "robotframework>=7.2.2",
+]
