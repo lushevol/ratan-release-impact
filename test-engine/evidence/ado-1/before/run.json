@@ -1,0 +1,392 @@
+{
+  "captured_at": "2026-08-27T11:50:24.303657+00:00",
+  "change_id": "ado-1",
+  "diagnostics": [
+    {
+      "analysis_can_continue": true,
+      "code": "BUSINESS_VERIFICATION_MAPPING_PENDING",
+      "detail": "14 executed test mappings remain EXERCISES until the POC owner approves VERIFIES.",
+      "severity": "warning"
+    },
+    {
+      "analysis_can_continue": true,
+      "code": "SIMULATED_EXTERNAL_BOUNDARIES",
+      "detail": "Authentication, remote APIs, database polling, and Kafka are mocked.",
+      "severity": "warning"
+    }
+  ],
+  "domain": "rebook",
+  "engine_baseline": {
+    "commit": "771cd1bfc55eed3d9ebe056b9b633d37cfb7054c",
+    "repository": "ratan-release-impact",
+    "source_fingerprint_sha256": "4fdfea2f7abc6cf700b341c819b369fc5530a8774baa7397d2dd14065d32b17f",
+    "working_tree_dirty": false
+  },
+  "evidence_mode": "observed_in_test_engine_simulation",
+  "kind": "test-engine-run",
+  "mapping_owner": {
+    "poc_role": "project-owner",
+    "target_role": "QA"
+  },
+  "phase": "before",
+  "robot": {
+    "generated_at": "2026-08-27T19:50:23.805107",
+    "generator": "Robot 7.4.2 (Python 3.13.14 on darwin)",
+    "return_code": 0
+  },
+  "run_id": "test-engine:ado-1:before:20260827195023805107",
+  "schema_version": 1,
+  "scope": {
+    "domains": [
+      "rebook"
+    ],
+    "mocked_boundaries": [
+      "authentication",
+      "remote-apis",
+      "database-polling",
+      "kafka"
+    ],
+    "production_code_executed": false
+  },
+  "summary": {
+    "failed": 0,
+    "other": 0,
+    "passed": 14,
+    "skipped": 0,
+    "total": 14
+  },
+  "tests": [
+    {
+      "assertion_status": "supported",
+      "behavior_id": "behavior:rebook:eligibility",
+      "elapsed_seconds": 0.029293,
+      "message": "",
+      "relationship": "EXERCISES",
+      "requirement_refs": [
+        "5497264"
+      ],
+      "scenario_id": "scenario:rebook:cn-api:001-001",
+      "source_line": 11,
+      "source_path": "test-engine/suites/rebook/CN-API-ReBook.robot",
+      "status": "PASS",
+      "suite": "Rebook / CN-API-ReBook",
+      "tags": [
+        "SFMRPMurexRebook",
+        "SFMRPMurexTradVald",
+        "SFMRPRegression",
+        "SFMRPTradVald",
+        "behavior:rebook:eligibility",
+        "scenario:rebook:cn-api:001-001"
+      ],
+      "test_id": "test:rebook:cn-api:001-001",
+      "test_name": "CN-API-Rebook-001-001",
+      "verification_approval": "pending"
+    },
+    {
+      "assertion_status": "supported",
+      "behavior_id": "behavior:rebook:eligibility",
+      "elapsed_seconds": 0.016357,
+      "message": "",
+      "relationship": "EXERCISES",
+      "requirement_refs": [
+        "5497264"
+      ],
+      "scenario_id": "scenario:rebook:cn-api:001-002",
+      "source_line": 70,
+      "source_path": "test-engine/suites/rebook/CN-API-ReBook.robot",
+      "status": "PASS",
+      "suite": "Rebook / CN-API-ReBook",
+      "tags": [
+        "SFMRPMurexRebook",
+        "SFMRPMurexTradVald",
+        "SFMRPRegression",
+        "SFMRPTradVald",
+        "behavior:rebook:eligibility",
+        "scenario:rebook:cn-api:001-002"
+      ],
+      "test_id": "test:rebook:cn-api:001-002",
+      "test_name": "CN-API-Rebook-001-002",
+      "verification_approval": "pending"
+    },
+    {
+      "assertion_status": "supported",
+      "behavior_id": "behavior:rebook:eligibility",
+      "elapsed_seconds": 0.018016,
+      "message": "",
+      "relationship": "EXERCISES",
+      "requirement_refs": [
+        "5497264"
+      ],
+      "scenario_id": "scenario:rebook:cn-api:001-003",
+      "source_line": 119,
+      "source_path": "test-engine/suites/rebook/CN-API-ReBook.robot",
+      "status": "PASS",
+      "suite": "Rebook / CN-API-ReBook",
+      "tags": [
+        "SFMRPMurexRebook",
+        "SFMRPMurexTradVald",
+        "SFMRPRegression",
+        "SFMRPTradVald",
+        "behavior:rebook:eligibility",
+        "scenario:rebook:cn-api:001-003"
+      ],
+      "test_id": "test:rebook:cn-api:001-003",
+      "test_name": "CN-API-Rebook-001-003",
+      "verification_approval": "pending"
+    },
+    {
+      "assertion_status": "supported",
+      "behavior_id": "behavior:rebook:eligibility",
+      "elapsed_seconds": 0.016581,
+      "message": "",
+      "relationship": "EXERCISES",
+      "requirement_refs": [
+        "5497264"
+      ],
+      "scenario_id": "scenario:rebook:cn-api:001-004",
+      "source_line": 169,
+      "source_path": "test-engine/suites/rebook/CN-API-ReBook.robot",
+      "status": "PASS",
+      "suite": "Rebook / CN-API-ReBook",
+      "tags": [
+        "behavior:rebook:eligibility",
+        "regression",
+        "scenario:rebook:cn-api:001-004",
+        "smoke"
+      ],
+      "test_id": "test:rebook:cn-api:001-004",
+      "test_name": "CN-API-Rebook-001-004",
+      "verification_approval": "pending"
+    },
+    {
+      "assertion_status": "supported",
+      "behavior_id": "behavior:rebook:eligibility",
+      "elapsed_seconds": 0.009672,
+      "message": "",
+      "relationship": "EXERCISES",
+      "requirement_refs": [],
+      "scenario_id": "scenario:rebook:cn-api:001-005",
+      "source_line": 221,
+      "source_path": "test-engine/suites/rebook/CN-API-ReBook.robot",
+      "status": "PASS",
+      "suite": "Rebook / CN-API-ReBook",
+      "tags": [
+        "SFMRPMurexTradVald",
+        "SFMRPRegression",
+        "SFMRPStellaRebook",
+        "SFMRPTradVald",
+        "behavior:rebook:eligibility",
+        "scenario:rebook:cn-api:001-005"
+      ],
+      "test_id": "test:rebook:cn-api:001-005",
+      "test_name": "CN-API-Rebook-001-005",
+      "verification_approval": "pending"
+    },
+    {
+      "assertion_status": "supported",
+      "behavior_id": "behavior:rebook:eligibility",
+      "elapsed_seconds": 0.007134,
+      "message": "",
+      "relationship": "EXERCISES",
+      "requirement_refs": [],
+      "scenario_id": "scenario:rebook:cn-api:001-006",
+      "source_line": 248,
+      "source_path": "test-engine/suites/rebook/CN-API-ReBook.robot",
+      "status": "PASS",
+      "suite": "Rebook / CN-API-ReBook",
+      "tags": [
+        "SFMRPMurexTradVald",
+        "SFMRPRegression",
+        "SFMRPStellaRebook",
+        "SFMRPTradVald",
+        "behavior:rebook:eligibility",
+        "scenario:rebook:cn-api:001-006"
+      ],
+      "test_id": "test:rebook:cn-api:001-006",
+      "test_name": "CN-API-Rebook-001-006",
+      "verification_approval": "pending"
+    },
+    {
+      "assertion_status": "supported",
+      "behavior_id": "behavior:rebook:eligibility",
+      "elapsed_seconds": 0.008962,
+      "message": "",
+      "relationship": "EXERCISES",
+      "requirement_refs": [],
+      "scenario_id": "scenario:rebook:cn-api:001-007",
+      "source_line": 276,
+      "source_path": "test-engine/suites/rebook/CN-API-ReBook.robot",
+      "status": "PASS",
+      "suite": "Rebook / CN-API-ReBook",
+      "tags": [
+        "SFMRPMurexTradVald",
+        "SFMRPRegression",
+        "SFMRPStellaRebook",
+        "SFMRPTradVald",
+        "behavior:rebook:eligibility",
+        "scenario:rebook:cn-api:001-007"
+      ],
+      "test_id": "test:rebook:cn-api:001-007",
+      "test_name": "CN-API-Rebook-001-007",
+      "verification_approval": "pending"
+    },
+    {
+      "assertion_status": "supported",
+      "behavior_id": "behavior:rebook:eligibility",
+      "elapsed_seconds": 0.022941,
+      "message": "",
+      "relationship": "EXERCISES",
+      "requirement_refs": [],
+      "scenario_id": "scenario:rebook:cn-api:001-008",
+      "source_line": 305,
+      "source_path": "test-engine/suites/rebook/CN-API-ReBook.robot",
+      "status": "PASS",
+      "suite": "Rebook / CN-API-ReBook",
+      "tags": [
+        "behavior:rebook:eligibility",
+        "regression",
+        "scenario:rebook:cn-api:001-008",
+        "smoke"
+      ],
+      "test_id": "test:rebook:cn-api:001-008",
+      "test_name": "CN-API-Rebook-001-008",
+      "verification_approval": "pending"
+    },
+    {
+      "assertion_status": "supported",
+      "behavior_id": "behavior:rebook:eligibility",
+      "elapsed_seconds": 0.015024,
+      "message": "",
+      "relationship": "EXERCISES",
+      "requirement_refs": [],
+      "scenario_id": "scenario:rebook:cn-api:001-009",
+      "source_line": 343,
+      "source_path": "test-engine/suites/rebook/CN-API-ReBook.robot",
+      "status": "PASS",
+      "suite": "Rebook / CN-API-ReBook",
+      "tags": [
+        "behavior:rebook:eligibility",
+        "regression",
+        "scenario:rebook:cn-api:001-009",
+        "smoke"
+      ],
+      "test_id": "test:rebook:cn-api:001-009",
+      "test_name": "CN-API-Rebook-001-009",
+      "verification_approval": "pending"
+    },
+    {
+      "assertion_status": "supported",
+      "behavior_id": "behavior:rebook:eligibility",
+      "elapsed_seconds": 0.014627,
+      "message": "",
+      "relationship": "EXERCISES",
+      "requirement_refs": [],
+      "scenario_id": "scenario:rebook:cn-api:001-010",
+      "source_line": 383,
+      "source_path": "test-engine/suites/rebook/CN-API-ReBook.robot",
+      "status": "PASS",
+      "suite": "Rebook / CN-API-ReBook",
+      "tags": [
+        "behavior:rebook:eligibility",
+        "regression",
+        "scenario:rebook:cn-api:001-010",
+        "smoke"
+      ],
+      "test_id": "test:rebook:cn-api:001-010",
+      "test_name": "CN-API-Rebook-001-010",
+      "verification_approval": "pending"
+    },
+    {
+      "assertion_status": "supported",
+      "behavior_id": "behavior:rebook:eligibility",
+      "elapsed_seconds": 0.011415,
+      "message": "",
+      "relationship": "EXERCISES",
+      "requirement_refs": [],
+      "scenario_id": "scenario:rebook:stella:eco-amendment",
+      "source_line": 8,
+      "source_path": "test-engine/suites/rebook/CN-API-StellaAmendment-Rebook.robot",
+      "status": "PASS",
+      "suite": "Rebook / CN-API-StellaAmendment-Rebook",
+      "tags": [
+        "SFMRPMOValidationRemodel",
+        "SFMRPRegression",
+        "SFMRPStellaTradVald",
+        "SFMRPTradVald",
+        "behavior:rebook:eligibility",
+        "scenario:rebook:stella:eco-amendment"
+      ],
+      "test_id": "test:rebook:stella:eco-amendment",
+      "test_name": "CN-API-StellaEcoAmd-UserActionAndPostRls-001-001",
+      "verification_approval": "pending"
+    },
+    {
+      "assertion_status": "supported",
+      "behavior_id": "behavior:rebook:eligibility",
+      "elapsed_seconds": 0.012231,
+      "message": "",
+      "relationship": "EXERCISES",
+      "requirement_refs": [],
+      "scenario_id": "scenario:rebook:stella:non-eco-amendment",
+      "source_line": 23,
+      "source_path": "test-engine/suites/rebook/CN-API-StellaAmendment-Rebook.robot",
+      "status": "PASS",
+      "suite": "Rebook / CN-API-StellaAmendment-Rebook",
+      "tags": [
+        "SFMRPMOValidationRemodel",
+        "SFMRPRegression",
+        "SFMRPStellaTradVald",
+        "SFMRPTradVald",
+        "behavior:rebook:eligibility",
+        "scenario:rebook:stella:non-eco-amendment"
+      ],
+      "test_id": "test:rebook:stella:non-eco-amendment",
+      "test_name": "CN-API-StellaNonEcoAmd-UserActionAndPostRls-001-005",
+      "verification_approval": "pending"
+    },
+    {
+      "assertion_status": "supported",
+      "behavior_id": "behavior:rebook:eligibility",
+      "elapsed_seconds": 0.017773,
+      "message": "",
+      "relationship": "EXERCISES",
+      "requirement_refs": [],
+      "scenario_id": "scenario:rebook:uber:001-008",
+      "source_line": 8,
+      "source_path": "test-engine/suites/rebook/STML-API-UBER-Rebook.robot",
+      "status": "PASS",
+      "suite": "Rebook / STML-API-UBER-Rebook",
+      "tags": [
+        "behavior:rebook:eligibility",
+        "regression",
+        "scenario:rebook:uber:001-008",
+        "smoke"
+      ],
+      "test_id": "test:rebook:uber:001-008",
+      "test_name": "CN-API-Rebook-001-008",
+      "verification_approval": "pending"
+    },
+    {
+      "assertion_status": "supported",
+      "behavior_id": "behavior:rebook:eligibility",
+      "elapsed_seconds": 0.017944,
+      "message": "",
+      "relationship": "EXERCISES",
+      "requirement_refs": [],
+      "scenario_id": "scenario:rebook:uber:001-009",
+      "source_line": 41,
+      "source_path": "test-engine/suites/rebook/STML-API-UBER-Rebook.robot",
+      "status": "PASS",
+      "suite": "Rebook / STML-API-UBER-Rebook",
+      "tags": [
+        "behavior:rebook:eligibility",
+        "regression",
+        "scenario:rebook:uber:001-009",
+        "smoke"
+      ],
+      "test_id": "test:rebook:uber:001-009",
+      "test_name": "CN-API-Rebook-001-009",
+      "verification_approval": "pending"
+    }
+  ]
+}
