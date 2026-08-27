@@ -25,8 +25,8 @@ cashflow linkage.
 
 ## Business Evidence
 
-Live LLM Wiki project: `Ratan-Settlement`
-Project ID: `9e1984bc-764f-4abd-b898-84ea9d8e95b9`
+OpenKB root: `knowledge-base`
+Retrieval mode: `openkb-mcp`
 Retrieved: 2026-08-27
 
 - `wiki/sources/25-cash-settlement-home-page--25-cash-settlement-home-page--22-functional-requirement--27-settlement-day2-requir--1oyjh4.md`

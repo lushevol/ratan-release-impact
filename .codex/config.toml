@@ -2,12 +2,9 @@
 # project is trusted. Keep .mcp.json in parallel for clients that use that
 # convention.
 
-[mcp_servers.llm-wiki]
+[mcp_servers.openkb]
 command = ".venv/bin/python"
-args = [".claude/tools/mcp_trace_proxy.py", "--server", "llm-wiki", "--", "node", "/Applications/LLM Wiki.app/Contents/Resources/mcp-server/dist/src/index.js"]
-
-[mcp_servers.llm-wiki.env]
-LLM_WIKI_API_TOKEN = "dummy"
+args = [".claude/tools/mcp_trace_proxy.py", "--server", "openkb", "--", ".venv/bin/python", ".claude/tools/openkb-mcp.py", "--kb-dir", "knowledge-base"]
 
 [mcp_servers.sdlcGraph]
 command = ".venv/bin/python"

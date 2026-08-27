@@ -1,6 +1,6 @@
 ---
 name: requirement-grill
-description: Interrogate ambiguous or underspecified business requirements before implementation or impact analysis, using LLM Wiki for background knowledge and asking the user only for rules the available evidence cannot establish.
+description: Interrogate ambiguous or underspecified business requirements before implementation or impact analysis, using OpenKB for background knowledge and asking the user only for rules the available evidence cannot establish.
 metadata:
   short-description: Clarify requirements with evidence and targeted questions
 ---
@@ -11,7 +11,7 @@ Use this skill when a requirement contains ambiguous business terms, competing i
 
 ## Evidence-first routing
 
-1. Search LLM Wiki before asking the user for background business knowledge. Use `mcp__llm_wiki__llm_wiki_search` or `mcp__llm_wiki__llm_wiki_chat` and prefer authoritative requirement, design, policy, and decision pages over generated summaries.
+1. Search OpenKB before asking the user for background business knowledge. Use `mcp__openkb__openkb_search`, then `mcp__openkb__openkb_read` for the exact cited page. Use `mcp__openkb__openkb_query` only when model-backed synthesis is needed. Prefer authoritative requirement, design, policy, and decision pages over generated summaries.
 2. Record the page title/path and the exact rule it establishes. Treat Wiki evidence as background and authority only when the source is directly relevant and unambiguous.
 3. If Wiki has no authoritative answer, is contradictory, or the question is specific to the requested change, ask the user or named business owner. Do not fill the gap with an assumption.
 4. Use source inspection and the available architecture/code MCPs only to establish current behavior and impact. Target the actual business repository under `repos/`; never treat the analysis harness itself as business-code evidence. They do not decide business intent.

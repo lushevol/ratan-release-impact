@@ -1,18 +1,17 @@
 {
   "mcpServers": {
-    "llm-wiki": {
+    "openkb": {
       "command": ".venv/bin/python",
       "args": [
         ".claude/tools/mcp_trace_proxy.py",
         "--server",
-        "llm-wiki",
+        "openkb",
         "--",
-        "node",
-        "/Applications/LLM Wiki.app/Contents/Resources/mcp-server/dist/src/index.js"
-      ],
-      "env": {
-        "LLM_WIKI_API_TOKEN": "dummy"
-      }
+        ".venv/bin/python",
+        ".claude/tools/openkb-mcp.py",
+        "--kb-dir",
+        "knowledge-base"
+      ]
     },
     "sdlcGraph": {
       "command": ".venv/bin/python",

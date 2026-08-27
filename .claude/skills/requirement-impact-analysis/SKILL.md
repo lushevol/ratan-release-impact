@@ -1,13 +1,13 @@
 ---
 name: requirement-impact-analysis
-description: Produce evidence-backed requirement impact reports by combining authoritative business/design material from LLM Wiki, cross-repository architecture from SDLC Graph, and exact symbol/process blast radius from GitNexus. Use when assessing what a requirement changes, which services, APIs, tables, topics, components, and tests are affected, or whether an intended behavior is proven.
+description: Produce evidence-backed requirement impact reports by combining authoritative business/design material from OpenKB, cross-repository architecture from SDLC Graph, and exact symbol/process blast radius from GitNexus. Use when assessing what a requirement changes, which services, APIs, tables, topics, components, and tests are affected, or whether an intended behavior is proven.
 ---
 
 # Requirement Impact Analysis
 
 Use the three project MCP servers as an evidence chain, not as interchangeable search engines:
 
-1. Use `llm-wiki` to establish business intent, terminology, decisions, acceptance criteria, and known limitations.
+1. Use `openkb` to establish business intent, terminology, decisions, acceptance criteria, and known limitations.
 2. Use `sdlcGraph` to identify candidate repositories and traverse business and runtime relationships.
 3. Use `gitnexus` plus exact source inspection to confirm symbols, callers, execution processes, and blast radius.
 
@@ -19,11 +19,11 @@ Read [evidence and reporting](references/evidence-and-reporting.md) before issui
 
 Separate current behavior, desired behavior, invariants, removals, additions, boundary conditions, and undefined terms. Convert each rule into an independently testable predicate. Do not silently choose a meaning for an overloaded field such as payment type, settlement type, direction, or trade event.
 
-If any material predicate remains ambiguous, invoke `$requirement-grill` before continuing. It must search LLM Wiki for authoritative background first, then ask the user or named business owner only for rules that Wiki cannot establish. Do not proceed to an implementation recommendation while the grill verdict is `BLOCKED ON REQUIREMENT DECISION`.
+If any material predicate remains ambiguous, invoke `$requirement-grill` before continuing. It must search OpenKB for authoritative background first, then ask the user or named business owner only for rules that the knowledge base cannot establish. Do not proceed to an implementation recommendation while the grill verdict is `BLOCKED ON REQUIREMENT DECISION`.
 
 ### 2. Establish business evidence
 
-Search LLM Wiki for the exact control, business terms, prior decisions, and linked source pages. Prefer direct requirement/design pages over generated concept summaries. Record document title/path and which assertion it supports. If no authoritative source defines a requested term or behavior, mark it `UNRESOLVED` and state what owner or document is needed.
+Search OpenKB for the exact control, business terms, prior decisions, and linked source pages. Read each exact cited page before using it as evidence. Prefer direct requirement/design pages over generated concept summaries. Record document title/path and which assertion it supports. If no authoritative source defines a requested term or behavior, mark it `UNRESOLVED` and state what owner or document is needed.
 
 ### 3. Find candidate architecture
 

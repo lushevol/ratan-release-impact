@@ -44,3 +44,18 @@ The project-scoped `gitnexusRepos` MCP launcher filters GitNexus's global regist
 | Index, status, clean, wiki CLI commands | `.claude/skills/gitnexus/gitnexus-cli/SKILL.md` |
 
 <!-- gitnexus:end -->
+
+## OpenKB — Business and Design Evidence
+
+The portable Ratan Settlement knowledge base lives under `knowledge-base/`.
+The project-scoped `openkb` MCP server replaces the LLM Wiki desktop
+dependency.
+
+- Search with `openkb_search`, then read exact cited pages with `openkb_read`
+  before treating a business rule as evidence.
+- Use `openkb_graph` to inspect page relationships and `openkb_query` only when
+  model-backed synthesis is needed.
+- Prefer direct requirement, design, policy, and decision pages over generated
+  concept summaries.
+- A search miss is not proof that a rule does not exist. Mark unsupported
+  business intent as unresolved.

@@ -1,0 +1,4 @@
+# Runtime locks and interactive state are machine-local.
+*.lock
+chats/
+query-history/

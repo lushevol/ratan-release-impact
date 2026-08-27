@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+set -eu
+
+project_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+
+: "${OPENKB_HOST:=127.0.0.1}"
+: "${OPENKB_PORT:=7566}"
+
+if ! command -v openkb-web >/dev/null 2>&1; then
+    printf '%s\n' "OpenKB is not installed. Install it with: uv tool install 'openkb[web]'" >&2
+    exit 127
+fi
+
+export OPENKB_KB_ROOT="${OPENKB_KB_ROOT:-$project_root}"
+exec openkb-web --host "$OPENKB_HOST" --port "$OPENKB_PORT" "$@"

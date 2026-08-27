@@ -6,7 +6,7 @@
 
 Build an advisory **Behavior-Centric SDLC Impact Assistant** for release managers.
 
-The assistant will take a small manual trigger derived from an Azure DevOps work item, retrieve the corresponding requirements and design evidence from the existing local LLM Wiki MCP, and produce an evidence-backed candidate impact report covering:
+The assistant will take a small manual trigger derived from an Azure DevOps work item, retrieve the corresponding requirements and design evidence from the project-local OpenKB MCP, and produce an evidence-backed candidate impact report covering:
 
 - affected UI applications and backend services;
 - provided or consumed endpoints;
@@ -20,11 +20,11 @@ The result is decision support, not an authoritative change list and not an auto
 
 The POC will introduce no new code-analysis products. It will use only:
 
-- the existing local `llm-wiki` MCP as the primary POC interface for requirements, acceptance criteria, business rules, and design evidence;
+- the project-local `openkb` MCP as the primary POC interface for requirements, acceptance criteria, business rules, and design evidence;
 - the existing SDLC scanner and graph artifacts;
 - the existing GitNexus index for targeted code context;
 - repository source, manifests, tests, configuration, and migrations;
-- the checked-in `knowledge-base/wiki` only as an explicit fallback when the live Wiki is unavailable;
+- direct reads from the checked-in `knowledge-base/wiki` as an explicit degraded mode when MCP transport is unavailable;
 - the AI skill as an orchestrator and reasoner.
 
 SCIP, Joern, a new graph database, live Azure DevOps integration, and runtime telemetry are explicitly excluded from the POC.
@@ -37,9 +37,9 @@ SCIP, Joern, a new graph database, live Azure DevOps integration, and runtime te
 | Product authority | Advisory candidate scope |
 | Required granularity | UI/backend applications, endpoints, events, tables, configuration/rules, and tests |
 | Business source | PO-authored requirement, initially identified by an ADO work-item reference |
-| POC retrieval source | Local `llm-wiki` MCP project `Ratan-Settlement` (`9e1984bc-764f-4abd-b898-84ea9d8e95b9`) |
+| POC retrieval source | Project-local `openkb` MCP over `knowledge-base/` |
 | Analysis trigger | Manual work-item reference, title, search terms, and optional pasted requirement text; no ADO API |
-| Wiki fallback | Checked-in `knowledge-base/wiki`, visibly classified as `wiki-local-fallback` |
+| Retrieval degraded mode | Direct checked-in `knowledge-base/wiki` reads, visibly classified as `wiki-local-direct` |
 | Business confirmation | Placeholder confirmation state until PO/BA participation is available |
 | Insufficient evidence | Return `INDETERMINATE` with focused questions |
 | Runtime telemetry | Future enhancement, not a POC dependency |
@@ -83,7 +83,7 @@ The target reasoning chain is:
 
 ```text
 Manual analysis trigger
-    -> LLM Wiki requirement/design evidence bundle
+    -> OpenKB requirement/design evidence bundle
     -> immutable requirement snapshot
     -> proposed behavior delta
     -> affected scenario
@@ -101,7 +101,7 @@ The POC will not:
 - claim method-level business correctness;
 - prove that an unobserved dependency does not exist;
 - query Azure DevOps directly;
-- treat an LLM Wiki answer without source references as confirmed evidence;
+- treat an OpenKB answer without source references as confirmed evidence;
 - ingest production OpenTelemetry data;
 - act as an automated release gate;
 - install or introduce another static-analysis or code-property-graph tool;
@@ -115,17 +115,17 @@ The POC will not:
 Manual ADO-derived analysis trigger
         |
         v
-LLM Wiki MCP evidence retrieval
-  - health and project selection
+OpenKB MCP evidence retrieval
+  - health and knowledge-base identity
   - requirement and acceptance criteria
   - related design and business rules
   - source document/section references
         |
         v
 Frozen Wiki evidence bundle
-  - retrieval timestamp and project ID
-  - item IDs, titles, paths, headings
-  - live or explicit local-fallback status
+  - retrieval timestamp and knowledge-base/config identity
+  - titles, paths, headings, and content digests
+  - MCP or explicit local-direct status
         |
         v
 Requirement normalizer
@@ -166,33 +166,39 @@ Local behavior catalog          Technical evidence sources
 
 ### Component responsibilities
 
-#### Existing LLM Wiki MCP
+#### Project-local OpenKB MCP
 
-The local `llm-wiki` MCP is the primary POC retrieval interface for business meaning. The PO remains the business authority; the Wiki supplies the accessible requirement and design record.
+The project-local `openkb` MCP is the primary POC retrieval interface for business meaning. The PO remains the business authority; the checked-in OpenKB wiki supplies the accessible requirement and design record.
 
 The configured server is:
 
 ```json
 {
-  "command": "node",
+  "command": ".venv/bin/python",
   "args": [
-    "/Applications/LLM Wiki.app/Contents/Resources/mcp-server/dist/src/index.js"
+    ".claude/tools/mcp_trace_proxy.py",
+    "--server",
+    "openkb",
+    "--",
+    ".venv/bin/python",
+    ".claude/tools/openkb-mcp.py",
+    "--kb-dir",
+    "knowledge-base"
   ]
 }
 ```
 
-The validated project is `Ratan-Settlement`, project ID `9e1984bc-764f-4abd-b898-84ea9d8e95b9`. The logical operations are:
+The validated knowledge-base root is `knowledge-base/`. The logical operations are:
 
-- health/status and project discovery;
-- `search` for requirements, concepts, features, rules, and processes;
-- `get`/`context` for the authoritative matched content;
-- `related` for linked requirements, designs, systems, and business concepts;
-- `source` for the exact document section used as evidence;
-- graph queries where the server exposes a useful relationship graph.
+- `openkb_status` for health, inventory, and root identity;
+- `openkb_search` for requirements, concepts, features, rules, and processes;
+- `openkb_read` for exact authoritative matched content;
+- `openkb_graph` for linked requirements, designs, systems, and business concepts;
+- `openkb_query` for optional model-backed synthesis.
 
-The current adapter already calls `llm_wiki_search`. The POC should extend the workflow contract to retain item IDs, project ID, title, source path, heading/section, retrieval time, server confidence when present, and whether the evidence came from the live MCP or local fallback.
+The workflow contract must retain title, source path, heading/section, retrieval time, rank score when present, content digest, and whether the evidence came through MCP or direct local reads.
 
-The desktop LLM Wiki application must be running for live retrieval. If it is unavailable, the assistant may use `knowledge-base/wiki` only when the fallback contains enough cited content. Otherwise the business mapping becomes `unknown` and the result is `INDETERMINATE`. The fallback must never be presented as live Wiki evidence.
+The MCP adapter and compiled wiki are checked in and do not require a desktop application or model credential for search, read, and graph operations. If MCP transport is unavailable, the assistant may read `knowledge-base/wiki` directly only when it retains exact path citations and labels the mode `wiki-local-direct`. Otherwise the business mapping becomes `unknown` and the result is `INDETERMINATE`.
 
 #### Existing SDLC scanner
 
@@ -459,16 +465,15 @@ Detect keys and identifiers, not secret values. Configuration and rule evidence 
 
 ## 11. Requirement input contract
 
-The POC accepts a small local YAML or JSON analysis request. No ADO API is needed. The request identifies the PO requirement and tells the assistant what to retrieve from the LLM Wiki. Pasted requirement text is an optional hint or override that must remain visibly distinct from Wiki evidence.
+The POC accepts a small local YAML or JSON analysis request. No ADO API is needed. The request identifies the PO requirement and tells the assistant what to retrieve from OpenKB. Pasted requirement text is an optional hint or override that must remain visibly distinct from knowledge-base evidence.
 
 ```yaml
 analysisRequestId: impact-ADO-POC-001-r1
 workItemRef: ADO-POC-001
 title: Example requirement
-wiki:
-  server: llm-wiki
-  projectId: 9e1984bc-764f-4abd-b898-84ea9d8e95b9
-  projectName: Ratan-Settlement
+knowledgeBase:
+  server: openkb
+  root: knowledge-base
   requirementRef: optional-wiki-item-id-or-path
   searchTerms:
     - exact domain noun
@@ -486,9 +491,9 @@ confirmationStatus: placeholder-unconfirmed
 The assistant converts the analysis request and retrieved Wiki evidence into an immutable normalized `RequirementSnapshot`. That snapshot must retain:
 
 - analysis request ID and work-item reference;
-- Wiki server/project ID;
-- exact retrieved Wiki item IDs, paths, headings, and retrieval time;
-- live/fallback status;
+- OpenKB server/root identity;
+- exact retrieved Wiki paths, headings, content digests, and retrieval time;
+- MCP/local-direct status;
 - normalized requirement, acceptance criteria, current behavior, expected behavior, constraints, and invariants;
 - every manual hint and whether it agrees or conflicts with Wiki content;
 - placeholder confirmation status.
@@ -515,7 +520,7 @@ The existing “at least two overlapping words” algorithm may remain only as a
 Return `INDETERMINATE` when any of these hold:
 
 - no behavior or technical contract can be matched with supported evidence;
-- the configured Wiki project cannot be resolved and the explicit fallback is insufficient;
+- the configured OpenKB root cannot be resolved and direct local evidence is insufficient;
 - Wiki results lack source paths/sections needed for business claims;
 - multiple plausible behaviors produce materially different scope;
 - the graph baseline is stale relative to a scoped repository;
@@ -636,7 +641,7 @@ Status: ACTIONABLE | INDETERMINATE
 Impact severity: LOW | MEDIUM | HIGH | CRITICAL | UNKNOWN
 Uncertainty: LOW | MEDIUM | HIGH
 Baseline: scan ID and eight repository commits
-Wiki evidence: project ID, evidence-bundle ID, retrieval time, LIVE | LOCAL_FALLBACK | UNAVAILABLE
+Wiki evidence: OpenKB root, evidence-bundle ID, retrieval time, MCP | LOCAL_DIRECT | UNAVAILABLE
 Behavior confirmation: placeholder-unconfirmed
 ```
 
@@ -651,7 +656,7 @@ Behavior confirmation: placeholder-unconfirmed
 
 Show complete relationship paths with evidence, not just node names.
 
-Business conclusions must cite the LLM Wiki item ID/path and section. Technical conclusions must cite graph/source evidence. A path that joins business and technical evidence must expose the mapping assertion and its classification rather than hiding the join inside model prose.
+Business conclusions must cite the exact OpenKB path and section. Technical conclusions must cite graph/source evidence. A path that joins business and technical evidence must expose the mapping assertion and its classification rather than hiding the join inside model prose.
 
 ### 15.4 Regression tests
 
@@ -677,7 +682,7 @@ Only list behaviors expected not to change when the requirement supplies an inva
 
 ### 15.7 Unknowns and questions
 
-List missing Wiki evidence, fallback use, stale scans, dynamic values, ambiguous behavior mappings, unresolved technical contracts, and clarification questions.
+List missing Wiki evidence, local-direct use, stale scans, dynamic values, ambiguous behavior mappings, unresolved technical contracts, and clarification questions.
 
 ### 15.8 Machine-readable output
 
@@ -692,9 +697,9 @@ Generate matching JSON for later comparison with implementation diffs.
 4. Run the enhanced SDLC scanner.
 5. Reject the baseline if required repositories failed or diagnostics are fatal.
 6. Add a manual analysis request containing the ADO reference and Wiki lookup hints.
-7. Check LLM Wiki health and resolve the configured project.
+7. Check OpenKB health and resolve the configured knowledge-base root.
 8. Search/retrieve the requirement, acceptance criteria, related designs, rules, and exact source sections.
-9. Freeze the retrieved content as a provenance-only Wiki evidence bundle; mark live or local fallback.
+9. Freeze the retrieved content as a provenance-only Wiki evidence bundle; mark MCP or local-direct mode.
 10. Normalize an immutable requirement snapshot and identify conflicts with manual hints.
 11. Extract a placeholder-unconfirmed behavior delta.
 12. Match the behavior and technical contract seeds.
@@ -705,7 +710,7 @@ Generate matching JSON for later comparison with implementation diffs.
 17. Release manager reviews the evidence and unknowns.
 ```
 
-Every report must embed the scan ID, graph version, requirement revision, Wiki project/evidence-bundle identity, retrieval mode/time, and the commit of each repository.
+Every report must embed the scan ID, graph version, requirement revision, OpenKB root/evidence-bundle identity, retrieval mode/time, and the commit of each repository.
 
 ## 17. End-to-end flow contracts
 
@@ -765,7 +770,7 @@ Required fields:
 - `analysisRequestId`;
 - `workItemRef`;
 - title or exact search terms;
-- Wiki project ID;
+- OpenKB root identity;
 - requested mode (`prediction` for the POC);
 - optional manual hints with their source explicitly marked.
 
@@ -775,9 +780,9 @@ Validation and failure:
 - do not treat manual hints as Wiki-confirmed facts;
 - the request ID and effective content must be immutable for a run.
 
-### Contract C03: `WikiAvailability`
+### Contract C03: `OpenKBAvailability`
 
-**Producer:** LLM Wiki adapter
+**Producer:** OpenKB adapter
 
 **Consumer:** Wiki retrieval orchestrator and report diagnostics
 
@@ -786,10 +791,9 @@ Required fields:
 ```json
 {
   "schemaVersion": "1.0",
-  "server": "llm-wiki",
-  "status": "LIVE | LOCAL_FALLBACK | UNAVAILABLE",
-  "projectId": "9e1984bc-764f-4abd-b898-84ea9d8e95b9",
-  "projectName": "Ratan-Settlement",
+  "server": "openkb",
+  "status": "MCP | LOCAL_DIRECT | UNAVAILABLE",
+  "root": "knowledge-base",
   "checkedAt": "...",
   "availableOperations": [],
   "diagnostics": []
@@ -798,33 +802,31 @@ Required fields:
 
 Validation and failure:
 
-- resolve the requested project before search;
-- if live retrieval fails, record the error class without exposing sensitive response content;
-- local fallback is a separate status, not a successful live result;
-- `UNAVAILABLE` plus insufficient manual/fallback content forces `INDETERMINATE`.
+- resolve the requested root before search;
+- if MCP retrieval fails, record the error class without exposing sensitive response content;
+- local-direct mode is a separate status, not a successful MCP result;
+- `UNAVAILABLE` plus insufficient manual/local content forces `INDETERMINATE`.
 
-### Contract C04: `WikiQuery`
+### Contract C04: `OpenKBQuery`
 
 **Producer:** requirement normalizer/retrieval orchestrator
 
-**Consumer:** LLM Wiki adapter
+**Consumer:** OpenKB adapter
 
 Logical operations:
 
 ```text
-status/projects -> verify server and project
-search          -> discover candidate requirements/designs/rules/processes
-get/context     -> retrieve authoritative matched content
-related         -> retrieve linked business/design artifacts
-source          -> retrieve exact evidence section
-graph           -> optional related-item discovery when supported
+openkb_status -> verify server, root, and inventory
+openkb_search -> discover candidate requirements/designs/rules/processes
+openkb_read   -> retrieve authoritative matched content
+openkb_graph  -> retrieve linked business/design artifacts
+openkb_query  -> optional model-backed synthesis
 ```
 
 Minimum search request:
 
 ```json
 {
-  "project_id": "...",
   "query": "exact domain nouns and meaningful action phrase",
   "top_k": 8,
   "include_content": true
@@ -834,12 +836,12 @@ Minimum search request:
 Rules:
 
 - use concise domain nouns and actions rather than repeatedly sending the full requirement;
-- preserve request ID, operation, normalized query, project ID, and retrieval time;
+- preserve request ID, operation, normalized query, OpenKB root, and retrieval time;
 - responses without a source item/path/section may guide further retrieval but cannot confirm a business assertion.
 
-### Contract C05: `WikiEvidenceBundle`
+### Contract C05: `OpenKBEvidenceBundle`
 
-**Producer:** LLM Wiki retrieval orchestrator
+**Producer:** OpenKB retrieval orchestrator
 
 **Consumer:** requirement normalizer, behavior mapper, impact report
 
@@ -847,20 +849,19 @@ Required fields:
 
 ```yaml
 schemaVersion: "1.0"
-bundleId: wiki-evidence-<hash>
+bundleId: openkb-evidence-<hash>
 analysisRequestId: impact-...
-projectId: 9e1984bc-764f-4abd-b898-84ea9d8e95b9
-retrievalMode: live-mcp | wiki-local-fallback
+root: knowledge-base
+retrievalMode: openkb-mcp | wiki-local-direct
 retrievedAt: <UTC timestamp>
 queries: []
 items:
-  - itemId: <server-id-if-present>
-    title: <title>
+  - title: <title>
     kind: requirement | acceptance-criteria | design | rule | process | concept | unknown
-    sourcePath: <path-or-source-id>
+    sourcePath: <wiki-path>
     section: <heading-or-anchor>
     revision: <if-present>
-    serverConfidence: <if-present>
+    rankScore: <if-present>
     contentDigest: <hash>
     excerpt: <bounded evidence text>
 diagnostics: []
@@ -1138,7 +1139,7 @@ Rules:
 
 - Markdown and JSON must not contradict each other;
 - every conclusion links to an evidence assertion/path;
-- fallback Wiki evidence is visibly marked;
+- local-direct Wiki evidence is visibly marked;
 - an `INDETERMINATE` report may contain partial evidence but no reassuring low-risk conclusion.
 
 ### Contract C17: `ReleaseReviewDecision`
@@ -1189,7 +1190,7 @@ Rules:
 - Every artifact must identify the Wiki evidence bundle and repository baseline that produced it.
 - Business claims require Wiki/manual business evidence; technical claims require graph/source evidence.
 - A join between business and technical evidence is an explicit assertion with its own classification.
-- Live Wiki, local fallback, manual hint, deterministic extraction, GitNexus evidence, and AI inference must remain distinguishable.
+- OpenKB MCP, local-direct reads, manual hints, deterministic extraction, GitNexus evidence, and AI inference must remain distinguishable.
 - No component may silently downgrade an upstream error or ambiguity.
 - Secrets, full connection strings, credentials, and unrestricted Wiki content must not enter committed artifacts.
 - Contract schema changes require a schema-version change and backward-compatibility or migration decision.
@@ -1200,8 +1201,8 @@ Rules:
 
 Deliver:
 
-- LLM Wiki availability/query/evidence-bundle contracts;
-- configured Wiki project identity and explicit fallback policy;
+- OpenKB availability/query/evidence-bundle contracts;
+- configured OpenKB root identity and explicit local-direct policy;
 - analysis-request schema;
 - requirement input schema;
 - behavior/scenario catalog schema;
@@ -1210,7 +1211,7 @@ Deliver:
 - five to ten manually authored POC requirements grounded in existing repository capabilities;
 - placeholder confirmation policy.
 
-Exit criterion: the same analysis request, Wiki evidence bundle, and repository baseline produce deterministic inputs and report structure; Wiki outage/fallback behavior is testable.
+Exit criterion: the same analysis request, Wiki evidence bundle, and repository baseline produce deterministic inputs and report structure; OpenKB MCP outage/local-direct behavior is testable.
 
 ### Phase 1: Eight-repository evidence baseline
 
@@ -1284,7 +1285,7 @@ Because real historical requirements, linked diffs, and PO/BA labels are unavail
 - 100% of conclusions have evidence or an explicit inference/unknown label;
 - zero no-match cases are reported as low risk;
 - all eight repository commits are recorded in every baseline;
-- every run records the Wiki project, evidence-bundle identity, retrieval time, and live/fallback status;
+- every run records the OpenKB root, evidence-bundle identity, retrieval time, and MCP/local-direct status;
 - deterministic reruns produce equivalent graph/report results;
 - scanner coverage is reported for endpoints, events, tables, tests, configuration, flags, and rules;
 - evidence paths preserve edge type, direction, source path, and line range;
@@ -1310,8 +1311,8 @@ Those require real PO/BA-confirmed behaviors and historical before/after ground 
 | Gate | Pass condition |
 |---|---|
 | Baseline integrity | All eight repositories and commits recorded; no fatal scan failure |
-| Business evidence integrity | Wiki project and evidence bundle recorded; every normalized business claim is cited or explicitly manual/inferred |
-| Wiki failure safety | Live outage is visible; fallback is explicit; insufficient fallback returns `INDETERMINATE` |
+| Business evidence integrity | OpenKB root and evidence bundle recorded; every normalized business claim is cited or explicitly manual/inferred |
+| Wiki failure safety | MCP outage is visible; local-direct mode is explicit; insufficient local evidence returns `INDETERMINATE` |
 | Evidence integrity | Every assertion contains provenance and classification |
 | Safe failure | Missing/ambiguous mappings return `INDETERMINATE` |
 | Bounded scope | No unrestricted bidirectional traversal or service-to-everything expansion |
@@ -1328,7 +1329,7 @@ Failure of a gate does not invalidate the graph; it limits which claims the assi
 config/
   sdlc-graph.yaml
   repository-aliases.yaml
-  llm-wiki.yaml
+  openkb.yaml
 
 analysis-requests/
   poc/
@@ -1400,7 +1401,7 @@ After evidence quality and historical evaluation are credible, add post-change c
 | Risk | Mitigation |
 |---|---|
 | Behavior mapping appears authoritative without PO/BA | Placeholder status, visible uncertainty, no automatic promotion |
-| Wiki MCP or desktop application is unavailable | Health contract, explicit local fallback, visible retrieval mode, `INDETERMINATE` when insufficient |
+| OpenKB MCP is unavailable | Health contract, explicit local-direct mode, visible retrieval mode, `INDETERMINATE` when insufficient |
 | Wiki search result lacks authoritative context | Follow with context/source retrieval; uncited results remain discovery hints |
 | Wiki and manual hints disagree | Preserve both sources, report the conflict, request clarification |
 | No match incorrectly looks safe | Mandatory `INDETERMINATE` state |
@@ -1420,7 +1421,7 @@ Proceed with the POC as an **evidence-backed release impact assistant**, not as 
 The most valuable first milestone is not a larger graph. It is a trustworthy, bounded report that:
 
 1. expresses the proposed behavior delta;
-2. cites the exact LLM Wiki requirement/design evidence used to understand that delta;
+2. cites the exact OpenKB requirement/design evidence used to understand that delta;
 3. explains each impacted UI/service/contract/data item with technical evidence and an explicit business-to-technical mapping assertion;
 4. recommends regression tests with honest evidence classifications;
 5. distinguishes impact severity from uncertainty;
