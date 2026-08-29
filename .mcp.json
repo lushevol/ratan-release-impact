@@ -25,7 +25,7 @@
         "--data-dir",
         "sdlc-graph-output",
         "--config",
-        "sdlc-graph-config.json"
+        "config/sdlc-graph-config.json"
       ]
     },
     "gitnexusRepos": {

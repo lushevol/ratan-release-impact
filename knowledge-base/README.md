@@ -21,7 +21,7 @@ or changed source documents in OpenKB's native hash registry.
 ## CLI
 
 For a complete company-Mac installation, run `scripts/setup.sh` from the
-repository root and follow `SETUP_FOR_AI.md`.
+repository root and follow `docs/SETUP_FOR_AI.md`.
 
 Install OpenKB with its web dependencies, then run commands from the repository
 root:

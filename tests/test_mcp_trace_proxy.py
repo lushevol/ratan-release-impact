@@ -10,7 +10,7 @@ from types import SimpleNamespace
 from unittest import mock
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 PROXY = ROOT / ".claude" / "tools" / "mcp_trace_proxy.py"
 TRACE_TOOLS = ROOT / ".claude" / "skills" / "sdlc-graph" / "tools"
 sys.path.insert(0, str(TRACE_TOOLS))

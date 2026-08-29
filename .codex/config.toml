@@ -8,7 +8,7 @@ args = [".claude/tools/mcp_trace_proxy.py", "--server", "openkb", "--", ".venv/b
 
 [mcp_servers.sdlcGraph]
 command = ".venv/bin/python"
-args = [".claude/tools/mcp_trace_proxy.py", "--server", "sdlcGraph", "--", ".venv/bin/python", ".claude/skills/sdlc-graph/tools/sdlc_graph_mcp.py", "--data-dir", "sdlc-graph-output", "--config", "sdlc-graph-config.json"]
+args = [".claude/tools/mcp_trace_proxy.py", "--server", "sdlcGraph", "--", ".venv/bin/python", ".claude/skills/sdlc-graph/tools/sdlc_graph_mcp.py", "--data-dir", "sdlc-graph-output", "--config", "config/sdlc-graph-config.json"]
 
 [mcp_servers.gitnexusRepos]
 command = ".venv/bin/python"

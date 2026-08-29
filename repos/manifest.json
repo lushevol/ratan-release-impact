@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "description": "Business repositories required by the Ratan release-impact harness.",
+  "repository_root": "repos",
+  "defaults": {
+    "branch": "main",
+    "required": true,
+    "indexer": "gitnexus"
+  },
+  "repositories": [
+    {"name": "mfe-base", "path": "repos/mfe-base", "kind": "node", "url": "https://sc-ado@dev.azure.com/sc-ado/FMQPR/_git/51358-mfe-base"},
+    {"name": "mfe-cashflow-blotter", "path": "repos/mfe-cashflow-blotter", "kind": "node", "url": "https://sc-ado@dev.azure.com/sc-ado/FMQPR/_git/51358-mfe-cashflow-blotter"},
+    {"name": "mfe-ratan-container", "path": "repos/mfe-ratan-container", "kind": "node", "url": "https://sc-ado@dev.azure.com/sc-ado/FMQPR/_git/51358-mfe-ratan-container"},
+    {"name": "mfe-root-config", "path": "repos/mfe-root-config", "kind": "node", "url": "https://sc-ado@dev.azure.com/sc-ado/FMQPR/_git/51358-mfe-root-config"},
+    {"name": "ratan-cash-settlement-accounting-service", "path": "repos/ratan-cash-settlement-accounting-service", "kind": "maven", "url": "https://sc-ado@dev.azure.com/sc-ado/FMQPR/_git/51358-ratan-cash-settlement-accounting-service"},
+    {"name": "ratan-cash-settlement-batch-service", "path": "repos/ratan-cash-settlement-batch-service", "kind": "maven", "url": "https://sc-ado@dev.azure.com/sc-ado/FMQPR/_git/51358-ratan-cash-settlement-batch-service"},
+    {"name": "ratan-cash-settlement-group-management-service", "path": "repos/ratan-cash-settlement-group-management-service", "kind": "maven", "url": "https://sc-ado@dev.azure.com/sc-ado/FMQPR/_git/51358-ratan-cash-settlement-group-management-service"},
+    {"name": "ratan-cash-settlement-netting-service", "path": "repos/ratan-cash-settlement-netting-service", "kind": "maven", "url": "https://sc-ado@dev.azure.com/sc-ado/FMQPR/_git/51358-ratan-cash-settlement-netting-service"},
+    {"name": "ratan-cash-settlement-orchestration", "path": "repos/ratan-cash-settlement-orchestration", "kind": "maven", "url": "https://sc-ado@dev.azure.com/sc-ado/FMQPR/_git/51358-ratan-cash-settlement-orchestration"},
+    {"name": "ratan-cash-settlement-query-service", "path": "repos/ratan-cash-settlement-query-service", "kind": "maven", "url": "https://sc-ado@dev.azure.com/sc-ado/FMQPR/_git/51358-ratan-cash-settlement-query-service"},
+    {"name": "ratan-cash-settlement-ssi-stamping-service", "path": "repos/ratan-cash-settlement-ssi-stamping-service", "kind": "maven", "url": "https://sc-ado@dev.azure.com/sc-ado/FMQPR/_git/51358-ratan-cash-settlement-ssi-stamping-service"},
+    {"name": "ratan-cashflow-lifecycle-service", "path": "repos/ratan-cashflow-lifecycle-service", "kind": "maven", "url": "https://sc-ado@dev.azure.com/sc-ado/FMQPR/_git/51358-ratan-cashflow-lifecycle-service"},
+    {"name": "ratan-mxg-cashflow-adaptor", "path": "repos/ratan-mxg-cashflow-adaptor", "kind": "maven", "url": "https://sc-ado@dev.azure.com/sc-ado/FMQPR/_git/51358-ratan-mxg-cashflow-adaptor"}
+  ]
+}

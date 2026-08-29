@@ -3,7 +3,7 @@
 
 This repository is an analysis harness. The business repositories under `repos/` are indexed individually by GitNexus; the harness root is intentionally not indexed. Use GitNexus against the actual repository that owns the code under analysis.
 
-The project-scoped `gitnexusRepos` MCP launcher filters GitNexus's global registry to direct children of `repos/` for each session. Use its `repo` argument explicitly.
+The project-scoped `gitnexusRepos` MCP launcher filters GitNexus's global registry to direct children of `repos/` for each session. Use its `repo` argument explicitly. The clone inventory is `repos/manifest.json`; use `scripts/clone-repos.sh` instead of inventing repository paths.
 
 > Index stale? Change into the target repository under `repos/` and run `gitnexus analyze` (or `node .gitnexus/run.cjs analyze` when that repository has a local runner). No target index means no GitNexus blast-radius score should be invented.
 

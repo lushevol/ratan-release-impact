@@ -40,6 +40,9 @@ Useful variants:
 # Also generate semantic vectors. This downloads/loads local models and may
 # take a long time on the first run.
 ./scripts/setup.sh --embed
+
+# Clone, install each Node/Maven checkout, and build GitNexus indexes.
+./scripts/setup.sh --install-repo-deps --index-repos
 ```
 
 The default setup intentionally builds the lexical QMD index only. This makes
@@ -66,23 +69,22 @@ Langfuse is absent or unavailable.
 
 ## 4. Private repositories and GitNexus
 
-Clone the business repositories required by the deployment as direct children
-of `repos/` using the company's approved remotes. Do not nest them deeper and
-do not commit them to the harness:
+`repos/manifest.json` is the checked-in inventory of business repositories and
+contains the approved Azure DevOps origin URL for each entry. The AI-friendly
+command is:
 
 ```bash
-mkdir -p repos
-# Example only; replace with approved company remotes.
-git clone <company-remote> repos/<repository-name>
+./scripts/clone-repos.sh --dry-run
+./scripts/clone-repos.sh
 ```
 
-Each repository must be indexed from inside its own directory:
+Do not nest repositories deeper or commit them to the harness. Each repository
+must be indexed from inside its own directory; the wrapper handles this for
+the whole manifest:
 
 ```bash
-for repo in repos/*; do
-  [ -d "$repo/.git" ] || continue
-  (cd "$repo" && gitnexus analyze)
-done
+./scripts/install-repo-deps.sh
+./scripts/index-repos.sh
 ```
 
 The project-scoped `gitnexusRepos` MCP filters its registry to these direct
@@ -124,7 +126,7 @@ contain `backend: "qmd"` plus `wiki/...` citations.
 Run the harness tests:
 
 ```bash
-./.venv/bin/python -m unittest -v
+./scripts/run-tests.sh
 ```
 
 Check QMD health and refresh it after wiki changes:
@@ -147,6 +149,26 @@ The test engine has its own locked environment and setup command:
 test-engine/scripts/setup.sh
 test-engine/scripts/run_all.sh
 ```
+
+## 7. Maintenance commands
+
+Use `./scripts/status.sh` for a complete read-only health report. Individual
+commands are available through `python3 scripts/ratan.py` and thin wrappers:
+
+```bash
+./scripts/check-dependencies.sh
+./scripts/check-mcp.sh
+./scripts/kb-add.sh knowledge-base/raw/path/to/new-document.md
+./scripts/kb-update.sh knowledge-base/raw/path/to/changed-document.md
+./scripts/kb-delete.sh <OpenKB filename-or-unique-identifier>
+./scripts/kb-compile.sh
+python3 scripts/ratan.py graph build
+```
+
+Knowledge-base add/update/delete commands use OpenKB's native raw-document
+registry, recompile the wiki, and refresh the local QMD index. Pass `--no-qmd`
+only when an index refresh is intentionally deferred. `kb-delete.sh` is
+destructive and should only be run for an explicit removal request.
 
 ## AI operating rules
 

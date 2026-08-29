@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ask Repo"
+  short_description: "Operate this release-impact harness"
+  default_prompt: "Use $ask-repo to set up, validate, or maintain this repository."

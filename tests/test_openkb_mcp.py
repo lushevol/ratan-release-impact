@@ -13,7 +13,7 @@ from unittest.mock import patch
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 SERVER_PATH = ROOT / ".claude" / "tools" / "openkb-mcp.py"
 
 

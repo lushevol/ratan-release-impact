@@ -4,10 +4,10 @@
 This repository is an analysis harness. The business repositories under
 `repos/` are indexed individually by GitNexus; the harness root is deliberately
 not indexed. Use the project-scoped `gitnexusRepos` MCP with an explicit
-`repo` argument when querying business code. Read `SETUP_FOR_AI.md` before
+`repo` argument when querying business code. Read `docs/SETUP_FOR_AI.md` before
 working from a fresh checkout.
 
-> Index stale? Run `node .gitnexus/run.cjs analyze` from the project root — it auto-selects an available runner. No `.gitnexus/run.cjs` yet? `npx gitnexus analyze` (npm 11 crash → `npm i -g gitnexus`; #1939).
+> Index stale? Change into the target checkout under `repos/` and run `gitnexus analyze` there. The harness root is not indexed; do not invent a root blast-radius score.
 
 ## Always Do
 
@@ -29,10 +29,10 @@ working from a fresh checkout.
 
 | Resource | Use for |
 |----------|---------|
-| `gitnexus://repo/ratan-release-impact/context` | Codebase overview, check index freshness |
-| `gitnexus://repo/ratan-release-impact/clusters` | All functional areas |
-| `gitnexus://repo/ratan-release-impact/processes` | All execution flows |
-| `gitnexus://repo/ratan-release-impact/process/{name}` | Step-by-step execution trace |
+| `gitnexus://repo/{business-repo}/context` | Codebase overview, check index freshness |
+| `gitnexus://repo/{business-repo}/clusters` | All functional areas |
+| `gitnexus://repo/{business-repo}/processes` | All execution flows |
+| `gitnexus://repo/{business-repo}/process/{name}` | Step-by-step execution trace |
 
 ## CLI
 

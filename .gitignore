@@ -10,4 +10,8 @@ infra/langfuse/.env
 .cache/
 
 # Business repositories are cloned separately and indexed in place by GitNexus.
-/repos/
+# Keep only the AI-readable inventory and its operator notes under version control.
+/repos/*
+!/repos/
+!/repos/manifest.json
+!/repos/README.md

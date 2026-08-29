@@ -11,6 +11,9 @@ INSTALL_OPENKB=1
 INSTALL_TEST_ENGINE=1
 INSTALL_GITNEXUS=1
 EMBED_QMD=0
+CLONE_REPOS=1
+INDEX_REPOS=0
+INSTALL_REPO_DEPS=0
 
 usage() {
   cat <<'EOF'
@@ -24,6 +27,9 @@ Options:
   --skip-test-engine  Do not create test-engine/.venv.
   --skip-gitnexus     Do not install the GitNexus CLI.
   --embed             Attempt QMD vector embedding after lexical indexing.
+  --clone-repos       Compatibility flag; repository cloning is always attempted.
+  --install-repo-deps Install Node/Maven dependencies in cloned repositories.
+  --index-repos       Run GitNexus analysis for cloned repositories.
   -h, --help          Show this help.
 EOF
 }
@@ -39,7 +45,7 @@ has_command() {
 
 require_command() {
   if ! has_command "$1"; then
-    die "missing '$1'. See SETUP_FOR_AI.md for the company-Mac prerequisites."
+    die "missing '$1'. See docs/SETUP_FOR_AI.md for the company-Mac prerequisites."
   fi
 }
 
@@ -59,6 +65,18 @@ while (( $# > 0 )); do
       ;;
     --embed)
       EMBED_QMD=1
+      shift
+      ;;
+    --clone-repos)
+      CLONE_REPOS=1
+      shift
+      ;;
+    --install-repo-deps)
+      INSTALL_REPO_DEPS=1
+      shift
+      ;;
+    --index-repos)
+      INDEX_REPOS=1
       shift
       ;;
     -h|--help)
@@ -137,6 +155,15 @@ if (( INSTALL_TEST_ENGINE == 1 )); then
   "${ROOT_DIR}/test-engine/scripts/setup.sh"
 fi
 
+printf 'Cloning missing repositories from repos/manifest.json\n'
+"$PYTHON_BIN" "${ROOT_DIR}/scripts/ratan.py" repos clone
+if (( INSTALL_REPO_DEPS == 1 )); then
+  "$PYTHON_BIN" "${ROOT_DIR}/scripts/ratan.py" repos install
+fi
+if (( INDEX_REPOS == 1 )); then
+  "$PYTHON_BIN" "${ROOT_DIR}/scripts/ratan.py" repos index
+fi
+
 printf '\nSetup verification\n'
 printf '%s\n' "- QMD: $(qmd --version)"
 if has_command openkb; then
@@ -150,4 +177,4 @@ else
   printf '%s\n' '- GitNexus: not installed (optional until repos/ are cloned)'
 fi
 printf '%s\n' '- MCP: run .venv/bin/python .claude/tools/openkb-mcp.py --kb-dir knowledge-base'
-printf '%s\n' '- Next: read SETUP_FOR_AI.md for environment, private-repository, and MCP-client setup.'
+printf '%s\n' '- Next: read docs/SETUP_FOR_AI.md for environment, private-repository, and MCP-client setup.'

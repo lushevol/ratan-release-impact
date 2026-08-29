@@ -97,7 +97,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repos", type=Path, default=WORKSPACE / "repos")
     parser.add_argument("--out", type=Path, default=WORKSPACE / OUTPUT_NAME)
-    parser.add_argument("--descriptions", type=Path, default=WORKSPACE / "architecture-descriptions.json",
+    parser.add_argument("--descriptions", type=Path, default=WORKSPACE / "config" / "architecture-descriptions.json",
                         help="Optional AI/curated business-description overrides")
     parser.add_argument("--open", action="store_true", help="Open the published viewer in the default browser")
     args = parser.parse_args()
