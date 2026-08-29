@@ -35,4 +35,4 @@ The documented `AUTO_NETTING` lifecycle applies to the `STRATEGIC_SETTLEMENT` bu
 
 Disable and delete must remain separate operations: both use `REMOVE`, but their statuses and intended meanings differ.
 
-The source documents the business sequence but does not establish authorization checks, atomicity, idempotency, retries, compensation, or the rule-evaluation policy during the update-approval window. See [[is-auto-netting-update-approval-atomic]].
+The source documents the business sequence but does not establish authorization checks, atomicity, idempotency, retries, compensation, or the rule-evaluation policy during the update-approval window. See is auto netting update approval atomic.

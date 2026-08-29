@@ -70,7 +70,7 @@ The 44 recorded values total 14,073 units, with an average of approximately 319.
 
 Values are generally higher later in the displayed sequence than in early June. This may indicate increased use, expanded scope, changed reporting, or a changed calculation, but this tracker alone does not establish a cause.
 
-See [[inter-entity-netting-benefit-trend]] for a constrained descriptive summary and [[what-does-auto-netting-benefit-measure]] for the unresolved metric definition.
+See inter entity netting benefit trend for a constrained descriptive summary and what does auto netting benefit measure for the unresolved metric definition.
 
 ## Data limitations
 

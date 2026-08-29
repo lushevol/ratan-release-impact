@@ -17,7 +17,7 @@ The CPN Business Scenario states that China Day 1 is deliberately narrower than 
 
 - China Day 1 does not include [[razor]] cashflows.
 - It covers derivative products currently supported outside Mx2.11.
-- For products that remain in [[murex-2-11]], the existing CPN static table is enriched to add China as an eligible entity.
+- For products that remain in murex 2 11, the existing CPN static table is enriched to add China as an eligible entity.
 - Eligible Mx2.11 cashflows are sent at MLS level into [[ratan]] rather than [[razor]].
 - Clients absent from the CPN static table remain gross in Mx2.11. A manual queue is proposed for pushing selected cashflows to RATAN for ad-hoc CPN netting.
 - Automated execution of CPN netting is outside Day 1 scope. The Tech Design distinguishes this from automated eligibility identification: eligibility may be identified automatically, but selection and execution of netting remain manual in the described workflow.
@@ -93,4 +93,4 @@ The CPN Business Scenario proposes using the settlement instruction of the first
 
 ## Future scope
 
-The CPN Business Scenario identifies cross-netting between FXMM, RAZOR FX, RAZOR ALM, [[stella]], and Mx2.11 as a future requirement. It should not be inferred as part of China Day 1.
+The CPN Business Scenario identifies cross-netting between FXMM, RAZOR FX, RAZOR ALM, stella, and Mx2.11 as a future requirement. It should not be inferred as part of China Day 1.

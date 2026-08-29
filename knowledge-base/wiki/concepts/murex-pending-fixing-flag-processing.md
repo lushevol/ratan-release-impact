@@ -21,4 +21,4 @@ The `X` pathway is described for UK and DE real-time delivery. It applies both t
 
 For CN, SG, IN, and MY real-time processing, the fixed leg is sent with `Y`; after fixing, Murex reverses the fixed leg and supplies the net cashflow. For UK and DE batch processing, direct batch delivery with `N` can proceed without the provisional exception flow.
 
-The source does not formally define the semantic meaning or allowed domain of `X`, nor correlation, ordering, or duplicate-file controls for flag updates. See [[what-is-the-authoritative-meaning-of-murex-pending-fixing-values]] and [[what-is-the-fmrp-murex-fix-flag-file-correlation-and-retry-contract]].
+The source does not formally define the semantic meaning or allowed domain of `X`, nor correlation, ordering, or duplicate-file controls for flag updates. See what is the authoritative meaning of murex pending fixing values and what is the fmrp murex fix flag file correlation and retry contract.

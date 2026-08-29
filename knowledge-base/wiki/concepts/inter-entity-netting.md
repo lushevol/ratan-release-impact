@@ -5,12 +5,12 @@ tags: ["inter-entity-netting", "auto-netting", "legal-entity", "cash-settlement"
 related: ["auto-netting", "cash-settlement", "financial-field-classification", "pending-auto-netting-state", "netting-resultant-cashflow", "netting-eligibility-rules", "auto-netting-datetime-calculation", "netting-un-net-lifecycle", "netting-resultant-cashflow-lifecycle", "released-resultant-amendment-handling", "irs-resultant-cashflow-netting", "nostro-static-validation", "clearing-resultant-swift-suppression", "settlement-suppression-exceptions", "ratan", "lms", "irs", "fmo-post-trade-portal", "direction-dependent-prematch-key", "auto-netting-rule-check", "settlement-day-2", "ratan-cash-settlement-netting-service", "is-inter-entity-netting-resultant-counterparty-selection-deterministic"]
 created: 2026-08-22
 updated: 2026-08-22
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/2024 changes.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Inter Entity Netting/Inter Entity Netting - UAT.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Inter Entity Netting/Inter Entity Netting Design.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Inter Entity Netting/Inter Entity Netting - UAT.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Inter Entity Netting/Inter Entity Netting Design.md"]
 ---
 
 # Inter-Entity Netting
 
-Inter-entity netting concerns the matching of eligible cashflows across different legal or booking entities. The UAT evidence describes eligible cashflows being automatically combined into settlement resultants through the [[fmo-post-trade-portal]] and [[ratan]].
+Inter-entity netting concerns the matching of eligible cashflows across different legal or booking entities. The UAT evidence describes eligible cashflows being automatically combined into settlement resultants through the fmo post trade portal and [[ratan]].
 
 The design source describes the matching model more specifically as matching reciprocal cashflows between two entities. A `Pay` cashflow from one entity is matched with a corresponding `Receive` cashflow from the counterparty when their direction-dependent composite keys resolve to the same value.
 
@@ -35,11 +35,11 @@ The design does not establish the authoritative rules for:
 - Value-date eligibility.
 - Downstream processing after matching.
 
-These questions should be tracked with [[is-inter-entity-netting-resultant-counterparty-selection-deterministic]].
+These questions should be tracked with is inter entity netting resultant counterparty selection deterministic.
 
 ## Processing scope and participating services
 
-The design identifies [[ratan-cash-settlement-netting-service]] and three other services as participating in the feature. It identifies Cashflow Enrichment as the stage that sets the USD transferred amount before the [[auto-netting-rule-check]] performed by the Auto Netting Job.
+The design identifies ratan cash settlement netting service and three other services as participating in the feature. It identifies Cashflow Enrichment as the stage that sets the USD transferred amount before the [[auto-netting-rule-check]] performed by the Auto Netting Job.
 
 The design source does not establish whether a match:
 

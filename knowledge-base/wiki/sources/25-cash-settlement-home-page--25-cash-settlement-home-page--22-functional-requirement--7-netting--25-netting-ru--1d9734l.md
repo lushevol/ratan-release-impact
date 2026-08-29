@@ -15,7 +15,7 @@ sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requir
 
 This undated functional-requirement fragment defines intended static-data categories for cashflow netting in [[ratan]].
 
-For CN Day 1, only the **Netting eligibility rule** remains in scope. It identifies cashflows eligible for netting and holds them as NSTP. [[settlement-ops]] filters the pending-netting cashflows and performs netting manually.
+For CN Day 1, only the **Netting eligibility rule** remains in scope. It identifies cashflows eligible for netting and holds them as NSTP. settlement ops filters the pending-netting cashflows and performs netting manually.
 
 The proposed Potential netting rule, Auto netting rule, and separate GUI tiles are explicitly marked as removed from CN Day 1 scope. The source does not establish whether those designs were cancelled permanently, deferred, or planned for another release.
 

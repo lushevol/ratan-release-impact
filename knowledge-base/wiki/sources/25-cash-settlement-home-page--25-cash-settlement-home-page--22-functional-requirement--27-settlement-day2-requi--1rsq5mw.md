@@ -13,7 +13,7 @@ sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requir
 ---
 # Cash Settlement Home Page — Settlement Day 2 Inter-Entity Netting Requirement
 
-This functional requirement proposes controlled bilateral auto-netting in [[ratan-one]] for SCB internal-entity cashflows that otherwise settle gross and incur nostro charges. It is a specification, not confirmation of deployment, testing, or realized savings.
+This functional requirement proposes controlled bilateral auto-netting in ratan one for SCB internal-entity cashflows that otherwise settle gross and incur nostro charges. It is a specification, not confirmation of deployment, testing, or realized savings.
 
 The referenced ADO is [12141954](https://dev.azure.com/sc-ado/FMQPR/_workitems/edit/12141954). Its early statement that BIC netting can be used conflicts with the detailed requirement, which says that as-is BIC netting cannot cover the scenario and requires a new netting type.
 
@@ -128,4 +128,4 @@ Two rollout alternatives are proposed, with no selected option recorded:
 
 Both netting resultants and residual gross flows are intended eventually to be FULL STP. Dependencies include removal of auto-affirmation logic, an unresolved rebook-cashflow identifier and authorization warning, and an accepted temporary operational risk for unmatched trades.
 
-See [[which-inter-entity-mapping-static-is-authoritative]], [[does-inter-entity-netting-require-affirmation]], and [[what-is-the-approved-inter-entity-rebook-cashflow-control]].
+See which inter entity mapping static is authoritative, does inter entity netting require affirmation, and what is the approved inter entity rebook cashflow control.

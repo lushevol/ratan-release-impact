@@ -32,4 +32,4 @@ Booking Entity is mandatory because the calculated netting date uses the busines
 | UK | GBP |
 | GERMANY | EUR |
 
-The requirement does not fully define whether `VD` means payment date, valuation date, or another business date in every context. It also leaves time-zone handling, non-business-day rollover, and event-time versus receipt-time authority unresolved. These questions are tracked in [[queries/what-is-the-authoritative-auto-netting-cutoff-time-semantics]].
+The requirement does not fully define whether `VD` means payment date, valuation date, or another business date in every context. It also leaves time-zone handling, non-business-day rollover, and event-time versus receipt-time authority unresolved. These questions are tracked in what is the authoritative auto netting cutoff time semantics.

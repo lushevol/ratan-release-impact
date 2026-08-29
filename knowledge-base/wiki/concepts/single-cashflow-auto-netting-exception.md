@@ -11,7 +11,7 @@ sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Cash 
 
 A single-cashflow auto-netting exception is the intended route for an eligible auto-netting group that contains exactly one cashflow when current time reaches or passes `jobTime`.
 
-[[lifecycle-service]] is to invoke the `SettleAsSingle` action, returning that cashflow to `QUEUED`. [[ratan-rule-service]] is then intended to add an [[nstp]] rule that creates a “Single Cashflow” exception based on an SCBML indicator.
+[[lifecycle-service]] is to invoke the `SettleAsSingle` action, returning that cashflow to `QUEUED`. ratan rule service is then intended to add an [[nstp]] rule that creates a “Single Cashflow” exception based on an SCBML indicator.
 
 The source is ambiguous about the SCBML representation:
 

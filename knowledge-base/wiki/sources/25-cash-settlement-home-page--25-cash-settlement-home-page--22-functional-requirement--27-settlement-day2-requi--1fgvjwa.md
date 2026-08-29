@@ -87,4 +87,4 @@ The source uses inconsistent date formats. The entries `6/18/2016` and `07-07-20
 
 The identifiers HK, CHO, TW, AG, and DFC are not expanded in the source. They should not be treated as canonical organization names without verification.
 
-See [[inter-entity-netting-coverage-metrics]] for interpretation of the tracker fields and [[what-is-the-auto-netting-benefit-calculation]] for the unresolved benefit metric.
+See [[inter-entity-netting-coverage-metrics]] for interpretation of the tracker fields and what is the auto netting benefit calculation for the unresolved benefit metric.

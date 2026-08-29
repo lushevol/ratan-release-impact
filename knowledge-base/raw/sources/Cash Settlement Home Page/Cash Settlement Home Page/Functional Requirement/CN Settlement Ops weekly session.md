@@ -1,3 +1,0 @@
-- [2022-10-26](https://confluence.global.standardchartered.com/display/DSP/2022-10-26)
-- [2022-11-16](https://confluence.global.standardchartered.com/display/DSP/2022-11-16)
-- [Open Items](https://confluence.global.standardchartered.com/display/DSP/Open+Items)

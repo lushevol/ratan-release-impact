@@ -14,7 +14,7 @@ Bilateral netting combines multiple eligible cashflows into one resultant cashfl
 ## Normal lifecycle
 
 1. A live manual netting rule is maintained in the [[netting-static-blotter]].
-2. Eligible component cashflows appear in the [[cashflow-blotter]] with `WAITING / Pending Netting`.
+2. Eligible component cashflows appear in the cashflow blotter with `WAITING / Pending Netting`.
 3. The user selects the components and submits the netting operation, including affirmation information where required.
 4. Components transition to `NETTED`.
 5. A resultant cashflow is created with `Affirmation status = 'Affirmed'`, `Payment type = 'Bilateral Netting'`, and completed `NSTP process complete (MAKER_CHECKER)`.

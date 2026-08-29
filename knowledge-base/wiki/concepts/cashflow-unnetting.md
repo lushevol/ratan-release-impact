@@ -14,4 +14,4 @@ Cashflow unnetting reverses a netting operation. The documented DoD requires com
 
 The request model represents unnetting with the `UNNET` action. The process examples include `DEAD`, `WAITING`, and `CANCELLED` records, but they do not provide a complete before-and-after transition or explain whether the original netting identifier remains reusable.
 
-Unnetting semantics are therefore only partially specified. The design does not define atomicity, authorization, repeated-unnet behavior, treatment of downstream processing, or status write-back details. These issues may intersect with [[cashflow-reinstatement-and-replay]], but this source does not prescribe a replay procedure.
+Unnetting semantics are therefore only partially specified. The design does not define atomicity, authorization, repeated-unnet behavior, treatment of downstream processing, or status write-back details. These issues may intersect with cashflow reinstatement and replay, but this source does not prescribe a replay procedure.

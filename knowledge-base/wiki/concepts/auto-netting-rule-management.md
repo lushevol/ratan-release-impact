@@ -31,4 +31,4 @@ Currency-pair criteria, extra netting keys such as `structure id`, and configura
 
 The allowed rule actions are update and delete. There is no refresh function. Changes affect only newly received cashflows.
 
-Cashflows already held in Pending Auto Netting remain there if their rule is updated or deleted before execution. They require manual Ops review, creating an operational reconciliation and ownership concern tracked by [[queries/how-are-pending-auto-netting-cashflows-reconciled-after-rule-changes]].
+Cashflows already held in Pending Auto Netting remain there if their rule is updated or deleted before execution. They require manual Ops review, creating an operational reconciliation and ownership concern tracked by how are pending auto netting cashflows reconciled after rule changes.

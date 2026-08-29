@@ -79,10 +79,10 @@ The demo table contains no scenarios, steps, expected outcomes, preconditions, t
 
 ## Open issues
 
-- [[what-is-the-authoritative-beneficiary-bic-source-and-fallback-rule]]
-- [[how-does-beneficiary-bic-netting-interact-with-ccil-and-bilateral-netting]]
-- [[what-happens-when-a-beneficiary-bic-netting-component-changes-after-resultant-release]]
-- [[what-is-the-authoritative-beneficiary-bic-netting-static-schema-and-governance]]
-- [[what-is-the-authoritative-netting-state-name-and-un-netting-resultant-identity]]
+- what is the authoritative beneficiary bic source and fallback rule
+- how does beneficiary bic netting interact with ccil and bilateral netting
+- what happens when a beneficiary bic netting component changes after resultant release
+- what is the authoritative beneficiary bic netting static schema and governance
+- what is the authoritative netting state name and un netting resultant identity
 
 The source's final note, “BIC is the mediumusage as MXR from SCI,” is not sufficiently clear to establish an SCI, MXR, or BIC sourcing rule.

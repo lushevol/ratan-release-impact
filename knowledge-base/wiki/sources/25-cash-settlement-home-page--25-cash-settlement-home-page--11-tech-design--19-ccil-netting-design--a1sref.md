@@ -58,5 +58,5 @@ The source table is preserved below, including its original field names, values,
 - [[ccil-cashflow-identification]]
 - [[ccil-netting]]
 - [[settlement-method-driven-netting]]
-- [[cash-settlement-platform]]
-- [[ratanone-rule-service]]
+- cash settlement platform
+- ratanone rule service

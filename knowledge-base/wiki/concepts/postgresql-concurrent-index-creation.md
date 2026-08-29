@@ -44,4 +44,4 @@ JOIN pg_stat_activity p ON i.pid = p.pid;
 
 ## Deployment prerequisites
 
-Before executing a production build, establish the PostgreSQL version, table size, write rate, replication topology, existing index definitions, disk headroom, target query plans, scheduling constraints, and the cleanup or rollback procedure. See [[what-is-the-authoritative-ratan-cashflow-history-index-deployment-contract]].
+Before executing a production build, establish the PostgreSQL version, table size, write rate, replication topology, existing index definitions, disk headroom, target query plans, scheduling constraints, and the cleanup or rollback procedure. See what is the authoritative ratan cashflow history index deployment contract.

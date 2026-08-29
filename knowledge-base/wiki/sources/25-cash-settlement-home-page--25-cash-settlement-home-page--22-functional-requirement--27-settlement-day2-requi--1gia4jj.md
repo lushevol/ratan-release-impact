@@ -62,4 +62,4 @@ The comment about removing mandatory affirmation from manual netting is explicit
 
 ## Related wiki context
 
-This requirement should be considered alongside [[concepts/cashflow-auto-netting]], [[concepts/pending-confirmation-affirmation]], [[concepts/netting-resultant-cashflow-lifecycle]], [[concepts/clearing-swift-suppression]], [[concepts/clearing-resultant-swift-suppression]], [[entities/ccs]], [[entities/irs]], and [[stakeholders/settlement-ops]].
+This requirement should be considered alongside [[concepts/cashflow-auto-netting]], pending confirmation affirmation, [[concepts/netting-resultant-cashflow-lifecycle]], [[concepts/clearing-swift-suppression]], [[concepts/clearing-resultant-swift-suppression]], [[entities/ccs]], [[entities/irs]], and settlement ops.

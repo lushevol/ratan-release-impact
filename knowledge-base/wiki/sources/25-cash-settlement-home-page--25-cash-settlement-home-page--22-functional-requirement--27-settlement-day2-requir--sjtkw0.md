@@ -77,4 +77,4 @@ The source does not establish:
 - The lifecycle state or technical mechanism represented by resultant suppression.
 - Formal pass status, execution dates, environments, tester names, logs, or defect references.
 
-These limitations should be considered alongside [[queries/what-is-the-authoritative-auto-netting-cutoff-time-semantics]] and [[queries/what-are-the-ratan-netting-rule-match-and-precedence-semantics]].
+These limitations should be considered alongside what is the authoritative auto netting cutoff time semantics and what are the ratan netting rule match and precedence semantics.

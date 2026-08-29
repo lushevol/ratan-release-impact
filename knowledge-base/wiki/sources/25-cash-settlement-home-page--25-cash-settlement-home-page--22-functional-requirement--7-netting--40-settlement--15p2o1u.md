@@ -207,19 +207,19 @@ The requirement leaves unresolved:
 9. Failed-resultant accounting and reconciliation.
 10. Ownership and sequencing of cancellation during trade amendment.
 
-These questions are tracked in [[queries/what-is-the-authoritative-netting-resultant-lifecycle]].
+These questions are tracked in what is the authoritative netting resultant lifecycle.
 
 ## Related systems
 
 The source references:
 
 - [[entities/ratan]] as the central persistence and workflow system.
-- [[stakeholders/fmo]] as the maker/checker operational team.
+- fmo as the maker/checker operational team.
 - [[entities/razor]] as the downstream boundary after which netting is prohibited.
-- [[entities/fmsre]] as a downstream recipient after SWIFT generation.
-- [[entities/stella]] as the trade-booking and amendment source.
-- [[entities/scbml]] as the payload and physical model.
-- [[entities/bcs]] in the example of product-context netting ID generation.
-- [[entities/sci]] for client netting eligibility data.
+- fmsre as a downstream recipient after SWIFT generation.
+- stella as the trade-booking and amendment source.
+- scbml as the payload and physical model.
+- bcs in the example of product-context netting ID generation.
+- sci for client netting eligibility data.
 - iCDMS for netting agreement documentation.
-- [[entities/murex-2-11]] as a source of product-specific SSI considerations.
+- murex 2 11 as a source of product-specific SSI considerations.

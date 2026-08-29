@@ -33,4 +33,4 @@ This functional requirements document proposes four changes or assessments for [
 
 ## Related wiki material
 
-The requirements extend [[auto-netting-rule-management]] and [[netting-eligibility-rules]]. The released-resultant scenario should be assessed against [[netting-resultant-cashflow-lifecycle]] and [[netting-un-net-lifecycle]]. Removal of auto affirmation is related to [[pending-confirmation-affirmation]] and [[ratan-cashflow-lifecycle-state-machine]].
+The requirements extend [[auto-netting-rule-management]] and [[netting-eligibility-rules]]. The released-resultant scenario should be assessed against [[netting-resultant-cashflow-lifecycle]] and [[netting-un-net-lifecycle]]. Removal of auto affirmation is related to pending confirmation affirmation and ratan cashflow lifecycle state machine.

@@ -5,7 +5,7 @@ tags: [downstream-system, cashflow, pm-ccy, integration, CIS, RATAN, API, settle
 related: [irs-cashflow-aggregation, what-are-the-tlm-lms-and-cis-impacts-of-irs-cashflow-aggregation, ratan, ebbs, hkcs-ratan-cis-api-integration, hau]
 created: 2026-08-23
 updated: 2026-08-23
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Aggregation.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/HKCS initiative.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Aggregation.md"]
 ---
 # CIS
 
@@ -19,7 +19,7 @@ That source provides:
 - No CIS message contract.
 - No confirmed impact.
 
-The required assessment is tracked in [[what-are-the-tlm-lms-and-cis-impacts-of-irs-cashflow-aggregation]].
+The required assessment is tracked in what are the tlm lms and cis impacts of irs cashflow aggregation.
 
 ## HKCS HAU Settlement Flow
 

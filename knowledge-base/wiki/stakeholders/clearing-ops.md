@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-23
 tags: [operations, clearing, uat, auto-netting, settlements, ratan]
 related: [cashflow-auto-netting, clearing-resultant-swift-suppression, ratan-settlement-contact-routing, pss, gbs-settlements-east, gbs-settlements-west, in-country-ops]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Cashflow Auto Netting UAT.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Ratan One Processing Guide (DOI)/Settlements Ops Contacts.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Cashflow Auto Netting UAT.md"]
 ---
 # Clearing Ops
 

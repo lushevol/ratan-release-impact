@@ -15,7 +15,7 @@ Inter-entity netting benefit is the daily metric labelled **Auto netting benefit
 
 The tracker contains 44 dated observations totalling 14,073 unspecified units. It provides numerical values only; it does not state whether benefit represents eliminated payments, netted cashflows, transaction count, monetary savings, operational workload reduction, or another measure.
 
-[[inter-entity-netting-benefit-trend]] records descriptive statistics and observed variation without assigning a causal explanation.
+inter entity netting benefit trend records descriptive statistics and observed variation without assigning a causal explanation.
 
 ## Interpretation constraints
 
@@ -31,4 +31,4 @@ Eligibility controls documented in [[netting-eligibility-rules]] and resultant p
 
 ## Definition required
 
-Before this measure is used as a delivery KPI or governance metric, confirm its unit, formula, system of record, eligible population, date convention, and comparison baseline. These gaps are tracked in [[what-does-auto-netting-benefit-measure]].
+Before this measure is used as a delivery KPI or governance metric, confirm its unit, formula, system of record, eligible population, date convention, and comparison baseline. These gaps are tracked in what does auto netting benefit measure.

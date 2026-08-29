@@ -29,7 +29,7 @@ Trades booked with CCIL counterparties are netted to a single cashflow facing th
 
 ## Strategic and Tactical Approaches
 
-The strategic approach requires a golden source for the non-guaranteed CCIL client list. [[stella]] identifies guaranteed and non-guaranteed CCIL cashflows and stamps `Settlement Method = CCIL`. Business rules stop STP, and Ratan provides filtering and netting capabilities.
+The strategic approach requires a golden source for the non-guaranteed CCIL client list. stella identifies guaranteed and non-guaranteed CCIL cashflows and stamps `Settlement Method = CCIL`. Business rules stop STP, and Ratan provides filtering and netting capabilities.
 
 The tactical approach copies Murex 2.11 CCIL client static data into Ratan logical static data. Ratan uses this local copy to identify non-guaranteed flows and stamp them with `Settlement Method = CCIL`. The copied data and classification logic are explicitly temporary and should be removed after Murex 2.11 decommissioning.
 
@@ -138,4 +138,4 @@ The source also leaves open ownership of tactical Ratan static data, the exact p
 
 ## Related Wiki Topics
 
-See [[ccil-guaranteed-and-non-guaranteed-netting]], [[ccil-settlement-method-stamping]], [[ccil-non-guaranteed-client-static-data]], and [[what-is-the-canonical-ccil-resultant-cashflow-lifecycle]].
+See [[ccil-guaranteed-and-non-guaranteed-netting]], [[ccil-settlement-method-stamping]], [[ccil-non-guaranteed-client-static-data]], and what is the canonical ccil resultant cashflow lifecycle.

@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-24
 tags: ["financial-platform", "cash-settlement", "CPT", "murex", "upstream-system", "korea", "trading-platform", "cashflows", "settlement", "product-strategy", "migration", "settlements", "trading-system", "source-system", "cashflow-events", "IRS", "pending-fixing", "netting", "cashflow", "dvp", "ccs", "auto-dvp", "test-dependency", "integration", "trade-validation"]
 related: ["2025-cash-settlement-tranche-1", "cashflow-monitoring", "cashflow-reconciliation", "ratan-settlement", "korea", "murex-to-ratan-rule-replication", "korea-settlement-localization", "swap-agent", "sal-swap-agent-hard-blocker", "fmo-post-trade-portal", "nstp", "fmrp", "ratan", "projects/murex-cashflow-migration-to-ratan", "murex-to-ratan-cashflow-integration", "murex-ratan-migration-reconciliation", "murex-2-11", "murex-korea", "trade-event-id-lineage", "cashflow-event-versioning", "what-is-the-authoritative-murex-cancellation-removal-cashflow-sequencing-and-correlation-model", "murex-pending-fixing-flag-processing", "pending-another-leg-status", "auto-dvp", "receive-to-pay-cashflow-linkage", "dvp-nstp-exception-handling", "auto-dvp-ebbs", "cashflow-lineage-and-amendment-correlation", "stella", "25-cash-settlement-home-page--25-cash-settlement-home-page--22-functional-requirement--27-settlement-day2-requir--obojum", "what-is-the-approved-tanzania-dfcc-uat-scenario-and-murex-dependency", "tanzania-scb-dar", "cash-settlement-exception-handling", "cash-settlement-ola-break-monitoring", "cashflow-reinstatement-and-replay", "itrs", "tds3", "scbml", "ratanone", "trade-validation-gating", "what-is-the-authoritative-murex-trade-to-cashflow-linkage", "what-is-the-canonical-trade-validation-key-by-source-system"]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/FMRP China Cash Settlement Delivery Plan/Cash Settlement RATAN ONE 2025 Release Plan/2025 Cash Settlement Tranche 1 Ratan Runbook.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/2026 Changes/Korea Migration Functional Analysis.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Hard Blocker/Self testing evdience.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/03-FMRP Requirement.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Deprecated docs/Murex Trade & Cashflow Events.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/IRS Fix Leg & Floating leg payment handling.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Auto DVP (eBBS).md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Auto DVP (eBBS)/AutoDVP UAT testing.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Enable Settlement for Manual Entities/03 UAT testing/UAT testing checking-Tranche1.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Exception Handling.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/RATANONE Cash Settlement Technical Design/Ratan processing on cashflow events/Trade Validation Confirmation Process Tech Design.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/IRS Fix Leg & Floating leg payment handling.md"]
 ---
 
 # Murex
@@ -39,7 +39,7 @@ Accepted statuses are `VALD` and `COMP`. Unlike FMRP, this trade-validation sour
 
 The same design proposes that trade-confirmation and validation status come from [[tds3]]. It states that internal counterparty and SCF deals may be automatically confirmed, while confirmation is unavailable in CDU and payments may remain pending for affirmation in BAU.
 
-For cashflow linkage, the design extracts both `originalTradeId(murex)` and `tradeId(murex)` from [[scbml]]. It does not establish which identifier is authoritative for joining a Murex cashflow to the TDS3 trade-status record. This unresolved linkage is tracked in [[what-is-the-authoritative-murex-trade-to-cashflow-linkage]].
+For cashflow linkage, the design extracts both `originalTradeId(murex)` and `tradeId(murex)` from scbml. It does not establish which identifier is authoritative for joining a Murex cashflow to the TDS3 trade-status record. This unresolved linkage is tracked in what is the authoritative murex trade to cashflow linkage.
 
 These claims are limited to the proposed RatanOne trade-confirmation and validation design. They do not establish a general Murex trade-validation rule, confirmation process, or authoritative trade-to-cashflow key for other interfaces or processing scopes.
 
@@ -78,13 +78,13 @@ For IRS processing, this source states that Murex supplies `Cashflow.Pending_Fix
 
 In UK and DE real-time flows, the same requirement states that Murex can send provisional `X`, causing RATAN to apply the `Fixing Unknown` NSTP rule. Murex subsequently supplies the `FMRP_MUREX_FIX_FLAG` file to update the pending-fixing outcome.
 
-This Murex flag-driven handling is distinct from [[stella]] IRS identification, which, according to the IRS payment-handling requirement, depends on taxonomy, coupon type, and schedule lookup logic.
+This Murex flag-driven handling is distinct from stella IRS identification, which, according to the IRS payment-handling requirement, depends on taxonomy, coupon type, and schedule lookup logic.
 
 ## Auto DVP CCS eligibility, linkage, and UAT specification
 
 According to the Auto DVP (eBBS) requirement, [[murex]] is a source system for cashflows processed by RATAN.
 
-In the initial [[auto-dvp]] scope, a Murex cashflow is eligible as CCS when:
+In the initial auto dvp scope, a Murex cashflow is eligible as CCS when:
 
 ```text
 Instrument_Common__ISDA_Taxonomy == "IRD|CS"
@@ -104,9 +104,9 @@ For the UAT specification, Murex Receive and Pay cashflows are linked when they 
 Murex: same tradeid + payment date
 ```
 
-The Auto DVP requirement documents an amendment example in which a replacement Murex pay cashflow has a changed trade ID while retaining an original trade relationship. The authoritative linkage contract for that case is unresolved in [[what-is-the-authoritative-murex-receive-to-pay-linkage-key-for-amended-cashflows]].
+The Auto DVP requirement documents an amendment example in which a replacement Murex pay cashflow has a changed trade ID while retaining an original trade relationship. The authoritative linkage contract for that case is unresolved in what is the authoritative murex receive to pay linkage key for amended cashflows.
 
-The UAT source does not confirm the Murex product version. It is distinct from [[murex-2-11]], which represents the existing version-specific wiki entry. The UAT specification is unexecuted: it defines expected Murex-related inputs and outcomes but does not provide completed test results.
+The UAT source does not confirm the Murex product version. It is distinct from murex 2 11, which represents the existing version-specific wiki entry. The UAT specification is unexecuted: it defines expected Murex-related inputs and outcomes but does not provide completed test results.
 
 ## Role in cashflow rules and self-testing evidence
 
@@ -129,7 +129,7 @@ According to the 2025 cash settlement runbook, `Murex` is the platform explicitl
 - Push tranche 1 CPT cashflows using the stated test amount of `1 USD/0.01 XAU`.
 - Cancel the CPT cashflow after monitoring.
 
-These activities are part of the controlled testing sequence for [[2025 Cash Settlement Tranche 1]]. The runbook also calls for repeating the testing behavior on Apr 29 and Apr 30, subject to clarification of the repeated schedule.
+These activities are part of the controlled testing sequence for 2025 Cash Settlement Tranche 1. The runbook also calls for repeating the testing behavior on Apr 29 and Apr 30, subject to clarification of the repeated schedule.
 
 The runbook does not evaluate Murex generally or provide evidence that these actions were completed successfully. Its statements describe intended operational responsibilities only.
 
@@ -139,11 +139,11 @@ The Korea migration functional analysis identifies Murex as an upstream system w
 
 The checklist asks whether the integration uses MQ, batch processing, or both. It does not define the interface contract, required fields, message schemas, ownership, or implementation status.
 
-These Murex questions are part of the broader migration readiness assessment described in [[26-auto-netting-page-md-files--135-cash-settlement-home-page-cash-settlement-home-page-functional-requirement-2--1ah4lj]]. They should not be treated as confirmation that a Murex interface change is required or delivered.
+These Murex questions are part of the broader migration readiness assessment described in 26 auto netting page md files  135 cash settlement home page cash settlement home page functional requirement 2  1ah4lj. They should not be treated as confirmation that a Murex interface change is required or delivered.
 
 ## Trade and cashflow events in deprecated material
 
-The deprecated [[25-cash-settlement-home-page--25-cash-settlement-home-page--22-functional-requirement--15-deprecated-docs--28-m--1b3wu0h|Murex Trade & Cashflow Events]] note discusses Murex-originated lifecycle activity, including:
+The deprecated Murex Trade & Cashflow Events note discusses Murex-originated lifecycle activity, including:
 
 - Trade booking.
 - Cancellation.
@@ -152,9 +152,9 @@ The deprecated [[25-cash-settlement-home-page--25-cash-settlement-home-page--22-
 
 That source identifies a downstream risk for [[ratan]] when related Murex cashflow events arrive out of order or cannot be reliably correlated. It reports reversal linkage for selected cancellation-related cashflows, but reports no equivalent linkage for cancellation-removal outputs.
 
-The deprecated note does not establish which Murex fields carry source-event identity, predecessor lineage, cashflow identity, or version ordering. That contract remains open in [[what-is-the-authoritative-murex-cancellation-removal-cashflow-sequencing-and-correlation-model]].
+The deprecated note does not establish which Murex fields carry source-event identity, predecessor lineage, cashflow identity, or version ordering. That contract remains open in what is the authoritative murex cancellation removal cashflow sequencing and correlation model.
 
-These observations are limited to the cited deprecated material. They are not generalized here to all Murex products, versions, or interfaces. For version-specific material, see [[murex-2-11]] and [[murex-korea]].
+These observations are limited to the cited deprecated material. They are not generalized here to all Murex products, versions, or interfaces. For version-specific material, see murex 2 11 and murex korea.
 
 ## Tanzania DFCC UAT dependency
 

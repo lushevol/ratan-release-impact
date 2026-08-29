@@ -9,7 +9,7 @@ sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requir
 ---
 # Inter-Entity Auto-Netting
 
-Inter-entity auto-netting is the proposed [[ratan-one]] process for reducing nostro charges by netting qualifying SCB internal-entity cashflows that would otherwise settle gross.
+Inter-entity auto-netting is the proposed ratan one process for reducing nostro charges by netting qualifying SCB internal-entity cashflows that would otherwise settle gross.
 
 It is a controlled bilateral rule, not generic netting of all internal flows. Phase 1 is limited to USD, configured booking-entity/counterparty relationships, new cashflow events, non-LOANIQ source trades, and USD-equivalent amounts at or below 100,000.
 

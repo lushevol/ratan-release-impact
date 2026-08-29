@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-24
 tags: ["service", "cashflow-auto-netting", "rat​​an", "rest-api", "application-service", "cashflow-netting", "resultant-cashflow", "component-cashflow", "netting", "cash-settlement", "CCIL", "IRS", "fixing-flag", "RATANONE", "cashflow", "aggregation", "settlement"]
 related: ["ratan", "cashflow-auto-netting", "auto-netting-rule-check", "auto-netting-persistence-model", "control-m", "rule-service", "netting-and-lifecycle-service-separation", "netting-resultant-cashflow", "netting-un-net-lifecycle", "pending-auto-netting-state", "event-driven-component-cashflow-status-management", "ccil-netting", "settlement-method-driven-netting", "cash-settlement-platform", "batch-service", "lifecycle-service", "fixing-flag-notification-processing", "pending-fixing-and-waiting-another-leg", "ratan-cash-settlement-orchestration", "cashflow-netting", "resultant-cashflow-generation", "netting-eligibility", "maker-checker-netting", "cashflow", "normalized-payment-schedule", "product-agnostic-cashflow-aggregation", "normalized-payment-schedule-completeness-check", "what-is-the-authoritative-auto-aggregation-completeness-and-idempotency-contract", "what-is-the-canonical-fee-and-asgross-exclusion-semantics-for-auto-aggregation"]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Auto Netting Technical Design.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Refactor Netting & Status Move Process.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/CCIL Netting Design.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Fixing flag notification.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Netting Service Design.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/RATANONE Cash Settlement Technical Design/Product Agnostic Aggregation Design.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Auto Netting Technical Design.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Refactor Netting & Status Move Process.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/CCIL Netting Design.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Netting Service Design.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/RATANONE Cash Settlement Technical Design/Product Agnostic Aggregation Design.md"]
 ---
 
 # Netting Service
@@ -14,7 +14,7 @@ sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requir
 
 Netting Service is described as the application-service entry point for cashflow netting and as the service owning auto-netting workflow integration.
 
-The **Netting Service Design** source describes it as a proposed RATANONE service for controlled cashflow netting, unnetting, validation, and splitting. Its focus is netting operations rather than the full cash-settlement orchestration domain, although it is adjacent to [[ratan-cash-settlement-orchestration]].
+The **Netting Service Design** source describes it as a proposed RATANONE service for controlled cashflow netting, unnetting, validation, and splitting. Its focus is netting operations rather than the full cash-settlement orchestration domain, although it is adjacent to ratan cash settlement orchestration.
 
 The **Refactor Netting & Status Move Process** source presents Netting Service as a proposed responsibility boundary and does not confirm deployment or implementation status. The **CCIL Netting Design** source likewise describes it as the proposed execution and review layer for CCIL netting.
 
@@ -94,7 +94,7 @@ The **Product Agnostic Aggregation Design** is draft design intent only. It does
 - Error recovery.
 - The exact transition represented by “pending another leg.”
 
-These gaps are tracked in [[what-is-the-authoritative-auto-aggregation-completeness-and-idempotency-contract]] and [[what-is-the-canonical-fee-and-asgross-exclusion-semantics-for-auto-aggregation]].
+These gaps are tracked in what is the authoritative auto aggregation completeness and idempotency contract and what is the canonical fee and asgross exclusion semantics for auto aggregation.
 
 ## IRS Waiting-Fixing-Flag Evaluation
 
@@ -160,7 +160,7 @@ The **Product Agnostic Aggregation Design** source leaves the completeness, coun
 
 ## Related Pages
 
-- [[ratan-cash-settlement-orchestration]]
+- ratan cash settlement orchestration
 - [[netting-and-lifecycle-service-separation]]
 - [[event-driven-component-cashflow-status-management]]
 - [[netting-resultant-cashflow]]
@@ -171,11 +171,11 @@ The **Product Agnostic Aggregation Design** source leaves the completeness, coun
 - [[pending-auto-netting-state]]
 - [[ccil-netting]]
 - [[settlement-method-driven-netting]]
-- [[cash-settlement-platform]]
-- [[fixing-flag-notification-processing]]
-- [[pending-fixing-and-waiting-another-leg]]
+- cash settlement platform
+- fixing flag notification processing
+- pending fixing and waiting another leg
 - [[normalized-payment-schedule]]
 - [[product-agnostic-cashflow-aggregation]]
 - [[normalized-payment-schedule-completeness-check]]
-- [[what-is-the-authoritative-auto-aggregation-completeness-and-idempotency-contract]]
-- [[what-is-the-canonical-fee-and-asgross-exclusion-semantics-for-auto-aggregation]]
+- what is the authoritative auto aggregation completeness and idempotency contract
+- what is the canonical fee and asgross exclusion semantics for auto aggregation

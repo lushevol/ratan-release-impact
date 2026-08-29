@@ -30,4 +30,4 @@ This is not an authoritative state machine. The source does not establish:
 - Whether any action is automated, manual, or subject to authorization controls.
 - Notification, audit, and downstream-feed behavior.
 
-The ambiguous `UnAggregate` outcomes are tracked in [[what-is-the-authoritative-unaggregate-state-and-lineage-behavior]]. Any presentation of `AGGREGATED` in dashboards or filters requires separate confirmation; see [[how-should-aggregated-cashflows-appear-in-user-filters-and-dashboard-counts]].
+The ambiguous `UnAggregate` outcomes are tracked in what is the authoritative unaggregate state and lineage behavior. Any presentation of `AGGREGATED` in dashboards or filters requires separate confirmation; see how should aggregated cashflows appear in user filters and dashboard counts.

@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-23
 tags: [netting, static-data, configuration, cash-settlement, blotter]
 related: [auto-netting-rule-management, cashflow-auto-netting, cash-settlement-home-page, pending-auto-netting-state, bilateral-netting, bilateral-netting-eligibility, ccil-manual-netting, ccil-netting-eligibility-key, cashflow-blotter]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Auto Netting Business user case testing.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Business User Case/01 Bilateral Netting.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Business User Case/02 CCIL Netting.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Business User Case/01 Bilateral Netting.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Business User Case/02 CCIL Netting.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Auto Netting Business user case testing.md"]
 ---
 # Netting Static Blotter
 
@@ -61,4 +61,4 @@ The CCIL source includes struck-through historical cases concerning:
 - Rule updates.
 - CCIL-versus-Bilateral-rule precedence.
 
-Those historical cases are not active requirements. See [[what-is-the-authoritative-ccil-netting-rule-precedence-and-refresh-behavior]].
+Those historical cases are not active requirements. See what is the authoritative ccil netting rule precedence and refresh behavior.

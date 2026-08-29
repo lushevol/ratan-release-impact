@@ -5,15 +5,15 @@ created: 2026-08-22
 updated: 2026-08-24
 tags: [cash-settlement, cashflow, aggregation, netting, product-agnostic]
 related: [normalized-payment-schedule, 2026-brp-q3-ratansett-product-agnostic-aggregation, ratan, fmrp-flow, irs-interest-auto-netting, ccs-auto-netting, cross-product-netting, netting-over-netting, how-will-normalized-payment-schedule-aggregation-coexist-with-irs-and-ccs-auto-netting, normalized-payment-schedule-completeness-check, netting-service, cashflow, strategic-cashflow, what-is-the-authoritative-auto-aggregation-completeness-and-idempotency-contract]
-sources: ["auto-netting-page-md-files/Cash Settlement Home Page -- Cash Settlement Home Page -- Functional Requirement -- Netting -- [Draft", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/RATANONE Cash Settlement Technical Design/Product Agnostic Aggregation Design.md"] Auto Aggregation based on Normalized Payment Schedule.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/RATANONE Cash Settlement Technical Design/Product Agnostic Aggregation Design.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/RATANONE Cash Settlement Technical Design/Product Agnostic Aggregation Design.md"]
 ---
 # Product-Agnostic Cashflow Aggregation
 
 Product-agnostic cashflow aggregation is a proposed capability to combine eligible cashflows through a common mechanism rather than mechanisms limited to particular product taxonomies.
 
-The functional-requirement draft proposes the capability for [[ratan]] and intends it to rely on [[normalized-payment-schedule]]. It responds to limitations of existing IRS Netting and [[ccs-auto-netting]], which that draft describes as supplementary aggregation mechanisms bounded to IRS and CCS taxonomies.
+The functional-requirement draft proposes the capability for [[ratan]] and intends it to rely on [[normalized-payment-schedule]]. It responds to limitations of existing IRS Netting and ccs auto netting, which that draft describes as supplementary aggregation mechanisms bounded to IRS and CCS taxonomies.
 
-The technical-design source describes the approach more specifically as determining aggregation readiness from normalized payment-schedule legs rather than product-specific cashflow interpretation. Under that design, [[normalized-payment-schedule]] calculates the expected number of eligible legs for a cashflow’s currency and payment date. [[netting-service]] compares that expected count with eligible received [[cashflow]] records having the same `tradeId`, currency, and payment date.
+The technical-design source describes the approach more specifically as determining aggregation readiness from normalized payment-schedule legs rather than product-specific cashflow interpretation. Under that design, [[normalized-payment-schedule]] calculates the expected number of eligible legs for a cashflow’s currency and payment date. [[netting-service]] compares that expected count with eligible received cashflow records having the same `tradeId`, currency, and payment date.
 
 ## Intended aggregation readiness rule
 

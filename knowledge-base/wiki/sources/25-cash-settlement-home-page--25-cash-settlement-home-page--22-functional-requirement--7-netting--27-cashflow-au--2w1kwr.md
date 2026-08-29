@@ -168,4 +168,4 @@ Rule changes are prospective only. If a rule is updated or deleted after a cashf
 
 ## Related Wiki Pages
 
-The requirement extends [[entities/ratan]], [[concepts/ad-hoc-cashflow-netting]], [[concepts/cashflow-blotter-action-eligibility]], [[concepts/cashflow-exception-handling]], [[concepts/cashflow-failure-and-reinstatement]], and [[concepts/pending-fixing-stp-nstp-control]]. Its candidate state values should be compared with [[queries/what-are-the-canonical-cashflow-state-and-sub-state-values]].
+The requirement extends [[entities/ratan]], ad hoc cashflow netting, cashflow blotter action eligibility, cashflow exception handling, cashflow failure and reinstatement, and pending fixing stp nstp control. Its candidate state values should be compared with what are the canonical cashflow state and sub state values.

@@ -108,4 +108,4 @@ These examples support currency-calendar-relative `VD` and `VD-1` processing, in
 - The CME/EUREX/JSCC/ICE predicate correction is documented, but blank rule-status fields do not prove activation.
 - The LCH start-time amendment is described as completed, while its rule-status field remains blank.
 
-Open matters are tracked in [[was-cashflow-auto-netting-uat-formally-passed]], [[what-is-the-authoritative-auto-netting-priority-order]], [[was-the-bic-netting-rule-engine-defect-remediated]], and [[are-clearing-resultant-swift-suppression-rules-active]].
+Open matters are tracked in was cashflow auto netting uat formally passed, what is the authoritative auto netting priority order, was the bic netting rule engine defect remediated, and are clearing resultant swift suppression rules active.

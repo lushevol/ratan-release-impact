@@ -13,7 +13,7 @@ sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Cash 
 ---
 # Netting Test Result
 
-This internal test record reports two Cash Settlement netting execution observations and one controlled retry scenario for the [[lifecycle-batch-status-update-api]].
+This internal test record reports two Cash Settlement netting execution observations and one controlled retry scenario for the lifecycle batch status update api.
 
 ## Netting observations
 
@@ -69,6 +69,6 @@ This controlled scenario demonstrates one successful retry path, but it does not
 ## Related pages
 
 - [[cashflow-netting-performance]] records the scope and limits of these netting measurements.
-- [[cashflow-batch-transaction-atomicity]] tracks the unresolved partial-persistence and event-consistency semantics.
-- [[does-netting-meet-the-required-throughput-sla-at-production-volume]] tracks the missing performance acceptance criteria.
-- [[what-are-the-bounded-retry-idempotency-and-dead-letter-controls-for-cashflow-processing]] tracks retry and idempotency controls not specified by this test.
+- cashflow batch transaction atomicity tracks the unresolved partial-persistence and event-consistency semantics.
+- does netting meet the required throughput sla at production volume tracks the missing performance acceptance criteria.
+- what are the bounded retry idempotency and dead letter controls for cashflow processing tracks retry and idempotency controls not specified by this test.

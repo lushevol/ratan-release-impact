@@ -67,4 +67,4 @@ The source states that the aggregation resultant cashflow can be netted once the
 - Actual Payment Count does not define qualifying cashflow statuses or duplicate treatment.
 - The canonical source fields, normalization, and null handling for the netting key remain unspecified.
 
-See [[expected-payment-count-for-auto-netting]], [[schedule-to-cashflow-matching]], and [[what-are-the-normalized-payment-schedule-aggregation-keys]].
+See [[expected-payment-count-for-auto-netting]], [[schedule-to-cashflow-matching]], and what are the normalized payment schedule aggregation keys.

@@ -16,4 +16,4 @@ The source explicitly requires a maker/checker process and separately requires a
 
 No approval states, role definitions, segregation-of-duties rules, rejection behavior, authorization policy, or automatic-processing exception are defined. These omissions prevent the source from serving as a complete approval contract.
 
-See [[queries/what-are-the-netting-maker-checker-approval-semantics]].
+See what are the netting maker checker approval semantics.

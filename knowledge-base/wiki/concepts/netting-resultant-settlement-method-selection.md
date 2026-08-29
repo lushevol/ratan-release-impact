@@ -16,4 +16,4 @@ The netting requirement describes the resultant settlement method as hard-coded 
 
 The source does not state precedence when both conditions could apply, nor does it define whether the conditions are evaluated before or after any other resultant-generation rules.
 
-Until resolved, this should not be implemented as an unqualified `Gross` default. See [[what-is-the-authoritative-settlement-method-precedence-for-netting-resultants]].
+Until resolved, this should not be implemented as an unqualified `Gross` default. See what is the authoritative settlement method precedence for netting resultants.

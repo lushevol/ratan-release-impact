@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-22
 tags: [swap-agent, mtm, coupon, auto-netting, segregation, SWAP_AGENT, interim-MTM, clearing, bilateral-settlement-risk]
 related: [swap-agent, cashflow-auto-netting, netting-resultant-cashflow-lifecycle, cross-rule-netting-isolation, cash-settlement-home-page, clearing-resultant-swift-suppression, netting-validation-and-preview, netting-resultant-cashflow, pending-auto-netting-state]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Day2 Auto Netting TestCase.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Hard Blocker/Hard Block UAT testing.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Day2 Auto Netting TestCase.md"]
 ---
 # Swap Agent MTM/Coupon Netting Separation
 

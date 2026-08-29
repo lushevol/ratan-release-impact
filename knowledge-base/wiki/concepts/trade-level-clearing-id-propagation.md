@@ -11,7 +11,7 @@ sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requir
 
 ## Definition
 
-Trade-level Clearing ID propagation is the transfer of a Clearing ID from a source trade into the generated cashflow so that the identifier can be displayed in the [[ratan-cashflow-blotter]].
+Trade-level Clearing ID propagation is the transfer of a Clearing ID from a source trade into the generated cashflow so that the identifier can be displayed in the ratan cashflow blotter.
 
 ## Tested behavior
 

@@ -2,7 +2,7 @@
 type: entity
 title: Control M
 created: 2026-08-22
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/FMRP China Cash Settlement Delivery Plan/Cash Settlement RATAN ONE 2025 Release Plan/2025 Cash Settlement Tranche 1 Ratan Runbook.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Auto Netting Technical Design.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Surrounding System Integration/Settlement - Murex 2.11 Cashflow Integration/CN Settlement - Murex 2.11 Delivery Plan.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/RATANONE Cash Settlement Technical Design/Settlement Accounting for Aspire Tech design.md", "RATAN/RATAN -Interfaces/Ratan and Hashicorp 51460.md", "RATAN/RATAN -Service Restart Guide/RATAN CVE Patching and Hygiene Reboot.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Auto Netting Technical Design.md"]
 tags: ["job-scheduling", "orchestration", "cash-settlement", "job-scheduler", "cashflow-auto-netting", "operations", "scheduler", "workload-automation", "cashflow-publication", "batch-processing", "accounting", "control-m", "scheduling", "ratan", "hashicorp-vault"]
 related: ["2025-cash-settlement-tranche-1", "lina-feng", "jie-cai", "cashflow-auto-netting", "auto-netting-rule-check", "ratan", "cn-settlement-murex-211-integration", "murex-ratan-bidirectional-cashflow-integration", "country-local-time-accounting-batch-scheduling", "accounting-feed-file-generation-idempotency", "accounting-aspire-execution", "hashicorp-vault", "ratan-hashicorp-credential-lifecycle", "ratan-secrets-management", "control-m-job-hold", "hygiene-reboot", "5-ratan--28-ratan-service-restart-guide--37-ratan-cve-patching-and-hygiene-reboot--1ij0sni"]
 updated: 2026-08-25
@@ -14,7 +14,7 @@ updated: 2026-08-25
 
 Control-M is referenced in multiple source contexts as a scheduling, orchestration, job-scheduling, or workload-automation tool:
 
-- The [[2025 Cash Settlement Tranche 1]] runbook associates it with a planned job release.
+- The 2025 Cash Settlement Tranche 1 runbook associates it with a planned job release.
 - The Cashflow Auto Netting Technical Design identifies it as the scheduler for the auto-netting job endpoint.
 - The CN Settlement–Murex 2.11 Delivery Plan identifies it as the planned scheduler for cashflow publication.
 - The Settlement Accounting for Aspire Technical Design proposes it for accounting-feed generation.
@@ -25,7 +25,7 @@ These contexts and their operational status are described separately below.
 
 ## Role in the 2025 Cash Settlement Tranche 1 runbook
 
-The [[2025 Cash Settlement Tranche 1]] runbook refers to `Control M` as the scheduling or orchestration tool associated with the planned job release on Apr 25.
+The 2025 Cash Settlement Tranche 1 runbook refers to `Control M` as the scheduling or orchestration tool associated with the planned job release on Apr 25.
 
 `Jie Cai` is the named owner for the job release. The runbook source does not report whether the release occurred or whether the job operated as expected.
 
@@ -41,7 +41,7 @@ The technical design does not specify the Control-M schedule, timeout, alerting,
 
 ## Role in Murex 2.11 cashflow publication
 
-The CN Settlement–Murex 2.11 Delivery Plan identifies Control-M as the planned scheduler for automated publication of cashflows from [[murex-211]] into [[ratan]].
+The CN Settlement–Murex 2.11 Delivery Plan identifies Control-M as the planned scheduler for automated publication of cashflows from murex 211 into [[ratan]].
 
 According to that delivery-plan source, scheduler configuration depends on user input about job frequency. The plan does not define the schedule, triggering criteria, failure handling, or whether the scheduled publication was implemented.
 
@@ -71,7 +71,7 @@ That source associates the parent folder with monthly enablement of HashiCorp, V
 
 The source does not specify exact schedules, ordering dependencies, execution owners, retry behavior, alerts, or the conditions under which stop and restart jobs are required.
 
-See [[ratan-hashicorp-credential-lifecycle]] for the relationship between rotation and refresh.
+See ratan hashicorp credential lifecycle for the relationship between rotation and refresh.
 
 ## Role in RATAN CVE patching and hygiene reboot
 
@@ -83,4 +83,4 @@ For that maintenance sequence, Control-M jobs are held before the RATAN service 
 - The hold or release mechanism
 - Whether release must wait for a successful RATAN health check
 
-See [[control-m-job-hold]] and [[what-is-the-authoritative-ratan-cve-patching-and-hygiene-reboot-procedure]].
+See control m job hold and what is the authoritative ratan cve patching and hygiene reboot procedure.

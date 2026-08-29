@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-25
 tags: ["program", "re-platforming", "business-initiative", "FMRP", "programme", "migration", "cash-settlement", "India", "settlement", "payment-processing", "amendments", "ratan", "FM-Re-Platforming", "settlements", "FX-rates", "API", "inter-entity-netting", "swift", "configuration", "cn-settlement", "SSI-stamping", "system", "process", "project-context", "trade-processing", "ssi", "product-taxonomy", "reference-data", "settlement-affirmation", "cashflow-flow", "high-value-payment", "architecture", "operating-model", "pre-trade", "post-trade", "Murex-2-11", "integration", "trade-validation", "major-version", "cashflow", "liquidity-management", "source-system"]
 related: ["cash-settlement-2025-roadmap", "cash-settlement-re-platforming", "ratan", "murex-2-11", "fxo-mini-trade-migration-ratan-cash-settlement", "fxo", "ratan-settlement", "stella", "ccil-guaranteed-and-non-guaranteed-netting", "murex", "ratan-one", "murex-to-ratan-exception-mapping", "released-resultant-amendment-handling", "strategic-settlements-platform", "settlement-first-migration", "murex-cashflow-migration-to-ratan", "inter-entity-netting", "inter-entity-netting-spot-rate-retrieval", "chg0988640", "is-the-chg0988640-fmrp-spot-rate-endpoint-production-ready", "razor", "murex-2-11-field-20-format", "agency-payment-identification", "is-auto-split-in-scope-for-fmrp-cn-settlement", "ssi-stamping-service", "ssi-stamping", "scbml", "cdups", "trade-lake", "trade-ssi-stamping", "affirmation-email-scope-configuration", "settlement-email-template-and-contact-governance", "fmsgw", "loaniq", "ratan-high-value-payment-control", "stp-nstp-and-last-user-message-contract", "fmrp-stella", "fmrp-cashflow-responsibility-split", "murex-211", "ratan-10123", "fmrp-cashflow-publication-lifecycle", "fmrp-payment-eligibility-and-suppression", "murex-ratan-cashflow-message-contract", "tds3", "trade-validation-gating", "fmrp-major-version-backward-validation", "what-is-the-canonical-trade-validation-key-by-source-system", "lms", "ratan-lms-liquidity-cashflow-feed", "lms-country-and-entity-scope"]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/2025 Target.md", "Cash Settlement Home Page/Cash Settlement Home Page/FMRP China Cash Settlement Delivery Plan/Cash Settlement RATAN ONE 2026 Release Plan/FXO Mini Trade Migration - Ratan Cash Settlement - RunBook (2026-08-15 weekend).md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/CCIL Netting.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Surrounding System Integration/Settlement - Murex 2.11 Cashflow Integration/Settlement - Murex 2.11 Payment Non-STP Exception.md", "Cash Settlement Home Page/Cash Settlement Home Page/Strategic Cash Settlements Features.md", "RATAN - 51358/RATAN/RATAN -Release/Ratan Release Plan 2026/Ratan New Onboarding Checklist 2026/2026_05_30_CHG0988640_Inter Entity Netting.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/CN Settlement Ops weekly session/2022-11-16.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/SSI Stamping Notification/FMRP - SSI Stamping Flow/Compatibility design for multiple entities.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/SSI Stamping Notification/FMRP - SSI Stamping Flow/SSI Stamping Tech Design-Egypt.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/SSI Stamping Notification/FMRP - SSI Stamping Flow/Trade SSI Stamping - Product templates.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Derivative Settlement Affirmation - Email Automation.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/High Value Payment Control - RATAN.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Surrounding System Integration/Ratan & Stella cashflow integration.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Surrounding System Integration/Settlement - Murex 2.11 Cashflow Integration/CN Settlement - Murex 2.11 workflow change.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/RATANONE Cash Settlement Technical Design/Ratan processing on cashflow events/Trade Validation Confirmation Process Tech Design.md", "RATAN/RATAN -Interfaces/Ratan and LMS 50686.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/CCIL Netting.md"]
 ---
 
 # FMRP
@@ -14,7 +14,7 @@ sources: ["Cash Settlement Home Page/Cash Settlement Home Page/2025 Target.md", 
 
 FMRP is the programme or business-initiative context for the 2025 cash-settlement roadmap, the FXO mini trade migration and Ratan cash-settlement work, and the `CHG0988640` Inter-Entity Netting release.
 
-The Strategic Cash Settlements Features source expands FMRP as **FM Re-Platforming** and describes it as the programme under which RATAN is being built as a [[strategic-settlements-platform]].
+The Strategic Cash Settlements Features source expands FMRP as **FM Re-Platforming** and describes it as the programme under which RATAN is being built as a strategic settlements platform.
 
 The 2025 roadmap source links to a Confluence page titled `2025 High Level Backlog - FM re-platforming` under the `FMRP` space. The FXO and Ratan runbook links the activity to `FMRP Trade Migration - Ratan Cash Settlement - PROD Approach` and the `FXO Tech Readiness - 8.0 - FM re-platforming - Confluence` reference.
 
@@ -36,7 +36,7 @@ The Trade Validation Confirmation Process Tech Design source separately describe
 
 According to the Strategic Cash Settlements Features source, FMRP provides the strategic trade stack whose cashflows are intended to share a central settlement and payment platform with legacy Murex cashflows.
 
-During [[settlement-first-migration]], the source identifies two cashflow populations processed through RATAN:
+During settlement first migration, the source identifies two cashflow populations processed through RATAN:
 
 1. FMRP strategic-trade cashflows.
 2. Cashflows from Murex trade populations.
@@ -54,7 +54,7 @@ The annual target associates FMRP with:
 - CN LNBR
 - UK Prime migration for PM and Rates
 - CN CCS trade migration
-- The broader [[cash-settlement-re-platforming]] effort
+- The broader cash settlement re platforming effort
 
 The separate FXO and Ratan source describes operational execution within the wider FMRP re-platforming context, specifically:
 
@@ -129,7 +129,7 @@ These LMS-feed statements come specifically from the `Ratan and LMS 50686.md` so
 
 ## Murex 2.11 cashflow-integration route
 
-The CN Settlement—Murex 2.11 workflow-change source describes FMRP differently: as the cashflow-integration route between [[murex-211]] and RATAN. In that source, FMRP:
+The CN Settlement—Murex 2.11 workflow-change source describes FMRP differently: as the cashflow-integration route between murex 211 and RATAN. In that source, FMRP:
 
 - Publishes eligible Murex payment flows.
 - Records publication and response state.
@@ -183,11 +183,11 @@ A trade is considered validated when its status is one of:
 - `CONFIRMED`
 - `TOBESENT+Validate[action]`
 
-The source states that validation of a higher major version applies backward to earlier major versions. For example, validation of major version 4 covers versions 1 through 3. This behavior is documented separately in [[fmrp-major-version-backward-validation]] and must not be applied to Murex without evidence.
+The source states that validation of a higher major version applies backward to earlier major versions. For example, validation of major version 4 covers versions 1 through 3. This behavior is documented separately in fmrp major version backward validation and must not be applied to Murex without evidence.
 
 ### Confirmation and status sourcing
 
-The design proposes sourcing FMRP confirmation and validation status from [[tds3]], while maintaining the trade key needed for cashflow processing within [[ratan-one]].
+The design proposes sourcing FMRP confirmation and validation status from [[tds3]], while maintaining the trade key needed for cashflow processing within ratan one.
 
 The source does not define:
 
@@ -221,7 +221,7 @@ The Murex 2.11 Payment Non-STP Exception source assigns FMRP existing amendment 
 
 This assignment does not establish that FMRP reproduces the corresponding Murex validation rules. The source describes RATAN reversal behavior in terms of amendments after payment release, while outright cancellation may proceed through STP.
 
-See [[murex-to-ratan-exception-mapping]] and [[released-resultant-amendment-handling]].
+See murex to ratan exception mapping and [[released-resultant-amendment-handling]].
 
 ### High-value payment control
 
@@ -229,7 +229,7 @@ The High Value Payment Control—RATAN source specifies the following requiremen
 
 - RATAN must expose their USD-equivalent values in the Cashflow Blotter.
 - RATAN must support filtering by that amount through both custom filters and direct-blotter filtering.
-- RATAN must provide [[fmsgw]] with STP/NSTP status and user attribution for routing.
+- RATAN must provide fmsgw with STP/NSTP status and user attribution for routing.
 
 The source proposes `stpFlag` and `lastUser` as Swift-header fields for FMRP, but records their precise semantics as pending confirmation.
 
@@ -238,7 +238,7 @@ FMRP cashflow-affirmation authorization is also unresolved in that source. The l
 1. Remove update affirmation from the cashflow-list view.
 2. Apply an authorization-limit check.
 
-The same source treats [[loaniq]] as part of the FMRP flow and requires the solution to align with [[razor]]. These statements are requirements or proposals in the High Value Payment Control—RATAN source and do not establish finalized field semantics, authorization design, or broader ownership boundaries for FMRP, LoanIQ, Razor, or FMSGW.
+The same source treats loaniq as part of the FMRP flow and requires the solution to align with [[razor]]. These statements are requirements or proposals in the High Value Payment Control—RATAN source and do not establish finalized field semantics, authorization design, or broader ownership boundaries for FMRP, LoanIQ, Razor, or FMSGW.
 
 ### CN settlement configuration discussion
 
@@ -260,7 +260,7 @@ The SSI Stamping compatibility-design source concerns the compatibility of the F
 
 The proposed change adds `CCY Pair` information to support expected Nostro selection.
 
-The SSI Stamping Tech Design—Egypt source states that [[ssi-stamping-service]] receives SCBML messages associated with the flow, resolves Vostro and Nostro settlement instructions, and returns enriched SCBML for downstream confirmation processing.
+The SSI Stamping Tech Design—Egypt source states that ssi stamping service receives SCBML messages associated with the flow, resolves Vostro and Nostro settlement instructions, and returns enriched SCBML for downstream confirmation processing.
 
 The service behavior is attributed to the SSI Stamping Tech Design—Egypt source; it does not establish that FMRP itself receives SCBML messages, resolves settlement instructions, or performs downstream confirmation processing.
 
@@ -268,9 +268,9 @@ The service behavior is attributed to the SSI Stamping Tech Design—Egypt sourc
 
 The Trade SSI Stamping—Product templates source documents a flow in which [[ratan]] is central to SSI lookup and enrichment. In that source:
 
-- [[cdups]] acts as the confirmation client.
-- [[stella]] supplies trade data through SCBML.
-- [[trade-lake]] supplies identifiers and temporal values used to locate the relevant trade version.
+- cdups acts as the confirmation client.
+- stella supplies trade data through SCBML.
+- trade lake supplies identifiers and temporal values used to locate the relevant trade version.
 
 The source emphasizes a central SSI stamping service while treating trade SSI stamping and cashflow SSI stamping as linked but independent.
 
@@ -307,7 +307,7 @@ These endpoint and failure-handling claims apply specifically to the `CHG0988640
 
 ## Settlement affirmation and email automation
 
-The Derivative Settlement Affirmation—Email Automation source identifies FMRP as a product-taxonomy source that must be supported by [[cdups]] for granular client-contact configuration.
+The Derivative Settlement Affirmation—Email Automation source identifies FMRP as a product-taxonomy source that must be supported by cdups for granular client-contact configuration.
 
 That source also states that FMRP may provide the taxonomy needed to identify Islamic trades, whose portfolios may begin with `ISL`.
 

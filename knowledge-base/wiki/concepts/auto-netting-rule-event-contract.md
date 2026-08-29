@@ -33,8 +33,8 @@ The `metadata` field is double-encoded JSON. Its documented `autoNettingConfig` 
 - `stpLevel`, shown as `NSTP_MAKER_CHECKER`;
 - `nettingType`, shown as `BIC Netting` or `SAL MTM Netting`.
 
-The source does not define a schema version, field governance, validation rules, or the meaning of those coded values. These gaps are tracked in [[what-is-the-authoritative-auto-netting-rule-schema-and-metadata-contract]].
+The source does not define a schema version, field governance, validation rules, or the meaning of those coded values. These gaps are tracked in what is the authoritative auto netting rule schema and metadata contract.
 
 ## Approval Action Ambiguity
 
-The lifecycle matrix assigns `create_confirm` and `update_confirm` as approval actions. The supplied `CONFIRM` payloads instead contain `rule_action: "confirm"` for both creation and update approval. Consumers should not infer a canonical approval action value until [[what-is-the-authoritative-auto-netting-rule-action-contract]] is resolved.
+The lifecycle matrix assigns `create_confirm` and `update_confirm` as approval actions. The supplied `CONFIRM` payloads instead contain `rule_action: "confirm"` for both creation and update approval. Consumers should not infer a canonical approval action value until what is the authoritative auto netting rule action contract is resolved.

@@ -13,7 +13,7 @@ sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requir
 ---
 # IRS Fixed Leg & Floating Leg Payment Handling
 
-This functional requirement defines how [[ratan]] handles Interest Rate Swap (IRS) fixed- and floating-leg coupon cashflows from [[murex]] and [[stella]]. Its stated objective is to settle the net amount for a payment schedule rather than settling a known fixed leg independently before its corresponding floating-leg amount is known.
+This functional requirement defines how [[ratan]] handles Interest Rate Swap (IRS) fixed- and floating-leg coupon cashflows from [[murex]] and stella. Its stated objective is to settle the net amount for a payment schedule rather than settling a known fixed leg independently before its corresponding floating-leg amount is known.
 
 The requirement contains distinct source-system pathways. Murex processing is driven by the upstream pending-fixing flag and market-specific delivery timing. Stella processing uses IRS taxonomy, coupon type, and schedule information retrieved through [[tdsx]]. These pathways must not be treated as interchangeable.
 
@@ -111,7 +111,7 @@ Second leg:
 tradeData.tradeRecord.swapInstrument.iRLeg.secondLeg.periodicCashFlow.periodicAdjustedInterestPaymentDate
 ```
 
-Where the expected counterpart cashflow does not exist for a payment schedule, RATAN should bypass `Pending Another Leg` and continue settlement processing. The wording of the schedule-match condition is ambiguous and requires confirmation in [[what-is-the-authoritative-stella-tdx-tdsx-schedule-lookup-contract]].
+Where the expected counterpart cashflow does not exist for a payment schedule, RATAN should bypass `Pending Another Leg` and continue settlement processing. The wording of the schedule-match condition is ambiguous and requires confirmation in what is the authoritative stella tdx tdsx schedule lookup contract.
 
 ## Netting and Amendment Behaviour
 
@@ -121,7 +121,7 @@ A floating-leg re-fixing before payment release is intended to trigger automatic
 
 After the prior net resultant has been released or settled, a floating-leg withdrawal and replacement are assigned the `Cancel / Amend after payment release` exception and are NSTP. Operations must manually net the withdrawal and replacement to create the delta cashflow.
 
-The source also permits manual cross-product netting of an IRS fixed leg in `WAITING` / `Pending Another Leg` with CDS cashflows. It does not define the treatment when the expected floating leg arrives later; this is tracked in [[what-happens-when-a-floating-irs-leg-arrives-after-the-fixed-leg-is-manually-netted-with-other-products]].
+The source also permits manual cross-product netting of an IRS fixed leg in `WAITING` / `Pending Another Leg` with CDS cashflows. It does not define the treatment when the expected floating leg arrives later; this is tracked in what happens when a floating irs leg arrives after the fixed leg is manually netted with other products.
 
 ## Scope Boundary
 

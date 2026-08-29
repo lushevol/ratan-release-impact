@@ -58,7 +58,7 @@ The source cites SRP, OCP, KISS, DIP, and LKP as principles not adequately follo
 
 `manageComponentCashflowStatus` is proposed as a Netting Service operation that consumes `cash_settlement_cashflow_domain_events`. It updates component cashflow status where necessary when the resultant cashflow changes to `released` or `settled`.
 
-The source does not define the event schema, delivery semantics, idempotency, ordering, retries, dead-letter handling, or recovery process for failed component updates. These are material implementation concerns documented in [[event-driven-component-cashflow-status-management]] and [[resultant-cashflow-status-consistency]].
+The source does not define the event schema, delivery semantics, idempotency, ordering, retries, dead-letter handling, or recovery process for failed component updates. These are material implementation concerns documented in [[event-driven-component-cashflow-status-management]] and resultant cashflow status consistency.
 
 ## Roadmap
 
@@ -80,4 +80,4 @@ This is a planned roadmap, not evidence that implementation or migration was com
 2. Can generating a resultant cashflow is before updating cashflow status?
 3. How to unet resultant cashflow?
 
-These questions are tracked in [[resultant-cashflow-status-consistency]] and [[canonical-unnet-lifecycle]].
+These questions are tracked in resultant cashflow status consistency and canonical unnet lifecycle.

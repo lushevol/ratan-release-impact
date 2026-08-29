@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-23
 tags: [cashflow-netting, resultant-cashflow, Ratan, Netting-ID, settlement, cash-settlement, netting, cashflow-generation, lineage, maker-checker]
 related: [ratan, settlement-netting-validation-generation, netting-un-net-lifecycle, cashflow-lifecycle-versioning, scbml, maker-checker-settlement-control, beneficiary-bic-netting, bic-netting-un-netting, cashflow-withdrawal-and-new, cashflow-partial-update, confirmation-status-normalization]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Settlement Netting Validation Generation.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Beneficiary BIC Netting.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Beneficiary BIC Netting.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Settlement Netting Validation Generation.md"]
 ---
 # Netting Resultant Cashflow
 

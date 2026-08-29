@@ -19,7 +19,7 @@ This draft design proposes schedule-driven, product-agnostic automatic aggregati
 
 The source states that Group Service splits an UBER JSON message into cashflow-level JSON messages and must retain and forward `NormalizedPaymentSchedule` when it exists in the incoming message. The document does not define the outgoing schema, whether the schedule is duplicated on every resulting message, or behavior when it is absent or malformed.
 
-The “Group Service” name is not established as equivalent to [[group-management-service]]. UBER fan-out also makes the duplicate and replay risks recorded in [[uber-inbound-message-idempotency-and-error-state]] relevant to aggregation correctness.
+The “Group Service” name is not established as equivalent to group management service. UBER fan-out also makes the duplicate and replay risks recorded in uber inbound message idempotency and error state relevant to aggregation correctness.
 
 ## Proposed Rule Configuration
 
@@ -31,7 +31,7 @@ new rule_type = "AUTO_AGGREGATION" && business_flow = "STRATEGIC_SETTLEMENT"
 Entity__Booking_Entity_SCI_FMID in ("300011345", "10038345") && Entity__Counterparty_SCI_FMID in ("10055390", "10037780", "10023033", "205001936")
 ```
 
-This is intended to block automatic aggregation for the specified strategic-settlement population. The source does not identify the concrete rule-service owner, rule result contract, priority, effective period, approval process, or enforcement path to Netting Service. The pairing should therefore be treated as proposed rather than canonical; see [[business-flow-and-rule-type-classification]] and [[which-rule-service-owns-strategic-settlement-auto-aggregation-exclusions]].
+This is intended to block automatic aggregation for the specified strategic-settlement population. The source does not identify the concrete rule-service owner, rule result contract, priority, effective period, approval process, or enforcement path to Netting Service. The pairing should therefore be treated as proposed rather than canonical; see business flow and rule type classification and which rule service owns strategic settlement auto aggregation exclusions.
 
 ## Proposed Netting Algorithm
 

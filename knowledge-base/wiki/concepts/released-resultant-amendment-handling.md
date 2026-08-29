@@ -25,4 +25,4 @@ The source marks the solution as TBC. Suppressing a rebook exception is not, by 
 - re-nets the amended side; or
 - records a controlled reconciliation or operational exception.
 
-Any exception suppression should preserve an auditable record and must not conceal a settlement mismatch. This scenario should be evaluated against [[netting-resultant-cashflow-lifecycle]], [[netting-un-net-lifecycle]], and [[cashflow-failure-and-reinstatement]].
+Any exception suppression should preserve an auditable record and must not conceal a settlement mismatch. This scenario should be evaluated against [[netting-resultant-cashflow-lifecycle]], [[netting-un-net-lifecycle]], and cashflow failure and reinstatement.

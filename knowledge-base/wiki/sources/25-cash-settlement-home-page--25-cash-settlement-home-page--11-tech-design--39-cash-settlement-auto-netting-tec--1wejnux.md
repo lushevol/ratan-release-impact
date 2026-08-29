@@ -13,13 +13,13 @@ sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Cash 
 ---
 # Cash Settlement Auto Netting TechDesign
 
-This technical design specifies intended changes for cash-settlement auto-netting. It describes responsibilities across the front end, Static service, [[ratanone-rule-service]], [[ratan-rule-service]], [[lifecycle-service]], the netting service, [[nstp]], and [[controlm]]. It is design evidence, not confirmation of implementation, deployment, or production behavior.
+This technical design specifies intended changes for cash-settlement auto-netting. It describes responsibilities across the front end, Static service, ratanone rule service, ratan rule service, [[lifecycle-service]], the netting service, [[nstp]], and [[controlm]]. It is design evidence, not confirmation of implementation, deployment, or production behavior.
 
 ## Rule configuration
 
 The existing netting-rule blotter is to be reused with an auto-netting checkbox. When selected, booking entity, currency, and shifter are mandatory. The shifter supports hour and minute selection.
 
-[[ratanone-rule-service]] is intended to persist `isAutoNetting`, support rule updates and deletion, validate booking entity/currency/shifter, perform duplicate checks, support exclusion criteria, and return `VD+Shifter` from rule checking when a hint applies.
+ratanone rule service is intended to persist `isAutoNetting`, support rule updates and deletion, validate booking entity/currency/shifter, perform duplicate checks, support exclusion criteria, and return `VD+Shifter` from rule checking when a hint applies.
 
 A cashflow in `PendingAutoNetting` must not perform `SettleAsGross`. The design also contains an incomplete statement that an “Auto Netting resultant cashflow is not allowed to do” something, without identifying the prohibited action.
 
@@ -65,9 +65,9 @@ Job-execution results are to be recorded in a job table. The design does not spe
 
 ## Single-cashflow handling
 
-The `SettleAsSingle` lifecycle action returns a cashflow to `QUEUED`. [[ratan-rule-service]] is to add an NSTP rule that creates a “Single Cashflow” exception when a new SCBML indicator meets the relevant condition.
+The `SettleAsSingle` lifecycle action returns a cashflow to `QUEUED`. ratan rule service is to add an NSTP rule that creates a “Single Cashflow” exception when a new SCBML indicator meets the relevant condition.
 
-The field definition is unresolved. The design refers both to `SettleAsSingle` as an SCBML condition and to a new `SingleCashflow` SCBML indicator whose XPath “should be confirmed.” See [[single-cashflow-auto-netting-exception]] and [[what-is-the-canonical-scbml-indicator-and-xpath-for-settle-as-single]].
+The field definition is unresolved. The design refers both to `SettleAsSingle` as an SCBML condition and to a new `SingleCashflow` SCBML indicator whose XPath “should be confirmed.” See [[single-cashflow-auto-netting-exception]] and what is the canonical scbml indicator and xpath for settle as single.
 
 ## Scheduling and orchestration
 
@@ -79,4 +79,4 @@ The field definition is unresolved. The design refers both to `SettleAsSingle` a
 
 The expression’s effective cadence depends on the ControlM scheduling dialect and timezone; it requires confirmation before operational use.
 
-The design proposes inserting auto-netting orchestration between `1_4_Netting_Eligible` and `1_5_Ssi_Stamping`, linking the new scheduled processing to [[ssi-stamping-hierarchy]].
+The design proposes inserting auto-netting orchestration between `1_4_Netting_Eligible` and `1_5_Ssi_Stamping`, linking the new scheduled processing to ssi stamping hierarchy.

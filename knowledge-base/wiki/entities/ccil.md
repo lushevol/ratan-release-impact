@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-23
 tags: [CCIL, clearing, manual-netting, settlement-method, cash-settlement, bilateral-netting, settlement, netting, payment-type, settlement-infrastructure, scope-exclusion, organisation]
 related: [f2b, fmrp, murex, stella, auto-netting, bilateral-netting, bilateral-netting-eligibility, ccil-manual-netting, ccil-netting-eligibility-key, manual-un-netting, ratan, nstp, affirmation-email-scope-configuration, settlement-affirmation-email-automation, ccil-cashflow-identification, ccil-netting, cash-settlement-platform]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/04-Onboarding(Entity Product) Check List/F2B Milestone Onboarding check list.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Business User Case/01 Bilateral Netting.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Business User Case/02 CCIL Netting.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Derivative Settlement Affirmation - Email Automation.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/CCIL Netting Design.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Business User Case/01 Bilateral Netting.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Business User Case/02 CCIL Netting.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/CCIL Netting Design.md"]
 ---
 # CCIL
 

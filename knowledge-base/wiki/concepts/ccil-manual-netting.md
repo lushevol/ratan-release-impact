@@ -17,7 +17,7 @@ A manual rule must be live in the [[netting-static-blotter]]. Qualifying compone
 
 ## Execution
 
-In the [[cashflow-blotter]], the user selects components and invokes **CCIL Net Selected Cashflow**. The user then selects **Net All Cashflows With Affirmation**, provides updated affirmation information, and submits.
+In the cashflow blotter, the user selects components and invokes **CCIL Net Selected Cashflow**. The user then selects **Net All Cashflows With Affirmation**, provides updated affirmation information, and submits.
 
 ## Expected Result
 

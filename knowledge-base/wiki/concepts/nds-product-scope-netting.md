@@ -38,4 +38,4 @@ The source does not define `NID`, the timezone or business-calendar interpretati
 
 The document asks whether the proposed treatment for `IRS Netting` resultant cashflows should also apply to `NDS Fixing Netting`. No decision is recorded. Therefore, the IRS resultant-cashflow exception must not be generalized to NDS Netting without an explicit decision.
 
-See [[irs-resultant-cashflow-netting]] and [[should-nds-fixing-netting-follow-the-irs-resultant-cashflow-rule]].
+See [[irs-resultant-cashflow-netting]] and should nds fixing netting follow the irs resultant cashflow rule.

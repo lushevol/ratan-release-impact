@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-23
 tags: [application-service, cashflow-lifecycle, status-management, cashflow, lifecycle, service, settlement, cash-settlement, lifecycle-management, fixing-flag, reprocessing]
 related: [netting-and-lifecycle-service-separation, ratan-cashflow-lifecycle-state-machine, stella, cash-settlement-home-page, netting-service, lifecycle-netting-responsibility-separation, scbml, batch-service, fixing-flag-notification-processing, fixing-notification-event-ordering, cashflow-reinstatement-and-replay]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Refactor Netting & Status Move Process.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Refactor Netting Process.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Fixing flag notification.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Refactor Netting & Status Move Process.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Refactor Netting Process.md"]
 ---
 # Lifecycle Service
 
@@ -31,7 +31,7 @@ The Stella message event is described as the cashflow's main data and is used in
 
 According to the fixing-flag notification technical design, Lifecycle Service is responsible for:
 
-1. Consuming fixing notifications published by [[batch-service]].
+1. Consuming fixing notifications published by batch service.
 2. Persisting the original notification for batch and real-time processing.
 3. Applying the notification's fixing flag to the cashflow.
 4. Reverting eligible cashflows to `queued` for reprocessing.
@@ -84,12 +84,12 @@ The fixing-flag notification design does not define:
 
 ## Related Pages
 
-- [[ratan-cashflow-lifecycle-state-machine]]
+- ratan cashflow lifecycle state machine
 - [[netting-and-lifecycle-service-separation]]
 - [[lifecycle-netting-responsibility-separation]]
-- [[stella]]
+- stella
 - [[netting-service]]
-- [[batch-service]]
-- [[fixing-flag-notification-processing]]
-- [[fixing-notification-event-ordering]]
-- [[cashflow-reinstatement-and-replay]]
+- batch service
+- fixing flag notification processing
+- fixing notification event ordering
+- cashflow reinstatement and replay

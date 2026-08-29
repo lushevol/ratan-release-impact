@@ -35,6 +35,6 @@ Performance reporting should distinguish:
 
 ## Evidence boundaries
 
-This concept concerns netting work performed by [[netting-service]]. It is distinct from cashflow-blotter query performance and from other [[cash-settlement-batch-job-performance]] workloads. The current evidence consists of two internally recorded test runs and does not define an approved performance target.
+This concept concerns netting work performed by [[netting-service]]. It is distinct from cashflow-blotter query performance and from other cash settlement batch job performance workloads. The current evidence consists of two internally recorded test runs and does not define an approved performance target.
 
-See [[does-netting-meet-the-required-throughput-sla-at-production-volume]] for the required acceptance criteria and benchmark controls.
+See does netting meet the required throughput sla at production volume for the required acceptance criteria and benchmark controls.

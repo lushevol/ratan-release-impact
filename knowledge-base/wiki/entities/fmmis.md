@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-22
 tags: [FMMIS, STP, NSTP, controls, settlement, downstream-system, integration]
 related: ["f2b", "fmrp", "straight-through-processing", "high-risk-nstp-rule", "entity-branch-onboarding", "ratan", "cashflow-auto-netting"]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/04-Onboarding(Entity Product) Check List/F2B Milestone Onboarding check list.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting.md"]
 ---
 # FMMIS
 

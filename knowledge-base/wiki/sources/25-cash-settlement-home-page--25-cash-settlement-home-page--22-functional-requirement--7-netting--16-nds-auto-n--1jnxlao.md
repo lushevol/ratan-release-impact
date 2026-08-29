@@ -143,4 +143,4 @@ These cases show that matching by status and NID is not sufficient to establish 
 
 ## Related wiki pages
 
-This source extends [[concepts/murex-to-ratan-rule-replication]] with NDS-specific eligibility, scheduling, resultant-field mapping, and duplicate-payment evidence. It also provides requirements relevant to [[concepts/cashflow-exception-handling]], [[concepts/cashflow-logical-model]], and [[concepts/confirmation-match-driven-settlement]].
+This source extends murex to ratan rule replication with NDS-specific eligibility, scheduling, resultant-field mapping, and duplicate-payment evidence. It also provides requirements relevant to cashflow exception handling, cashflow logical model, and confirmation match driven settlement.

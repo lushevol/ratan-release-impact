@@ -37,4 +37,4 @@ t_auto_netting_task
 
 The source establishes that [[auto-netting]] is staged and that [[amendment-cashflow-exclusion-from-auto-netting]] is a pre-execution rule. It does not define task eligibility, amendment identification, netting calculations, persistence, idempotency, locking, error handling, retries, recovery, audit records, or outcomes for removed tasks.
 
-Open design questions are tracked in [[what-is-the-authoritative-auto-netting-task-and-amendment-exclusion-contract]].
+Open design questions are tracked in what is the authoritative auto netting task and amendment exclusion contract.

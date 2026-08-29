@@ -60,14 +60,14 @@ Whether that divergence is acceptable depends on settlement, reporting, downstre
 - Eventual consistency.
 - An explicit intermediate state.
 
-These unresolved consistency concerns are tracked in [[resultant-cashflow-status-consistency]].
+These unresolved consistency concerns are tracked in resultant cashflow status consistency.
 
 ## Related Concepts
 
 - [[netting-and-lifecycle-service-separation]]
 - [[netting-resultant-cashflow]]
-- [[ratan-external-and-internal-lifecycle-requests]]
+- ratan external and internal lifecycle requests
 - [[cashflow-auto-netting]]
 - [[lifecycle-service]]
 - [[lifecycle-netting-responsibility-separation]]
-- [[resultant-cashflow-status-consistency]]
+- resultant cashflow status consistency

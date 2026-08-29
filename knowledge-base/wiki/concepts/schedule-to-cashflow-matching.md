@@ -28,8 +28,8 @@ A matching schedule record may arise from Additional Payments, coupon schedules,
 - [[irs]] coupons use periodic adjusted interest payment dates across both swap legs.
 - [[ccs]] coupons use both legs; non-MTM CCS principal exchanges use periodic notional exchange dates; amortizing CCS uses step-schedule amortization dates.
 
-The supplied mapping does not provide a `Schedule_Currency` for CCS amortization rows, so those entries cannot fully satisfy the stated two-field match without a separate derivation rule. See [[what-is-the-schedule-currency-rule-for-ccs-amortization-payments]].
+The supplied mapping does not provide a `Schedule_Currency` for CCS amortization rows, so those entries cannot fully satisfy the stated two-field match without a separate derivation rule. See what is the schedule currency rule for ccs amortization payments.
 
 ## Identity and Multiplicity
 
-Date and currency do not uniquely identify a schedule event where multiple payments share the same values. The source does not specify schedule-event identity, deduplication, or whether a cashflow that matches both legs is counted once or twice. This is tracked in [[how-are-duplicate-or-multi-matching-schedule-events-counted]].
+Date and currency do not uniquely identify a schedule event where multiple payments share the same values. The source does not specify schedule-event identity, deduplication, or whether a cashflow that matches both legs is counted once or twice. This is tracked in how are duplicate or multi matching schedule events counted.

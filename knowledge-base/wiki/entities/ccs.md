@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-23
 tags: [product, cross-currency-swaps, fmrp, cash-settlement, auto-netting, product-type, cross-currency-swap, ccs, trade-product]
 related: [fmrp-prime-uk-uat-drop-2, fmrp, ratan, stella, murex, irs, ssi-stamping, cross-product-netting, cashflow-suppression, normalized-payment-schedule, schedule-to-cashflow-matching, expected-payment-count-for-auto-netting, what-is-the-schedule-currency-rule-for-ccs-amortization-payments, cashflow-event-control, cashflow-netting-and-auto-netting, btb3-5-7-trade-processing]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/04-Onboarding(Entity Product) Check List/F2B Milestone Onboarding check list/F2B Milestone Checklist - Prime Day 2.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Product Agnostic model to identify all cashflows for a specific value date to support Auto Aggregation.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Trade & Cashflow Events Control/Cashflow Events Control/CN Drop 2 UAT - Settlements Scenarios - 2024.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Product Agnostic model to identify all cashflows for a specific value date to support Auto Aggregation.md"]
 ---
 # CCS
 
@@ -63,4 +63,4 @@ Payment-schedule matching requires both the payment date and currency to equal t
 
 ### Amortization schedule currency
 
-The supplied CCS amortization mappings contain schedule dates but no schedule-currency field. This prevents a fully specified application of the mandatory date-and-currency matching rule until the currency-derivation approach is defined. See [[what-is-the-schedule-currency-rule-for-ccs-amortization-payments]].
+The supplied CCS amortization mappings contain schedule dates but no schedule-currency field. This prevents a fully specified application of the mandatory date-and-currency matching rule until the currency-derivation approach is defined. See what is the schedule currency rule for ccs amortization payments.

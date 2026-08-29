@@ -30,7 +30,7 @@ FMO_STA_MKR
 
 Makers can create, update, or delete configuration. Checkers verify the submitted change and can approve or reject it. The maker and checker must be different people. Newly added, updated, or deleted rules and Nostro records become effective only after checker approval.
 
-The source does not specify whether the cashflow refresh associated with a rule change occurs at maker submission, checker approval, or a separate static-data event. This timing should be reconciled with [[concepts/maker-checker-settlement-control]] and [[queries/what-is-the-canonical-pending-auto-netting-state-model]].
+The source does not specify whether the cashflow refresh associated with a rule change occurs at maker submission, checker approval, or a separate static-data event. This timing should be reconciled with maker checker settlement control and what is the canonical pending auto netting state model.
 
 ## Netting Static
 
@@ -92,7 +92,7 @@ Cashflow_Status = WAITING (Pending Auto Netting)
 Cashflow tagged to the rule
 ```
 
-The document does not define whether rule conversion clears existing Netting IDs, removes pending actions, or changes lifecycle state. It also does not establish whether the labels in parentheses are canonical state types, sub-states, exception labels, or UI labels. These issues relate to [[concepts/ratan-cashflow-lifecycle-state-machine]] and [[queries/what-are-the-canonical-cashflow-state-and-sub-state-values]].
+The document does not define whether rule conversion clears existing Netting IDs, removes pending actions, or changes lifecycle state. It also does not establish whether the labels in parentheses are canonical state types, sub-states, exception labels, or UI labels. These issues relate to ratan cashflow lifecycle state machine and what are the canonical cashflow state and sub state values.
 
 ## Nostro Static
 
@@ -137,7 +137,7 @@ Correspondent Swift is mandatory and must contain 11 characters
 Account in 'eBBS information' must contain 6 digits
 ```
 
-The source’s duplicate-key and primary-record checks are detailed in [[concepts/nostro-static-validation]] and related to [[concepts/korea-static-settlement-configuration]].
+The source’s duplicate-key and primary-record checks are detailed in [[concepts/nostro-static-validation]] and related to korea static settlement configuration.
 
 ## Historical feature note
 

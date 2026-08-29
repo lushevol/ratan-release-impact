@@ -30,4 +30,4 @@ SWIFT generation is bypassed for the resultant, but accounting remains required.
 
 ## Boundary and Limitation
 
-FMID `400021949` is central to the guaranteed classification, but it may not be sufficient by itself. The source explicitly excludes Cash and Bond flows booked with the same FMID from netting with guaranteed IRS flows. The exact product, family, group, typology, and currency predicate remains unresolved; see [[what-exactly-excludes-non-ccil-flows-booked-with-ccil-fmid-from-guaranteed-netting]].
+FMID `400021949` is central to the guaranteed classification, but it may not be sufficient by itself. The source explicitly excludes Cash and Bond flows booked with the same FMID from netting with guaranteed IRS flows. The exact product, family, group, typology, and currency predicate remains unresolved; see what exactly excludes non ccil flows booked with ccil fmid from guaranteed netting.

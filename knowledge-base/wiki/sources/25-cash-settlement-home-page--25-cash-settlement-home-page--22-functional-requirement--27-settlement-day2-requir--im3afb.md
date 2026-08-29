@@ -199,6 +199,6 @@ Only one incomplete test case is included. The design does not show coverage for
 
 ## Related wiki context
 
-This source elaborates on [[concepts/cashflow-auto-netting]], [[concepts/auto-netting-rule-management]], [[concepts/netting-rule-change-cashflow-refresh]], and [[concepts/business-calendar-relative-netting-time]]. It also relates to [[queries/what-is-the-canonical-pending-auto-netting-state-model]], [[queries/what-are-the-canonical-auto-netting-stp-level-enums]], [[concepts/ccil-settlement-method-stamping]], [[concepts/netting-resultant-cashflow-lifecycle]], and [[concepts/net-resultant-cashflow]].
+This source elaborates on [[concepts/cashflow-auto-netting]], [[concepts/auto-netting-rule-management]], [[concepts/netting-rule-change-cashflow-refresh]], and [[concepts/business-calendar-relative-netting-time]]. It also relates to what is the canonical pending auto netting state model, what are the canonical auto netting stp level enums, [[concepts/ccil-settlement-method-stamping]], [[concepts/netting-resultant-cashflow-lifecycle]], and [[concepts/net-resultant-cashflow]].
 
 It appears to be a technical companion to sources/26-auto-netting-page-md-files--122-cash-settlement-home-page-cash-settlement-home-page-functional-requirement-ne--mc8aul, not a replacement for that functional-requirement source.

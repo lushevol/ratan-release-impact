@@ -28,7 +28,7 @@ The stated check that a current or prior component version was not sent to [[raz
 
 An un-net request identifies a resultant cashflow and Netting Id. RATAN re-queries the resultant and validates that its Netting Id is present and its state is `Queued`, `Pending`, or `Validated`. It then queries the associated components by Netting Id.
 
-The source conflicts with its high-level GUI guide, which also lists `Hold` as eligible for un-netting. See [[what-is-the-authoritative-manual-netting-and-un-netting-eligibility-matrix]].
+The source conflicts with its high-level GUI guide, which also lists `Hold` as eligible for un-netting. See what is the authoritative manual netting and un netting eligibility matrix.
 
 ## Component lookup
 

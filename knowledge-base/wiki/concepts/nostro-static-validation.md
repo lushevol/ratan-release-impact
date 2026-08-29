@@ -44,7 +44,7 @@ Correspondent Swift is mandatory and must contain 11 characters
 Account in 'eBBS information' must contain 6 digits
 ```
 
-The phrase `account in 'eBBS information'` is retained from the source because the exact underlying field name is not specified. These rules should be reconciled with [[concepts/korea-static-settlement-configuration]].
+The phrase `account in 'eBBS information'` is retained from the source because the exact underlying field name is not specified. These rules should be reconciled with korea static settlement configuration.
 
 ## Duplicate-key validation
 

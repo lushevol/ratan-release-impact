@@ -19,7 +19,7 @@ The requirement states that `PAYSTP_NET` must be configurable by users. This is 
 
 ## Relationship to Beneficiary BIC data
 
-The Beneficiary BIC itself is sourced from [[entities/sci]], using the BIC where `mediumUsage='MXR'`. The source does not define precedence when `PAYSTP_NET` and SCI contain conflicting or incomplete data.
+The Beneficiary BIC itself is sourced from sci, using the BIC where `mediumUsage='MXR'`. The source does not define precedence when `PAYSTP_NET` and SCI contain conflicting or incomplete data.
 
 ## Operational risks
 

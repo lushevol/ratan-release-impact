@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-23
 tags: [nstp, settlement, exception-processing, business-rules, hard-blocker, cash-settlement, exception-queue, net-to-gross, workflow, retry, exception, maker-checker]
 related: [sal-swap-agent-hard-blocker, nstp-hard-blocker-bulk-eligibility, business-rule-maintenance, ratan-rule-lifecycle-management, settlement-suppression-exceptions, ratan, net-to-gross-workflow, camunda, netting-service, cashflow-locking-and-retry-policy, nstp-maker-checker-processing, camunda-based-maker-checker-workflows, cash-settlement-exception-handling, canonical-nstp-maker-checker-state-machine]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Hard Blocker/Self testing evdience.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Netting Story Board.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Cash Settlement Lock Process.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/NSTP Maker-Checker Separation From Code.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Netting Story Board.md"]
 ---
 
 # NSTP
@@ -32,13 +32,13 @@ NSTP hard-blocker behavior is primarily a release and approval control. Same-pay
 
 ## Proposed maker-checker workflow redesign
 
-According to the proposed maker-checker redesign, NSTP-related manual operations should be orchestrated by [[camunda]] rather than embedded in business-service code.
+According to the proposed maker-checker redesign, NSTP-related manual operations should be orchestrated by camunda rather than embedded in business-service code.
 
-For an NSTP cashflow, [[ratan-cash-settlement-orchestration]] is planned to modify `1_5_Nstp_Check.bpmn` to invoke an NSTP sub-workflow.
+For an NSTP cashflow, ratan cash settlement orchestration is planned to modify `1_5_Nstp_Check.bpmn` to invoke an NSTP sub-workflow.
 
 The proposal states that Camunda-originated calls are to update SCBML history to:
 
 - `Pending_Operator`
 - `NSTP_Release`
 
-The redesign source does not define whether these values are complete NSTP lifecycle states, their valid predecessors, or their terminal semantics. See [[canonical-nstp-maker-checker-state-machine]].
+The redesign source does not define whether these values are complete NSTP lifecycle states, their valid predecessors, or their terminal semantics. See canonical nstp maker checker state machine.

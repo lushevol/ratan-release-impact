@@ -4,7 +4,7 @@ title: TDSX
 created: 2026-08-22
 tags: [tdsx, payment-schedule, cash-settlement, api, IRS, cashflow-schedule, Stella, uber, publisher, release-operations, trade-data, api-layer, tds2, tds3, sabre]
 related: ["stella", "tds2", "tds3", "delivery-versus-payment", "dvp-nstp", "blade", "irs-fixed-floating-leg-netting", "pending-another-leg-status", "tdsx-uber-message-listener", "sabre-pss", "upstream-cashflow-replay-for-group-completion", "ratan-tdsx-integration", "sabre", "solace", "what-is-the-authoritative-ratan-tdsx-interface-contract", "what-is-the-authoritative-stella-tdx-tdsx-schedule-lookup-contract"]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/2024 changes.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/IRS Fix Leg & Floating leg payment handling.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/RATANONE Cash Settlement Technical Design/RATAN - Uber Integration/EG   NP   SAU UBER Roll Out & FXU Business Go-Live Runbook on 04 04.md", "RATAN/RATAN -Interfaces/Ratan and SABRE (TDSX)-29126.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/IRS Fix Leg & Floating leg payment handling.md"]
 updated: 2026-08-25
 ---
 
@@ -18,11 +18,11 @@ The same source does not define:
 
 - Request routing between TDS2 and TDS3.
 - TDSX API or message schemas.
-- Ownership boundaries between TDSX and [[sabre|SABRE]].
+- Ownership boundaries between TDSX and SABRE.
 
 The 2024-changes source states that TDS2 provides the TDSX API for Drop2/Drop3 and separately identifies [[tds3]] as a source of COM status and trade information for other flows. It does not define whether TDS2 owns TDSX, consumes it, or delivers an adjacent API. These statements should therefore remain source-specific rather than being treated as a fully documented ownership model.
 
-The IRS fixed/floating-leg payment-handling source uses the lineage `Blade->Stella->TDS3→Ratan` and inconsistently refers to TDX, TDSX, and TDS3. It does not define the authoritative service identity, endpoint, response contract, availability handling, or exact date-match condition. These gaps are tracked in [[what-is-the-authoritative-stella-tdx-tdsx-schedule-lookup-contract]].
+The IRS fixed/floating-leg payment-handling source uses the lineage `Blade->Stella->TDS3→Ratan` and inconsistently refers to TDX, TDSX, and TDS3. It does not define the authoritative service identity, endpoint, response contract, availability handling, or exact date-match condition. These gaps are tracked in what is the authoritative stella tdx tdsx schedule lookup contract.
 
 ## RATAN interface
 
@@ -30,13 +30,13 @@ For the documented RATAN interface, the RATAN/SABRE source states that TDSX:
 
 - Provides Payment Schedule data for RATAN trade control and Trade Blotter display.
 - Exposes a REST API called by RATAN for trade validation.
-- Publishes Uber messages delivered to RATAN through [[solace|Solace]].
+- Publishes Uber messages delivered to RATAN through Solace.
 
 The functional and netting requirements further identify TDSX as an API or data dependency for payment-schedule information used by Stella-related cash-settlement functions.
 
 The IRS fixed/floating-leg payment-handling source describes TDSX as the schedule-information API dependency used by [[ratan]] for Stella/FMRP IRS cashflows. RATAN queries it by trade ID to retrieve scheduled interest-payment dates for both legs of an IRS.
 
-The authoritative RATAN/TDSX interface contract, including the precise endpoint, request and response schemas, and related interface details, is not established here. See [[ratan-tdsx-integration]] and [[what-is-the-authoritative-ratan-tdsx-interface-contract]].
+The authoritative RATAN/TDSX interface contract, including the precise endpoint, request and response schemas, and related interface details, is not established here. See ratan tdsx integration and what is the authoritative ratan tdsx interface contract.
 
 ## Payment-schedule requirements and uses
 
@@ -51,7 +51,7 @@ For the `Blade->Stella->TDS3→Ratan` booking lineage, the IRS fixed/floating-le
 
 ## Uber publishing and rollout operations
 
-The RATAN/SABRE source states that TDSX publishes Uber messages and that RATAN receives them through [[solace|Solace]].
+The RATAN/SABRE source states that TDSX publishes Uber messages and that RATAN receives them through Solace.
 
 Separately, the Uber rollout runbook identifies TDSX as the publisher-management team or system responsible for the Uber flow. This is an operational reference and does not establish that the Uber publisher role is the same interface or component as the payment-schedule API dependency.
 

@@ -111,5 +111,5 @@ The holiday policy, late-arrival policy, job scheduling behavior, and post-withd
 - [[concepts/manual-cashflow-netting]]
 - [[concepts/netting-un-net-lifecycle]]
 - [[concepts/netting-resultant-cashflow-lifecycle]]
-- [[queries/what-is-the-canonical-pending-auto-netting-state-model]]
-- [[queries/what-is-the-authoritative-auto-netting-cutoff-time-semantics]]
+- what is the canonical pending auto netting state model
+- what is the authoritative auto netting cutoff time semantics

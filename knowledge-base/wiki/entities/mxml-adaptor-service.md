@@ -24,4 +24,4 @@ Entity.Counterparty_SCI_FMID is 400021949 or the FMID from the above non guarant
 Cashflow.Payment_Currency is INO
 ```
 
-This logic is tactical and is expected to be discarded after Murex 2.11 decommissioning. The strategic design moves CCIL identification and stamping to [[stella]].
+This logic is tactical and is expected to be discarded after Murex 2.11 decommissioning. The strategic design moves CCIL identification and stamping to stella.

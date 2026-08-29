@@ -61,11 +61,11 @@ For the proposed extensions:
 - CCIL Guaranteed and Non-Guaranteed resultant cashflows should inherit settlement method from their component cashflows.
 - Beneficiary BIC resultant cashflows require BIC stamping, with workflow-publication query behavior still to be checked.
 
-See [[ccil-settlement-method-stamping]] and [[beneficiary-bic-based-netting]].
+See [[ccil-settlement-method-stamping]] and beneficiary bic based netting.
 
 ## Related Lifecycle Constraint
 
-The source proposes that a pending netting cashflow cannot be un-netted by withdrawing a component, whether the withdrawal is manual or automatic. The exact state transition is unresolved; see [[netting-resultant-cashflow-lifecycle]] and [[what-is-the-authoritative-pending-netting-withdrawal-behavior]].
+The source proposes that a pending netting cashflow cannot be un-netted by withdrawing a component, whether the withdrawal is manual or automatic. The exact state transition is unresolved; see [[netting-resultant-cashflow-lifecycle]] and what is the authoritative pending netting withdrawal behavior.
 
 ## Limitations and Open Questions
 

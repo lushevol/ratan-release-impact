@@ -54,7 +54,7 @@ No latency baseline, throughput target, transaction-duration measurement, error 
 1. Initialize the cashflow Stella message event when consuming a `Cash_Settlement_Orchestration_Process_In` message.
 2. Maintain the cashflow status by changing it from X to Y.
 
-The source describes the Stella message event as the cashflow's main data and states that it is used in every state change. This proposed ownership boundary relates to [[concepts/ratan-cashflow-lifecycle-state-machine]] and [[entities/stella]].
+The source describes the Stella message event as the cashflow's main data and states that it is used in every state change. This proposed ownership boundary relates to ratan cashflow lifecycle state machine and stella.
 
 ### Netting Service
 
@@ -136,7 +136,7 @@ The proposed Netting Service also remains broad, combining orchestration, revers
 - [[concepts/netting-resultant-cashflow]]
 - [[concepts/netting-un-net-lifecycle]]
 - [[concepts/pending-auto-netting-state]]
-- [[concepts/ratan-cashflow-lifecycle-state-machine]]
+- ratan cashflow lifecycle state machine
 - [[entities/lifecycle-service]]
 - [[entities/netting-service]]
-- [[entities/stella]]
+- stella

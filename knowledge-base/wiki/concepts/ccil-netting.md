@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-23
 tags: [ccil, india, settlement, netting, swift, accounting, cash-settlement, cross-counterparty]
 related: [ratan, ratan-netting-rule-check, swift-network, swift-service, payment-and-cashflow-suppression-governance, ccil, ccil-cashflow-identification, netting-service, settlement-method-driven-netting]
-sources: ["RATAN - 51358/RATAN/RATAN -Core Function/RATAN-Settlement  4_Netting Rule Check.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/CCIL Netting Design.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/CCIL Netting Design.md"]
 ---
 # CCIL Netting
 

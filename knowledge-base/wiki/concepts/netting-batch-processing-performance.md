@@ -38,4 +38,4 @@ The benchmark does not define the implementation semantics of `key holder` or th
 
 The source provides no repeated-trial statistics, workload definition, concurrent-load information, hardware specification, database state, warm-up protocol, transaction boundaries, correctness checks, locking behavior, or retry behavior. It should be treated as targeted Dev evidence rather than a capacity forecast.
 
-This performance evidence may be relevant to [[netting-service]], but the source does not explicitly identify a service release, endpoint, or deployment. It complements the broader evidence in [[cash-settlement-performance-and-stress-testing]] without changing netting business rules such as [[ccil-netting]].
+This performance evidence may be relevant to [[netting-service]], but the source does not explicitly identify a service release, endpoint, or deployment. It complements the broader evidence in cash settlement performance and stress testing without changing netting business rules such as [[ccil-netting]].

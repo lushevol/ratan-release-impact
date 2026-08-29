@@ -5,7 +5,7 @@ created: 2026-08-23
 updated: 2026-08-23
 tags: [cashflow, netting, settlement, cash-settlement, cashflows, aggregation]
 related: [25-cash-settlement-home-page--25-cash-settlement-home-page--22-functional-requirement--7-netting--18-business-us--b1wlmm, 25-cash-settlement-home-page--25-cash-settlement-home-page--22-functional-requirement--15-deprecated-docs--26-n--18p25vy, what-is-the-authoritative-netting-state-name-and-un-netting-resultant-identity, netting-service, resultant-cashflow-generation, netting-eligibility, cashflow-unnetting, maker-checker-netting, irs-cashflow-processing]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Business User Case.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Netting Service Design.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Netting Service Design.md"]
 ---
 
 # Cashflow Netting
@@ -58,6 +58,6 @@ The deprecated [[25-cash-settlement-home-page--25-cash-settlement-home-page--22-
 
 ## Unresolved Design Questions
 
-The technical design leaves the authoritative state machine, partial-success behavior, idempotency rules, and concurrency controls unresolved. See [[what-is-the-authoritative-netting-state-machine]].
+The technical design leaves the authoritative state machine, partial-success behavior, idempotency rules, and concurrency controls unresolved. See what is the authoritative netting state machine.
 
-[[what-is-the-authoritative-netting-state-name-and-un-netting-resultant-identity]] tracks the canonical status terminology and identity model for netting-related cashflows.
+what is the authoritative netting state name and un netting resultant identity tracks the canonical status terminology and identity model for netting-related cashflows.

@@ -74,7 +74,7 @@ All listed services use the shared feature branch `feature/autonetting-interEnti
 | ratan-cash-settlement-group-management-service | feature/autonetting-interEntity | |
 | ratan-rule-service | feature/autonetting-interEntity | |
 
-See [[entities/ratan-cash-settlement-netting-service]], [[entities/ratan-rule-service]], [[entities/ratanone-foundation]], and [[entities/ratan-cash-settlement-group-management-service]].
+See ratan cash settlement netting service, ratan rule service, [[entities/ratanone-foundation]], and [[entities/ratan-cash-settlement-group-management-service]].
 
 ## Findings and Limitations
 
@@ -82,7 +82,7 @@ Cashflows 1 and 4 match because their reciprocal entity directions and amounts p
 
 The duplicate example suggests one-to-one consumption or allocation, but the source does not define the tie-breaker. It is also unclear whether `Currency` and `VD` are independent eligibility filters because they appear in the sample data but not in the displayed key format.
 
-The source does not specify the exact persisted field name or type for “USD Transfered Amount,” whether amounts are normalized to USD, what happens after a record is marked `Match`, or whether a successful match creates a resultant cashflow. These questions remain relevant to [[queries/is-inter-entity-netting-resultant-counterparty-selection-deterministic]].
+The source does not specify the exact persisted field name or type for “USD Transfered Amount,” whether amounts are normalized to USD, what happens after a record is marked `Match`, or whether a successful match creates a resultant cashflow. These questions remain relevant to is inter entity netting resultant counterparty selection deterministic.
 
 ## Related Wiki Topics
 

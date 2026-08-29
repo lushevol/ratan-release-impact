@@ -23,7 +23,7 @@ The document demonstrates this behavior only for a Stella Amendment to component
 
 FMRP strategy netting is handled in [[ratan]]. Cashflows may be sourced from Stella, Murex 2.11, and MXCash. Subsequent trade-market events, including Amendment, Cancellation, and Termination, can produce new cashflow events for a previously netted component.
 
-The narrative says that un-netted cashflows are held as `NSTP` for user review and further action. This conflicts with the detailed worked example, where all released components have status `Queued`. See [[does-auto-un-netting-place-cashflows-in-nstp-or-queued]].
+The narrative says that un-netted cashflows are held as `NSTP` for user review and further action. This conflicts with the detailed worked example, where all released components have status `Queued`. See does auto un netting place cashflows in nstp or queued.
 
 ## Worked amendment scenario
 
@@ -72,4 +72,4 @@ These transitions are evidence for the illustrated Amendment scenario only; they
 - Whether `Netting ID` remains persisted after un-netting or is retained only as audit lineage.
 - Whether released components are re-netted automatically, netted manually, or kept out of the prior cycle.
 
-Related pages: [[automatic-un-netting-on-trade-market-events]], [[cashflow-event-versioning]], [[what-market-event-correlation-key-triggers-ratan-auto-un-netting]], and [[what-is-the-authoritative-netting-state-name-and-un-netting-resultant-identity]].
+Related pages: [[automatic-un-netting-on-trade-market-events]], cashflow event versioning, what market event correlation key triggers ratan auto un netting, and what is the authoritative netting state name and un netting resultant identity.

@@ -40,4 +40,4 @@ The latter cannot match an individual FMID and therefore represents a material c
 
 ## Status limitation
 
-All cited suppression-rule status fields are blank. The source establishes intended rules and a correction requirement, but does not prove approval, deployment, or effective runtime suppression. See [[are-clearing-resultant-swift-suppression-rules-active]].
+All cited suppression-rule status fields are blank. The source establishes intended rules and a correction requirement, but does not prove approval, deployment, or effective runtime suppression. See are clearing resultant swift suppression rules active.

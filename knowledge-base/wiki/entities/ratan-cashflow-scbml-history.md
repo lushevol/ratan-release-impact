@@ -9,7 +9,7 @@ sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requir
 ---
 # ratan_cashflow_scbml_history
 
-`ratan_cashflow_lifecycle_service.ratan_cashflow_scbml_history` is a PostgreSQL cashflow-history table in the [[ratan]] environment. Its name identifies an association with [[scbml]] cashflow data.
+`ratan_cashflow_lifecycle_service.ratan_cashflow_scbml_history` is a PostgreSQL cashflow-history table in the [[ratan]] environment. Its name identifies an association with scbml cashflow data.
 
 The source proposes a new index to support lookup patterns involving `cashflow_status`, `sub_status_event_type`, and `active` in the Cashflow Auto Netting context.
 

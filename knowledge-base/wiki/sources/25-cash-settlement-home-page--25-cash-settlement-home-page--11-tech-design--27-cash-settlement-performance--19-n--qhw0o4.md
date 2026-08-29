@@ -39,4 +39,4 @@ The old implementation and the batch-size-1,000 key-holder implementation change
 
 The manual batch-SQL result was fastest at 596 cashflows, but at 1,999 cashflows on 2025.07.15 it was slower than the non-manual batch-size-200 key-holder variant.
 
-See [[netting-batch-processing-performance]] for interpretation boundaries and [[which-netting-batch-strategy-meets-performance-and-correctness-requirements]] for validation requirements.
+See [[netting-batch-processing-performance]] for interpretation boundaries and which netting batch strategy meets performance and correctness requirements for validation requirements.

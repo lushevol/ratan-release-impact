@@ -5,14 +5,14 @@ created: 2026-08-22
 updated: 2026-08-23
 tags: [RATAN, rule-engine, Drools, business-rules, rule-service, NSTP, cashflow-classification, CCIL, cash-settlement, rules, field-mapping, versioning, archived]
 related: [ratan, drools, ratan-rule-lifecycle-management, business-rule-maintenance, ccil-netting, settlement-method-driven-netting, ratanone-rule-service, centralized-cashflow-field-mapping-governance, dynamic-cashflow-query-field-mapping, ratanone-foundation, query-service, what-is-the-authoritative-versioned-logical-field-to-xpath-contract, rule-service-migration, csv-to-drools-rule-generation, static-data-service, did-the-2023-rule-service-migration-and-uat-complete]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Ratan One Processing Guide (DOI)/Business Rules Maintenance.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/CCIL Netting Design.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Cashflow Query Service - GraghQL schema and DB column mapping for dynamic query.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Technology Selection - Rule Engine/RATAN Rule Engine - [Archived", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Technology Selection - Rule Engine/RATAN Rule Engine - [Archived]/Rule Service Migration/Rule Service Delivery Plan.md"]/Rule Service Migration/Rule Service Delivery Plan.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/CCIL Netting Design.md"]
 ---
 
 # Rule Service
 
 Rule Service is identified by the RATAN One processing guide as responsible for rule creation, maintenance, and execution following the 2023 Rule Service engine upgrade to Drools.
 
-An archived 2023 Rule Service Delivery Plan separately identifies Rule Service as the target service for migration and onboarding of business-rule portfolios. That plan is historical context for [[rule-service-migration]] and does not establish the service's final implementation status, runtime design, current owner, deployment model, or continued role in the current RATAN architecture.
+An archived 2023 Rule Service Delivery Plan separately identifies Rule Service as the target service for migration and onboarding of business-rule portfolios. That plan is historical context for rule service migration and does not establish the service's final implementation status, runtime design, current owner, deployment model, or continued role in the current RATAN architecture.
 
 ## Rule-engine role and documented capabilities
 
@@ -38,9 +38,9 @@ The archived delivery plan records:
 - An in-progress target to deploy Rule Service with FX rules to UAT by 24 November 2023.
 - BAU suppression-rule and CN-rule onboarding listed as TBC end-of-December work.
 
-The plan does not confirm whether the migration or UAT deployment completed. See [[did-the-2023-rule-service-migration-and-uat-complete]].
+The plan does not confirm whether the migration or UAT deployment completed. See did the 2023 rule service migration and uat complete.
 
-For planned BAU onboarding, the delivery plan used [[csv-to-drools-rule-generation]]. Its proposed movement of fields-service functionality and validation rules to [[static-data-service]] suggests an intended responsibility boundary, but that boundary remains unconfirmed.
+For planned BAU onboarding, the delivery plan used csv to drools rule generation. Its proposed movement of fields-service functionality and validation rules to static data service suggests an intended responsibility boundary, but that boundary remains unconfirmed.
 
 ## Proposed field-mapping role
 
@@ -54,7 +54,7 @@ Under that proposed design, Rule Service would:
 
 This is proposed design intent, not evidence of an implemented production contract. The API shape, context semantics, ownership, compatibility guarantees, access control, and availability requirements are unspecified.
 
-[[query-service]] and the UI are intended consumers of this proposed mapping role. See [[centralized-cashflow-field-mapping-governance]] and [[what-is-the-authoritative-versioned-logical-field-to-xpath-contract]].
+query service and the UI are intended consumers of this proposed mapping role. See centralized cashflow field mapping governance and what is the authoritative versioned logical field to xpath contract.
 
 ## CCIL netting design usage
 
@@ -83,5 +83,5 @@ The CCIL Netting Design does not define:
 
 - [[ratan]]
 - [[drools]]
-- [[ratan-rule-lifecycle-management]]
-- [[rule-service-migration]]
+- ratan rule lifecycle management
+- rule service migration

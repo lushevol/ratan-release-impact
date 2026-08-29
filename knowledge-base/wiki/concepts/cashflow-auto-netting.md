@@ -11,7 +11,7 @@ sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requir
 
 Cashflow Auto Netting is the proposed RATAN process and settlement capability for automatically grouping or offsetting eligible cashflows at a configured future netting datetime, with the aim of reducing or consolidating settlement movements.
 
-The UAT material describes Cashflow Auto Netting as a capability under test in the [[25-cash-settlement-home-page--25-cash-settlement-home-page--22-functional-requirement--27-settlement-day2-requir--1x97cc1|Settlement Day2 Requirement]] context. The functional requirement defines the processing model below. The UAT sample itself does not specify the netting algorithm or prove that any record was successfully netted.
+The UAT material describes Cashflow Auto Netting as a capability under test in the Settlement Day2 Requirement context. The functional requirement defines the processing model below. The UAT sample itself does not specify the netting algorithm or prove that any record was successfully netted.
 
 ## Processing Model
 

@@ -28,7 +28,7 @@ The source retains `N101` in the post-un-net table, but does not define whether 
 
 The source names Amendment, Cancellation, and Termination as possible incoming market events, but demonstrates only Amendment. It does not establish that Murex 2.11 or MXCash can independently trigger the same action, nor does it require automatic re-netting after release.
 
-The operational status is ambiguous: narrative text says un-netted cashflows are held as `NSTP`, while the example records `Queued`. This is tracked in [[does-auto-un-netting-place-cashflows-in-nstp-or-queued]].
+The operational status is ambiguous: narrative text says un-netted cashflows are held as `NSTP`, while the example records `Queued`. This is tracked in does auto un netting place cashflows in nstp or queued.
 
 ## Required but unspecified controls
 
@@ -40,4 +40,4 @@ A production contract requires rules for:
 - Handling a resultant that has progressed beyond `Queued`.
 - Subsequent user review and potential re-netting.
 
-See [[what-market-event-correlation-key-triggers-ratan-auto-un-netting]] and [[what-is-the-ratan-auto-un-netting-contract-for-cancellation-and-termination]].
+See what market event correlation key triggers ratan auto un netting and what is the ratan auto un netting contract for cancellation and termination.

@@ -17,6 +17,6 @@ An auto-netting rule is a netting rule identified by `isAutoNetting`. The design
 
 The shifter must support hour and minute values. Rules may include exclusion criteria.
 
-[[ratanone-rule-service]] is intended to create, update, delete, validate, and deduplicate these rules. On a rule-check hint, it should return `VD+Shifter` for downstream lifecycle processing.
+ratanone rule service is intended to create, update, delete, validate, and deduplicate these rules. On a rule-check hint, it should return `VD+Shifter` for downstream lifecycle processing.
 
 The design does not define the rule schema, duplicate identity, exclusion precedence, hint producer, or precedence against other netting rules. It also does not establish whether this design applies specifically to inter-entity, Murex-originated, or other cashflow populations.

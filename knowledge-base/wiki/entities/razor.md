@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-25
 tags: ["system", "trade-lookup", "integration", "settlement-platform", "downstream-system", "cashflow-processing", "settlement-accounting", "reporting", "fmrp", "china", "RAZOR", "UAT", "Prime", "Islamic-settlement", "settlement-methods", "settlement", "accounting", "swift", "payment-splitting", "reference-implementation", "settlement-integration", "payment-messaging", "cash-settlement", "cashflow", "release", "fx", "dvp", "reference-system", "automation", "cutoff", "configuration", "qatar", "settlement-system", "nostro-static-data", "fmo", "account-normalization", "payments", "correction-and-reversal", "upstream-system", "acknowledgement", "source-system", "scbml", "fxu", "ratan", "fx-replication"]
 related: ["cash-settlement-2025-roadmap", "ratan", "ratan-settlement", "cash-settlement", "straight-through-processing", "cashflow-exception-handling", "murex-to-ratan-cashflow-integration", "murex-cashflow-migration-to-ratan", "ebbs-settlement-accounting", "murex", "settlements-brp-prioritization", "prime-trade-migration", "fmsgw", "stella", "ebbs", "loaniq", "settlement-integration-static-data-readiness", "fmrp", "murex-2-11", "murex-2-11-cn-derivative-settlement", "is-auto-split-in-scope-for-fmrp-cn-settlement", "cn-trade-migration", "early-settled-cashflow-migration-handling", "netting-api-contract", "what-is-the-authoritative-razor-release-validation-for-netting", "suspended-versus-projected-cashflow-status", "fx-replication-to-razor", "stella-ratan-cashflow-filtering", "tds3", "auto-dvp", "ebbs-rta-notification", "rta-cashflow-validation", "release-cutoff-configuration", "manual-entity-go-live-static-data-controls", "what-are-the-authoritative-razor-release-cutoff-values-for-qatar-tanzania-and-bangladesh", "what-are-the-final-qatar-release-cutoff-and-ebbs-configurations", "nostro-static-golden-source", "nostro-account-normalization", "nostro-account-taxonomy", "ratan-versus-razor-nostro-representation", "rdm", "fmrp-stella", "released-settled-amendment-control", "cashflow-version-concurrency-control", "cashflow-status-write-back", "backward-workflow-design", "cash-settlement-platform", "cash-settlement-exception-handling", "cashflow-reinstatement-and-replay", "cash-settlement-ola-break-monitoring", "oscar", "scbml", "cashflow-status-change-event-contract", "fx-cashflow-status-write-back", "fxu", "ratan-tds3-trade-lake-integration", "ratan-fx-replication", "ratan-fmsgw-settlement-messaging"]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/2025 Target.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Cashflow Logical Model & Templates/Cashflow Logical Model Fields & Data Store.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Surrounding System Integration/Settlement - Murex 2.11 Cashflow Integration.md", "Cash Settlement Home Page/Cash Settlement Home Page/Strategic Cash Settlements Features/Settlements BRP/Settlements BRP Prioritization.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/2023-Q4 Analysis.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/CN Settlement Ops weekly session/2022-11-16.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/CN Trade Migration - Settlement Process.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Netting Service - GUI & API intergration.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/SUSPENDED vs PROJECTED cashflow status in Ratan.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Auto DVP (eBBS).md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Enable Settlement for Manual Entities/04 Go live checklist for Manual Entities-Overall.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Enable Settlement for Manual Entities/04 Go live checklist for Manual Entities-Overall/Tranche2.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Static Data/Nostro SSI/Nostro Static Golden Source.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Surrounding System Integration/Ratan & Stella cashflow integration.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Backward Workflow Design.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Exception Handling.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/FX Replication Status Write Back.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/FXU Technical Design.md", "RATAN/RATAN -Interfaces/Ratan and SABRE (TDS3)-29126.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Netting Service - GUI & API intergration.md"]
 ---
 
 # RAZOR
@@ -48,7 +48,7 @@ According to the **SUSPENDED vs PROJECTED cashflow status in Ratan** source, Raz
 
 Cashflows expected to settle in Razor are generally intended to be suppressed before or outside Ratan. In the amendment scenario described by that source, original Razor cashflows may be withdrawn while replacement `FX_DCD` cashflows are expected to settle in Ratan.
 
-That source does not establish Razor as the authoritative owner of suppression status, or define reconciliation behavior when [[stella]], Ratan, and Murex rule versions differ.
+That source does not establish Razor as the authoritative owner of suppression status, or define reconciliation behavior when stella, Ratan, and Murex rule versions differ.
 
 This exclusion-and-replication context is distinct from the proposed target-state role for RATAN-eligible, non-precious-metal China cashflows, the FXU option allocations, and the route statements in the Ratan–TDS3 interface overview.
 
@@ -59,7 +59,7 @@ The **Ratan & Stella cashflow integration** source describes Razor as the paymen
 - [[ratan]] sends validated cashflows to downstream processing.
 - Razor generates or returns `Released` and `Settled` status information.
 - Ratan applies those statuses to the operational cashflow.
-- Ratan may replicate the status information to [[stella]].
+- Ratan may replicate the status information to stella.
 
 For amendments concurrent with release, the same source describes a correction-and-reversal flow in which Razor sends:
 
@@ -78,7 +78,7 @@ The **Exception Handling** source provides a more specific exception-handling as
 
 The **Backward Workflow Design** source does not define the precise semantics of `ACK` or `NACK`, including whether they are transport acknowledgements, business responses, or cashflow states. This remains distinct from the **Exception Handling** source’s stated NACK-to-`FAILED` behavior. The backward-workflow source also does not specify Razor’s transport protocol, endpoint, retry behavior, or message contract beyond the listed status names.
 
-Likewise, the **Ratan & Stella cashflow integration** source does not define a complete Razor interface, message schema, retry policy, or status-authority contract. Its status-flow and amendment behavior does not resolve the separate suppression, replication, or settlement-destination questions described in [[suspended-versus-projected-cashflow-status]].
+Likewise, the **Ratan & Stella cashflow integration** source does not define a complete Razor interface, message schema, retry policy, or status-authority contract. Its status-flow and amendment behavior does not resolve the separate suppression, replication, or settlement-destination questions described in suspended versus projected cashflow status.
 
 ## SCBML status-change message evidence
 
@@ -114,7 +114,7 @@ That source assigns non-precious-metal NET/GROSS, SWIFT, and settlement-accounti
 
 For flows routed to RATAN, Murex is expected to suppress FMSRE, Aspire, and EBBS settlement-accounting output.
 
-The final accounting model and complete reporting ownership require confirmation. See [[ebbs-settlement-accounting]] and [[which-murex-payment-reports-move-to-razor-ratan-or-remain-for-precious-metals]].
+The final accounting model and complete reporting ownership require confirmation. See ebbs settlement accounting and which murex payment reports move to razor ratan or remain for precious metals.
 
 ## Nostro static-data role
 
@@ -129,7 +129,7 @@ According to the **Nostro Static Golden Source** source, RAZOR currently maintai
 
 The source demonstrates that RAZOR account-number representations differ from NAMS values. The proposed centralized Nostro model must preserve RAZOR-specific representation and lookup requirements and must not treat RAZOR values as interchangeable with NAMS source values.
 
-The source’s proposed model makes RAZOR a downstream consumer of the Nostro model distributed by [[rdm]]; it does not establish that RAZOR’s existing account representation is the golden-source representation.
+The source’s proposed model makes RAZOR a downstream consumer of the Nostro model distributed by rdm; it does not establish that RAZOR’s existing account representation is the golden-source representation.
 
 ## Role in the cashflow logical model
 
@@ -155,9 +155,9 @@ The **Go live checklist for Manual Entities—Overall** source identifies Razor 
 
 The checklist does not contain the actual Razor values, configuration keys, effective dates, or deployment evidence.
 
-The separately generated **Tranche2** checklist specifically identifies Razor as the source of Qatar’s currency, shifter, time, and timezone values. That source does not record the effective values drawn from Razor or confirm their deployment in Ratan. The Qatar dependency remains open in [[what-are-the-final-qatar-release-cutoff-and-ebbs-configurations]].
+The separately generated **Tranche2** checklist specifically identifies Razor as the source of Qatar’s currency, shifter, time, and timezone values. That source does not record the effective values drawn from Razor or confirm their deployment in Ratan. The Qatar dependency remains open in what are the final qatar release cutoff and ebbs configurations.
 
-See also [[what-are-the-authoritative-razor-release-cutoff-values-for-qatar-tanzania-and-bangladesh]].
+See also what are the authoritative razor release cutoff values for qatar tanzania and bangladesh.
 
 ## Auto DVP reference behavior
 
@@ -189,13 +189,13 @@ The netting requirement states, as **TBC**, that neither the current nor a previ
 
 The requirement also distinguishes resultants retained in RATAN from resultants released or settled downstream. A released or settled resultant is reversed through a newly generated Withdrawal event rather than simply being marked `Dead`.
 
-See [[what-is-the-authoritative-razor-release-validation-for-netting]].
+See what is the authoritative razor release validation for netting.
 
 ## CN trade migration settlement process
 
 According to the **CN Trade Migration - Settlement Process** source, Razor is the settlement integration or messaging dependency referenced by the CN migration requirement.
 
-The proposed batch operation that moves selected [[stella]] cashflows from `PROJECTED` to `SETTLED` must be status-only. It must not:
+The proposed batch operation that moves selected stella cashflows from `PROJECTED` to `SETTLED` must be status-only. It must not:
 
 - Initiate settlement through Razor
 - Send Razor messages
@@ -209,11 +209,11 @@ According to the **2023-Q4 Analysis** source, RAZOR was a major integration and 
 The source records RAZOR involvement in:
 
 - Receiving FX trades from [[ratan]]
-- Cashflow-status writeback to [[stella]] for hard-block scenarios
+- Cashflow-status writeback to stella for hard-block scenarios
 - EBBS and non-EBBS feed design
 - EBBS account mapping
 - Lifecycle testing and investigation of missing cashflow-status updates
-- [[loaniq]] and LMS integration testing
+- loaniq and LMS integration testing
 
 The FX-trade-feed requirement was reported as finalized on 2023-11-20. Earlier updates in that source identified expiry-event synchronization between STELLA and RAZOR as an open question.
 
@@ -231,7 +231,7 @@ According to that session:
 - Post-split payments carry a parent-payment linkage in SWIFT Field 72.
 - The session referred to an `FX` prefix in Razor as an analogy for a potential FMRP Field 20 prefix.
 
-This reference behavior is not a requirement for [[murex-2-11]] derivative settlement. The meeting stated that no Murex 2.11 derivative auto-split requirement had been identified.
+This reference behavior is not a requirement for murex 2 11 derivative settlement. The meeting stated that no Murex 2.11 derivative auto-split requirement had been identified.
 
 ## Prime, CPN, and settlement-method work
 
@@ -247,7 +247,7 @@ That source does not distinguish whether RAZOR is an application, delivery team,
 
 ## Recorded trade-lookup issue
 
-The **2025 Target** source mentions RAZOR as a trade-lookup source in a Sprint 2 issue within the [[cash-settlement-2025-roadmap]].
+The **2025 Target** source mentions RAZOR as a trade-lookup source in a Sprint 2 issue within the cash settlement 2025 roadmap.
 
 The source labels the following item as released:
 

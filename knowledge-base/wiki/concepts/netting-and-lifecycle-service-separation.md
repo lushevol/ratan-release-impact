@@ -66,7 +66,7 @@ The source also omits API contracts, transaction scopes, invalid-transition beha
 ## Related Concepts
 
 - [[concepts/cashflow-auto-netting]]
-- [[concepts/ratan-cashflow-lifecycle-state-machine]]
+- ratan cashflow lifecycle state machine
 - [[concepts/netting-resultant-cashflow]]
 - [[concepts/netting-un-net-lifecycle]]
 - [[concepts/pending-auto-netting-state]]

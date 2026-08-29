@@ -106,4 +106,4 @@ Several requirements remain internally unresolved:
 - `Clearing_Swift_Suppress` has a bilateral resultant payment-type mapping despite later review language requiring SWIFT suppression for resultants and certain single-cashflow cases.
 - [[fmmis]] is mentioned as a potential consumer or query client, but initial-scope integration is not confirmed.
 
-See [[what-is-the-authoritative-auto-netting-priority-order]], [[how-are-pending-auto-netting-cashflows-reconciled-after-rule-changes]], [[what-is-the-canonical-auto-netting-stp-level-enums]], [[what-is-the-clearing-swift-suppress-resultant-semantics]], and [[should-vd-netting-on-holidays-be-adjusted]].
+See what is the authoritative auto netting priority order, how are pending auto netting cashflows reconciled after rule changes, what is the canonical auto netting stp level enums, what is the clearing swift suppress resultant semantics, and should vd netting on holidays be adjusted.

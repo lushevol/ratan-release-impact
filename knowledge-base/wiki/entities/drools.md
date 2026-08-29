@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-23
 tags: [Drools, rule-engine, RATAN, java, cashflow, auto-netting, brms, dmn, proposed, drl, rete, nstp, proof-of-concept, mvel]
 related: [rule-service, ratan, business-rule-maintenance, enhancedfact, matchedrule, auto-netting-rule-event-contract, business-rule-engines, drools-rule-language, decision-model-and-notation, drools-vs-easy-rules-vs-liteflow, which-drools-version-and-rule-deployment-model-should-be-adopted, camunda-based-maker-checker-workflows, rule-engine-vs-workflow-orchestration, dynamic-drl-compilation, drools-rule-refresh, drl-pattern-constraints, drools-eval-conditional-element, kie-base, kie-session, kie-helper, was-drools-selected-or-deployed-for-ratan-rule-processing, cn-rule-service, drools-based-nstp-rule-evaluation, what-is-the-current-cn-rule-service-rule-engine-and-rule-source, ratan-rule-engine, constrained-rule-authoring-grammar]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Ratan One Processing Guide (DOI)/Business Rules Maintenance.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/rule engine rule_action_event：.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Technology Selection - Rule Engine.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Technology Selection - Rule Engine/RATAN Rule Engine - [Archived", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Technology Selection - Rule Engine/RATAN Rule Engine - [Archived]/RATAN Rule Engine Overview.md"]/Drools Features Explore.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Technology Selection - Rule Engine/RATAN Rule Engine - [Archived]/Drools Implementation - CN Rule Service.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Technology Selection - Rule Engine/RATAN Rule Engine - [Archived]/RATAN Rule Engine Overview.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/rule engine rule_action_event：.md"]
 ---
 # Drools
 
@@ -27,7 +27,7 @@ The Business Rules Maintenance source provides no technical integration details 
 
 ## Proposed RATAN rule-engine role
 
-The archived *RATAN Rule Engine Overview* describes Drools as the proposed underlying rule engine and rule language for the [[ratan-rule-engine]].
+The archived *RATAN Rule Engine Overview* describes Drools as the proposed underlying rule engine and rule language for the ratan rule engine.
 
 That overview refers to DRL generation, rule attributes, agenda controls, scheduling, and `JAVA` or `MVEL` dialects. It lists the following Drools capabilities:
 
@@ -52,11 +52,11 @@ This list describes generic Drools capabilities, not a verified RATAN feature ma
 
 ## Archived RATAN technology exploration
 
-An archived RATAN technology-exploration source evaluates Drools as a Java rule-engine platform. It demonstrates generating [[drools-rule-language|DRL]] dynamically, verifying and compiling it at runtime, and executing it through KIE APIs.
+An archived RATAN technology-exploration source evaluates Drools as a Java rule-engine platform. It demonstrates generating DRL dynamically, verifying and compiling it at runtime, and executing it through KIE APIs.
 
 The archived exploration establishes technical feasibility for this approach, but does not show that Drools was selected, approved, deployed, or retained for RATAN processing. It also supplies no production benchmarks, operational topology, rule-governance model, or concurrency design.
 
-See [[dynamic-drl-compilation]] for the proposed execution pattern and [[drools-rule-refresh]] for the distinction between programmatic rebuilding and managed rule refresh. See also [[was-drools-selected-or-deployed-for-ratan-rule-processing]].
+See dynamic drl compilation for the proposed execution pattern and drools rule refresh for the distinction between programmatic rebuilding and managed rule refresh. See also was drools selected or deployed for ratan rule processing.
 
 ## Archived CN Rule Service proof of concept
 
@@ -64,7 +64,7 @@ An archived CN Rule Service proof-of-concept note proposes Drools for NSTP rule 
 
 The archived note states that Drools uses Rete-based, sequential rule matching and consequently recommends parallelizing remote-data preparation rather than attempting in-parallel rule matching. This is a design input from that archived note, not a validated result for a particular Drools version, session configuration, or workload.
 
-The CN Rule Service note does not provide rule assets, session configuration, benchmark results, acceptance criteria, or an adoption decision. See [[drools-based-nstp-rule-evaluation]] and [[what-is-the-current-cn-rule-service-rule-engine-and-rule-source]].
+The CN Rule Service note does not provide rule assets, session configuration, benchmark results, acceptance criteria, or an adoption decision. See drools based nstp rule evaluation and what is the current cn rule service rule engine and rule source.
 
 ## Cash Settlement technology-selection assessment
 
@@ -82,43 +82,43 @@ Selection evidence in the technology-selection source is qualitative and does no
 
 ## Runtime model
 
-According to the technology-selection source, Drools evaluates facts inserted into working memory against rules, then executes matched actions through its agenda. The source uses [[kie-container|KieContainer]] to package rule resources and [[kie-session|KieSession]] to insert facts and call `fireAllRules()`.
+According to the technology-selection source, Drools evaluates facts inserted into working memory against rules, then executes matched actions through its agenda. The source uses KieContainer to package rule resources and KieSession to insert facts and call `fireAllRules()`.
 
-Rules may be written in [[drools-rule-language]] (`.drl`) files. The technology-selection source characterizes Rete-based pattern matching as a performance strength, but provides no Cash Settlement benchmark.
+Rules may be written in drools rule language (`.drl`) files. The technology-selection source characterizes Rete-based pattern matching as a performance strength, but provides no Cash Settlement benchmark.
 
 The archived CN Rule Service note's statement about sequential matching and its recommendation for parallel remote-data preparation apply specifically to that NSTP proof-of-concept design; they do not establish a general concurrency model or performance result for all Drools deployments.
 
 ## Version ambiguity
 
-The technology-selection source contains a version ambiguity: its comparison snapshot lists `8.41.0.Final`, while its Maven example and linked documentation use `7.69.0.Final`. [[which-drools-version-and-rule-deployment-model-should-be-adopted]] tracks the needed decision.
+The technology-selection source contains a version ambiguity: its comparison snapshot lists `8.41.0.Final`, while its Maven example and linked documentation use `7.69.0.Final`. which drools version and rule deployment model should be adopted tracks the needed decision.
 
 ## Related architecture
 
-Drools decision evaluation should be distinguished from workflow orchestration in [[camunda-based-maker-checker-workflows]] and domain-service logic. See [[rule-engine-vs-workflow-orchestration]].
+Drools decision evaluation should be distinguished from workflow orchestration in camunda based maker checker workflows and domain-service logic. See rule engine vs workflow orchestration.
 
 ## Related pages
 
 - [[rule-service]]
 - [[ratan]]
-- [[ratan-rule-engine]]
-- [[business-rule-maintenance]]
+- ratan rule engine
+- business rule maintenance
 - [[enhancedfact]]
 - [[matchedrule]]
 - [[auto-netting-rule-event-contract]]
-- [[business-rule-engines]]
-- [[drools-rule-language]]
-- [[decision-model-and-notation]]
-- [[drools-vs-easy-rules-vs-liteflow]]
-- [[which-drools-version-and-rule-deployment-model-should-be-adopted]]
-- [[dynamic-drl-compilation]]
-- [[drools-rule-refresh]]
-- [[drl-pattern-constraints]]
-- [[drl-eval-conditional-element]]
-- [[constrained-rule-authoring-grammar]]
-- [[kie-base]]
-- [[kie-session]]
-- [[kie-helper]]
-- [[was-drools-selected-or-deployed-for-ratan-rule-processing]]
-- [[cn-rule-service]]
-- [[drools-based-nstp-rule-evaluation]]
-- [[what-is-the-current-cn-rule-service-rule-engine-and-rule-source]]
+- business rule engines
+- drools rule language
+- decision model and notation
+- drools vs easy rules vs liteflow
+- which drools version and rule deployment model should be adopted
+- dynamic drl compilation
+- drools rule refresh
+- drl pattern constraints
+- drl eval conditional element
+- constrained rule authoring grammar
+- kie base
+- kie session
+- kie helper
+- was drools selected or deployed for ratan rule processing
+- cn rule service
+- drools based nstp rule evaluation
+- what is the current cn rule service rule engine and rule source

@@ -68,4 +68,4 @@ The source recommends configuring a later netting datetime when cashflows are li
 
 The XAU/USD discrepancy and the example timelines are concrete source evidence. The weekend-only policy and the manual-versus-automatic late-arrival options remain unresolved design proposals.
 
-See [[comparisons/auto-netting-holiday-handling-options]] for the alternatives documented by the source.
+See auto netting holiday handling options for the alternatives documented by the source.

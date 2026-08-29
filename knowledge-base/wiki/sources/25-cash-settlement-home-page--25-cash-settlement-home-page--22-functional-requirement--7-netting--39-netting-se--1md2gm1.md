@@ -53,7 +53,7 @@ All components must have blank Netting Ids and identical payment currency, payme
 
 The stated convention is SCB `Pay` as positive and SCB `Receive` as negative. The signed sum determines the resultant direction: a positive total is `Pay`; a negative total is `Receive`.
 
-The source does not define zero-balance treatment, rounding, precision, or currency-decimal rules. See [[what-happens-when-netting-calculates-to-zero]].
+The source does not define zero-balance treatment, rounding, precision, or currency-decimal rules. See what happens when netting calculates to zero.
 
 ## Resultant construction
 
@@ -114,7 +114,7 @@ For manual un-netting, the backend validates that the resultant has a Netting Id
 
 ## Automatic un-netting
 
-[[stella]] Withdrawal events from Middle Office trade amendments, cancellations, or terminations can trigger automatic un-netting for a netted component. If the resultant remains in RATAN in `Waiting` or `Ready`, it becomes `Dead`; remaining components return from `Netted` to `Queued`.
+stella Withdrawal events from Middle Office trade amendments, cancellations, or terminations can trigger automatic un-netting for a netted component. If the resultant remains in RATAN in `Waiting` or `Ready`, it becomes `Dead`; remaining components return from `Netted` to `Queued`.
 
 Where the resultant was released or settled downstream, RATAN instead creates a new `Withdrawal` event for the resultant, which follows `Projected → Queued → Waiting`. This system-driven path must be distinguished from prohibited user-initiated netting or un-netting of released or settled cashflows.
 

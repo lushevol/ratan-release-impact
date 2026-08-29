@@ -29,4 +29,4 @@ Composite-index usefulness depends on the predicates, joins, sort requirements, 
 
 The source specifies the index definition but provides no SQL workload, `EXPLAIN` or `EXPLAIN ANALYZE` output, baseline latency, cardinality estimate, table size, or post-deployment benchmark. It therefore does not demonstrate that this index improves performance.
 
-The preferred deployment method in the source is described in [[postgresql-concurrent-index-creation]]. Deployment and performance acceptance criteria remain tracked in [[what-is-the-authoritative-ratan-cashflow-history-index-deployment-contract]].
+The preferred deployment method in the source is described in [[postgresql-concurrent-index-creation]]. Deployment and performance acceptance criteria remain tracked in what is the authoritative ratan cashflow history index deployment contract.

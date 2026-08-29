@@ -5,6 +5,12 @@ release-impact harness. It was migrated from the `Ratan-Settlement` LLM Wiki
 project and is now shipped as an [OpenKB](https://github.com/VectifyAI/OpenKB)
 knowledge base.
 
+The checked-in corpus is intentionally scoped to the Cash Settlement Netting
+domain: 53 substantive raw source documents and their evidence-linked wiki
+pages. Broader Cash Settlement material is excluded so retrieval does not mix
+unrelated lifecycle, onboarding, accounting, migration, or release content into
+Netting analysis.
+
 - `raw/` contains the imported source documents.
 - `wiki/` contains the compiled, path-citable Markdown pages.
 - `.openkb/config.yaml` contains the OpenKB model and language settings.

@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-25
 tags: ["tlm", "dependency", "cash-settlement", "korea", "settlement", "accounting", "dvp", "accounting-reconciliation", "api", "reconciliation", "integration", "ola", "fx-utilization", "downstream-system", "cashflow", "trade", "murex-211", "ratan", "consumer-system"]
 related: ["korea", "ratan-settlement", "dvp-payment-control", "ebbs-settlement-accounting", "korea-cash-settlement-migration", "ratan", "operational-level-agreement-for-settlement-interfaces", "korea-ratan-settlement-migration", "fxu", "ebbs", "accounting-feed-reconciliation", "partial-and-pastdue-utilization-accounting", "aspire", "oltp", "korea-accounting-reconciliation", "ratan-accounting-reconciliation-api", "irs-cashflow-aggregation", "what-are-the-tlm-lms-and-cis-impacts-of-irs-cashflow-aggregation", "manual-cashflow-rounding", "settlement-accounting", "murex-ratan-cashflow-reconciliation", "murex-211", "query-recon-records", "fmaa", "ratanone", "korea-tlm-accounting-reconciliation", "ratan-tlm-reconciliation-query", "ratan-and-tlm-20649--1ovnb8w"]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/2026 Changes/Korea Migration Functional Analysis.md", "Cash Settlement Home Page/Cash Settlement Home Page/MX2.11 Decomm - Cash Settlement Business Workflow/NSTP Workflow.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/2026 Changes/Cash Settlement -- Korea Migration.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/2026 Changes/Cash Settlement -- Korea Migration/Korea OLA and other release related DOCs.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/FXU - RATAN analysis.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Payment Accounting/Cash Settlement - Korea Accounting Recon - RATAN- TLM.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Aggregation.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Manual Rounding.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Surrounding System Integration/Settlement - Murex 2.11 Cashflow Integration/Settlement - Murex 2.11 DOI Document - H2 2024.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/RATANONE Cash Settlement Technical Design/Swift Generation & Settlement Accounting Tech design/Korea Accounting - TLM Recon.md", "RATAN/RATAN -Interfaces/Ratan and TLM 20649.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Aggregation.md"]
 ---
 
 # TLM
@@ -16,9 +16,9 @@ For the Murex 2.11–RATAN cashflow flow, the DOI designates TLM as the end-to-e
 
 ## Korea accounting reconciliation
 
-According to **Cash Settlement - Korea Accounting Recon - RATAN- TLM**, TLM is the reconciliation platform and API consumer for the Korea accounting-reconciliation process. During the interim arrangement, TLM queries [[ratan]] for accounting records sent to [[oltp]], including acknowledged, rejected, and unanswered postings.
+According to **Cash Settlement - Korea Accounting Recon - RATAN- TLM**, TLM is the reconciliation platform and API consumer for the Korea accounting-reconciliation process. During the interim arrangement, TLM queries [[ratan]] for accounting records sent to oltp, including acknowledged, rejected, and unanswered postings.
 
-The same source states that the direct RATAN-to-TLM feed exists because [[aspire]] cannot meet the Korea release timeline. Feature `11898201` describes a future route from `OLTP` through `ASPIRE` to `TLM`, with decommissioning of the direct RATAN-to-TLM integration.
+The same source states that the direct RATAN-to-TLM feed exists because aspire cannot meet the Korea release timeline. Feature `11898201` describes a future route from `OLTP` through `ASPIRE` to `TLM`, with decommissioning of the direct RATAN-to-TLM integration.
 
 That source does not establish that either the direct RATAN-to-TLM route or the future OLTP-to-ASPIRE-to-TLM route has been deployed or validated in production.
 
@@ -34,7 +34,7 @@ The documented flow is:
 TLM <> RESTFUL API <> RATANONE
 ```
 
-The source states that TLM needs records already sent to [[oltp]], including records described as acknowledged, NACKed, and unanswered. It associates this requirement with [[aspire]] being unable to meet the Korea release timeline.
+The source states that TLM needs records already sent to oltp, including records described as acknowledged, NACKed, and unanswered. It associates this requirement with aspire being unable to meet the Korea release timeline.
 
 Interface 20649 supports only the Korea entity represented by:
 
@@ -50,15 +50,15 @@ The interface-specific query is subject to:
 
 These constraints are specific to interface 20649 and should not be assumed to define all TLM or RATAN behavior.
 
-See [[ratan-tlm-reconciliation-query]] and [[ratan-and-tlm-20649--1ovnb8w]].
+See ratan tlm reconciliation query and ratan and tlm 20649  1ovnb8w.
 
 ### Korea accounting-record retrieval API
 
-According to **Korea Accounting - TLM Recon**, TLM is the intended reconciliation consumer of RATAN's Korea accounting-record retrieval API, [[query-recon-records]]. It retrieves EBBS-format accounting records within bounded release-time windows to reconcile published Korea accounting activity.
+According to **Korea Accounting - TLM Recon**, TLM is the intended reconciliation consumer of RATAN's Korea accounting-record retrieval API, query recon records. It retrieves EBBS-format accounting records within bounded release-time windows to reconcile published Korea accounting activity.
 
 That technical-design source specifies that TLM must:
 
-- Use [[fmaa]]-generated credentials.
+- Use fmaa-generated credentials.
 - Request gzip-compressed responses.
 - Split backfills into windows no longer than 72 hours.
 
@@ -91,7 +91,7 @@ The proposed DVP workflow uses funds-receipt confirmation from EBBS or TLM befor
 
 ## FX utilization accounting reconciliation
 
-In the **FXU - RATAN analysis** source, [[ratan]] publishes utilization-related bridge accounting to [[ebbs]] in real time, while utilization-accounting reconciliation is performed in TLM.
+In the **FXU - RATAN analysis** source, [[ratan]] publishes utilization-related bridge accounting to ebbs in real time, while utilization-accounting reconciliation is performed in TLM.
 
 That source also describes a pending requirement for an FXU–TLM enrichment report. It does not define the report's ownership, fields, timing, or reconciliation breaks. TLM is a consumer in the intended design, not evidence of an implemented or approved reporting interface.
 
@@ -105,4 +105,4 @@ The question mark in that source indicates that TLM involvement is tentative. Th
 
 In **Cashflow Aggregation.md**, TLM is identified as a downstream system potentially affected by IRS cashflow aggregation. The source records the TLM impact assessment as TBC.
 
-That source provides no interface contract, event definition, ownership confirmation, or required change. The impact remains an open item in [[what-are-the-tlm-lms-and-cis-impacts-of-irs-cashflow-aggregation]].
+That source provides no interface contract, event definition, ownership confirmation, or required change. The impact remains an open item in what are the tlm lms and cis impacts of irs cashflow aggregation.

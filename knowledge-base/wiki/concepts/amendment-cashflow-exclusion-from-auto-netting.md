@@ -17,4 +17,4 @@ The source defines the order of operations but not the meaning of either key ter
 - “Remove” is not defined as deletion, logical exclusion, task cancellation, state transition, deferral, or routing to another process.
 - The subsequent treatment and auditability of removed cashflows or tasks are unspecified.
 
-Accordingly, this concept must not be interpreted as a complete cashflow lifecycle rule or as evidence for behavior in other netting-related processes. The unresolved contract is tracked in [[what-is-the-authoritative-auto-netting-task-and-amendment-exclusion-contract]].
+Accordingly, this concept must not be interpreted as a complete cashflow lifecycle rule or as evidence for behavior in other netting-related processes. The unresolved contract is tracked in what is the authoritative auto netting task and amendment exclusion contract.

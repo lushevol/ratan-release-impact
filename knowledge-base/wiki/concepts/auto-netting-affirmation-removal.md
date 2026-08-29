@@ -39,10 +39,10 @@ This is distinct from [[concepts/netting-resultant-cashflow-lifecycle]]: resulta
 
 The requirement demonstrates that affirmation and SWIFT suppression are separate controls. A clearing-related cashflow can be `Unaffirmed` while still being moved to a SWIFT-suppressed status. Therefore, removing auto affirmation does not imply removal of clearing-related payment suppression.
 
-The requirement also distinguishes automatic exception closure from manual approval. Same-trade components may be resolvable through trade match status, while different-trade components may require [[stakeholders/settlement-ops]] intervention.
+The requirement also distinguishes automatic exception closure from manual approval. Same-trade components may be resolvable through trade match status, while different-trade components may require settlement ops intervention.
 
 ## Qualification
 
 The source is a proposed functional requirement and does not establish that this behavior has been approved, implemented, or UAT-tested. The canonical exception name remains unresolved between `"Pending Affirmation"` and the suggested `"Pending Netting Affirmation"`. Manual-net affirmation removal is also only a discussion point, not a confirmed scope decision.
 
-See [[queries/what-is-the-canonical-pending-netting-affirmation-exception]] and [[queries/does-removal-of-auto-affirmation-apply-to-manual-net]].
+See what is the canonical pending netting affirmation exception and does removal of auto affirmation apply to manual net.

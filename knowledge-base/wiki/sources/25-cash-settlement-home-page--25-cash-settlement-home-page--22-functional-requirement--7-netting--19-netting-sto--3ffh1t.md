@@ -29,7 +29,7 @@ The source states that no net or un-net action is allowed on a Released cashflow
 
 ## Shared Ratan and S2BNG requirements
 
-[[fmo-users]] must be able to select two or more cashflows for ad hoc gross-cashflow netting. Net cashflows must be displayed, filterable in the [[cashflow-blotter]], drillable to component trades, and represented in the audit trail. The solution must support un-netting and re-netting.
+[[fmo-users]] must be able to select two or more cashflows for ad hoc gross-cashflow netting. Net cashflows must be displayed, filterable in the cashflow blotter, drillable to component trades, and represented in the audit trail. The solution must support un-netting and re-netting.
 
 For Default Netting Clients, the net amount must be shown by default, with an option to drill down into trades.
 
@@ -66,4 +66,4 @@ One leg of an FX trade can be independently netted, but the other leg must follo
 
 The document says both that netting can occur “within and across Products” and that eligibility requires the same product at CFI-code level. It also restricts shared netting to the same SCB Entity while listing Ratan inter-entity netting through LCM.
 
-These tensions are tracked in [[what-is-the-ratan-s2bng-cross-product-netting-rule]] and [[how-does-lcm-inter-entity-netting-coexist-with-the-same-scb-entity-rule]].
+These tensions are tracked in what is the ratan s2bng cross product netting rule and how does lcm inter entity netting coexist with the same scb entity rule.

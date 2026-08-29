@@ -37,8 +37,8 @@ The behavior for Actual Payment Count greater than Expected Payment Count is not
 
 For [[irs]] and [[ccs]], schedule matching must evaluate both first-leg and second-leg schedule entries. A match on either leg is eligible for Expected Payment Count calculation.
 
-The requirement does not define whether one cashflow matching multiple schedule entries is counted once or multiple times. See [[how-are-duplicate-or-multi-matching-schedule-events-counted]].
+The requirement does not define whether one cashflow matching multiple schedule entries is counted once or multiple times. See how are duplicate or multi matching schedule events counted.
 
 ## Related Controls
 
-Expected Payment Count is schedule-derived; Actual Payment Count appears to be based on cashflows received in the same netting group. The statuses that qualify for the actual count remain open in [[which-cashflow-statuses-contribute-to-actual-payment-count]].
+Expected Payment Count is schedule-derived; Actual Payment Count appears to be based on cashflows received in the same netting group. The statuses that qualify for the actual count remain open in which cashflow statuses contribute to actual payment count.

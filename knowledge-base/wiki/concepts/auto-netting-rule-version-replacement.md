@@ -20,4 +20,4 @@ The proposed rule is saved in `UPDATE_PENDING` and identifies the replaced recor
 - Update approval involves at least two events, making ordering, transactional atomicity, retry behavior, and compensation material integration concerns.
 - The source does not state whether removal of the previous rule and activation of the replacement are atomic.
 
-The unresolved execution and recovery contract is tracked in [[is-auto-netting-update-approval-atomic]].
+The unresolved execution and recovery contract is tracked in is auto netting update approval atomic.

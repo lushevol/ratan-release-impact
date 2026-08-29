@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-23
 tags: [product, interest-rate-swaps, fmrp, cash-settlement, auto-netting, product-type, interest-rate-swap, irs, trade-product]
 related: [fmrp-prime-uk-uat-drop-2, fmrp, ratan, stella, murex, ccs, ssi-stamping, auto-netting, cross-product-netting, cashflow-suppression, normalized-payment-schedule, schedule-to-cashflow-matching, expected-payment-count-for-auto-netting, cashflow-event-control, ndirs-cny-leg-mapping, cashflow-netting-and-auto-un-netting, murex-211]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/04-Onboarding(Entity Product) Check List/F2B Milestone Onboarding check list/F2B Milestone Checklist - Prime Day 2.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Product Agnostic model to identify all cashflows for a specific value date to support Auto Aggregation.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Trade & Cashflow Events Control/Cashflow Events Control/CN Drop 2 UAT - Settlements Scenarios - 2024.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Product Agnostic model to identify all cashflows for a specific value date to support Auto Aggregation.md"]
 ---
 # IRS
 
@@ -25,7 +25,7 @@ The CN Drop 2 settlement UAT scenarios cover:
 - Netting.
 - Re-fixing.
 
-These scenarios are linked to [[cashflow-event-control]] and [[ndirs-cny-leg-mapping]].
+These scenarios are linked to cashflow event control and ndirs cny leg mapping.
 
 ## Role in Prime UK UAT
 

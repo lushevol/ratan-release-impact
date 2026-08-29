@@ -17,4 +17,4 @@ Without a mapping record, the counterparty FMID itself is used. Mapping therefor
 
 The source includes an original requirement mapping table and a smaller confirmed deployment table. Five identifiable rows are absent from the deployment version, although the source says six were excluded. This discrepancy can change match eligibility and must be reconciled with the actual backend configuration.
 
-See [[which-inter-entity-mapping-static-is-authoritative]] before treating either table as production-authoritative.
+See which inter entity mapping static is authoritative before treating either table as production-authoritative.

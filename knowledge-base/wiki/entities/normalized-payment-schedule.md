@@ -17,4 +17,4 @@ The draft design requires the service that splits an UBER message into cashflow-
 
 For a given cashflow, [[netting-service]] is intended to count schedule entries with matching currency and payment date, excluding Fee entries. This count becomes `expected_num` in the proposed [[normalized-payment-schedule-completeness-check]].
 
-The structure is not yet established as authoritative. Consumers need a defined contract for absent, malformed, revised, and replayed schedules; see [[what-is-the-authoritative-normalized-payment-schedule-schema-and-versioning-contract]].
+The structure is not yet established as authoritative. Consumers need a defined contract for absent, malformed, revised, and replayed schedules; see what is the authoritative normalized payment schedule schema and versioning contract.

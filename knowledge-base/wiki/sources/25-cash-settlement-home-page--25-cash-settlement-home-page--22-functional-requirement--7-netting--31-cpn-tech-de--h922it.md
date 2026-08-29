@@ -23,9 +23,9 @@ The document is evidence of intended workflow design rather than a confirmed pro
 
 The intended CPN workflow is:
 
-1. Cashflows from [[entities/stella]] or Murex 2.11 are sent to Payment Lake.
+1. Cashflows from stella or Murex 2.11 are sent to Payment Lake.
 2. The CPN Eligibility Checking workflow identifies eligible cashflows and marks them with the `CPN Netting` sub-status type.
-3. FMO Ops selects components from the [[entities/cashflow-blotter]] and performs CPN netting.
+3. FMO Ops selects components from the cashflow blotter and performs CPN netting.
 4. Selected components receive a Netting ID, move to `Netted`, and become invisible in the Cashflow Blotter.
 5. CPN Service creates a resultant cashflow and stores it in Payment Lake.
 6. Settlement Workflow routes the resultant to NSTP Release for `Netting Review`.

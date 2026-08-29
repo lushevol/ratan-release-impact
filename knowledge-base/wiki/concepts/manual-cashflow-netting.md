@@ -9,7 +9,7 @@ sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requir
 ---
 # Manual Cashflow Netting
 
-Manual cashflow netting is the documented CN Day 1 operational flow in which [[settlement-ops]] filters pending-netting cashflows and manually performs netting.
+Manual cashflow netting is the documented CN Day 1 operational flow in which settlement ops filters pending-netting cashflows and manually performs netting.
 
 In this flow, [[netting-eligibility-rules]] first determine whether a cashflow is eligible and should be held as NSTP in [[ratan]]. The source does not state the exact NSTP state or sub-state, the selection criteria used by Settlement Ops, approval steps, result creation, or how a hold is released.
 
@@ -17,4 +17,4 @@ In this flow, [[netting-eligibility-rules]] first determine whether a cashflow i
 
 The source explicitly excludes auto netting from CN Day 1. It therefore provides no evidence that an EOD auto-netting job is active for this scope.
 
-Manual cashflow netting is not assumed to be equivalent to [[ad-hoc-cashflow-netting]]; the source only specifies a pending-netting filter and a manual operational action.
+Manual cashflow netting is not assumed to be equivalent to ad hoc cashflow netting; the source only specifies a pending-netting filter and a manual operational action.

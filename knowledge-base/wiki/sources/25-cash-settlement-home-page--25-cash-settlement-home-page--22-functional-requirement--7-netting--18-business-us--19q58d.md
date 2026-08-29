@@ -19,7 +19,7 @@ This source specifies business-user acceptance cases for manual CCIL netting in 
 
 A live manual netting rule in the [[netting-static-blotter]] makes qualifying cashflows `WAITING` with sub-state `Pending Netting`. The active cases consistently state that the counterparty FMID must not be `400021949`.
 
-Users select eligible cashflows in the [[cashflow-blotter]], invoke **CCIL Net Selected Cashflow**, choose **Net All Cashflows With Affirmation**, enter affirmation information, and submit. The expected result is:
+Users select eligible cashflows in the cashflow blotter, invoke **CCIL Net Selected Cashflow**, choose **Net All Cashflows With Affirmation**, enter affirmation information, and submit. The expected result is:
 
 - Component cashflows become `NETTED`.
 - A resultant cashflow is generated.
@@ -72,4 +72,4 @@ Two struck-through cases are historical only and are not active requirements:
 - Disabling or updating a manual netting rule and its effect on existing `Pending Netting` cashflows.
 - Whether a CCIL rule takes precedence over a Bilateral Rule.
 
-These unresolved historical topics are tracked in [[what-is-the-authoritative-ccil-netting-rule-precedence-and-refresh-behavior]].
+These unresolved historical topics are tracked in what is the authoritative ccil netting rule precedence and refresh behavior.

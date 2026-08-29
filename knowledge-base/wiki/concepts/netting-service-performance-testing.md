@@ -43,4 +43,4 @@ A performance qualification should define:
 - Failure injection, retry behavior, and recovery criteria.
 - Explicit Netting Service SLOs or acceptance thresholds.
 
-Open evidence and acceptance questions are tracked in [[what-are-the-netting-service-performance-slos-and-test-conditions]] and [[does-netting-service-meet-peak-murex-volume-and-retry-resilience-requirements]].
+Open evidence and acceptance questions are tracked in what are the netting service performance slos and test conditions and does netting service meet peak murex volume and retry resilience requirements.

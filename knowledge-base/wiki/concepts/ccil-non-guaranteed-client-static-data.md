@@ -41,4 +41,4 @@ The static-data change is described as a CR that can take weeks through change, 
 
 ## Strategic Target
 
-The strategic model requires a golden source for the non-guaranteed CCIL client list. [[stella]] identifies the client category and stamps the settlement method, while [[ratan]] provides operational filtering and netting.
+The strategic model requires a golden source for the non-guaranteed CCIL client list. stella identifies the client category and stamps the settlement method, while [[ratan]] provides operational filtering and netting.

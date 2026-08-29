@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-23
 tags: [auto-netting, netting-resultant, cashflow, CIS, Germany, RATAN, cash-settlement, netting, resultant, murex, data-lineage]
 related: [cashflow-netting-renetting, auto-netting-resultant-nstp, resultant-hard-blocker-stamping, ratan, beneficiary-bic-netting, what-is-the-authoritative-netting-state-name-and-un-netting-resultant-identity]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Strategic Cash Settlements Features/Settlements BRP/Settlements BRP Prioritization.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Beneficiary BIC Netting/Beneficiary BIC Netting Demo.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Beneficiary BIC Netting/Beneficiary BIC Netting Demo.md"]
 ---
 
 # Netting Resultant Attribute Inheritance
@@ -53,10 +53,10 @@ The Beneficiary BIC Netting Demo does not specify:
 - how component values and statuses are restored after un-netting; or
 - downstream behavior when `Trade ID` is empty.
 
-The required identity and lineage model remains tracked in [[what-is-the-authoritative-netting-state-name-and-un-netting-resultant-identity]].
+The required identity and lineage model remains tracked in what is the authoritative netting state name and un netting resultant identity.
 
 ## Relationship to netting
 
-Resultant metadata can affect downstream settlement, reporting, suppression, and lifecycle handling. This concept therefore complements [[cashflow-netting-renetting]] and [[resultant-hard-blocker-stamping]].
+Resultant metadata can affect downstream settlement, reporting, suppression, and lifecycle handling. This concept therefore complements [[cashflow-netting-renetting]] and resultant hard blocker stamping.
 
 The Germany-specific delivery statement comes from the Strategic Cash Settlements Features tracker, while the attribute-by-attribute inheritance rule comes from the Beneficiary BIC Netting Demo. Neither source establishes a general inheritance policy for every netting workflow.

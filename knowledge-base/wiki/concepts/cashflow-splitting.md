@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-23
 tags: [cashflow, splitting, settlement-operations, fmrp, settlement, nstp, exceptions, cashflow-splitting, ratan, cash-settlement, lifecycle, uat, accounting, netting, split, cashflows]
 related: [ratan-cashflow-blotter, loaniq, cashflow-blotter-action-eligibility, cash-settlement-home-page, split-cashflow-netting-exclusion, pending-nds-netting, ratan-cashflow-lifecycle-state-machine, pending-confirmation-affirmation, ratan, cashflow-unsplit, split-amount-amendment, split-child-threshold-redistribution, split-cashflow-downstream-integration, cashflow-logical-model, netting-eligibility-rules, nostro-threshold-auto-splitting, split-child-processing-exclusions, split-cashflow-swift-annotation, ratan-cashflow-id-management, cashflow-lifecycle-versioning, netting-resultant-cashflow-lifecycle, is-manual-splitting-of-irs-aggregation-resultants-in-day-1-scope, split-cashflow-withdrawal-propagation, accounting-request-info-attachment, net-function, split-cashflow-dvp-handling, cashflow-lineage-and-amendment-correlation, netting-service, resultant-cashflow-generation, cashflow-netting]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Cashflow Blotter/User Actions on Cashflow Blotter.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Splitting/Cashflow Split Static.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Splitting/Cashflow Splitting UAT.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Splitting.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Splitting/Cashflow Splitting UAT/Cashflow Splitting UAT For ASPIRE.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Netting Service Design.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/Netting Service Design.md"]
 ---
 
 # Cashflow Splitting
@@ -47,7 +47,7 @@ These design statements concern the netting-service representation and are not g
 
 ## UAT evidence
 
-The ASPIRE UAT record [[25-cash-settlement-home-page--25-cash-settlement-home-page--22-functional-requirement--27-settlement-day2-requir--6za5lq]] records passing scenarios in HK, TW, and TH for:
+The ASPIRE UAT record 25 cash settlement home page  25 cash settlement home page  22 functional requirement  27 settlement day2 requir  6za5lq records passing scenarios in HK, TW, and TH for:
 
 - manual gross splitting followed by release, failure, or SWIFT suppression of individual children;
 - automatic gross splitting followed by release of all children;
@@ -82,7 +82,7 @@ This ASPIRE UAT limitation is distinct from the generated Cashflow Splitting sou
 
 The netting-service design’s example also uses `N01` for a resultant and `S01`/`S02` for split children, with split ID `3333`; it does not establish that these values are an authoritative identifier or lineage convention.
 
-Split processing is related to [[cashflow-lineage-and-amendment-correlation]] and [[split-cashflow-dvp-handling]]. The ASPIRE UAT evidence is not DVP-specific and does not prove DVP behavior.
+Split processing is related to cashflow lineage and amendment correlation and split cashflow dvp handling. The ASPIRE UAT evidence is not DVP-specific and does not prove DVP behavior.
 
 ## Eligibility and action criteria
 
@@ -92,7 +92,7 @@ The cashflow-blotter action source specifies the following eligibility criteria:
 
 | Action | Eligibility |
 | --- | --- |
-| Split Cashflow | Cashflow is `WAITING` or `READY`; Netting Id and Splitting Id are empty; event type is `New`; original trade source is not [[loaniq]]; and settlement method is not `UTIL`. |
+| Split Cashflow | Cashflow is `WAITING` or `READY`; Netting Id and Splitting Id are empty; event type is `New`; original trade source is not loaniq; and settlement method is not `UTIL`. |
 | Amend Split Amount | Cashflow is `WAITING`; event type is `New`; an existing Splitting Id is present; and settlement method is not `UTIL`. |
 | Un-Split Cashflow | Cashflow is `New`; an existing Splitting Id is present; Splitting Id is not `RELEASED` or `SETTLED`; and settlement method is not `UTIL`. |
 
@@ -110,9 +110,9 @@ That source states that manual splitting is not available for:
 - netting resultant cashflows; or
 - existing split-child cashflows.
 
-The UAT exclusions are not fully expressed in the cashflow-blotter action criteria. In particular, the cashflow-blotter source explicitly excludes original trade source [[loaniq]], whereas the UAT source additionally names BCS cashflows, IRS aggregation resultant cashflows, netting resultant cashflows, and existing split children.
+The UAT exclusions are not fully expressed in the cashflow-blotter action criteria. In particular, the cashflow-blotter source explicitly excludes original trade source loaniq, whereas the UAT source additionally names BCS cashflows, IRS aggregation resultant cashflows, netting resultant cashflows, and existing split children.
 
-The generated Cashflow Splitting source identifies a contradiction in its source material regarding manual-split eligibility for netting and IRS aggregation resultants. This issue is tracked by [[is-manual-splitting-of-irs-aggregation-resultants-in-day-1-scope]].
+The generated Cashflow Splitting source identifies a contradiction in its source material regarding manual-split eligibility for netting and IRS aggregation resultants. This issue is tracked by is manual splitting of irs aggregation resultants in day 1 scope.
 
 ## Amend and unsplit
 
@@ -120,7 +120,7 @@ The generated Cashflow Splitting source identifies a contradiction in its source
 
 The generated Cashflow Splitting source states that a split-child amount may be amended only while eligible children are in `WAITING`, and at least two children must be in that state. Users can adjust amounts but cannot add or remove children. An amended child receives both `Split Cashflow` and `Split Amend` NSTP exceptions.
 
-For allocation changes, see [[split-amount-amendment]].
+For allocation changes, see split amount amendment.
 
 ### Unsplit
 
@@ -128,7 +128,7 @@ The generated Cashflow Splitting source states that unsplit can be selected from
 
 The FMRP cashflow-blotter action source instead specifies that **Un-Split Cashflow** requires a cashflow with event type `New`, an existing Splitting Id that is not `RELEASED` or `SETTLED`, and a settlement method other than `UTIL`.
 
-For reversal of an unreleased split, see [[cashflow-unsplit]].
+For reversal of an unreleased split, see cashflow unsplit.
 
 ## Split-related state indicators and NSTP handling
 
@@ -150,7 +150,7 @@ That source proposes four new exception codes for split-related states:
 
 These NSTP rules indicate that split-related events require controlled manual handling rather than bulk processing.
 
-The settlement-day static source does not define precedence or mutual exclusivity among the four NSTP rules. A cashflow may potentially satisfy more than one condition. Track this issue in [[what-is-the-precedence-between-split-nstp-rules]].
+The settlement-day static source does not define precedence or mutual exclusivity among the four NSTP rules. A cashflow may potentially satisfy more than one condition. Track this issue in what is the precedence between split nstp rules.
 
 ## External lifecycle behavior
 
@@ -164,7 +164,7 @@ According to the generated Cashflow Splitting source:
 
 ## Withdrawal and lifecycle gaps
 
-The ASPIRE UAT source does not define lifecycle transitions, event ordering, child eligibility after withdrawal, or consequences for previously released children. The withdrawal contract is tracked in [[what-is-the-authoritative-split-child-lifecycle-after-parent-withdrawal]].
+The ASPIRE UAT source does not define lifecycle transitions, event ordering, child eligibility after withdrawal, or consequences for previously released children. The withdrawal contract is tracked in what is the authoritative split child lifecycle after parent withdrawal.
 
 This absence of definition in the ASPIRE UAT source does not override the generated Cashflow Splitting source’s stated behavior for withdrawal while the parent is `SPLIT`.
 
@@ -172,11 +172,11 @@ The netting-service design likewise does not define failure recovery for its spl
 
 ## Relationship to netting and other processing
 
-The settlement-day static source documents a rule-specific exclusion: a split child is excluded from the pending NDS auto-netting rule when `Cashflow__Splitting_Id` is non-null or non-empty. See [[split-cashflow-netting-exclusion]]. That source states that this rule-specific exclusion is not evidence of a universal prohibition on netting split cashflows.
+The settlement-day static source documents a rule-specific exclusion: a split child is excluded from the pending NDS auto-netting rule when `Cashflow__Splitting_Id` is non-null or non-empty. See split cashflow netting exclusion. That source states that this rule-specific exclusion is not evidence of a universal prohibition on netting split cashflows.
 
 Separately, the Cashflow Splitting UAT source states that split children are excluded from manual netting and bypass manual netting, automatic netting, IRS check conditions, and NDS auto-netting rules. It describes this as preventing already-segmented payment flows from being re-aggregated or re-evaluated by unrelated netting paths.
 
-The generated Cashflow Splitting source states that split children are governed by [[split-child-processing-exclusions]].
+The generated Cashflow Splitting source states that split children are governed by split child processing exclusions.
 
 The netting-service design does not specify whether split outputs may later be re-netted. This is an unresolved design statement specific to that source and should not be treated as overriding the rule-specific NDS exclusion or the broader UAT exclusions.
 

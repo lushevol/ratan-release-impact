@@ -31,4 +31,4 @@ For example, the tracker records 99% in-scope coverage on 17 June 2026, while on
 
 The tracker records a sharp fall in in-scope coverage on 22–25 June 2026, recovery to generally 98–100% from 26 June to 30 July, and a further decline in the records from 31 July onward. These signals require operational investigation; coverage data alone does not establish a configuration, batch, data, or rule-evaluation cause.
 
-This metric model supplements [[netting-eligibility-rules]] and provides monitoring evidence relevant to [[auto-netting-static-go-live-sequencing]]. The formula and intended meaning of the benefit field remain tracked in [[what-is-the-auto-netting-benefit-calculation]].
+This metric model supplements [[netting-eligibility-rules]] and provides monitoring evidence relevant to [[auto-netting-static-go-live-sequencing]]. The formula and intended meaning of the benefit field remain tracked in what is the auto netting benefit calculation.

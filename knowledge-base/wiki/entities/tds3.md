@@ -3,7 +3,7 @@ type: entity
 title: TDS3
 created: 2026-08-22
 updated: 2026-08-24
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/04-Onboarding(Entity Product) Check List/F2B Milestone Onboarding check list/F2B Milestone check list - Korea Cashflow Migration.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/NDS Auto Netting.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/2023-Q4 Analysis/SFX Supporting.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Deprecated docs/Copy of Trade Confirmation & Cashflow STP - Deprecated.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/CPN Tech Design - Draft for now.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Migrating BCS to Strategic Workflow.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Mock testing data userguide.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Surrounding System Integration/Settlement - Murex 2.11 Cashflow Integration/CN Settlement - MxML mapping to SCBML.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/FXU Technical Design.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/RATANONE Cash Settlement Technical Design/RATAN - Uber Integration/EG   NP   SAU UBER Roll Out & FXU Business Go-Live Runbook on 04 04.md", "Cash Settlement Home Page/Cash Settlement Home Page/Tech Design/RATANONE Cash Settlement Technical Design/Trade Information Tech Design.md", "RATAN/RATAN -Interfaces/Ratan and CDUPS 51512.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/CPN Tech Design - Draft for now.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/NDS Auto Netting.md"]
 tags: ["tds3", "trade-confirmation", "integration", "stp", "nstp", "data-source", "trade-enrichment", "cash-settlement", "upstream-system", "historical-data", "lifecycle-events", "sfx", "stella", "confirmation", "cashflow", "deprecated-evidence", "payment-lake", "trade-information", "bcs", "trade processing", "Kafka", "testing", "trade-data", "enrichment", "murex-211", "synchronization", "fxu", "scbml", "publisher", "release-operations", "trade-state", "message-routing", "trade-processing"]
 related: ["korea", "cashflow-status-handling", "high-risk-nstp-rule", "nds-auto-netting", "ndirs", "murex-2-11", "ratan", "sfx", "cashflow-migration-readiness", "migration-weekend-lifecycle-event-control", "stella", "cdu-ps", "trade-confirmation-driven-cashflow-stp", "entities/stella", "payment-lake", "cpn-netting", "automatic-un-netting-on-trade-market-events", "bcs", "cdu", "bcs-cdu-match-status-confirmation", "bcs-strategic-workflow-migration", "kafka-settlement-test-topics", "mock-settlement-test-data-generation", "murex-211", "mxpayml", "murex-payment-mxml-to-scbml-transformation", "fxu", "razor", "transaction-synchronization", "tdsx", "sabre-pss", "upstream-cashflow-replay-for-group-completion", "trade-information-sourcing-for-cash-settlement", "data-ambassador", "lms", "cdups", "ratan-cdups-trade-confirmation-flow", "post-trade-orchestration"]
 ---
@@ -14,9 +14,9 @@ TDS3 is referenced as an upstream trade-data system and, in selected RATAN and C
 
 ## Role in trade-information sourcing
 
-The *Trade Information Tech Design* source identifies TDS3 as the central trade-data system referenced by both trade-information sourcing options in the [[trade-information-sourcing-for-cash-settlement]] analysis.
+The *Trade Information Tech Design* source identifies TDS3 as the central trade-data system referenced by both trade-information sourcing options in the trade information sourcing for cash settlement analysis.
 
-- **Option 1:** The Cashflow service would query TDS3 through [[data-ambassador]] for each cashflow event.
+- **Option 1:** The Cashflow service would query TDS3 through data ambassador for each cashflow event.
 - **Option 2:** The existing trade service would continue consuming all trades from TDS3 and provide a locally replicated copy for downstream use.
 
 The source identifies the following information as required for Cash Settlement use cases:
@@ -56,7 +56,7 @@ RATAN queries `Instrument_Common.Source_System_Instrument_Type` using the NID-de
 
 The NDS Auto Netting source identifies a timing risk: TDS3 may not have received the Murex data when RATAN performs enrichment, resulting in an empty parent typology.
 
-Retry and failure handling are not defined in that source. See [[how-should-ratan-handle-empty-nd-parent-typology]].
+Retry and failure handling are not defined in that source. See how should ratan handle empty nd parent typology.
 
 ### SFX migration-cycle-2 historical-data role
 
@@ -64,7 +64,7 @@ In the SFX migration-cycle-2 support notes, TDS3 is identified as the upstream p
 
 For the documented migration-cycle-2 test, TDS3 reportedly sent only the final version of historical data to RATAN. The notes state that this was not production-like and that only a rebook event was received and processed.
 
-This is a test-data limitation for the named SFX scenario, not evidence of TDS3 behavior in all environments or integrations. It prevents the source from demonstrating complete lifecycle-event sequencing. See [[cashflow-migration-readiness]].
+This is a test-data limitation for the named SFX scenario, not evidence of TDS3 behavior in all environments or integrations. It prevents the source from demonstrating complete lifecycle-event sequencing. See cashflow migration readiness.
 
 ## Trade confirmation and cashflow flows
 
@@ -73,14 +73,14 @@ This is a test-data limitation for the named SFX scenario, not evidence of TDS3 
 The *Ratan and CDUPS 51512* source describes trade-specific confirmation routes involving TDS3:
 
 - **Murex trades:** CDUPS sends the trade-confirmation event to TDS3, and RATAN synchronizes trade state from TDS3, including the cashflow STP condition.
-- **FMRP trades:** [[stella]] sends trade XML to RATAN through TDS3 after updating the trade status.
+- **FMRP trades:** stella sends trade XML to RATAN through TDS3 after updating the trade status.
 - **BCS trades:** TDS3 has no such confirmation data; CDUPS sends the information directly to RATAN.
 
 This source therefore does not support treating TDS3 as the universal confirmation route for all trade types.
 
 ### BCS confirmation and trade-information context
 
-The *Migrating BCS to Strategic Workflow* source identifies TDS3 as a trade-information source that BCS currently does not use for cashflow confirmation. According to that source, BCS instead consumes match status from [[cdu]].
+The *Migrating BCS to Strategic Workflow* source identifies TDS3 as a trade-information source that BCS currently does not use for cashflow confirmation. According to that source, BCS instead consumes match status from cdu.
 
 For the target confirmation contract, that source states that match-status confirmation must be explicitly distinguished from trade-information consumption. It does not establish that TDS3 should replace CDU.
 
@@ -92,12 +92,12 @@ In the deprecated *Copy of Trade Confirmation & Cashflow STP* source, TDS3 is an
 
 That source describes TDS3 as:
 
-- Sending Stella trade messages to [[cdu-ps]] through Solace.
+- Sending Stella trade messages to cdu ps through Solace.
 - Forwarding confirmation-status notifications from Stella to [[ratan]].
 
 Because this evidence is from a deprecated document, it does not establish TDS3's current interface ownership, message schema, or operational role.
 
-The deprecated source's described flows to [[cdu-ps]] and [[ratan]] are separate evidence from the *Ratan and CDUPS 51512* source's FMRP trade-XML route from [[stella]] to RATAN through TDS3. The sources do not establish that these descriptions use the same interface, message schema, or ownership model.
+The deprecated source's described flows to cdu ps and [[ratan]] are separate evidence from the *Ratan and CDUPS 51512* source's FMRP trade-XML route from stella to RATAN through TDS3. The sources do not establish that these descriptions use the same interface, message schema, or ownership model.
 
 ### CPN netting path
 
@@ -119,7 +119,7 @@ According to that draft, this path is used for Stella component updates during:
 
 The draft does not define the TDS3 message contract or whether TDS3 participates in version-conflict detection.
 
-The draft's Payment Lake path is separate evidence from the deprecated source's flows to [[cdu-ps]] and [[ratan]], and from the *Ratan and CDUPS 51512* source's trade-specific confirmation routes. The sources do not establish whether these paths share an interface, ownership model, or message contract.
+The draft's Payment Lake path is separate evidence from the deprecated source's flows to cdu ps and [[ratan]], and from the *Ratan and CDUPS 51512* source's trade-specific confirmation routes. The sources do not establish whether these paths share an interface, ownership model, or message contract.
 
 ## FXU integration and synchronization
 

@@ -152,4 +152,4 @@ The source does not define:
 
 The explicit DoD is strong evidence of intended behavior. The process tables provide moderate evidence for aggregation, withdrawal, and split scenarios. API behavior, persistence constraints, resultant generation, and integration semantics remain unspecified. The document reports no implementation, test, production, or performance outcomes.
 
-See [[queries/what-is-the-authoritative-netting-state-machine]] and [[queries/what-is-the-netting-service-api-contract]] for unresolved design questions.
+See what is the authoritative netting state machine and what is the netting service api contract for unresolved design questions.

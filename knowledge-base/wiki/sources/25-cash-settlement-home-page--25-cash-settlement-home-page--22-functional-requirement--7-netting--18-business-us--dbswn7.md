@@ -21,7 +21,7 @@ The source includes acceptance criteria and case notes. Referenced screenshots a
 
 ## Core workflow
 
-A user creates a live manual netting rule in the [[netting-static-blotter]], selects eligible cashflows in the [[cashflow-blotter]], and submits the netting operation. Component cashflows initially have:
+A user creates a live manual netting rule in the [[netting-static-blotter]], selects eligible cashflows in the cashflow blotter, and submits the netting operation. Component cashflows initially have:
 
 - `state = 'WAITING'`
 - `cashflow sub state type = 'Pending Netting'`
@@ -100,5 +100,5 @@ The duplicate `AC-Settlement-Manual Netting-008` identifier should be corrected 
 - [[netting-resultant-cashflow-lifecycle]]
 - [[netting-withdrawal-timing]]
 - [[netting-exception-recovery]]
-- [[manual-and-automatic-netting-un-netting]]
-- [[what-happens-when-a-component-is-withdrawn-after-resultant-settlement]]
+- manual and automatic netting un netting
+- what happens when a component is withdrawn after resultant settlement

@@ -25,4 +25,4 @@ A complete lineage design must establish:
 - Audit history for aggregation, reversal, amendment, cancellation, and failed processing.
 - The lifecycle behavior of each linked object during `UnAggregate`.
 
-The existing [[cashflow-lineage-and-amendment-correlation]] material is relevant as a lineage pattern, but it does not establish rules for IRS aggregation. The unresolved pairing and reversal requirements are tracked in [[what-is-the-authoritative-irs-leg-correlation-and-aggregation-eligibility-rule]] and [[what-is-the-authoritative-unaggregate-state-and-lineage-behavior]].
+The existing cashflow lineage and amendment correlation material is relevant as a lineage pattern, but it does not establish rules for IRS aggregation. The unresolved pairing and reversal requirements are tracked in what is the authoritative irs leg correlation and aggregation eligibility rule and what is the authoritative unaggregate state and lineage behavior.

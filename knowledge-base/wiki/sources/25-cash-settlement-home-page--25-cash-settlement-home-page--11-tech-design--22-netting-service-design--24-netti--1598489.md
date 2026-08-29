@@ -77,4 +77,4 @@ The results support only the recorded single-case outcomes. They do not demonstr
 - Retry resilience or endurance beyond the one documented withdrawal retry.
 - Broad production representativeness of the supplied Murex sample.
 
-See [[netting-service-performance-testing]] for the evidence boundary and [[what-are-the-netting-service-performance-slos-and-test-conditions]] for unresolved test-condition and SLO questions.
+See [[netting-service-performance-testing]] for the evidence boundary and what are the netting service performance slos and test conditions for unresolved test-condition and SLO questions.

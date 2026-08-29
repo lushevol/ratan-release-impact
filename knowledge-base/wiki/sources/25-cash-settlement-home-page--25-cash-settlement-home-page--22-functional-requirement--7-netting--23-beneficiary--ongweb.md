@@ -15,7 +15,7 @@ sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requir
 
 ## Purpose
 
-This functional requirement defines a controlled manual Beneficiary BIC netting workflow in [[entities/ratan]]. The workflow is based on the existing [[entities/murex]] BAU process and is intended to let settlement operations filter, review, select, and net eligible cashflows directly from the [[entities/cashflow-blotter]].
+This functional requirement defines a controlled manual Beneficiary BIC netting workflow in [[entities/ratan]]. The workflow is based on the existing [[entities/murex]] BAU process and is intended to let settlement operations filter, review, select, and net eligible cashflows directly from the cashflow blotter.
 
 The requirement emphasizes user control, segregation from bilateral manual netting, configurable eligibility data, resultant-cashflow lineage, client affirmation, maker-checker verification, and pre-release automatic un-netting.
 
@@ -35,7 +35,7 @@ The requirement emphasizes user control, segregation from bilateral manual netti
 
 ## Eligibility and source mapping
 
-The Beneficiary BIC is the BIC code obtained from [[entities/sci]] where `mediumUsage='MXR'`.
+The Beneficiary BIC is the BIC code obtained from sci where `mediumUsage='MXR'`.
 
 ```text
 BIC_NET flag Logical Model: Entity.Counterparty_SCI_BIC_Net_Flag

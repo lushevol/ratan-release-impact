@@ -31,7 +31,7 @@ The source mandates that the auto-netting rule be approved before the associated
 | [[taifex]] | `10038345` | `401040938` | IRS products only |
 | [[citic]] | `2` | `401014221` | IRS products only |
 
-The naming variation ECLIPS, ECLIP, and ECLIPSE remains unresolved; see [[what-is-the-canonical-eclips-name-and-scope]].
+The naming variation ECLIPS, ECLIP, and ECLIPSE remains unresolved; see what is the canonical eclips name and scope.
 
 ## Operational requirements
 
@@ -69,7 +69,7 @@ The naming variation ECLIPS, ECLIP, and ECLIPSE remains unresolved; see [[what-i
 
 UAT scenarios were recorded for TAIFEX, CITIC, LCH, HKEX, and ECLIPS. Hui Chien Khoo is listed as tester for the first four scopes; Hii Yew Fuong is listed for ECLIPS. The `Test Result` field is blank for every scenario, so the material evidences test execution and screenshots rather than formal acceptance.
 
-A separate mock-data test by Grace showed that ECLIPS booking entity `400452428` and counterparty `400883001` enter `CASHFLOW_SUPPRESSED` under an existing suppression rule and do not reach auto-netting. This path is an unresolved dependency tracked in [[how-will-eclips-400452428-cashflow-suppression-be-resolved]].
+A separate mock-data test by Grace showed that ECLIPS booking entity `400452428` and counterparty `400883001` enter `CASHFLOW_SUPPRESSED` under an existing suppression rule and do not reach auto-netting. This path is an unresolved dependency tracked in how will eclips 400452428 cashflow suppression be resolved.
 
 ## Implications
 

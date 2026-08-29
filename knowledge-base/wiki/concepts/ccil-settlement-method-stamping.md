@@ -28,7 +28,7 @@ The non-guaranteed FMID list is copied from Murex 2.11 into tactical Ratan logic
 
 ## Strategic and FMRP Implementations
 
-The strategic design assigns CCIL identification and stamping to [[stella]], using a golden source for non-guaranteed CCIL clients.
+The strategic design assigns CCIL identification and stamping to stella, using a golden source for non-guaranteed CCIL clients.
 
 FMRP 8.0 flow notes also require Ratan Settlement to convert some flows from `GROSS` to `CCIL`, allowing IRS-netting resultants to reach `CCIL Guarantee` or `CCIL Netting` auto-netting rules.
 

@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-23
 tags: [cashflow, netting, lifecycle, NSTP, maker-checker, cash-settlement, resultant-cashflow, state-transition]
 related: [cashflow-lifecycle-state-machine, maker-checker-settlement-control, cashflow-blotter-netting-workflow, ratan, fmsre, bilateral-netting, netting-withdrawal-timing, manual-and-automatic-netting-un-netting]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/CPN Business Scenario.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Business User Case/01 Bilateral Netting.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/Business User Case/01 Bilateral Netting.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Netting/CPN Business Scenario.md"]
 ---
 # Netting Resultant Cashflow Lifecycle
 
@@ -27,7 +27,7 @@ Booking Entity + Counterparty + Currency + Value Date
 + Status not Released or Settled
 ```
 
-Cashflows with different counterparties, booking entities, or value dates cannot be combined. A cashflow that has already been released—particularly one whose SWIFT message was sent to [[fmsre]]—is ineligible.
+Cashflows with different counterparties, booking entities, or value dates cannot be combined. A cashflow that has already been released—particularly one whose SWIFT message was sent to fmsre—is ineligible.
 
 The CPN Business Scenario source also permits ad-hoc requests to include cashflows normally following the gross path:
 

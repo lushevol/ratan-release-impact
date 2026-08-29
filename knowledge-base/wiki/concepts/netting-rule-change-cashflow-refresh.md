@@ -120,4 +120,4 @@ The refresh paths are asymmetric. Manual-to-auto conversion searches for untagge
 
 The source does not define whether conversion clears Netting IDs, removes pending actions, or directly changes lifecycle state. It also treats both an empty string and null as an unassigned Netting ID. Handling of whitespace or other malformed values is unspecified.
 
-The status terminology should be reconciled with [[concepts/ratan-cashflow-lifecycle-state-machine]] and [[queries/what-are-the-canonical-cashflow-state-and-sub-state-values]].
+The status terminology should be reconciled with ratan cashflow lifecycle state machine and what are the canonical cashflow state and sub state values.

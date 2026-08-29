@@ -42,9 +42,9 @@ This source does not specify:
 - un-netting actions;
 - downstream settlement or accounting effects.
 
-The document therefore provides no answer to the outstanding questions on [[cashflow-netting-and-un-netting]], including [[what-are-the-netting-eligibility-and-netting-id-rules-for-cn-cashflows]], [[what-is-the-authoritative-cashflow-netting-and-un-netting-state-model]], and [[are-netting-components-required-to-share-currency-and-value-date]].
+The document therefore provides no answer to the outstanding questions on cashflow netting and un netting, including what are the netting eligibility and netting id rules for cn cashflows, what is the authoritative cashflow netting and un netting state model, and are netting components required to share currency and value date.
 
 ## Related Context
 
-The folder placement associates the document with [[cash-settlement-home-page]]. Its stated topic is adjacent to [[cashflow-netting-and-un-netting]] and [[cashflow-netting-and-un-netting-state-transitions]], but the source itself does not establish requirements for either concept.
+The folder placement associates the document with [[cash-settlement-home-page]]. Its stated topic is adjacent to cashflow netting and un netting and cashflow netting and un netting state transitions, but the source itself does not establish requirements for either concept.
 ---

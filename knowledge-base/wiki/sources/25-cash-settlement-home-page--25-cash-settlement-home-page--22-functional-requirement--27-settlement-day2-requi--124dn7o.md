@@ -16,7 +16,7 @@ sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requir
 
 ## Source context
 
-This document records user-acceptance testing for inter-entity cashflow netting in [[entities/ratan]], using the [[entities/fmo-post-trade-portal]] test environment. The tester is identified as `test user`. The Day 1 entity scope was recorded as **to be confirmed**.
+This document records user-acceptance testing for inter-entity cashflow netting in [[entities/ratan]], using the fmo post trade portal test environment. The tester is identified as `test user`. The Day 1 entity scope was recorded as **to be confirmed**.
 
 The embedded evidence covers April–May 2026. Several scenarios were initially affected by temporary environment or queued-status issues and passed after reinstatement and retest. LMS confirmations were added for selected scenarios by Nivi on 2026-04-27.
 

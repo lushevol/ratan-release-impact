@@ -255,4 +255,4 @@ The recurring data contract is `Booking Entity FMCODE`, `Counterparty FMCODE`, a
 
 The sample does not provide currency, value date, amount, debit or credit direction, product, account, settlement status, or netting key. The difference between `M` and `N` cashflow identifier prefixes is not explained. SAL is also not defined as an organization, venue, or process category.
 
-For interpretation, see [[cashflow-auto-netting]], [[booking-and-counterparty-fmcode]], and [[cashflow-identifier]]. The source extends [[sources/25-cash-settlement-home-page--25-cash-settlement-home-page--22-functional-requirement--27-settlement-day2-requir--1x97cc1]] with a concrete UAT population but does not establish that auto-netting succeeds.
+For interpretation, see [[cashflow-auto-netting]], [[booking-and-counterparty-fmcode]], and [[cashflow-identifier]]. The source extends 25 cash settlement home page  25 cash settlement home page  22 functional requirement  27 settlement day2 requir  1x97cc1 with a concrete UAT population but does not establish that auto-netting succeeds.

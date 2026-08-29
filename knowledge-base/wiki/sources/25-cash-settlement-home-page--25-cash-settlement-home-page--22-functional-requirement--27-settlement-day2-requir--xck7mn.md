@@ -288,4 +288,4 @@ Qualified evidence includes the C3 CNY date, selective refresh after rule update
 
 ## Related wiki pages
 
-The source extends [[concepts/cashflow-auto-netting]], [[concepts/auto-netting-rule-management]], [[concepts/netting-resultant-cashflow-lifecycle]], [[concepts/netting-un-net-lifecycle]], [[concepts/business-calendar-relative-netting-time]], [[concepts/netting-scenario-priority]], [[concepts/cashflow-blotter-action-eligibility]], [[entities/ratan]], [[entities/cash-settlement-home-page]], and [[entities/sci]].
+The source extends [[concepts/cashflow-auto-netting]], [[concepts/auto-netting-rule-management]], [[concepts/netting-resultant-cashflow-lifecycle]], [[concepts/netting-un-net-lifecycle]], [[concepts/business-calendar-relative-netting-time]], [[concepts/netting-scenario-priority]], cashflow blotter action eligibility, [[entities/ratan]], [[entities/cash-settlement-home-page]], and sci.

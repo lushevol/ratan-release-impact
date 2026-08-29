@@ -15,4 +15,4 @@ The source does not provide a schema definition. Its columns, keys, relationship
 
 The documented workflow collects auto-netting tasks, excludes amendment cashflows, and then performs netting. It does not establish whether `t_auto_netting_task` stores all tasks, only eligible tasks, or task-processing outcomes.
 
-See [[what-is-the-authoritative-auto-netting-task-and-amendment-exclusion-contract]] for unresolved data-model and lifecycle questions.
+See what is the authoritative auto netting task and amendment exclusion contract for unresolved data-model and lifecycle questions.

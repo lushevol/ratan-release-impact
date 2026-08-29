@@ -25,4 +25,4 @@ Aggregation is explicitly distinct from the [[net-function]]:
 
 The source does not define the authoritative pairing key, validation that exactly two eligible legs exist, idempotency behavior, timing of the trigger, or amendment and cancellation treatment.
 
-It also does not establish whether aggregation is fully automated or can be initiated by users. These gaps are tracked in [[what-is-the-authoritative-irs-leg-correlation-and-aggregation-eligibility-rule]] and [[is-irs-cashflow-aggregation-fully-automated-or-user-initiated]].
+It also does not establish whether aggregation is fully automated or can be initiated by users. These gaps are tracked in what is the authoritative irs leg correlation and aggregation eligibility rule and is irs cashflow aggregation fully automated or user initiated.

@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-22
 tags: [murex, product-strategy, cash-settlement, rfr, nstp, SWAP_AGENT, cashflow-auto-netting, SAL, swap-agent, auto-netting, day2-processing]
 related: [murex-2-11, ratan, rfr-payment-type-classification, auto-netting, settlement-suppression, straight-through-processing, cashflow-auto-netting, clearing-swift-suppression, auto-netting-resultant-nstp, swap-agent-mtm-coupon-netting-separation, netting-job-retry, netting-resultant-cashflow-lifecycle, trade-level-clearing-id-propagation]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/2024 changes/RFR and Swap Agent.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Auto Netting Static Go Live Process.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Day2 Auto Netting TestCase.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Auto Netting Static Go Live Process.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Day2 Auto Netting TestCase.md"]
 ---
 
 # SWAP_AGENT
@@ -30,7 +30,7 @@ Payment_Type = "Coupon"
 The following rules are from the RFR and Swap Agent source:
 
 - `NSTP` is assigned when `Instrument_Common.Murex_Product_Strategy == "SWAP_AGENT"`.
-- Payment types may be derived for `SWAP_AGENT` or `RECALC` using typology, `FLOW_TYPE2`, and `X_DUMMY2`; see [[rfr-payment-type-classification]].
+- Payment types may be derived for `SWAP_AGENT` or `RECALC` using typology, `FLOW_TYPE2`, and `X_DUMMY2`; see rfr payment type classification.
 - For the documented three-trade structure, dummy notional and dummy MTM flows are generally not sent to RATAN.
 - Eligible interim MTM and coupon payments can be SWIFT-suppressed because settlement is handled through the clearing house.
 - The source defines a `Netting` classification for `SWAP_AGENT` interim MTM and coupon payments with an empty or null `Cashflow.Netting_Id`; the intended semantics require validation.

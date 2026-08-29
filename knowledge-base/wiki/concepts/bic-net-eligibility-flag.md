@@ -26,7 +26,7 @@ The eligible value is:
 BIC_Net = 'Y'
 ```
 
-The Beneficiary BIC is the BIC obtained from [[entities/sci]] where `mediumUsage='MXR'`.
+The Beneficiary BIC is the BIC obtained from sci where `mediumUsage='MXR'`.
 
 ## State transition
 

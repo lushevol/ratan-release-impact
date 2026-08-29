@@ -29,7 +29,7 @@ It proposes replacing the Indonesia cashflow-ID prefixes used by split and netti
 | Spliting | netting lifecycle | autoSplit manualSplit unsplit -- 1 unNetAndUnSplitCashflowsWithLock (moveStatus) splitWithdrawal | | |
 | Netting | nettingCashFlow--netOrAffirm --generateResultantCashflowId // callLifecycleToNet--batchUpdateStatus unNetCashFlow -- 2 unNetAndUnSplitCashflowsWithLock (moveStatus) | hard code | |
 
-The note distinguishes split-rule lookup from netting-rule lookup. It does not establish that `ratan-rule-servicecheckIrsRule` identifies [[ratanone-rule-service]], nor does it indicate that rule evaluation owns prefix configuration.
+The note distinguishes split-rule lookup from netting-rule lookup. It does not establish that `ratan-rule-servicecheckIrsRule` identifies ratanone rule service, nor does it indicate that rule evaluation owns prefix configuration.
 
 ## Proposed prefix model
 
@@ -38,7 +38,7 @@ The note distinguishes split-rule lookup from netting-rule lookup. It does not e
 | GDC | S | N | S -- Utils.getCashFlowId(Constant.SPLIT_CASHFLOW_PREFIX, 11, String.valueOf(cashflowIdSeq)); N -- Utils.getCashFlowId("N", 11, String.valueOf(cashflowIdSeq)); | length.size = 12 S00050110905 N00000001832 | select nextval('cashflow_id_seq') |
 | ID | SID | NID | | length.size should keep 12 SID000062866 | will this affect the amount of cashflow? |
 
-For [[ratan-indonesia]], the proposed split prefix is `SID` and the netting-resultant prefix is `NID`. [[ratan-gdc]] is the reference environment, using `S` and `N`.
+For ratan indonesia, the proposed split prefix is `SID` and the netting-resultant prefix is `NID`. ratan gdc is the reference environment, using `S` and `N`.
 
 ## Implementation implications
 
@@ -60,4 +60,4 @@ A 12-character identifier with `SID` or `NID` permits a nine-digit numeric suffi
 
 Regression coverage should include `autoSplit`, `manualSplit`, `unsplit`, `splitWithdrawal`, `netOrAffirm`, `generateResultantCashflowId`, `unNetCashFlow`, and `unNetAndUnSplitCashflowsWithLock (moveStatus)`. The source does not state whether unnetting or unsplitting regenerates, restores, or preserves identifiers.
 
-See [[configurable-cashflow-id-prefixes]] and [[how-does-the-12-character-indonesia-cashflow-id-format-handle-sequence-overflow]].
+See [[configurable-cashflow-id-prefixes]] and how does the 12 character indonesia cashflow id format handle sequence overflow.

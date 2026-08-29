@@ -45,7 +45,7 @@ The source supports the conclusion that Beneficiary BIC Netting has cross-servic
 
 The parenthetical “only static data” establishes a responsibility boundary for the Rule service, but does not clarify whether that scope covers storage, validation, configuration, enrichment, distribution, or reference-data synchronization.
 
-The generic service labels cannot be safely mapped to existing named services such as [[ratanone-rule-service]], [[51358-ratanone-static-data-service]], [[ratan-cashflow-lifecycle-service]], [[51358-ratanone-query-service]], or [[51358-ratan-cash-settlement-query-service]] without additional evidence.
+The generic service labels cannot be safely mapped to existing named services such as ratanone rule service, 51358 ratanone static data service, ratan cashflow lifecycle service, 51358 ratanone query service, or 51358 ratan cash settlement query service without additional evidence.
 
 ## Missing Design Detail
 
@@ -59,4 +59,4 @@ The source leaves the following unresolved:
 - API, database, event-contract, audit, migration, reconciliation, and testing changes.
 - The deployment, region, or Cash Settlement implementation to which the design applies.
 
-See [[beneficiary-bic-netting]] and [[what-is-the-authoritative-beneficiary-bic-netting-model]] for the resulting knowledge boundary and open questions.
+See [[beneficiary-bic-netting]] and what is the authoritative beneficiary bic netting model for the resulting knowledge boundary and open questions.

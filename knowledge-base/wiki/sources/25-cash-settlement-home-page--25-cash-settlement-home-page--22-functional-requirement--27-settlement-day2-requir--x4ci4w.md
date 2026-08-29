@@ -15,7 +15,7 @@ venue: ""
 
 This source proposes adding a composite index to the Ratan cashflow-history table used in the Cashflow Auto Netting context. It recommends an in-place PostgreSQL concurrent index build and also describes a replacement-table migration alternative.
 
-The target data object belongs to the [[ratan]] ecosystem and has an SCBML-oriented history-table name associated with [[scbml]].
+The target data object belongs to the [[ratan]] ecosystem and has an SCBML-oriented history-table name associated with scbml.
 
 ## Recommended approach: concurrent index creation
 

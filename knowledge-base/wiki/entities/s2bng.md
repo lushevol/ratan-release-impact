@@ -15,4 +15,4 @@ It shares with [[ratan]] the requirements for FMO selection of two or more cashf
 
 Ratan-only functions—including GTSS ingestion, NSTP routing, TLM matching, CLS netting, and LCM inter-entity netting—are not asserted for S2BNG by this source.
 
-S2BNG should not be assumed to be an alias of [[s2bx]] without authoritative confirmation.
+S2BNG should not be assumed to be an alias of s2bx without authoritative confirmation.

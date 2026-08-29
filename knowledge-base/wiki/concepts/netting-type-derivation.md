@@ -40,4 +40,4 @@ The test cases do not state what happens when both the CCIL and BIC conditions m
 - The field can be manually overridden.
 - The field remains blank when no condition matches.
 
-This precedence question remains connected to [[queries/what-are-the-ratan-netting-rule-match-and-precedence-semantics]].
+This precedence question remains connected to what are the ratan netting rule match and precedence semantics.

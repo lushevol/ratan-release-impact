@@ -5,7 +5,7 @@ created: 2026-08-22
 updated: 2026-08-23
 tags: [settlement, cash-settlement, auto-netting, go-live, operational-phase, requirements]
 related: [cash-settlement-home-page, cashflow-auto-netting, auto-netting-static-go-live-sequencing, manual-entity-settlement-enablement, sources/25-cash-settlement-home-page--25-cash-settlement-home-page--22-functional-requirement--27-settlement-day2-requi--1x97cc1]
-sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Auto Netting Static Go Live Process.md", "Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Enable Settlement for Manual Entities.md"]
+sources: ["Cash Settlement Home Page/Cash Settlement Home Page/Functional Requirement/Settlement Day2 Requirement/Cashflow Auto Netting/Auto Netting Static Go Live Process.md"]
 ---
 # Settlement Day 2
 
@@ -25,7 +25,7 @@ The available evidence does not establish whether Settlement Day 2 represents a 
 
 ## Related requirement
 
-[[25-cash-settlement-home-page--25-cash-settlement-home-page--22-functional-requirement--27-settlement-day2-requi--1lzh700]] is scoped under Settlement Day 2 and concerns enabling settlement for manual entities.
+25 cash settlement home page  25 cash settlement home page  22 functional requirement  27 settlement day2 requi  1lzh700 is scoped under Settlement Day 2 and concerns enabling settlement for manual entities.
 
 The precise relationship between this manual-entity requirement and the broader Settlement Day 2 scope remains undocumented because the body of the source requirement was not provided.
 
